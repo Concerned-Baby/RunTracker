@@ -1,2 +1,2 @@
 # RunTracker
-Hmmm, weird your reading this
+Hmmm, weird you're reading this (happy kaleb?)
