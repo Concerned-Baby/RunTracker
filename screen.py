@@ -14,31 +14,14 @@ CheckBox For choosing events (under runner)
 
 """
 
+#constants
+global possiblePredictions, possibleEvents, Sprints, Distance, Other
+possiblePredictions = ["100m --> 200m"]
+Sprints = ["100m", "200m", "400m"]
+Distance = ["800m", "1600m", "3200m"]
+Other = ["Long Jump"]
+Events = Sprints + Distance + Other
 
-def getRunnersNoTxt():
-	system_ = system()
-	if (system_ == "Windows" or system_ == "Android" or system_ == "Linux"):
-		location = "%s\\Runners" % getcwd()
-	elif (system_ == "macOS" or system_ == "iOS"):
-		location = "%s/Runners" % getcwd()
-	else:
-		print ("Error: Platform Not Supported")
-		exit()
-	runners = listdir(location)
-	copy = []
-	for runner in runners:
-		copy.append(runner.replace(".txt", ""))
-	return copy
-
-
-def getAllEvents(runnersDict):
-	events = []
-	for runner in runnersDict:
-		rEvents = runnersDict[runner].getEvents()
-		for event in rEvents:
-			if event not in events:
-				events.append(event)
-	return events
 
 def getLocalBest(eventName, runnersDict):
 	best = 1000
@@ -50,19 +33,24 @@ def getLocalBest(eventName, runnersDict):
 				best = pr
 				bestMan = runner
 	if best == 1000:
-		print("\nBest %s Run: N/A" % eventName)
-		print("Best %s Runner: N/A" % eventName)
+		return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
 	else:
-		print ("\nBest %s Run: %.2f" % (eventName, best))
-		print ("Best %s Runner: %s" % (eventName, bestMan))
+		return ("\nBest %s: %.2f\nBest %s'er: %s" % (eventName, best, eventName, bestMan))
 
-def getAllLocalBests():
-	pass
-
+def getLocalBestGroup(events, runnersDict):
+	text = ""
+	for event in events:
+		text += getLocalBest(event, runnersDict)
+		text += "\n\n"
+	return text
 
 class myApplicationManager(object):
 	def __init__(self, runnersDict):
 		self.runnersDict = runnersDict
+		self.runnersList = []
+		for runner in self.runnersDict:
+			self.runnersList.append(runner)
+		print(self.runnersList)
 		self.window = tk.Tk()
 		self.window.resizable(False, False)
 		self.window.title("something else")
@@ -113,13 +101,13 @@ class myApplicationManager(object):
 		self.btn_best_help = tk.Button(master=self.frm_best, text="Help", command=self.best_help, width=5, height=1, borderwidth=3, relief="raised")
 		self.btn_best_help.place(x=745, y=5)
 
-		self.lbl_best_bestDistance = tk.Label(master=self.frm_best, text="ToDo", width=30, height=27, borderwidth=4, relief="groove")
+		self.lbl_best_bestDistance = tk.Label(master=self.frm_best, text=getLocalBestGroup(Distance, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
 		self.lbl_best_bestDistance.place(x=36, y=20)
 
-		self.lbl_best_bestSprints = tk.Label(master=self.frm_best, text="ToDo", width=30, height=27, borderwidth=4, relief="groove")
+		self.lbl_best_bestSprints = tk.Label(master=self.frm_best, text=getLocalBestGroup(Sprints, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
 		self.lbl_best_bestSprints.place(x=280, y=20)
 
-		self.lbl_best_bestField = tk.Label(master=self.frm_best, text="ToDo", width=30, height=27, borderwidth=4, relief="groove")
+		self.lbl_best_bestField = tk.Label(master=self.frm_best, text=getLocalBestGroup(Other, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
 		self.lbl_best_bestField.place(x=524, y=20)
 
 		self.btn_best_back = tk.Button(master=self.frm_best, text="B", fg="green", command=self.best_back, width=2,height=1, borderwidth=3, relief="raised")
@@ -131,7 +119,7 @@ class myApplicationManager(object):
 		self.lbl_predictor_logo = tk.Label(master=self.frm_predictor, text="Predictors")
 		self.lbl_predictor_logo.place(x=370, y=0)
 
-		self.cbb_predictor_selector = ttk.Combobox(master=self.frm_predictor, values=["ToDo"], state="readonly", width=40)
+		self.cbb_predictor_selector = ttk.Combobox(master=self.frm_predictor, values=possiblePredictions, state="readonly", width=40)
 		self.cbb_predictor_selector.place(x=270, y=90)
 
 		self.lbl_predictor_entryLabel = tk.Label(master=self.frm_predictor, text="      Time      ", borderwidth=1, relief="solid")
@@ -162,20 +150,16 @@ class myApplicationManager(object):
 
 		self.lbl_select_logo = tk.Label(master=self.frm_select, text="Select Runner")
 		self.lbl_select_logo.place(x=360, y=0)
-
-
-		"""
-		instead of having two separate frames filled with buttons,
-		use a combo box, and acess the dictionary using the .current()
-		"""
-		self.frm_select_boxOne = tk.Frame(master=self.frm_select, height=360, width=300,  borderwidth=4, relief="sunken")
-		self.frm_select_boxOne.place(x=60, y=42)
-
-		self.frm_select_boxTwo = tk.Frame(master=self.frm_select, height=360, width=300,  borderwidth=4, relief="sunken")
-		self.frm_select_boxTwo.place(x=440, y=42)
+		
+		self.cbb_select_selector = ttk.Combobox(master=self.frm_select, values=self.runnersList, state="readonly", width=40)
+		self.cbb_select_selector.place(x=275, y=120)
 
 		self.btn_select_help = tk.Button(master=self.frm_select, text="Help", command=self.select_help, width=5, height=1, borderwidth=3, relief="raised")
 		self.btn_select_help.place(x=745, y=5)
+
+		self.btn_select_go = tk.Button(master=self.frm_select, text="GO!", command=self.toDo, borderwidth=3, relief="raised", width=20, height=2)
+		self.btn_select_go.place(x=330, y=200)
+
 
 		self.btn_select_back = tk.Button(master=self.frm_select, text="B", fg="green", command=self.select_back, width=2,height=1, borderwidth=3, relief="raised")
 		self.btn_select_back.place(x=5, y=415)
@@ -210,7 +194,7 @@ class myApplicationManager(object):
 		self.lbl_bestHelp_logo = tk.Label(master=self.frm_bestHelp, text="Best Help")
 		self.lbl_bestHelp_logo.place(x=365, y=0)
 
-		self.lbl_bestHelp_text = tk.Label(master=self.frm_bestHelp, text="ToDo", height=25, width=81, borderwidth=3, relief="ridge")
+		self.lbl_bestHelp_text = tk.Label(master=self.frm_bestHelp, text="This Page Displays The Best Talent At Each Event\n\nYou Can't Do Anything About It", height=25, width=81, borderwidth=3, relief="ridge")
 		self.lbl_bestHelp_text.place(x=100, y=32)
 
 		self.btn_bestHelp_back = tk.Button(master=self.frm_bestHelp, text="B", fg="green", command=self.bestHelp_back, width=2,height=1, borderwidth=3, relief="raised")
