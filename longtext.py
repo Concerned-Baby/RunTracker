@@ -12,3 +12,8 @@ def predictorHelp():
 
 	The Predicted Time For The Second Event Will Appear In The Lowest Text Box
 	"""
+
+def menuHelp():
+	return """This Is A Program to Help You Keep "Track" Of Everything\n
+	Click Any Button To Get Started, Read The Help If Needed
+	"""

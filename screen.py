@@ -174,7 +174,7 @@ class myApplicationManager(object):
 		lbl_menuHelp_logo = tk.Label(master=self.frm_menuHelp, text="Menu Help")
 		lbl_menuHelp_logo.place(x=370, y=0)
 
-		lbl_menuHelp_text = tk.Label(master=self.frm_menuHelp, text="ToDo", height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_menuHelp_text = tk.Label(master=self.frm_menuHelp, text=longtext.menuHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_menuHelp_text.place(x=100, y=32)
 
 		btn_menuHelp_back = tk.Button(master=self.frm_menuHelp, text="B", fg="green", command=self.menuHelp_back, width=2,height=1, borderwidth=3, relief="raised")
