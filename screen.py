@@ -1,4 +1,5 @@
 from runner import Runner
+import longtext
 import tkinter as tk
 from tkinter import ttk
 
@@ -7,16 +8,17 @@ from tkinter import ttk
 Next Steps:
 
 GUI
-redo the few get() methods in main, so that they return, not print
-Make a global list of all events, and make sure no strange events are added
+
 CheckBox For choosing events (under runner)
 (use a line in the middle, to properly center thigns)
+
+if space, a full predictor for each event in the runner page (probs going to be pretty hard)
 
 """
 
 #constants
 global possiblePredictions, possibleEvents, Sprints, Distance, Other
-possiblePredictions = ["100m --> 200m"]
+possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]"]
 Sprints = ["100m", "200m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
 Other = ["Long Jump"]
@@ -50,7 +52,6 @@ class myApplicationManager(object):
 		self.runnersList = []
 		for runner in self.runnersDict:
 			self.runnersList.append(runner)
-		print(self.runnersList)
 		self.window = tk.Tk()
 		self.window.resizable(False, False)
 		self.window.title("something else")
@@ -123,11 +124,13 @@ class myApplicationManager(object):
 		self.cbb_predictor_selector = ttk.Combobox(master=self.frm_predictor, values=possiblePredictions, state="readonly", width=40)
 		self.cbb_predictor_selector.place(x=270, y=90)
 
-		self.lbl_predictor_entryLabel = tk.Label(master=self.frm_predictor, text="      Time      ", borderwidth=1, relief="solid")
-		self.lbl_predictor_entryLabel.place(x=365, y=160)
+		lbl_predictor_entryLabel = tk.Label(master=self.frm_predictor, text="      Time      ", borderwidth=1, relief="solid")
+		lbl_predictor_entryLabel.place(x=365, y=160)
 
 		self.predictorTime = tk.StringVar()
-		self.ent_predictor_entry = tk.Entry(master=self.frm_predictor, width=15, textvariable=self.predictorTime)
+		vcmd = (self.window.register(self.isFloat), "%P") #research register command
+		
+		self.ent_predictor_entry = tk.Entry(master=self.frm_predictor, width=15, textvariable=self.predictorTime, validate="all", validatecommand=vcmd)
 		self.ent_predictor_entry.place(x=350, y=190)
 
 		lbl_predictor_arrow = tk.Label(master=self.frm_predictor, text="⬇️")
@@ -136,7 +139,7 @@ class myApplicationManager(object):
 		self.lbl_predictor_output = tk.Label(master=self.frm_predictor, text="0.0", borderwidth=3, relief="sunken", width=10, height=1)
 		self.lbl_predictor_output.place(x=360, y=250)
 
-		btn_predictor_go = tk.Button(master=self.frm_predictor, text="GO!", command=self.toDo, borderwidth=3, relief="raised", width=10, height=1)
+		btn_predictor_go = tk.Button(master=self.frm_predictor, text="GO!", command=self.predictor_go, borderwidth=3, relief="raised", width=10, height=1)
 		btn_predictor_go.place(x=357, y=290)
 
 		btn_best_help = tk.Button(master=self.frm_predictor, text="Help", command=self.predictor_help, width=5, height=1, borderwidth=3, relief="raised")
@@ -195,7 +198,7 @@ class myApplicationManager(object):
 		lbl_bestHelp_logo = tk.Label(master=self.frm_bestHelp, text="Best Help")
 		lbl_bestHelp_logo.place(x=365, y=0)
 
-		lbl_bestHelp_text = tk.Label(master=self.frm_bestHelp, text="This Page Displays The Best Talent At Each Event\n\nYou Can't Do Anything About It\n\n(Give Time To Update Dipshit)", height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_bestHelp_text = tk.Label(master=self.frm_bestHelp, text=longtext.bestHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_bestHelp_text.place(x=100, y=32)
 
 		btn_bestHelp_back = tk.Button(master=self.frm_bestHelp, text="B", fg="green", command=self.bestHelp_back, width=2,height=1, borderwidth=3, relief="raised")
@@ -207,15 +210,45 @@ class myApplicationManager(object):
 		lbl_predictorHelp_logo = tk.Label(master=self.frm_predictorHelp, text="Predictor Help")
 		lbl_predictorHelp_logo.place(x=365, y=0)
 
-		lbl_predictorHelp_text = tk.Label(master=self.frm_predictorHelp, text="ToDo", height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_predictorHelp_text = tk.Label(master=self.frm_predictorHelp, text=longtext.predictorHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_predictorHelp_text.place(x=100, y=32)
 
 		btn_predictorHelp_back = tk.Button(master=self.frm_predictorHelp, text="B", fg="green", command=self.predictorHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_predictorHelp_back.place(x=5, y=415)
 
-
+	"""
+	Methods That Actually Do Something
+	"""
 	def out(self):
 		self.window.destroy()
+
+	def predictor_go(self):
+		index = self.cbb_predictor_selector.current()
+		if (index == -1):
+			self.lbl_predictor_output["text"] = "Select"
+		else:
+			time = self.predictorTime.get()
+			if (time == ""):
+				self.lbl_predictor_output["text"] = "Enter"
+			else:
+				if (index == 0): #100 --> 200
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) -1))
+				if (index == 1):
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
+
+	def isFloat(self, toBe):
+		if toBe == "":
+			return True
+		try:
+			num = float(toBe)
+			return True
+		except ValueError:
+			return False
+
+
+	"""
+	Method That Change Screens
+	"""
 
 	def menu_getBest(self):
 		self.frm_menu.pack_forget()
