@@ -35,27 +35,27 @@ class Runner (object):
 
 	def newEvent(self, eventName):
 		if (self.hasEvent(eventName)):
-			return("Event Already Added")
+			print("Event Already Added")
 		else:
 			writeToFile(self.name, "|E %s\n" % eventName)
-			return("Event Added")
+			print("Event Added")
 
 	def newTime(self, eventName, time):
 		if (self.hasEvent(eventName)):
 			writeToFile(self.name, "|R %s: %.2f\n" % (eventName, time))
-			return("Time Added")
+			print("Time Added")
 		else:
-			return("No Such Event")
+			print("No Such Event")
 
 	def newGoal(self, eventName, goal):
 		if (self.hasEvent(eventName)):
 			if (("%.2f" % goal) not in self.getGoalsEvent(eventName)):
 				writeToFile(self.name, "|G %s: %.2f\n" % (eventName, goal))
-				return("Goal Added")
+				print("Goal Added")
 			else:
-				return("Goal Already Exists")
+				print("Goal Already Exists")
 		else:
-			return("No Such Event")
+			print("No Such Event")
 
 	def hasEvent(self, eventName):
 		if (eventName not in self.getEvents()):
@@ -107,47 +107,44 @@ class Runner (object):
 				passed += 1
 		return passed
 
-	def getAllInfoEvent(self, eventName):
-		toPrint = ""
-		toPrint += "------------------------------------------\n"
-		toPrint += "%s's %s Info\n\n" % (self.name, eventName)
+	def printAllInfoEvent(self, eventName):
+		print("------------------------------------------")
+		print ("%s's %s Info\n" % (self.name, eventName))
 		pr = self.getPREvent(eventName)
 		if (pr != 1000):
-			toPrint += "PR: %.2f\n\n" % pr
+			print ("PR: %.2f\n" % pr)
 		else:
-			toPrint += "PR: N/A\n\n"
+			print ("PR: N/A")
 		goals = self.getGoalsEvent(eventName)
 		passed = self.getGoalsPassedEvent(eventName)
-		toPrint += "Goals: %d        Passed: %d\n\n" % (len(goals), passed)
+		print ("Goals: %d        Passed: %d\n" % (len(goals), passed))
 		for goal in goals:
-			toPrint += goal + "\n"
+			print(goal)
 		times = self.getTimesEvent(eventName)
-		toPrint += "\nTimes: %d\n" % len(times)
+		print ("\nTimes: %d" % len(times))
 		for time in times:
-			toPrint += time + "\n"
-		toPrint += "------------------------------------------\n"
-		return toPrint
+			print (time)
+		print("------------------------------------------")
 
-	def getAllInfo(self):
-		toPrint = ""
-		toPrint += "----------------------------------------------------\n"
-		toPrint +="%s's Info\n\n\nPRs:\n" % self.name
+	def printAllInfo(self):
+		print("----------------------------------------------------")
+		print ("%s's Info\n\n\nPRs:\n" % self.name, end = '')
 		events = self.getEvents()
 		goalsPassed = 0
 		goals = 0
 		for event in events:
 			pr = self.getPREvent(event)
 			if (pr != 1000):
-				toPrint += "%s: %.2f\t\n" % (event, pr)
+				print("%s: %.2f\t" % (event, pr))
 			else:
-				toPrint += "%s: N/A\t" % event
+				print ("%s: N/A\t" % event)
 			goalsPassed += self.getGoalsPassedEvent(event)
+			#print self.getGoalsPassedEvent(event)
 			goals += len(self.getGoalsEvent(event))
-		toPrint += "\n\n# of Goals: %d \n# of Goals Passed: %d\n" % (goals, goalsPassed)
+		print("\n\n# of Goals: %d \n# of Goals Passed: %d\n" % (goals, goalsPassed))
 		for event in events:
-			toPrint += self.getAllInfoEvent(event)
-		toPrint += "----------------------------------------------------"
-		return toPrint
+			self.printAllInfoEvent(event)
+		print("----------------------------------------------------")
 
 
 
