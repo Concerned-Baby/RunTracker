@@ -17,3 +17,8 @@ def menuHelp():
 	return """This Is A Program to Help You Keep "Track" Of Everything\n
 	Click Any Button To Get Started, Read The Help If Needed
 	"""
+
+def selectHelp():
+	return """ This Page Allows You To Go To Any [listed] Runners Page
+	Select A Runner And Click "GO!"
+	"""

@@ -186,7 +186,7 @@ class myApplicationManager(object):
 		lbl_selectHelp_logo = tk.Label(master=self.frm_selectHelp, text="Select Help")
 		lbl_selectHelp_logo.place(x=365, y=0)
 
-		lbl_selectHelp_text = tk.Label(master=self.frm_selectHelp, text="ToDo", height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_selectHelp_text = tk.Label(master=self.frm_selectHelp, text=longtext.selectHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_selectHelp_text.place(x=100, y=32)
 
 		btn_selectHelp_back = tk.Button(master=self.frm_selectHelp, text="B", fg="green", command=self.selectHelp_back, width=2,height=1, borderwidth=3, relief="raised")
