@@ -36,26 +36,22 @@ class Runner (object):
 	def newEvent(self, eventName):
 		if (self.hasEvent(eventName)):
 			return("Event Already Added")
-		else:
-			writeToFile(self.name, "|E %s\n" % eventName)
-			return("Event Added")
+		writeToFile(self.name, "|E %s\n" % eventName)
+		return("Event Added")
 
 	def newTime(self, eventName, time):
 		if (self.hasEvent(eventName)):
 			writeToFile(self.name, "|R %s: %.2f\n" % (eventName, time))
 			return("Time Added")
-		else:
-			return("No Such Event")
+		return("No Such Event")
 
 	def newGoal(self, eventName, goal):
 		if (self.hasEvent(eventName)):
 			if (("%.2f" % goal) not in self.getGoalsEvent(eventName)):
 				writeToFile(self.name, "|G %s: %.2f\n" % (eventName, goal))
 				return("Goal Added")
-			else:
-				return("Goal Already Exists")
-		else:
-			return("No Such Event")
+			return("Goal Already Exists")
+		return("No Such Event")
 
 	def hasEvent(self, eventName):
 		if (eventName not in self.getEvents()):
