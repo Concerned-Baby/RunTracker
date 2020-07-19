@@ -161,7 +161,7 @@ class myApplicationManager(object):
 		btn_select_help = tk.Button(master=self.frm_select, text="Help", command=self.select_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_select_help.place(x=745, y=5)
 
-		btn_select_go = tk.Button(master=self.frm_select, text="GO!", command=self.toDo, borderwidth=3, relief="raised", width=20, height=2)
+		btn_select_go = tk.Button(master=self.frm_select, text="GO!", command=self.select_go, borderwidth=3, relief="raised", width=20, height=2)
 		btn_select_go.place(x=330, y=200)
 
 
@@ -216,6 +216,19 @@ class myApplicationManager(object):
 		btn_predictorHelp_back = tk.Button(master=self.frm_predictorHelp, text="B", fg="green", command=self.predictorHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_predictorHelp_back.place(x=5, y=415)
 
+	def setRunnerPage(self, runner):
+		self.frm_runner = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+
+		self.lbl_runner_name = tk.Label(master=self.frm_runner, text=runner)
+		self.lbl_runner_name.place(x=365, y=0)
+
+		btn_runner_back = tk.Button(master=self.frm_runner, text="B", fg="green", command=self.runner_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_runner_back.place(x=5, y=415)
+
+		
+
+
+
 	"""
 	Methods That Actually Do Something
 	"""
@@ -235,6 +248,12 @@ class myApplicationManager(object):
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) -1))
 				if (index == 1):
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
+
+	def select_go(self):
+		runner = self.cbb_select_selector.current()
+		self.setRunnerPage(self.runnersList[runner])
+		self.frm_select.pack_forget()
+		self.frm_runner.pack()
 
 	def isFloat(self, toBe):
 		if toBe == "":
@@ -305,6 +324,10 @@ class myApplicationManager(object):
 	def predictorHelp_back(self):
 		self.frm_predictorHelp.pack_forget()
 		self.frm_predictor.pack()
+
+	def runner_back(self):
+		self.frm_runner.pack_forget()
+		self.frm_select.pack()
 
 
 
