@@ -248,7 +248,7 @@ class myApplicationManager(object):
 		lbl_runner_prLabel = tk.Label(master=self.frm_runner, text="PRs", width=20, height=1, borderwidth=2, relief="ridge")
 		lbl_runner_prLabel.place(x=40, y=40)
 
-		self.lbl_runner_prs = tk.Label(master=self.frm_runner, text="ToDo", width=20, height=24, borderwidth=2, relief="ridge")
+		self.lbl_runner_prs = tk.Label(master=self.frm_runner, text=self.getAllPrs(runner), width=20, height=24, borderwidth=2, relief="ridge")
 		self.lbl_runner_prs.place(x=40, y=60)
 
 		lbl_runner_goalLabel = tk.Label(master=self.frm_runner, text="Goals", width=20, height=1, borderwidth=2, relief="ridge")
@@ -257,13 +257,13 @@ class myApplicationManager(object):
 		self.lbl_runner_goals = tk.Label(master=self.frm_runner, text="ToDo", width=20, height=24, borderwidth=2, relief="ridge")
 		self.lbl_runner_goals.place(x=630, y=60)
 
-		btn_runner_editEvents = tk.Button(master=self.frm_runner, text="edit events", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_editEvents = tk.Button(master=self.frm_runner,command=self.toDo, text="edit events", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_editEvents.place(x=210, y=415)
 
-		btn_runner_addTime = tk.Button(master=self.frm_runner, text="add time", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_addTime = tk.Button(master=self.frm_runner, command=self.toDo, text="add time", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_addTime.place(x=360, y=415)
  
-		btn_runner_addGoal = tk.Button(master=self.frm_runner, text="add goal", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_addGoal = tk.Button(master=self.frm_runner, command=self.toDo, text="add goal", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_addGoal.place(x=510, y=415)
 
 		cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())
@@ -311,6 +311,15 @@ class myApplicationManager(object):
 			return True
 		except ValueError:
 			return False
+
+	def getAllPrs(self, runner):
+		runnerObj = self.runnersDict[runner]
+		events = runnerObj.getEvents()
+		text = ""
+		for event in events:
+			text += ("%s:  %.2f\n\n" % (event, runnerObj.getPREvent(event)))
+		return text
+
 
 
 	"""
