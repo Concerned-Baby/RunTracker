@@ -12,7 +12,11 @@ GUI
 CheckBox For choosing events (under runner)
 (use a line in the middle, to properly center thigns)
 
+advanced statistics screen (with custom measurements)
+
 if space, a full predictor for each event in the runner page (probs going to be pretty hard)
+also if space picture
+
 
 """
 
@@ -229,7 +233,7 @@ class myApplicationManager(object):
 		btn_runnerHelp_back = tk.Button(master=self.frm_runnerHelp, text="B", fg="green", command=self.runnerHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runnerHelp_back.place(x=5, y=415)
 
-	def setRunnerPage(self, runner):
+	def setRunnerPage(self, runner): #might not need to have self. (if we just refresh on entry)
 		self.frm_runner = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
 
 		self.lbl_runner_name = tk.Label(master=self.frm_runner, text=runner)
@@ -240,6 +244,33 @@ class myApplicationManager(object):
 
 		btn_runner_back = tk.Button(master=self.frm_runner, text="B", fg="green", command=self.runner_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runner_back.place(x=5, y=415)
+
+		lbl_runner_prLabel = tk.Label(master=self.frm_runner, text="PRs", width=20, height=1, borderwidth=2, relief="ridge")
+		lbl_runner_prLabel.place(x=40, y=40)
+
+		self.lbl_runner_prs = tk.Label(master=self.frm_runner, text="ToDo", width=20, height=24, borderwidth=2, relief="ridge")
+		self.lbl_runner_prs.place(x=40, y=60)
+
+		lbl_runner_goalLabel = tk.Label(master=self.frm_runner, text="Goals", width=20, height=1, borderwidth=2, relief="ridge")
+		lbl_runner_goalLabel.place(x=630, y=40)
+
+		self.lbl_runner_goals = tk.Label(master=self.frm_runner, text="ToDo", width=20, height=24, borderwidth=2, relief="ridge")
+		self.lbl_runner_goals.place(x=630, y=60)
+
+		btn_runner_editEvents = tk.Button(master=self.frm_runner, text="edit events", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_editEvents.place(x=210, y=415)
+
+		btn_runner_addTime = tk.Button(master=self.frm_runner, text="add time", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_addTime.place(x=360, y=415)
+ 
+		btn_runner_addGoal = tk.Button(master=self.frm_runner, text="add goal", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_addGoal.place(x=510, y=415)
+
+		cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())
+		cbb_runner_events.place(x=320, y=40)
+
+		lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="ToDo", width=58, height=20, borderwidth=3, relief="ridge")
+		lbl_runner_eventInfo.place(x=200, y=80)
 
 
 		
@@ -262,8 +293,8 @@ class myApplicationManager(object):
 				self.lbl_predictor_output["text"] = "Enter"
 			else:
 				if (index == 0): #100 --> 200
-					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) -1))
-				if (index == 1):
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) - 1))
+				if (index == 1): #200 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
 
 	def select_go(self):
