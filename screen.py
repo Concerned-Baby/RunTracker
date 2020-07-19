@@ -64,6 +64,7 @@ class myApplicationManager(object):
 		self.setHelpMenu()
 		self.setHelpBest()
 		self.setHelpPredictor()
+		self.setRunnerHelp()
 
 		self.frm_menu.pack()
 
@@ -216,14 +217,30 @@ class myApplicationManager(object):
 		btn_predictorHelp_back = tk.Button(master=self.frm_predictorHelp, text="B", fg="green", command=self.predictorHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_predictorHelp_back.place(x=5, y=415)
 
+	def setRunnerHelp(self):
+		self.frm_runnerHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+
+		lbl_runnerHelp_logo = tk.Label(master=self.frm_runnerHelp, text="Predictor Help")
+		lbl_runnerHelp_logo.place(x=365, y=0)
+
+		lbl_runnerHelp_text = tk.Label(master=self.frm_runnerHelp, text=longtext.runnerHelp(), height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_runnerHelp_text.place(x=100, y=32)
+
+		btn_runnerHelp_back = tk.Button(master=self.frm_runnerHelp, text="B", fg="green", command=self.runnerHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_runnerHelp_back.place(x=5, y=415)
+
 	def setRunnerPage(self, runner):
 		self.frm_runner = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
 
 		self.lbl_runner_name = tk.Label(master=self.frm_runner, text=runner)
 		self.lbl_runner_name.place(x=365, y=0)
 
+		btn_runner_help = tk.Button(master=self.frm_runner, text="Help", command=self.runner_help, width=5, height=1, borderwidth=3, relief="raised")
+		btn_runner_help.place(x=745, y=5)
+
 		btn_runner_back = tk.Button(master=self.frm_runner, text="B", fg="green", command=self.runner_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runner_back.place(x=5, y=415)
+
 
 		
 
@@ -329,6 +346,13 @@ class myApplicationManager(object):
 		self.frm_runner.pack_forget()
 		self.frm_select.pack()
 
+	def runner_help(self):
+		self.frm_runner.pack_forget()
+		self.frm_runnerHelp.pack()
+
+	def runnerHelp_back(self):
+		self.frm_runnerHelp.pack_forget()
+		self.frm_runner.pack()
 
 
 

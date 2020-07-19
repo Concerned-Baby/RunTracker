@@ -22,3 +22,8 @@ def selectHelp():
 	return """ This Page Allows You To Go To Any [listed] Runners Page
 	Select A Runner And Click "GO!"
 	"""
+
+def runnerHelp():
+	return """This Page Displays All The Given Information About A Runner
+	It Also Allows You To Update Any Information
+	"""
