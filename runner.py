@@ -103,25 +103,33 @@ class Runner (object):
 				passed += 1
 		return passed
 
+	def getAllGoalsPassed(self):
+		goalsPassed = 0
+		events = self.getEvents()
+		print (events)
+		for event in events:
+			goalsPassed += self.getGoalsPassedEvent(event)
+		return goalsPassed
+
+
 	def getAllInfoEvent(self, eventName):
 		toPrint = ""
-		toPrint += "------------------------------------------\n"
-		toPrint += "%s's %s Info\n\n" % (self.name, eventName)
 		pr = self.getPREvent(eventName)
 		if (pr != 1000):
 			toPrint += "PR: %.2f\n\n" % pr
 		else:
 			toPrint += "PR: N/A\n\n"
 		goals = self.getGoalsEvent(eventName)
+		goals.sort()
 		passed = self.getGoalsPassedEvent(eventName)
 		toPrint += "Goals: %d        Passed: %d\n\n" % (len(goals), passed)
 		for goal in goals:
 			toPrint += goal + "\n"
 		times = self.getTimesEvent(eventName)
+		times.sort()
 		toPrint += "\nTimes: %d\n" % len(times)
 		for time in times:
 			toPrint += time + "\n"
-		toPrint += "------------------------------------------\n"
 		return toPrint
 
 	def getAllInfo(self):

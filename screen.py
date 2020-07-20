@@ -17,6 +17,15 @@ advanced statistics screen (with custom measurements)
 if space, a full predictor for each event in the runner page (probs going to be pretty hard)
 also if space picture
 
+!!! Once Done With Beta Release, Redo Writing Organization, To Be More Efficient!!!
+Organization Should Be
+-Runners (Folder)
+	-<Runner Name> (Folder)
+		-<Event Name> (Folder)
+			-<Information Type [goal, time]> (.txt file)
+going to require a lot of reworking of the runner class
+
+throw in the .sort method in runner
 
 """
 
@@ -239,6 +248,9 @@ class myApplicationManager(object):
 		self.lbl_runner_name = tk.Label(master=self.frm_runner, text=runner)
 		self.lbl_runner_name.place(x=365, y=0)
 
+		lbl_runner_goalsPassed = tk.Label(master=self.frm_runner, text="Total Candy Owed: %d" % self.runnersDict[runner].getAllGoalsPassed())
+		lbl_runner_goalsPassed.place(x=450, y=40)
+
 		btn_runner_help = tk.Button(master=self.frm_runner, text="Help", command=self.runner_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_runner_help.place(x=745, y=5)
 
@@ -254,7 +266,7 @@ class myApplicationManager(object):
 		lbl_runner_goalLabel = tk.Label(master=self.frm_runner, text="Goals", width=20, height=1, borderwidth=2, relief="ridge")
 		lbl_runner_goalLabel.place(x=630, y=40)
 
-		self.lbl_runner_goals = tk.Label(master=self.frm_runner, text="ToDo", width=20, height=24, borderwidth=2, relief="ridge")
+		self.lbl_runner_goals = tk.Label(master=self.frm_runner, text=self.getAllGoals(runner), width=20, height=24, borderwidth=2, relief="ridge")
 		self.lbl_runner_goals.place(x=630, y=60)
 
 		btn_runner_editEvents = tk.Button(master=self.frm_runner,command=self.toDo, text="edit events", width=12, height=1, borderwidth=3, relief="raised")
@@ -266,11 +278,15 @@ class myApplicationManager(object):
 		btn_runner_addGoal = tk.Button(master=self.frm_runner, command=self.toDo, text="add goal", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_addGoal.place(x=510, y=415)
 
-		cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())
-		cbb_runner_events.place(x=320, y=40)
+		cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())#, postcommand=self.cbb_runner_event)
+		cbb_runner_events.place(x=290, y=40)
+		
+		def callback(eventObject):
+			self.cbb_runner_event(runner, cbb_runner_events.get())
+		cbb_runner_events.bind("<<ComboboxSelected>>", callback)#lambda _ : print("Selected!"))
 
-		lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="ToDo", width=58, height=20, borderwidth=3, relief="ridge")
-		lbl_runner_eventInfo.place(x=200, y=80)
+		self.lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="Select A Event", width=58, height=20, borderwidth=3, relief="ridge")
+		self.lbl_runner_eventInfo.place(x=200, y=80)
 
 
 		
@@ -303,6 +319,11 @@ class myApplicationManager(object):
 		self.frm_select.pack_forget()
 		self.frm_runner.pack()
 
+	def cbb_runner_event(self, runner, event):
+		print (str(runner))
+		self.lbl_runner_eventInfo["text"] = self.runnersDict[runner].getAllInfoEvent(event)
+		print("event picked")
+
 	def isFloat(self, toBe):
 		if toBe == "":
 			return True
@@ -319,6 +340,22 @@ class myApplicationManager(object):
 		for event in events:
 			text += ("%s:  %.2f\n\n" % (event, runnerObj.getPREvent(event)))
 		return text
+
+	def getAllGoals(self, runner):
+		runnerObj = self.runnersDict[runner]
+		events = runnerObj.getEvents()
+		text = ""
+		for event in events:
+			text += ("\n%s: \n" % (event))
+			goals = runnerObj.getGoalsEvent(event)
+			if goals == []:
+				text += "N/A\n"
+			else:
+				goals.sort()
+				for goal in goals:
+					text += ("-%s\n" % (goal))
+		return text
+
 
 
 
