@@ -27,6 +27,8 @@ going to require a lot of reworking of the runner class
 
 throw in the .sort method in runner
 
+work with null to decrease memory usage
+
 """
 
 #constants
@@ -69,6 +71,19 @@ class myApplicationManager(object):
 		self.window.resizable(False, False)
 		self.window.title("something else")
 
+		self.setScreens()
+
+		
+
+		self.frm_menu.pack()
+
+	def test(self):
+		pass
+
+	def toDo(self):
+		print("TODO")
+
+	def setScreens(self):
 		self.setMenu()
 		self.setBest()
 		self.setSelect()
@@ -78,14 +93,12 @@ class myApplicationManager(object):
 		self.setHelpBest()
 		self.setHelpPredictor()
 		self.setRunnerHelp()
-
-		self.frm_menu.pack()
-
-	def test(self):
-		pass
-
-	def toDo(self):
-		print("TODO")
+		self.setEditGoals()
+		self.setEditEvents()
+		self.setEditTimes()
+		self.setEditGoalsHelp()
+		self.setEditEventsHelp()
+		self.setEditTimesHelp()
 
 	def setMenu(self):
 		self.frm_menu = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
@@ -242,6 +255,52 @@ class myApplicationManager(object):
 		btn_runnerHelp_back = tk.Button(master=self.frm_runnerHelp, text="B", fg="green", command=self.runnerHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runnerHelp_back.place(x=5, y=415)
 
+
+	def setEditGoals(self):
+		self.frm_editGoals = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+
+	def setEditEvents(self):
+		self.frm_editEvents = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+
+	def setEditTimes(self):
+		self.frm_editTimes = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+
+	def setEditGoalsHelp(self):
+		self.frm_editGoalsHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+
+		lbl_editGoalsHelp_logo = tk.Label(master=self.frm_editGoalsHelp, text="Edit Goals Help")
+		lbl_editGoalsHelp_logo.place(x=365, y=0)
+
+		lbl_editGoalsHelp_text = tk.Label(master=self.frm_editGoalsHelp, text="ToDO", height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_editGoalsHelp_text.place(x=100, y=32)
+
+		btn_editGoalsHelp_back = tk.Button(master=self.frm_editGoalsHelp, text="B", fg="green", command=self.toDo, width=2,height=1, borderwidth=3, relief="raised")
+		btn_editGoalsHelp_back.place(x=5, y=415)
+
+	def setEditEventsHelp(self):
+		self.frm_editEventsHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+
+		lbl_editEventsHelp_logo = tk.Label(master=self.frm_editEventsHelp, text="Edit Events Help")
+		lbl_editEventsHelp_logo.place(x=365, y=0)
+
+		lbl_editEventsHelp_text = tk.Label(master=self.frm_editEventsHelp, text="ToDO", height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_editEventsHelp_text.place(x=100, y=32)
+
+		btn_editEventsHelp_back = tk.Button(master=self.frm_editEventsHelp, text="B", fg="green", command=self.toDo, width=2,height=1, borderwidth=3, relief="raised")
+		btn_editEventsHelp_back.place(x=5, y=415)
+
+	def setEditTimesHelp(self):
+		self.frm_editTimesHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+
+		lbl_editTimesHelp_logo = tk.Label(master=self.frm_editTimesHelp, text="Edit Time Help")
+		lbl_editTimesHelp_logo.place(x=365, y=0)
+
+		lbl_editTimesHelp_text = tk.Label(master=self.frm_editTimesHelp, text="ToDO", height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_editTimesHelp_text.place(x=100, y=32)
+
+		btn_editTimesHelp_back = tk.Button(master=self.frm_editTimesHelp, text="B", fg="green", command=self.toDo, width=2,height=1, borderwidth=3, relief="raised")
+		btn_editTimesHelp_back.place(x=5, y=415)
+
 	def setRunnerPage(self, runner): #might not need to have self. (if we just refresh on entry)
 		self.frm_runner = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
 
@@ -269,13 +328,13 @@ class myApplicationManager(object):
 		self.lbl_runner_goals = tk.Label(master=self.frm_runner, text=self.getAllGoals(runner), width=20, height=24, borderwidth=2, relief="ridge")
 		self.lbl_runner_goals.place(x=630, y=60)
 
-		btn_runner_editEvents = tk.Button(master=self.frm_runner,command=self.toDo, text="edit events", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_editEvents = tk.Button(master=self.frm_runner,command=self.runner_addEvent, text="edit events", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_editEvents.place(x=210, y=415)
 
-		btn_runner_addTime = tk.Button(master=self.frm_runner, command=self.toDo, text="add time", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_addTime = tk.Button(master=self.frm_runner, command=self.runner_addTime, text="add time", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_addTime.place(x=360, y=415)
  
-		btn_runner_addGoal = tk.Button(master=self.frm_runner, command=self.toDo, text="add goal", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_addGoal = tk.Button(master=self.frm_runner, command=self.runner_addGoal, text="add goal", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_addGoal.place(x=510, y=415)
 
 		cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())#, postcommand=self.cbb_runner_event)
@@ -430,6 +489,18 @@ class myApplicationManager(object):
 	def runnerHelp_back(self):
 		self.frm_runnerHelp.pack_forget()
 		self.frm_runner.pack()
+
+	def runner_addTime(self):
+		self.frm_runner.pack_forget()
+		self.frm_editTimes.pack()
+
+	def runner_addEvent(self):
+		self.frm_runner.pack_forget()
+		self.frm_editEvents.pack()
+
+	def runner_addGoal(self):
+		self.frm_runner.pack_forget()
+		self.frm_editGoals.pack()
 
 
 

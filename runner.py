@@ -123,8 +123,7 @@ class Runner (object):
 		goals.sort()
 		passed = self.getGoalsPassedEvent(eventName)
 		toPrint += "Goals: %d        Passed: %d\n\n" % (len(goals), passed)
-		for goal in goals:
-			toPrint += goal + "\n"
+		
 		times = self.getTimesEvent(eventName)
 		times.sort()
 		toPrint += "\nTimes: %d\n" % len(times)
