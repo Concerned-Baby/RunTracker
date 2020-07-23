@@ -1,4 +1,5 @@
 from runner import Runner
+from stack import frameStack
 import longtext
 import tkinter as tk
 from tkinter import ttk
@@ -74,6 +75,8 @@ class myApplicationManager(object):
 		self.window = tk.Tk()
 		self.window.resizable(False, False)
 		self.window.title("something else")
+
+		self.stack = frameStack()
 
 		self.setScreens()
 
