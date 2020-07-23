@@ -285,12 +285,11 @@ class myApplicationManager(object):
 		btn_editGoals_go = tk.Button(master=self.frm_editGoals, text="GO!", command=self.editGoals_go, width=8, height=1, borderwidth=3, relief="raised")
 		btn_editGoals_go.place(x=360, y=270)
 
+		self.lbl_editGoals_output = tk.Label(master=self.frm_editGoals, text="Click GO!", width=15, height=1, borderwidth=1, relief="solid")
+		self.lbl_editGoals_output.place(x=340, y=320)
 
 		btn_editGoals_help = tk.Button(master=self.frm_editGoals, text="Help", command=self.editGoals_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_editGoals_help.place(x=745, y=5)
-
-		self.lbl_editGoals_output = tk.Label(master=self.frm_editGoals, text="Click GO!", width=15, height=1, borderwidth=1, relief="solid")
-		self.lbl_editGoals_output.place(x=340, y=320)
 
 
 
@@ -307,6 +306,38 @@ class myApplicationManager(object):
 		btn_editEvents_help = tk.Button(master=self.frm_editEvents, text="Help", command=self.editEvents_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_editEvents_help.place(x=745, y=5)
 
+		lbl_editEvents_sprintLogo = tk.Label(master=self.frm_editEvents, text="Sprints")
+		lbl_editEvents_sprintLogo.place(x=150, y=100)
+
+		lbl_editEvents_distanceLogo = tk.Label(master=self.frm_editEvents, text="Distance")
+		lbl_editEvents_distanceLogo.place(x=350, y=100)
+
+		lbl_editEvents_distanceLogo = tk.Label(master=self.frm_editEvents, text="Other")
+		lbl_editEvents_distanceLogo.place(x=550, y=100)
+
+		self.checkList = []
+		SCount = 120
+		DCount = 120
+		OCount = 120
+		for event in Events:
+			bVar = tk.BooleanVar()
+			chk = ttk.Checkbutton(master=self.frm_editEvents, text=event)
+			chk.state(["!alternate"])
+			self.checkList.append(chk)
+			
+			if event in Sprints:
+				chk.place(x=150, y=SCount)
+				SCount += 30
+			elif event in Distance:
+				chk.place(x=350, y=DCount)
+				DCount += 30
+			elif event in Other:
+				chk.place(x=550, y=OCount)
+				OCount += 30
+
+		btn_editEvents_save = tk.Button(master=self.frm_editEvents, text="Save", command=self.toDo, width=8, height=1, borderwidth=3, relief="raised")
+		btn_editEvents_save.place(x=360, y=370)
+
 
 	def setEditTimes(self):
 		self.frm_editTimes = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
@@ -319,6 +350,25 @@ class myApplicationManager(object):
 
 		btn_editTimes_help = tk.Button(master=self.frm_editTimes, text="Help", command=self.editTimes_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_editTimes_help.place(x=745, y=5)
+
+		lbl_editTimes_cbbLabel = tk.Label(master=self.frm_editTimes, text="Select Event")
+		lbl_editTimes_cbbLabel.place(x=360, y=120)
+
+		self.cbb_editTimes_events = ttk.Combobox(master=self.frm_editTimes, values=[], state="readonly")
+		self.cbb_editTimes_events.place(x=330, y=140)
+
+		lbl_editTimes_entryLabel = tk.Label(master=self.frm_editTimes, text="Enter Time")
+		lbl_editTimes_entryLabel.place(x=362, y=200)
+
+		self.ranTime = tk.StringVar()
+		self.ent_editTimes_entry = tk.Entry(master=self.frm_editTimes, width=15, textvariable=self.ranTime, validate="all", validatecommand=self.vcmd)
+		self.ent_editTimes_entry.place(x=350, y=220)
+
+		btn_editTimes_go = tk.Button(master=self.frm_editTimes, text="GO!", command=self.editTimes_go, width=8, height=1, borderwidth=3, relief="raised")
+		btn_editTimes_go.place(x=360, y=270)
+
+		self.lbl_editTimes_output = tk.Label(master=self.frm_editTimes, text="Click GO!", width=15, height=1, borderwidth=1, relief="solid")
+		self.lbl_editTimes_output.place(x=340, y=320)
 
 
 	def setEditGoalsHelp(self):
@@ -425,7 +475,7 @@ class myApplicationManager(object):
 				self.lbl_predictor_output["text"] = "Enter"
 			else:
 				if (index == 0): #100 --> 200
-					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) - 1))
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) - 0.98))
 				if (index == 1): #200 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
 
@@ -447,6 +497,26 @@ class myApplicationManager(object):
 						self.lbl_editGoals_output["text"] = "Added"
 				else:
 					self.lbl_editGoals_output["text"] = result
+
+	def editTimes_go(self):
+		index = self.cbb_editTimes_events.get()
+		if (index == ""):
+			self.lbl_editTimes_output["text"] = "Select A Event"
+		else:
+			time = self.ranTime.get()
+			if (time == ""):
+				self.lbl_editGoals_output["text"] = "Enter A Time"
+			else:
+				result = self.runnersDict[self.runner].newTime(index, float(time))
+				if (result == "Time Added"):
+					text = self.lbl_editTimes_output["text"]
+					if (text[0:5] == "Added"):
+						self.lbl_editTimes_output["text"] = text + "!"
+					else:
+						self.lbl_editTimes_output["text"] = "Added"
+				else:
+					self.lbl_editTimes_output["text"]  = result
+		print("GO")
 
 	def select_go(self):
 		runner = self.cbb_select_selector.current()
@@ -568,11 +638,19 @@ class myApplicationManager(object):
 
 	def runner_addTime(self):
 		self.frm_runner.pack_forget()
+		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.frm_editTimes.pack()
 
 	def runner_addEvent(self):
 		self.frm_runner.pack_forget()
-		
+		events = self.runnersDict[self.runner].getEvents()
+		for checkBox in self.checkList:
+			event = checkBox["text"]
+			if (event in events):
+				vari = checkBox["var"]
+				print (checkBox.state())
+				#if (checkBox["var"].get() == False):
+					#checkBox.toggle()
 		self.frm_editEvents.pack()
 
 	def runner_addGoal(self):
