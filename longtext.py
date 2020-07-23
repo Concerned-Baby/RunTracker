@@ -27,3 +27,15 @@ def runnerHelp():
 	return """This Page Displays All The Given Information About A Runner
 	It Also Allows You To Update Any Information
 	"""
+
+def editEventsHelp():
+	return """Here You Can Add and Remove Events From A Runner
+	Simply Check and Uncheck the boxes"""
+
+def editTimesHelp():
+	return """Here You Can Add Times To A Runner
+	Just Select A Event and Enter A Time """
+
+def editGoalsHelp():
+	return """Here You Can Add Goals For A Runner
+	Just Select A Event and Enter A Goal"""

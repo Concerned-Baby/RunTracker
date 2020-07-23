@@ -39,6 +39,23 @@ class Runner (object):
 		writeToFile(self.name, "|E %s\n" % eventName)
 		return("Event Added")
 
+	def removeEvent(self, eventName):
+		lines = readFileLBL(self.name)
+		print(eventName)
+		toRemove = "|E %s" % eventName
+		print (toRemove)
+		if (changeD):
+			f = open("Runners/%s.txt" % self.name, "w")
+		else:
+			f = open("Runners\\%s.txt" % self.name, "w")
+		f.write("z")
+		for line in lines:
+			if (line.strip("\n") != toRemove):
+				f.write(line)
+				print (line + "z")
+			else:
+				print("skipped")
+
 	def newTime(self, eventName, time):
 		if (self.hasEvent(eventName)):
 			if ("%.2f" % time) not in self.getTimesEvent(eventName):

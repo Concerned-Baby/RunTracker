@@ -335,7 +335,7 @@ class myApplicationManager(object):
 				chk.place(x=550, y=OCount)
 				OCount += 30
 
-		btn_editEvents_save = tk.Button(master=self.frm_editEvents, text="Save", command=self.toDo, width=8, height=1, borderwidth=3, relief="raised")
+		btn_editEvents_save = tk.Button(master=self.frm_editEvents, text="Save", command=self.editEvents_save, width=8, height=1, borderwidth=3, relief="raised")
 		btn_editEvents_save.place(x=360, y=370)
 
 
@@ -377,7 +377,7 @@ class myApplicationManager(object):
 		lbl_editGoalsHelp_logo = tk.Label(master=self.frm_editGoalsHelp, text="Edit Goals Help")
 		lbl_editGoalsHelp_logo.place(x=365, y=0)
 
-		lbl_editGoalsHelp_text = tk.Label(master=self.frm_editGoalsHelp, text="ToDO", height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_editGoalsHelp_text = tk.Label(master=self.frm_editGoalsHelp, text=longtext.editGoalsHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_editGoalsHelp_text.place(x=100, y=32)
 
 		btn_editGoalsHelp_back = tk.Button(master=self.frm_editGoalsHelp, text="B", fg="green", command=self.editGoalsHelp_back, width=2,height=1, borderwidth=3, relief="raised")
@@ -389,7 +389,7 @@ class myApplicationManager(object):
 		lbl_editEventsHelp_logo = tk.Label(master=self.frm_editEventsHelp, text="Edit Events Help")
 		lbl_editEventsHelp_logo.place(x=365, y=0)
 
-		lbl_editEventsHelp_text = tk.Label(master=self.frm_editEventsHelp, text="ToDO", height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_editEventsHelp_text = tk.Label(master=self.frm_editEventsHelp, text=longtext.editEventsHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_editEventsHelp_text.place(x=100, y=32)
 
 		btn_editEventsHelp_back = tk.Button(master=self.frm_editEventsHelp, text="B", fg="green", command=self.editEventsHelp_back, width=2,height=1, borderwidth=3, relief="raised")
@@ -401,7 +401,7 @@ class myApplicationManager(object):
 		lbl_editTimesHelp_logo = tk.Label(master=self.frm_editTimesHelp, text="Edit Time Help")
 		lbl_editTimesHelp_logo.place(x=365, y=0)
 
-		lbl_editTimesHelp_text = tk.Label(master=self.frm_editTimesHelp, text="ToDo", height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_editTimesHelp_text = tk.Label(master=self.frm_editTimesHelp, text=longtext.editTimesHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_editTimesHelp_text.place(x=100, y=32)
 
 		btn_editTimesHelp_back = tk.Button(master=self.frm_editTimesHelp, text="B", fg="green", command=self.editTimesHelp_back, width=2,height=1, borderwidth=3, relief="raised")
@@ -543,7 +543,11 @@ class myApplicationManager(object):
 		events = runnerObj.getEvents()
 		text = ""
 		for event in events:
-			text += ("%s:  %.2f\n\n" % (event, runnerObj.getPREvent(event)))
+			PR = runnerObj.getPREvent(event)
+			if PR == 1000:
+				text += ("%s:  N/A\n\n" % (event))
+			else:
+				text += ("%s:  %.2f\n\n" % (event, PR))
 		return text
 
 	def getAllGoals(self, runner):
@@ -560,6 +564,34 @@ class myApplicationManager(object):
 				for goal in goals:
 					text += ("-%s\n" % (goal))
 		return text
+
+	def runner_addEvent(self):
+		self.frm_runner.pack_forget()
+		events = self.runnersDict[self.runner].getEvents()
+		for checkBox in self.checkList:
+			event = checkBox["text"]
+			if (event in events):
+				if (not checkBox.instate(["selected"])):
+					checkBox.state(["selected"])
+			else:
+				checkBox.state(['!selected'])
+		self.frm_editEvents.pack()
+
+	def editEvents_save(self):
+		print("save")
+		runnerObj = self.runnersDict[self.runner]
+		events = runnerObj.getEvents()
+		for checkBox in self.checkList:
+			event = checkBox["text"]
+			if (checkBox.instate(["selected"])):
+				if event not in events:
+					runnerObj.newEvent(event)
+			elif (checkBox.instate(["!selected"])):
+				print ("not selected")
+				if event in events:
+					print ("removed")
+					runnerObj.removeEvent(event)
+
 
 
 
@@ -640,18 +672,6 @@ class myApplicationManager(object):
 		self.frm_runner.pack_forget()
 		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.frm_editTimes.pack()
-
-	def runner_addEvent(self):
-		self.frm_runner.pack_forget()
-		events = self.runnersDict[self.runner].getEvents()
-		for checkBox in self.checkList:
-			event = checkBox["text"]
-			if (event in events):
-				vari = checkBox["var"]
-				print (checkBox.state())
-				#if (checkBox["var"].get() == False):
-					#checkBox.toggle()
-		self.frm_editEvents.pack()
 
 	def runner_addGoal(self):
 		self.frm_runner.pack_forget()
