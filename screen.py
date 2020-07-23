@@ -31,6 +31,8 @@ work with null to decrease memory usage
 
 make runner page set only the things that change
 
+use stacks to go back between screens (ahhh, its such a good idea, and just have a single method that moves with two parameters, the to remove, and the to add)
+
 """
 
 #constants
@@ -157,9 +159,9 @@ class myApplicationManager(object):
 		lbl_predictor_entryLabel.place(x=365, y=160)
 
 		self.predictorTime = tk.StringVar()
-		vcmd = (self.window.register(self.isFloat), "%P") #research register command
+		self.vcmd = (self.window.register(self.isFloat), "%P") #research register command
 		
-		self.ent_predictor_entry = tk.Entry(master=self.frm_predictor, width=15, textvariable=self.predictorTime, validate="all", validatecommand=vcmd)
+		self.ent_predictor_entry = tk.Entry(master=self.frm_predictor, width=15, textvariable=self.predictorTime, validate="all", validatecommand=self.vcmd)
 		self.ent_predictor_entry.place(x=350, y=190)
 
 		lbl_predictor_arrow = tk.Label(master=self.frm_predictor, text="⬇️")
@@ -267,8 +269,28 @@ class myApplicationManager(object):
 		btn_editGoals_back = tk.Button(master=self.frm_editGoals, text="B", fg="green", command=self.editGoals_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_editGoals_back.place(x=5, y=415)
 
+		lbl_editGoals_cbbLabel = tk.Label(master=self.frm_editGoals, text="Select Event")
+		lbl_editGoals_cbbLabel.place(x=360, y=120)
+
+		self.cbb_editGoals_events = ttk.Combobox(master=self.frm_editGoals, values=[], state="readonly")
+		self.cbb_editGoals_events.place(x=330, y=140)
+
+		lbl_editGoals_entryLabel = tk.Label(master=self.frm_editGoals, text="Enter Goal")
+		lbl_editGoals_entryLabel.place(x=362, y=200)
+
+		self.goalTime = tk.StringVar()
+		self.ent_editGoals_entry = tk.Entry(master=self.frm_editGoals, width=15, textvariable=self.goalTime, validate="all", validatecommand=self.vcmd)
+		self.ent_editGoals_entry.place(x=350, y=220)
+
+		btn_editGoals_go = tk.Button(master=self.frm_editGoals, text="GO!", command=self.editGoals_go, width=8, height=1, borderwidth=3, relief="raised")
+		btn_editGoals_go.place(x=360, y=270)
+
+
 		btn_editGoals_help = tk.Button(master=self.frm_editGoals, text="Help", command=self.editGoals_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_editGoals_help.place(x=745, y=5)
+
+		self.lbl_editGoals_output = tk.Label(master=self.frm_editGoals, text="Click GO!", width=15, height=1, borderwidth=1, relief="solid")
+		self.lbl_editGoals_output.place(x=340, y=320)
 
 
 
@@ -336,6 +358,7 @@ class myApplicationManager(object):
 		btn_editTimesHelp_back.place(x=5, y=415)
 
 	def setRunnerPage(self, runner): #might not need to have self. (if we just refresh on entry)
+		self.runner = runner
 		self.frm_runner = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
 
 		self.lbl_runner_name = tk.Label(master=self.frm_runner, text=runner)
@@ -406,6 +429,25 @@ class myApplicationManager(object):
 				if (index == 1): #200 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
 
+	def editGoals_go(self):
+		index = self.cbb_editGoals_events.get()
+		print(index)
+		if (index == ""):
+			self.lbl_editGoals_output["text"] = "Select A Event"
+		else:
+			time = self.goalTime.get()
+			if (time == ""):
+				self.lbl_editGoals_output["text"] = "Enter A Time"
+			else:
+				result = self.runnersDict[self.runner].newGoal(index, float(time))
+				if result == "Goal Added":
+					if (self.lbl_editGoals_output["text"][0:5] == "Added"):
+						self.lbl_editGoals_output["text"] = self.lbl_editGoals_output["text"] + "!"
+					else:
+						self.lbl_editGoals_output["text"] = "Added"
+				else:
+					self.lbl_editGoals_output["text"] = result
+
 	def select_go(self):
 		runner = self.cbb_select_selector.current()
 		self.setRunnerPage(self.runnersList[runner])
@@ -453,7 +495,7 @@ class myApplicationManager(object):
 
 
 	"""
-	Method That Change Screens
+	Method That Change Screens (Also Updates A Few)
 	"""
 
 	def menu_getBest(self):
@@ -530,25 +572,27 @@ class myApplicationManager(object):
 
 	def runner_addEvent(self):
 		self.frm_runner.pack_forget()
+		
 		self.frm_editEvents.pack()
 
 	def runner_addGoal(self):
 		self.frm_runner.pack_forget()
+		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.frm_editGoals.pack()
 
 	def editGoals_back(self):
 		self.frm_editGoals.pack_forget()
-		self.setRunnerPage(self.cbb_select_selector.get())
+		self.setRunnerPage(self.runner)
 		self.frm_runner.pack()
 
 	def editTimes_back(self):
 		self.frm_editTimes.pack_forget()
-		self.setRunnerPage(self.cbb_select_selector.get())
+		self.setRunnerPage(self.runner)
 		self.frm_runner.pack()
 
 	def editEvents_back(self):
 		self.frm_editEvents.pack_forget()
-		self.setRunnerPage(self.cbb_select_selector.get())
+		self.setRunnerPage(self.runner)
 		self.frm_runner.pack()
 
 	def editGoals_help(self):
