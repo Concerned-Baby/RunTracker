@@ -1,4 +1,5 @@
 from runner import Runner
+from frame import Frame
 from stack import frameStack
 import longtext
 import tkinter as tk
@@ -8,7 +9,7 @@ from tkinter import ttk
 """
 Next Steps:
 
-GUI
+set all frames to my custom frame
 
 CheckBox For choosing events (under runner)
 (use a line in the middle, to properly center thigns)
@@ -33,7 +34,8 @@ work with null to decrease memory usage
 make runner page set only the things that change
 
 use stacks to go back between screens (ahhh, its such a good idea, and just have a single method that moves with two parameters, the to remove, and the to add)
-
+	stack should remove all back methods
+	also should have methods that call the anyAdd method
 slelct screen, make sure something is selected
 
 """
@@ -78,9 +80,13 @@ class myApplicationManager(object):
 		self.window.resizable(False, False)
 		self.window.title("something else")
 
-		self.stack = frameStack()
-
 		self.setScreens()
+
+		self.stack = frameStack()
+		self.stack.push(self.frm_menu)
+		print (self.stack.toString())
+
+		
 
 		
 
@@ -114,6 +120,11 @@ class myApplicationManager(object):
 	"""
 	Methods That Actually Do Something
 	"""
+
+	def start(self):
+		self.window.mainloop()
+
+		
 	def out(self):
 		self.window.destroy()
 
@@ -170,11 +181,7 @@ class myApplicationManager(object):
 					self.lbl_editTimes_output["text"]  = result
 		print("GO")
 
-	def select_go(self):
-		runner = self.cbb_select_selector.current()
-		self.setRunnerPage(self.runnersList[runner])
-		self.frm_select.pack_forget()
-		self.frm_runner.pack()
+
 
 	def cbb_runner_event(self, runner, event):
 		print (str(runner))
@@ -217,17 +224,7 @@ class myApplicationManager(object):
 					text += ("-%s\n" % (goal))
 		return text
 
-	def runner_addEvent(self):
-		self.frm_runner.pack_forget()
-		events = self.runnersDict[self.runner].getEvents()
-		for checkBox in self.checkList:
-			event = checkBox["text"]
-			if (event in events):
-				if (not checkBox.instate(["selected"])):
-					checkBox.state(["selected"])
-			else:
-				checkBox.state(['!selected'])
-		self.frm_editEvents.pack()
+	
 
 	def editEvents_save(self):
 		print("save")
@@ -244,6 +241,45 @@ class myApplicationManager(object):
 					print ("removed")
 					runnerObj.removeEvent(event)
 
+	def runner_addTime(self):
+		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.goToScreen(self.frm_editTimes)
+
+	def runner_addGoal(self):
+		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.goToScreen(self.frm_editGoals)
+
+
+	def editGoals_back(self):
+		self.setRunnerPage(self.runner)
+		self.back()
+
+	def editTimes_back(self):
+		self.setRunnerPage(self.runner)
+		self.back()
+
+	def editEvents_back(self):
+		self.setRunnerPage(self.runner)
+		self.back()
+
+	def select_go(self):
+		runner = self.cbb_select_selector.current()
+		self.setRunnerPage(self.runnersList[runner])
+		self.goToScreen(self.frm_runner)
+
+	def runner_addEvent(self):
+		events = self.runnersDict[self.runner].getEvents()
+		for checkBox in self.checkList:
+			event = checkBox["text"]
+			if (event in events):
+				if (not checkBox.instate(["selected"])):
+					checkBox.state(["selected"])
+			else:
+				checkBox.state(['!selected'])
+
+		self.goToScreen(self.frm_editEvents)
+		
+
 
 
 
@@ -252,129 +288,85 @@ class myApplicationManager(object):
 	Method That Change Screens (Also Updates A Few)
 	"""
 
+	def goToScreen(self, frame):
+		self.stack.getTop().pack_forget()
+		self.stack.push(frame).pack()
+		print(self.stack.toString())
+
+	def back(self):
+		self.stack.pop().pack_forget()
+		self.stack.getTop().pack()
+		print(self.stack.toString())
+
 	def menu_getBest(self):
-		self.frm_menu.pack_forget()
-		self.frm_best.pack()
+		self.goToScreen(self.frm_best)
 
 	def best_back(self):
-		self.frm_best.pack_forget()
-		self.frm_menu.pack()
+		self.back()
 
 	def menu_selectRunner(self):
-		self.frm_menu.pack_forget()
-		self.frm_select.pack()
+		self.goToScreen(self.frm_select)
 
 	def select_back(self):
-		self.frm_select.pack_forget()
-		self.frm_menu.pack()
+		self.back()
 
 	def menu_predictor(self):
-		self.frm_menu.pack_forget()
-		self.frm_predictor.pack()
+		self.goToScreen(self.frm_predictor)
 
 	def predictor_back(self):
-		self.frm_predictor.pack_forget()
-		self.frm_menu.pack()
+		self.back()
 
 	def menu_help(self):
-		self.frm_menu.pack_forget()
-		self.frm_menuHelp.pack()
+		self.goToScreen(self.menu_help)
 
 	def menuHelp_back(self):
-		self.frm_menuHelp.pack_forget()
-		self.frm_menu.pack()
+		self.back()
 
 	def select_help(self):
-		self.frm_select.pack_forget()
-		self.frm_selectHelp.pack()
+		self.goToScreen(self.frm_selectHelp)
 
 	def selectHelp_back(self):
-		self.frm_selectHelp.pack_forget()
-		self.frm_select.pack()
+		self.back()
 
 	def best_help(self):
-		self.frm_best.pack_forget()
-		self.frm_bestHelp.pack()
+		self.goToScreen(self.frm_bestHelp)
 
 	def bestHelp_back(self):
-		self.frm_bestHelp.pack_forget()
-		self.frm_best.pack()
+		self.back()
 
 	def predictor_help(self):
-		self.frm_predictor.pack_forget()
-		self.frm_predictorHelp.pack()
+		self.goToScreen(self.frm_predictorHelp)
 
 	def predictorHelp_back(self):
-		self.frm_predictorHelp.pack_forget()
-		self.frm_predictor.pack()
+		self.back()
 
 	def runner_back(self):
-		self.frm_runner.pack_forget()
-		self.frm_select.pack()
+		self.back()
 
 	def runner_help(self):
-		self.frm_runner.pack_forget()
-		self.frm_runnerHelp.pack()
+		self.goToScreen(self.frm_runnerHelp)
 
 	def runnerHelp_back(self):
-		self.frm_runnerHelp.pack_forget()
-		self.frm_runner.pack()
-
-	def runner_addTime(self):
-		self.frm_runner.pack_forget()
-		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
-		self.frm_editTimes.pack()
-
-	def runner_addGoal(self):
-		self.frm_runner.pack_forget()
-		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
-		self.frm_editGoals.pack()
-
-	def editGoals_back(self):
-		self.frm_editGoals.pack_forget()
-		self.setRunnerPage(self.runner)
-		self.frm_runner.pack()
-
-	def editTimes_back(self):
-		self.frm_editTimes.pack_forget()
-		self.setRunnerPage(self.runner)
-		self.frm_runner.pack()
-
-	def editEvents_back(self):
-		self.frm_editEvents.pack_forget()
-		self.setRunnerPage(self.runner)
-		self.frm_runner.pack()
+		self.back()
 
 	def editGoals_help(self):
-		self.frm_editGoals.pack_forget()
-		self.frm_editGoalsHelp.pack()
+		self.goToScreen(self.frm_editGoalsHelp)
 
 	def editTimes_help(self):
-		self.frm_editTimes.pack_forget()
-		self.frm_editTimesHelp.pack()
+		self.goToScreen(self.frm_editTimesHelp)
 
 	def editEvents_help(self):
-		self.frm_editEvents.pack_forget()
-		self.frm_editEventsHelp.pack()
+		self.goToScreen(self.frm_editEventsHelp)
 
 	def editEventsHelp_back(self):
-		self.frm_editEventsHelp.pack_forget()
-		self.frm_editEvents.pack()
+		self.back()
 
 	def editTimesHelp_back(self):
-		self.frm_editTimesHelp.pack_forget()
-		self.frm_editTimes.pack()
+		self.back()
 
 	def editGoalsHelp_back(self):
-		self.frm_editGoalsHelp.pack_forget()
-		self.frm_editGoals.pack()
+		self.back()
 
-
-
-
-
-	def start(self):
-		self.window.mainloop()
 
 
 	"""
@@ -382,7 +374,7 @@ class myApplicationManager(object):
 	"""
 
 	def setMenu(self):
-		self.frm_menu = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_menu = Frame(self.window, "Menu")
 
 		lbl_menu_logo = tk.Label(master=self.frm_menu, text="Menu")
 		lbl_menu_logo.place(x=370, y=0)
@@ -403,7 +395,7 @@ class myApplicationManager(object):
 		btn_menu_quit.place(x=5, y=415)
 
 	def setBest(self):
-		self.frm_best = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_best = Frame(self.window, "Best")
 
 		lbl_best_logo = tk.Label(master=self.frm_best, text="Local Bests")
 		lbl_best_logo.place(x=360, y=0)
@@ -424,7 +416,7 @@ class myApplicationManager(object):
 		btn_best_back.place(x=5, y=415)
 
 	def setPredictor(self):
-		self.frm_predictor = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_predictor = Frame(self.window, "Predictor")
 
 		lbl_predictor_logo = tk.Label(master=self.frm_predictor, text="Predictors")
 		lbl_predictor_logo.place(x=370, y=0)
@@ -456,9 +448,8 @@ class myApplicationManager(object):
 		btn_predictor_back = tk.Button(master=self.frm_predictor, text="B", fg="green", command=self.predictor_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_predictor_back.place(x=5, y=415)
 
-
 	def setSelect(self):
-		self.frm_select = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_select = Frame(self.window, "Select")
 
 		lbl_select_logo = tk.Label(master=self.frm_select, text="Select Runner")
 		lbl_select_logo.place(x=360, y=0)
@@ -477,7 +468,7 @@ class myApplicationManager(object):
 		btn_select_back.place(x=5, y=415)
 
 	def setHelpMenu(self):
-		self.frm_menuHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_menuHelp = Frame(self.window, "Menu Help")
 
 		lbl_menuHelp_logo = tk.Label(master=self.frm_menuHelp, text="Menu Help")
 		lbl_menuHelp_logo.place(x=370, y=0)
@@ -489,7 +480,7 @@ class myApplicationManager(object):
 		btn_menuHelp_back.place(x=5, y=415)
 
 	def setHelpSelect(self):
-		self.frm_selectHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_selectHelp= Frame(self.window, "Select Help")
 
 		lbl_selectHelp_logo = tk.Label(master=self.frm_selectHelp, text="Select Help")
 		lbl_selectHelp_logo.place(x=365, y=0)
@@ -501,7 +492,7 @@ class myApplicationManager(object):
 		btn_selectHelp_back.place(x=5, y=415)
 
 	def setHelpBest(self):
-		self.frm_bestHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_bestHelp = Frame(self.window, "Best Help")
 
 		lbl_bestHelp_logo = tk.Label(master=self.frm_bestHelp, text="Best Help")
 		lbl_bestHelp_logo.place(x=365, y=0)
@@ -513,7 +504,7 @@ class myApplicationManager(object):
 		btn_bestHelp_back.place(x=5, y=415)
 
 	def setHelpPredictor(self):
-		self.frm_predictorHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_predictorHelp = Frame(self.window, "Predictor Help")
 
 		lbl_predictorHelp_logo = tk.Label(master=self.frm_predictorHelp, text="Predictor Help")
 		lbl_predictorHelp_logo.place(x=365, y=0)
@@ -525,7 +516,7 @@ class myApplicationManager(object):
 		btn_predictorHelp_back.place(x=5, y=415)
 
 	def setRunnerHelp(self):
-		self.frm_runnerHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_runnerHelp = Frame(self.window, "Runner Help")
 
 		lbl_runnerHelp_logo = tk.Label(master=self.frm_runnerHelp, text="Predictor Help")
 		lbl_runnerHelp_logo.place(x=365, y=0)
@@ -536,9 +527,8 @@ class myApplicationManager(object):
 		btn_runnerHelp_back = tk.Button(master=self.frm_runnerHelp, text="B", fg="green", command=self.runnerHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runnerHelp_back.place(x=5, y=415)
 
-
 	def setEditGoals(self):
-		self.frm_editGoals = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_editGoals = Frame(self.window, "Edit Goals")
 
 		lbl_editGoals_logo = tk.Label(master=self.frm_editGoals, text="Add Goals")
 		lbl_editGoals_logo.place(x=365, y=0)
@@ -568,11 +558,8 @@ class myApplicationManager(object):
 		btn_editGoals_help = tk.Button(master=self.frm_editGoals, text="Help", command=self.editGoals_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_editGoals_help.place(x=745, y=5)
 
-
-
-
 	def setEditEvents(self):
-		self.frm_editEvents = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_editEvents = Frame(self.window, "Edit Events")
 
 		lbl_editEvents_logo = tk.Label(master=self.frm_editEvents, text="Add Events")
 		lbl_editEvents_logo.place(x=365, y=0)
@@ -615,9 +602,8 @@ class myApplicationManager(object):
 		btn_editEvents_save = tk.Button(master=self.frm_editEvents, text="Save", command=self.editEvents_save, width=8, height=1, borderwidth=3, relief="raised")
 		btn_editEvents_save.place(x=360, y=370)
 
-
 	def setEditTimes(self):
-		self.frm_editTimes = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_editTimes = Frame(self.window, "Edit Times")
 
 		lbl_editTimes_logo = tk.Label(master=self.frm_editTimes, text="Add Times")
 		lbl_editTimes_logo.place(x=365, y=0)
@@ -647,9 +633,8 @@ class myApplicationManager(object):
 		self.lbl_editTimes_output = tk.Label(master=self.frm_editTimes, text="Click GO!", width=15, height=1, borderwidth=1, relief="solid")
 		self.lbl_editTimes_output.place(x=340, y=320)
 
-
 	def setEditGoalsHelp(self):
-		self.frm_editGoalsHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_editGoalsHelp = Frame(self.window, "Edit Goals Help")
 
 		lbl_editGoalsHelp_logo = tk.Label(master=self.frm_editGoalsHelp, text="Edit Goals Help")
 		lbl_editGoalsHelp_logo.place(x=365, y=0)
@@ -661,7 +646,7 @@ class myApplicationManager(object):
 		btn_editGoalsHelp_back.place(x=5, y=415)
 
 	def setEditEventsHelp(self):
-		self.frm_editEventsHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_editEventsHelp = Frame(self.window, "Edit Events Help")
 
 		lbl_editEventsHelp_logo = tk.Label(master=self.frm_editEventsHelp, text="Edit Events Help")
 		lbl_editEventsHelp_logo.place(x=365, y=0)
@@ -673,7 +658,7 @@ class myApplicationManager(object):
 		btn_editEventsHelp_back.place(x=5, y=415)
 
 	def setEditTimesHelp(self):
-		self.frm_editTimesHelp = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_editTimesHelp = Frame(self.window, "Edit Times Help")
 
 		lbl_editTimesHelp_logo = tk.Label(master=self.frm_editTimesHelp, text="Edit Time Help")
 		lbl_editTimesHelp_logo.place(x=365, y=0)
@@ -686,7 +671,7 @@ class myApplicationManager(object):
 
 	def setRunnerPage(self, runner): #might not need to have self. (if we just refresh on entry)
 		self.runner = runner
-		self.frm_runner = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
+		self.frm_runner = Frame(self.window, "Runner")
 
 		self.lbl_runner_name = tk.Label(master=self.frm_runner, text=runner)
 		self.lbl_runner_name.place(x=365, y=0)

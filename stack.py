@@ -18,3 +18,9 @@ class frameStack(object):
 
 	def isEmpty(self):
 		return (len(self.stack) == 0)
+
+	def toString(self):
+		text = ""
+		for frame in self.stack:
+			text += frame.toString() + " - "
+		return text
