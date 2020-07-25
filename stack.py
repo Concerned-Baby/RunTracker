@@ -3,14 +3,18 @@ class frameStack(object):
 	def __init__ (self):
 		self.stack = []
 
-	def push (frame):
+	def push (self, frame):
 		self.stack.append(frame)
+		return frame
 
 	def pop (self):
 		if (not self.isEmpty()):
 			return self.stack.pop()
 		else:
 			return null
+
+	def getTop(self):
+		return self.stack[len(self.stack) - 1]
 
 	def isEmpty(self):
 		return (len(self.stack) == 0)

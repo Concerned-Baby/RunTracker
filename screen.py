@@ -34,6 +34,8 @@ make runner page set only the things that change
 
 use stacks to go back between screens (ahhh, its such a good idea, and just have a single method that moves with two parameters, the to remove, and the to add)
 
+slelct screen, make sure something is selected
+
 """
 
 #constants
@@ -106,6 +108,278 @@ class myApplicationManager(object):
 		self.setEditGoalsHelp()
 		self.setEditEventsHelp()
 		self.setEditTimesHelp()
+		
+
+
+	"""
+	Methods That Actually Do Something
+	"""
+	def out(self):
+		self.window.destroy()
+
+	def predictor_go(self):
+		index = self.cbb_predictor_selector.current()
+		if (index == -1):
+			self.lbl_predictor_output["text"] = "Select"
+		else:
+			time = self.predictorTime.get()
+			if (time == ""):
+				self.lbl_predictor_output["text"] = "Enter"
+			else:
+				if (index == 0): #100 --> 200
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) - 0.98))
+				if (index == 1): #200 --> 400
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
+
+	def editGoals_go(self):
+		index = self.cbb_editGoals_events.get()
+		print(index)
+		if (index == ""):
+			self.lbl_editGoals_output["text"] = "Select A Event"
+		else:
+			time = self.goalTime.get()
+			if (time == ""):
+				self.lbl_editGoals_output["text"] = "Enter A Time"
+			else:
+				result = self.runnersDict[self.runner].newGoal(index, float(time))
+				if result == "Goal Added":
+					if (self.lbl_editGoals_output["text"][0:5] == "Added"):
+						self.lbl_editGoals_output["text"] = self.lbl_editGoals_output["text"] + "!"
+					else:
+						self.lbl_editGoals_output["text"] = "Added"
+				else:
+					self.lbl_editGoals_output["text"] = result
+
+	def editTimes_go(self):
+		index = self.cbb_editTimes_events.get()
+		if (index == ""):
+			self.lbl_editTimes_output["text"] = "Select A Event"
+		else:
+			time = self.ranTime.get()
+			if (time == ""):
+				self.lbl_editGoals_output["text"] = "Enter A Time"
+			else:
+				result = self.runnersDict[self.runner].newTime(index, float(time))
+				if (result == "Time Added"):
+					text = self.lbl_editTimes_output["text"]
+					if (text[0:5] == "Added"):
+						self.lbl_editTimes_output["text"] = text + "!"
+					else:
+						self.lbl_editTimes_output["text"] = "Added"
+				else:
+					self.lbl_editTimes_output["text"]  = result
+		print("GO")
+
+	def select_go(self):
+		runner = self.cbb_select_selector.current()
+		self.setRunnerPage(self.runnersList[runner])
+		self.frm_select.pack_forget()
+		self.frm_runner.pack()
+
+	def cbb_runner_event(self, runner, event):
+		print (str(runner))
+		self.lbl_runner_eventInfo["text"] = self.runnersDict[runner].getAllInfoEvent(event)
+		print("event picked")
+
+	def isFloat(self, toBe):
+		if toBe == "":
+			return True
+		try:
+			num = float(toBe)
+			return True
+		except ValueError:
+			return False
+
+	def getAllPrs(self, runner):
+		runnerObj = self.runnersDict[runner]
+		events = runnerObj.getEvents()
+		text = ""
+		for event in events:
+			PR = runnerObj.getPREvent(event)
+			if PR == 1000:
+				text += ("%s:  N/A\n\n" % (event))
+			else:
+				text += ("%s:  %.2f\n\n" % (event, PR))
+		return text
+
+	def getAllGoals(self, runner):
+		runnerObj = self.runnersDict[runner]
+		events = runnerObj.getEvents()
+		text = ""
+		for event in events:
+			text += ("\n%s: \n" % (event))
+			goals = runnerObj.getGoalsEvent(event)
+			if goals == []:
+				text += "N/A\n"
+			else:
+				goals.sort()
+				for goal in goals:
+					text += ("-%s\n" % (goal))
+		return text
+
+	def runner_addEvent(self):
+		self.frm_runner.pack_forget()
+		events = self.runnersDict[self.runner].getEvents()
+		for checkBox in self.checkList:
+			event = checkBox["text"]
+			if (event in events):
+				if (not checkBox.instate(["selected"])):
+					checkBox.state(["selected"])
+			else:
+				checkBox.state(['!selected'])
+		self.frm_editEvents.pack()
+
+	def editEvents_save(self):
+		print("save")
+		runnerObj = self.runnersDict[self.runner]
+		events = runnerObj.getEvents()
+		for checkBox in self.checkList:
+			event = checkBox["text"]
+			if (checkBox.instate(["selected"])):
+				if event not in events:
+					runnerObj.newEvent(event)
+			elif (checkBox.instate(["!selected"])):
+				print ("not selected")
+				if event in events:
+					print ("removed")
+					runnerObj.removeEvent(event)
+
+
+
+
+
+	"""
+	Method That Change Screens (Also Updates A Few)
+	"""
+
+	def menu_getBest(self):
+		self.frm_menu.pack_forget()
+		self.frm_best.pack()
+
+	def best_back(self):
+		self.frm_best.pack_forget()
+		self.frm_menu.pack()
+
+	def menu_selectRunner(self):
+		self.frm_menu.pack_forget()
+		self.frm_select.pack()
+
+	def select_back(self):
+		self.frm_select.pack_forget()
+		self.frm_menu.pack()
+
+	def menu_predictor(self):
+		self.frm_menu.pack_forget()
+		self.frm_predictor.pack()
+
+	def predictor_back(self):
+		self.frm_predictor.pack_forget()
+		self.frm_menu.pack()
+
+	def menu_help(self):
+		self.frm_menu.pack_forget()
+		self.frm_menuHelp.pack()
+
+	def menuHelp_back(self):
+		self.frm_menuHelp.pack_forget()
+		self.frm_menu.pack()
+
+	def select_help(self):
+		self.frm_select.pack_forget()
+		self.frm_selectHelp.pack()
+
+	def selectHelp_back(self):
+		self.frm_selectHelp.pack_forget()
+		self.frm_select.pack()
+
+	def best_help(self):
+		self.frm_best.pack_forget()
+		self.frm_bestHelp.pack()
+
+	def bestHelp_back(self):
+		self.frm_bestHelp.pack_forget()
+		self.frm_best.pack()
+
+	def predictor_help(self):
+		self.frm_predictor.pack_forget()
+		self.frm_predictorHelp.pack()
+
+	def predictorHelp_back(self):
+		self.frm_predictorHelp.pack_forget()
+		self.frm_predictor.pack()
+
+	def runner_back(self):
+		self.frm_runner.pack_forget()
+		self.frm_select.pack()
+
+	def runner_help(self):
+		self.frm_runner.pack_forget()
+		self.frm_runnerHelp.pack()
+
+	def runnerHelp_back(self):
+		self.frm_runnerHelp.pack_forget()
+		self.frm_runner.pack()
+
+	def runner_addTime(self):
+		self.frm_runner.pack_forget()
+		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.frm_editTimes.pack()
+
+	def runner_addGoal(self):
+		self.frm_runner.pack_forget()
+		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.frm_editGoals.pack()
+
+	def editGoals_back(self):
+		self.frm_editGoals.pack_forget()
+		self.setRunnerPage(self.runner)
+		self.frm_runner.pack()
+
+	def editTimes_back(self):
+		self.frm_editTimes.pack_forget()
+		self.setRunnerPage(self.runner)
+		self.frm_runner.pack()
+
+	def editEvents_back(self):
+		self.frm_editEvents.pack_forget()
+		self.setRunnerPage(self.runner)
+		self.frm_runner.pack()
+
+	def editGoals_help(self):
+		self.frm_editGoals.pack_forget()
+		self.frm_editGoalsHelp.pack()
+
+	def editTimes_help(self):
+		self.frm_editTimes.pack_forget()
+		self.frm_editTimesHelp.pack()
+
+	def editEvents_help(self):
+		self.frm_editEvents.pack_forget()
+		self.frm_editEventsHelp.pack()
+
+	def editEventsHelp_back(self):
+		self.frm_editEventsHelp.pack_forget()
+		self.frm_editEvents.pack()
+
+	def editTimesHelp_back(self):
+		self.frm_editTimesHelp.pack_forget()
+		self.frm_editTimes.pack()
+
+	def editGoalsHelp_back(self):
+		self.frm_editGoalsHelp.pack_forget()
+		self.frm_editGoals.pack()
+
+
+
+
+
+	def start(self):
+		self.window.mainloop()
+
+
+	"""
+	Setting Screens
+	"""
 
 	def setMenu(self):
 		self.frm_menu = tk.Frame(master=self.window, height=450, width=800, borderwidth=2, relief="groove")
@@ -458,271 +732,3 @@ class myApplicationManager(object):
 		self.lbl_runner_eventInfo.place(x=200, y=80)
 
 
-		
-
-
-
-	"""
-	Methods That Actually Do Something
-	"""
-	def out(self):
-		self.window.destroy()
-
-	def predictor_go(self):
-		index = self.cbb_predictor_selector.current()
-		if (index == -1):
-			self.lbl_predictor_output["text"] = "Select"
-		else:
-			time = self.predictorTime.get()
-			if (time == ""):
-				self.lbl_predictor_output["text"] = "Enter"
-			else:
-				if (index == 0): #100 --> 200
-					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) - 0.98))
-				if (index == 1): #200 --> 400
-					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
-
-	def editGoals_go(self):
-		index = self.cbb_editGoals_events.get()
-		print(index)
-		if (index == ""):
-			self.lbl_editGoals_output["text"] = "Select A Event"
-		else:
-			time = self.goalTime.get()
-			if (time == ""):
-				self.lbl_editGoals_output["text"] = "Enter A Time"
-			else:
-				result = self.runnersDict[self.runner].newGoal(index, float(time))
-				if result == "Goal Added":
-					if (self.lbl_editGoals_output["text"][0:5] == "Added"):
-						self.lbl_editGoals_output["text"] = self.lbl_editGoals_output["text"] + "!"
-					else:
-						self.lbl_editGoals_output["text"] = "Added"
-				else:
-					self.lbl_editGoals_output["text"] = result
-
-	def editTimes_go(self):
-		index = self.cbb_editTimes_events.get()
-		if (index == ""):
-			self.lbl_editTimes_output["text"] = "Select A Event"
-		else:
-			time = self.ranTime.get()
-			if (time == ""):
-				self.lbl_editGoals_output["text"] = "Enter A Time"
-			else:
-				result = self.runnersDict[self.runner].newTime(index, float(time))
-				if (result == "Time Added"):
-					text = self.lbl_editTimes_output["text"]
-					if (text[0:5] == "Added"):
-						self.lbl_editTimes_output["text"] = text + "!"
-					else:
-						self.lbl_editTimes_output["text"] = "Added"
-				else:
-					self.lbl_editTimes_output["text"]  = result
-		print("GO")
-
-	def select_go(self):
-		runner = self.cbb_select_selector.current()
-		self.setRunnerPage(self.runnersList[runner])
-		self.frm_select.pack_forget()
-		self.frm_runner.pack()
-
-	def cbb_runner_event(self, runner, event):
-		print (str(runner))
-		self.lbl_runner_eventInfo["text"] = self.runnersDict[runner].getAllInfoEvent(event)
-		print("event picked")
-
-	def isFloat(self, toBe):
-		if toBe == "":
-			return True
-		try:
-			num = float(toBe)
-			return True
-		except ValueError:
-			return False
-
-	def getAllPrs(self, runner):
-		runnerObj = self.runnersDict[runner]
-		events = runnerObj.getEvents()
-		text = ""
-		for event in events:
-			PR = runnerObj.getPREvent(event)
-			if PR == 1000:
-				text += ("%s:  N/A\n\n" % (event))
-			else:
-				text += ("%s:  %.2f\n\n" % (event, PR))
-		return text
-
-	def getAllGoals(self, runner):
-		runnerObj = self.runnersDict[runner]
-		events = runnerObj.getEvents()
-		text = ""
-		for event in events:
-			text += ("\n%s: \n" % (event))
-			goals = runnerObj.getGoalsEvent(event)
-			if goals == []:
-				text += "N/A\n"
-			else:
-				goals.sort()
-				for goal in goals:
-					text += ("-%s\n" % (goal))
-		return text
-
-	def runner_addEvent(self):
-		self.frm_runner.pack_forget()
-		events = self.runnersDict[self.runner].getEvents()
-		for checkBox in self.checkList:
-			event = checkBox["text"]
-			if (event in events):
-				if (not checkBox.instate(["selected"])):
-					checkBox.state(["selected"])
-			else:
-				checkBox.state(['!selected'])
-		self.frm_editEvents.pack()
-
-	def editEvents_save(self):
-		print("save")
-		runnerObj = self.runnersDict[self.runner]
-		events = runnerObj.getEvents()
-		for checkBox in self.checkList:
-			event = checkBox["text"]
-			if (checkBox.instate(["selected"])):
-				if event not in events:
-					runnerObj.newEvent(event)
-			elif (checkBox.instate(["!selected"])):
-				print ("not selected")
-				if event in events:
-					print ("removed")
-					runnerObj.removeEvent(event)
-
-
-
-
-
-	"""
-	Method That Change Screens (Also Updates A Few)
-	"""
-
-	def menu_getBest(self):
-		self.frm_menu.pack_forget()
-		self.frm_best.pack()
-
-	def best_back(self):
-		self.frm_best.pack_forget()
-		self.frm_menu.pack()
-
-	def menu_selectRunner(self):
-		self.frm_menu.pack_forget()
-		self.frm_select.pack()
-
-	def select_back(self):
-		self.frm_select.pack_forget()
-		self.frm_menu.pack()
-
-	def menu_predictor(self):
-		self.frm_menu.pack_forget()
-		self.frm_predictor.pack()
-
-	def predictor_back(self):
-		self.frm_predictor.pack_forget()
-		self.frm_menu.pack()
-
-	def menu_help(self):
-		self.frm_menu.pack_forget()
-		self.frm_menuHelp.pack()
-
-	def menuHelp_back(self):
-		self.frm_menuHelp.pack_forget()
-		self.frm_menu.pack()
-
-	def select_help(self):
-		self.frm_select.pack_forget()
-		self.frm_selectHelp.pack()
-
-	def selectHelp_back(self):
-		self.frm_selectHelp.pack_forget()
-		self.frm_select.pack()
-
-	def best_help(self):
-		self.frm_best.pack_forget()
-		self.frm_bestHelp.pack()
-
-	def bestHelp_back(self):
-		self.frm_bestHelp.pack_forget()
-		self.frm_best.pack()
-
-	def predictor_help(self):
-		self.frm_predictor.pack_forget()
-		self.frm_predictorHelp.pack()
-
-	def predictorHelp_back(self):
-		self.frm_predictorHelp.pack_forget()
-		self.frm_predictor.pack()
-
-	def runner_back(self):
-		self.frm_runner.pack_forget()
-		self.frm_select.pack()
-
-	def runner_help(self):
-		self.frm_runner.pack_forget()
-		self.frm_runnerHelp.pack()
-
-	def runnerHelp_back(self):
-		self.frm_runnerHelp.pack_forget()
-		self.frm_runner.pack()
-
-	def runner_addTime(self):
-		self.frm_runner.pack_forget()
-		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
-		self.frm_editTimes.pack()
-
-	def runner_addGoal(self):
-		self.frm_runner.pack_forget()
-		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
-		self.frm_editGoals.pack()
-
-	def editGoals_back(self):
-		self.frm_editGoals.pack_forget()
-		self.setRunnerPage(self.runner)
-		self.frm_runner.pack()
-
-	def editTimes_back(self):
-		self.frm_editTimes.pack_forget()
-		self.setRunnerPage(self.runner)
-		self.frm_runner.pack()
-
-	def editEvents_back(self):
-		self.frm_editEvents.pack_forget()
-		self.setRunnerPage(self.runner)
-		self.frm_runner.pack()
-
-	def editGoals_help(self):
-		self.frm_editGoals.pack_forget()
-		self.frm_editGoalsHelp.pack()
-
-	def editTimes_help(self):
-		self.frm_editTimes.pack_forget()
-		self.frm_editTimesHelp.pack()
-
-	def editEvents_help(self):
-		self.frm_editEvents.pack_forget()
-		self.frm_editEventsHelp.pack()
-
-	def editEventsHelp_back(self):
-		self.frm_editEventsHelp.pack_forget()
-		self.frm_editEvents.pack()
-
-	def editTimesHelp_back(self):
-		self.frm_editTimesHelp.pack_forget()
-		self.frm_editTimes.pack()
-
-	def editGoalsHelp_back(self):
-		self.frm_editGoalsHelp.pack_forget()
-		self.frm_editGoals.pack()
-
-
-
-
-
-	def start(self):
-		self.window.mainloop()
