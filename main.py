@@ -10,7 +10,7 @@ global GlobalrunnersDict
 GlobalrunnersDict = {}
 
 def main():
-	loading = loadingScreen()
+	loading = loadingScreen() #not used for now
 
 	if (not path.exists("Runners")):
 		start()
@@ -25,7 +25,7 @@ def start():
 		print ("Error Creating Directory")
 
 def window(loading):
-	screen = myApplicationManager(GlobalrunnersDict, loading)
+	screen = myApplicationManager(GlobalrunnersDict)
 	screen.start()
 
 def setUpDictionary():
