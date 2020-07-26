@@ -11,7 +11,7 @@ class frameStack(object):
 		if (not self.isEmpty()):
 			return self.stack.pop()
 		else:
-			return null
+			return None
 
 	def getTop(self):
 		return self.stack[len(self.stack) - 1]

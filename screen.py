@@ -38,6 +38,10 @@ use stacks to go back between screens (ahhh, its such a good idea, and just have
 	also should have methods that call the anyAdd method
 slelct screen, make sure something is selected
 
+add runner screen
+clean up
+start with a loading screen
+
 """
 
 #constants
@@ -71,7 +75,7 @@ def getLocalBestGroup(events, runnersDict):
 	return text
 
 class myApplicationManager(object):
-	def __init__(self, runnersDict):
+	def __init__(self, runnersDict, loading):
 		self.runnersDict = runnersDict
 		self.runnersList = []
 		for runner in self.runnersDict:
@@ -88,7 +92,7 @@ class myApplicationManager(object):
 
 		
 
-		
+		loading.close()
 
 		self.frm_menu.pack()
 
@@ -212,6 +216,7 @@ class myApplicationManager(object):
 	def getAllGoals(self, runner):
 		runnerObj = self.runnersDict[runner]
 		events = runnerObj.getEvents()
+
 		text = ""
 		for event in events:
 			text += ("\n%s: \n" % (event))
@@ -234,6 +239,7 @@ class myApplicationManager(object):
 			event = checkBox["text"]
 			if (checkBox.instate(["selected"])):
 				if event not in events:
+					print ("added")
 					runnerObj.newEvent(event)
 			elif (checkBox.instate(["!selected"])):
 				print ("not selected")
@@ -251,15 +257,18 @@ class myApplicationManager(object):
 
 
 	def editGoals_back(self):
-		self.setRunnerPage(self.runner)
+		#self.setRunnerPage(self.runner)
+		self.updateRunner()
 		self.back()
 
 	def editTimes_back(self):
-		self.setRunnerPage(self.runner)
+		#self.setRunnerPage(self.runner)
+		self.updateRunner()
 		self.back()
 
 	def editEvents_back(self):
-		self.setRunnerPage(self.runner)
+		#self.setRunnerPage(self.runner)
+		self.updateRunner()
 		self.back()
 
 	def select_go(self):
@@ -358,7 +367,7 @@ class myApplicationManager(object):
 	def editEvents_help(self):
 		self.goToScreen(self.frm_editEventsHelp)
 
-	def editEventsHelp_back(self):
+	def editEventsHelp_back(self): #its not updating after going back, need to fix it
 		self.back()
 
 	def editTimesHelp_back(self):
@@ -676,8 +685,8 @@ class myApplicationManager(object):
 		self.lbl_runner_name = tk.Label(master=self.frm_runner, text=runner)
 		self.lbl_runner_name.place(x=365, y=0)
 
-		lbl_runner_goalsPassed = tk.Label(master=self.frm_runner, text="Total Candy Owed: %d" % self.runnersDict[runner].getAllGoalsPassed())
-		lbl_runner_goalsPassed.place(x=450, y=40)
+		self.lbl_runner_goalsPassed = tk.Label(master=self.frm_runner, text="Total Candy Owed: %d" % self.runnersDict[runner].getAllGoalsPassed())
+		self.lbl_runner_goalsPassed.place(x=450, y=40)
 
 		btn_runner_help = tk.Button(master=self.frm_runner, text="Help", command=self.runner_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_runner_help.place(x=745, y=5)
@@ -706,14 +715,23 @@ class myApplicationManager(object):
 		btn_runner_addGoal = tk.Button(master=self.frm_runner, command=self.runner_addGoal, text="add goal", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_addGoal.place(x=510, y=415)
 
-		cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())#, postcommand=self.cbb_runner_event)
-		cbb_runner_events.place(x=290, y=40)
+		self.cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())#, postcommand=self.cbb_runner_event)
+		self.cbb_runner_events.place(x=290, y=40)
 		
 		def callback(eventObject):
-			self.cbb_runner_event(runner, cbb_runner_events.get())
-		cbb_runner_events.bind("<<ComboboxSelected>>", callback)#lambda _ : print("Selected!"))
+			self.cbb_runner_event(runner, self.cbb_runner_events.get())
+		self.cbb_runner_events.bind("<<ComboboxSelected>>", callback)#lambda _ : print("Selected!"))
 
 		self.lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="Select A Event", width=58, height=20, borderwidth=3, relief="ridge")
 		self.lbl_runner_eventInfo.place(x=200, y=80)
+
+
+	def updateRunner(self):
+		print ("updated")
+		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
+		self.lbl_runner_goals["text"] = self.getAllGoals(self.runner)
+		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
+		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
+
 
 

@@ -36,7 +36,7 @@ class Runner (object):
 	def newEvent(self, eventName):
 		if (self.hasEvent(eventName)):
 			return("Event Already Added")
-		writeToFile(self.name, "|E %s\n" % eventName)
+		writeToFile(self.name, "\n|E %s\n" % eventName)
 		return("Event Added")
 
 	def removeEvent(self, eventName):
@@ -85,6 +85,7 @@ class Runner (object):
 			matchObj = match("^\|E (.*)", line)
 			if (matchObj):
 				events.append(matchObj.group(1))
+		events.sort()
 		return events
 
 	def getGoalsEvent(self, eventName):

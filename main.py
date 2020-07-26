@@ -1,5 +1,6 @@
 from screen import myApplicationManager
 from runner import Runner
+from loadingscreen import loadingScreen
 from os import path
 from platform import system
 from os import getcwd
@@ -9,10 +10,12 @@ global GlobalrunnersDict
 GlobalrunnersDict = {}
 
 def main():
+	loading = loadingScreen()
+
 	if (not path.exists("Runners")):
 		start()
 	setUpDictionary()
-	window()
+	window(loading)
 	
 
 def start():
@@ -21,8 +24,8 @@ def start():
 	except OSError:
 		print ("Error Creating Directory")
 
-def window():
-	screen = myApplicationManager(GlobalrunnersDict)
+def window(loading):
+	screen = myApplicationManager(GlobalrunnersDict, loading)
 	screen.start()
 
 def setUpDictionary():
