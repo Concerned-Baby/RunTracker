@@ -2,6 +2,7 @@ from os import path
 from re import match
 from platform import system
 
+#print
 global changeD
 changeD = (system() == "macOS" or system() == "iOS")
 
@@ -41,9 +42,9 @@ class Runner (object):
 
 	def removeEvent(self, eventName):
 		lines = readFileLBL(self.name)
-		print(eventName)
+		#print(eventName)
 		toRemove = "|E %s" % eventName
-		print (toRemove)
+		#print (toRemove)
 		if (changeD):
 			f = open("Runners/%s.txt" % self.name, "w")
 		else:
@@ -52,9 +53,10 @@ class Runner (object):
 		for line in lines:
 			if (line.strip("\n") != toRemove):
 				f.write(line)
-				print (line + "z")
+				#print (line + "z")
 			else:
-				print("skipped")
+				#print("skipped")
+				pass
 
 	def newTime(self, eventName, time):
 		if (self.hasEvent(eventName)):
@@ -152,26 +154,6 @@ class Runner (object):
 			toPrint += time + "\n"
 		return toPrint
 
-	def getAllInfo(self):
-		toPrint = ""
-		toPrint += "----------------------------------------------------\n"
-		toPrint +="%s's Info\n\n\nPRs:\n" % self.name
-		events = self.getEvents()
-		goalsPassed = 0
-		goals = 0
-		for event in events:
-			pr = self.getPREvent(event)
-			if (pr != 1000):
-				toPrint += "%s: %.2f\t\n" % (event, pr)
-			else:
-				toPrint += "%s: N/A\t" % event
-			goalsPassed += self.getGoalsPassedEvent(event)
-			goals += len(self.getGoalsEvent(event))
-		toPrint += "\n\n# of Goals: %d \n# of Goals Passed: %d\n" % (goals, goalsPassed)
-		for event in events:
-			toPrint += self.getAllInfoEvent(event)
-		toPrint += "----------------------------------------------------"
-		return toPrint
 
 
 

@@ -46,8 +46,8 @@ start with a loading screen
 
 #constants
 global possiblePredictions, possibleEvents, Sprints, Distance, Other
-possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]"]
-Sprints = ["100m", "200m", "400m"]
+possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]"]
+Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
 Other = ["Long Jump"]
 Events = Sprints + Distance + Other
@@ -88,7 +88,7 @@ class myApplicationManager(object):
 
 		self.stack = frameStack()
 		self.stack.push(self.frm_menu)
-		print (self.stack.toString())
+		#print (self.stack.toString())
 
 		
 
@@ -117,7 +117,307 @@ class myApplicationManager(object):
 		self.setEditEventsHelp()
 		self.setEditTimesHelp()
 		
-		"""
+
+
+	def updateRunner(self):
+		#print ("updated")
+		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
+		self.lbl_runner_goals["text"] = self.getAllGoals(self.runner)
+		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
+		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
+
+
+
+	"""
+	Methods That Actually Do Something
+	"""
+
+	def start(self):
+		self.window.mainloop()
+
+		
+	def out(self):
+		self.window.destroy()
+
+	def predictor_go(self):
+		index = self.cbb_predictor_selector.current()
+		if (index == -1):
+			self.lbl_predictor_output["text"] = "Select"
+		else:
+			time = self.predicotrGivenTime
+			if (time == ""):
+				self.lbl_predictor_output["text"] = "Enter"
+			else:
+				if (index == 0): #100 --> 200
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) - 0.98))
+				if (index == 1): #200 --> 400
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
+				if (index == 2): #330 --> 400
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 1.36) + 1.23))
+
+	def editGoals_go(self):
+		index = self.cbb_editGoals_events.get()
+		#print(index)
+		if (index == ""):
+			self.lbl_editGoals_output["text"] = "Select A Event"
+		else:
+			time = self.goalTime
+			if (time == -1):
+				self.lbl_editGoals_output["text"] = "Enter A Time"
+			else:
+				result = self.runnersDict[self.runner].newGoal(index, float(time))
+				if result == "Goal Added":
+					if (self.lbl_editGoals_output["text"][0:5] == "Added"):
+						self.lbl_editGoals_output["text"] = self.lbl_editGoals_output["text"] + "!"
+					else:
+						self.lbl_editGoals_output["text"] = "Added"
+				else:
+					self.lbl_editGoals_output["text"] = result
+
+	
+
+
+
+	def cbb_runner_event(self, runner, event):
+		#print (str(runner))
+		self.lbl_runner_eventInfo["text"] = self.runnersDict[runner].getAllInfoEvent(event)
+		#print("event picked")
+
+	def isFloatTime(self, toBe):
+		#print ("Time : " + toBe)
+		if toBe == "":
+			self.ranTime = -1
+			return True
+		try:
+			num = float(toBe)
+			self.ranTime = num
+			return True
+		except ValueError:
+			return False
+
+	def isFloatGoal(self, toBe):
+		#print ("Goal: " + toBe)
+		if toBe == "":
+			self.goalTime = -1
+			return True
+		try:
+			num = float(toBe)
+			self.goalTime = num
+			return True
+		except ValueError:
+			return False
+
+	def isFloat(self, toBe):
+		#print (toBe)
+		if toBe == "":
+			self.predicotrGivenTime = -1
+			return True
+		try:
+			num = float(toBe)
+			self.predicotrGivenTime = num
+			return True
+		except ValueError:
+			return False
+
+	def getAllPrs(self, runner):
+		runnerObj = self.runnersDict[runner]
+		events = runnerObj.getEvents()
+		text = ""
+		for event in events:
+			PR = runnerObj.getPREvent(event)
+			if PR == 1000:
+				text += ("%s:  N/A\n\n" % (event))
+			else:
+				text += ("%s:  %.2f\n\n" % (event, PR))
+		return text
+
+	def getAllGoals(self, runner):
+		runnerObj = self.runnersDict[runner]
+		events = runnerObj.getEvents()
+
+		text = ""
+		for event in events:
+			text += ("\n%s: \n" % (event))
+			goals = runnerObj.getGoalsEvent(event)
+			if goals == []:
+				text += "N/A\n"
+			else:
+				goals.sort()
+				for goal in goals:
+					text += ("-%s\n" % (goal))
+		return text
+
+	def editTimes_go(self):
+		index = self.cbb_editTimes_events.get()
+		if (index == ""):
+			self.lbl_editTimes_output["text"] = "Select A Event"
+		else:
+			time = self.ranTime
+			#print (str(time) + ":")
+			if (time == -1):
+				#print("empty")
+				self.lbl_editTimes_output["text"] = "Enter A Time"
+			else:
+				#print ("went anyways")
+				result = self.runnersDict[self.runner].newTime(index, float(time))
+				if (result == "Time Added"):
+					text = self.lbl_editTimes_output["text"]
+					if (text[0:5] == "Added"):
+						self.lbl_editTimes_output["text"] = text + "!"
+					else:
+						self.lbl_editTimes_output["text"] = "Added"
+				else:
+					self.lbl_editTimes_output["text"]  = result
+		#print("GO")
+	
+
+	def editEvents_save(self):
+		#print("save")
+		runnerObj = self.runnersDict[self.runner]
+		events = runnerObj.getEvents()
+		for checkBox in self.checkList:
+			event = checkBox["text"]
+			if (checkBox.instate(["selected"])):
+				if event not in events:
+					#print ("added")
+					runnerObj.newEvent(event)
+			elif (checkBox.instate(["!selected"])):
+				#print ("not selected")
+				if event in events:
+					#print ("removed")
+					runnerObj.removeEvent(event)
+
+	def runner_addTime(self):
+		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.goToScreen(self.frm_editTimes)
+
+	def runner_addGoal(self):
+		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.goToScreen(self.frm_editGoals)
+
+
+	def editGoals_back(self):
+		#self.setRunnerPage(self.runner)
+		self.updateRunner()
+		self.back()
+
+	def editTimes_back(self):
+		#self.setRunnerPage(self.runner)
+		self.updateRunner()
+		self.back()
+
+	def editEvents_back(self):
+		#self.setRunnerPage(self.runner)
+		self.updateRunner()
+		self.back()
+
+	def select_go(self):
+		runner = self.cbb_select_selector.current()
+		self.setRunnerPage(self.runnersList[runner])
+		self.goToScreen(self.frm_runner)
+
+	def runner_addEvent(self):
+		events = self.runnersDict[self.runner].getEvents()
+		for checkBox in self.checkList:
+			event = checkBox["text"]
+			if (event in events):
+				if (not checkBox.instate(["selected"])):
+					checkBox.state(["selected"])
+			else:
+				checkBox.state(['!selected'])
+
+		self.goToScreen(self.frm_editEvents)
+		
+
+
+
+
+
+	"""
+	Method That Change Screens (Also Updates A Few)
+	"""
+
+	def goToScreen(self, frame):
+		self.stack.getTop().pack_forget()
+		self.stack.push(frame).pack()
+		#print(self.stack.toString())
+
+	def back(self):
+		self.stack.pop().pack_forget()
+		self.stack.getTop().pack()
+		#print(self.stack.toString())
+
+	def menu_getBest(self):
+		self.goToScreen(self.frm_best)
+
+	def best_back(self):
+		self.back()
+
+	def menu_selectRunner(self):
+		self.goToScreen(self.frm_select)
+
+	def select_back(self):
+		self.back()
+
+	def menu_predictor(self):
+		self.goToScreen(self.frm_predictor)
+
+	def predictor_back(self):
+		self.back()
+
+	def menu_help(self):
+		self.goToScreen(self.menu_help)
+
+	def menuHelp_back(self):
+		self.back()
+
+	def select_help(self):
+		self.goToScreen(self.frm_selectHelp)
+
+	def selectHelp_back(self):
+		self.back()
+
+	def best_help(self):
+		self.goToScreen(self.frm_bestHelp)
+
+	def bestHelp_back(self):
+		self.back()
+
+	def predictor_help(self):
+		self.goToScreen(self.frm_predictorHelp)
+
+	def predictorHelp_back(self):
+		self.back()
+
+	def runner_back(self):
+		self.back()
+
+	def runner_help(self):
+		self.goToScreen(self.frm_runnerHelp)
+
+	def runnerHelp_back(self):
+		self.back()
+
+	def editGoals_help(self):
+		self.goToScreen(self.frm_editGoalsHelp)
+
+	def editTimes_help(self):
+		self.goToScreen(self.frm_editTimesHelp)
+
+	def editEvents_help(self):
+		self.goToScreen(self.frm_editEventsHelp)
+
+	def editEventsHelp_back(self):
+		self.back()
+
+	def editTimesHelp_back(self):
+		self.back()
+
+	def editGoalsHelp_back(self):
+		self.back()
+
+
+	"""
 	Setting Screens
 	"""
 
@@ -380,8 +680,8 @@ class myApplicationManager(object):
 		self.ent_editTimes_entry.place(x=350, y=220)
 
 		def cmd():
-			print("CMD")
-			print (self.timeThatWasRan.get())
+			#print("CMD")
+			#print (self.timeThatWasRan.get())
 			self.editTimes_go()
 		btn_editTimes_go = tk.Button(master=self.frm_editTimes, text="GO!", command=cmd, width=8, height=1, borderwidth=3, relief="raised")
 		btn_editTimes_go.place(x=360, y=270)
@@ -472,301 +772,6 @@ class myApplicationManager(object):
 		self.lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="Select A Event", width=58, height=20, borderwidth=3, relief="ridge")
 		self.lbl_runner_eventInfo.place(x=200, y=80)
 
-
-	def updateRunner(self):
-		print ("updated")
-		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
-		self.lbl_runner_goals["text"] = self.getAllGoals(self.runner)
-		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
-		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
-
-
-
-	"""
-	Methods That Actually Do Something
-	"""
-
-	def start(self):
-		self.window.mainloop()
-
-		
-	def out(self):
-		self.window.destroy()
-
-	def predictor_go(self):
-		index = self.cbb_predictor_selector.current()
-		if (index == -1):
-			self.lbl_predictor_output["text"] = "Select"
-		else:
-			time = self.predicotrGivenTime
-			if (time == ""):
-				self.lbl_predictor_output["text"] = "Enter"
-			else:
-				if (index == 0): #100 --> 200
-					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) - 0.98))
-				if (index == 1): #200 --> 400
-					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
-
-	def editGoals_go(self):
-		index = self.cbb_editGoals_events.get()
-		print(index)
-		if (index == ""):
-			self.lbl_editGoals_output["text"] = "Select A Event"
-		else:
-			time = self.goalTime
-			if (time == -1):
-				self.lbl_editGoals_output["text"] = "Enter A Time"
-			else:
-				result = self.runnersDict[self.runner].newGoal(index, float(time))
-				if result == "Goal Added":
-					if (self.lbl_editGoals_output["text"][0:5] == "Added"):
-						self.lbl_editGoals_output["text"] = self.lbl_editGoals_output["text"] + "!"
-					else:
-						self.lbl_editGoals_output["text"] = "Added"
-				else:
-					self.lbl_editGoals_output["text"] = result
-
-	
-
-
-
-	def cbb_runner_event(self, runner, event):
-		print (str(runner))
-		self.lbl_runner_eventInfo["text"] = self.runnersDict[runner].getAllInfoEvent(event)
-		print("event picked")
-
-	def isFloatTime(self, toBe):
-		#print ("Time : " + toBe)
-		if toBe == "":
-			self.ranTime = -1
-			return True
-		try:
-			num = float(toBe)
-			self.ranTime = num
-			return True
-		except ValueError:
-			return False
-
-	def isFloatGoal(self, toBe):
-		#print ("Goal: " + toBe)
-		if toBe == "":
-			self.goalTime = -1
-			return True
-		try:
-			num = float(toBe)
-			self.goalTime = num
-			return True
-		except ValueError:
-			return False
-
-	def isFloat(self, toBe):
-		#print (toBe)
-		if toBe == "":
-			self.predicotrGivenTime = -1
-			return True
-		try:
-			num = float(toBe)
-			self.predicotrGivenTime = num
-			return True
-		except ValueError:
-			return False
-
-	def getAllPrs(self, runner):
-		runnerObj = self.runnersDict[runner]
-		events = runnerObj.getEvents()
-		text = ""
-		for event in events:
-			PR = runnerObj.getPREvent(event)
-			if PR == 1000:
-				text += ("%s:  N/A\n\n" % (event))
-			else:
-				text += ("%s:  %.2f\n\n" % (event, PR))
-		return text
-
-	def getAllGoals(self, runner):
-		runnerObj = self.runnersDict[runner]
-		events = runnerObj.getEvents()
-
-		text = ""
-		for event in events:
-			text += ("\n%s: \n" % (event))
-			goals = runnerObj.getGoalsEvent(event)
-			if goals == []:
-				text += "N/A\n"
-			else:
-				goals.sort()
-				for goal in goals:
-					text += ("-%s\n" % (goal))
-		return text
-
-	def editTimes_go(self):
-		index = self.cbb_editTimes_events.get()
-		if (index == ""):
-			self.lbl_editTimes_output["text"] = "Select A Event"
-		else:
-			time = self.ranTime
-			print (str(time) + ":")
-			if (time == -1):
-				print("empty")
-				self.lbl_editTimes_output["text"] = "Enter A Time"
-			else:
-				print ("went anyways")
-				result = self.runnersDict[self.runner].newTime(index, float(time))
-				if (result == "Time Added"):
-					text = self.lbl_editTimes_output["text"]
-					if (text[0:5] == "Added"):
-						self.lbl_editTimes_output["text"] = text + "!"
-					else:
-						self.lbl_editTimes_output["text"] = "Added"
-				else:
-					self.lbl_editTimes_output["text"]  = result
-		print("GO")
-	
-
-	def editEvents_save(self):
-		print("save")
-		runnerObj = self.runnersDict[self.runner]
-		events = runnerObj.getEvents()
-		for checkBox in self.checkList:
-			event = checkBox["text"]
-			if (checkBox.instate(["selected"])):
-				if event not in events:
-					print ("added")
-					runnerObj.newEvent(event)
-			elif (checkBox.instate(["!selected"])):
-				print ("not selected")
-				if event in events:
-					print ("removed")
-					runnerObj.removeEvent(event)
-
-	def runner_addTime(self):
-		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
-		self.goToScreen(self.frm_editTimes)
-
-	def runner_addGoal(self):
-		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
-		self.goToScreen(self.frm_editGoals)
-
-
-	def editGoals_back(self):
-		#self.setRunnerPage(self.runner)
-		self.updateRunner()
-		self.back()
-
-	def editTimes_back(self):
-		#self.setRunnerPage(self.runner)
-		self.updateRunner()
-		self.back()
-
-	def editEvents_back(self):
-		#self.setRunnerPage(self.runner)
-		self.updateRunner()
-		self.back()
-
-	def select_go(self):
-		runner = self.cbb_select_selector.current()
-		self.setRunnerPage(self.runnersList[runner])
-		self.goToScreen(self.frm_runner)
-
-	def runner_addEvent(self):
-		events = self.runnersDict[self.runner].getEvents()
-		for checkBox in self.checkList:
-			event = checkBox["text"]
-			if (event in events):
-				if (not checkBox.instate(["selected"])):
-					checkBox.state(["selected"])
-			else:
-				checkBox.state(['!selected'])
-
-		self.goToScreen(self.frm_editEvents)
-		
-
-
-
-
-
-	"""
-	Method That Change Screens (Also Updates A Few)
-	"""
-
-	def goToScreen(self, frame):
-		self.stack.getTop().pack_forget()
-		self.stack.push(frame).pack()
-		print(self.stack.toString())
-
-	def back(self):
-		self.stack.pop().pack_forget()
-		self.stack.getTop().pack()
-		print(self.stack.toString())
-
-	def menu_getBest(self):
-		self.goToScreen(self.frm_best)
-
-	def best_back(self):
-		self.back()
-
-	def menu_selectRunner(self):
-		self.goToScreen(self.frm_select)
-
-	def select_back(self):
-		self.back()
-
-	def menu_predictor(self):
-		self.goToScreen(self.frm_predictor)
-
-	def predictor_back(self):
-		self.back()
-
-	def menu_help(self):
-		self.goToScreen(self.menu_help)
-
-	def menuHelp_back(self):
-		self.back()
-
-	def select_help(self):
-		self.goToScreen(self.frm_selectHelp)
-
-	def selectHelp_back(self):
-		self.back()
-
-	def best_help(self):
-		self.goToScreen(self.frm_bestHelp)
-
-	def bestHelp_back(self):
-		self.back()
-
-	def predictor_help(self):
-		self.goToScreen(self.frm_predictorHelp)
-
-	def predictorHelp_back(self):
-		self.back()
-
-	def runner_back(self):
-		self.back()
-
-	def runner_help(self):
-		self.goToScreen(self.frm_runnerHelp)
-
-	def runnerHelp_back(self):
-		self.back()
-
-	def editGoals_help(self):
-		self.goToScreen(self.frm_editGoalsHelp)
-
-	def editTimes_help(self):
-		self.goToScreen(self.frm_editTimesHelp)
-
-	def editEvents_help(self):
-		self.goToScreen(self.frm_editEventsHelp)
-
-	def editEventsHelp_back(self): #its not updating after going back, need to fix it
-		self.back()
-
-	def editTimesHelp_back(self):
-		self.back()
-
-	def editGoalsHelp_back(self):
-		self.back()
 
 
 
