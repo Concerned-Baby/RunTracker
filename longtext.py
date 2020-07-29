@@ -10,6 +10,10 @@ def predictorHelp():
 	(From The First Event Given In The Selected Transformation)
 	3) Click GO!
 
+	Note:
+	[Best] 		means the best time achieveable within a season
+	[Estimate] 	means the time you can probably run right now
+
 	The Predicted Time For The Second Event Will Appear In The Lowest Text Box
 	"""
 

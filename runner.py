@@ -134,6 +134,28 @@ class Runner (object):
 			goalsPassed += self.getGoalsPassedEvent(event)
 		return goalsPassed
 
+	def getAveragePoints(self):
+		points = self.getTotalPoints()
+		return points / len(self.getEvents())
+
+	def getTotalPoints(self):
+		points = 0
+		events = self.getEvents()
+		for event in events:
+			self.getPointsEvent(event)
+
+	def calculatePoints(self, a, b, c, time):
+		score =  (a * pow((b - time), c))
+		return max(score, 0)
+
+	def getPointsEvent(self, event):
+		if (event == "100m"):
+			return self.calculatePoints(25.4347, 18, 1.81, self.getPREvent("100m"))
+		elif (event == "400m"):
+			return self.calculatePoints(1.53775, 82, 1.81, self.getPREvent("400m"))
+		return 0
+
+
 
 	def getAllInfoEvent(self, eventName):
 		toPrint = ""
@@ -142,6 +164,8 @@ class Runner (object):
 			toPrint += "PR: %.2f\n\n" % pr
 		else:
 			toPrint += "PR: N/A\n\n"
+
+		toPrint += "Points: %d\n\n" % self.getPointsEvent(eventName)
 		goals = self.getGoalsEvent(eventName)
 		goals.sort()
 		passed = self.getGoalsPassedEvent(eventName)

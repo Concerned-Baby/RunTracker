@@ -9,12 +9,11 @@ from tkinter import ttk
 """
 Next Steps:
 
-set all frames to my custom frame
 
-CheckBox For choosing events (under runner)
 (use a line in the middle, to properly center thigns)
 
 advanced statistics screen (with custom measurements)
+	-Overall runner score (based off decathon points)
 
 if space, a full predictor for each event in the runner page (probs going to be pretty hard)
 also if space picture
@@ -31,24 +30,18 @@ throw in the .sort method in runner
 
 work with null to decrease memory usage
 
-make runner page set only the things that change
-
-use stacks to go back between screens (ahhh, its such a good idea, and just have a single method that moves with two parameters, the to remove, and the to add)
-	stack should remove all back methods
-	also should have methods that call the anyAdd method
 slelct screen, make sure something is selected
 
-add runner screen
 clean up
-start with a loading screen
+
 
 """
 
 #constants
 global possiblePredictions, possibleEvents, Sprints, Distance, Other
-possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]"]
-Sprints = ["100m", "200m", "300m", "400m"]
-Distance = ["800m", "1600m", "3200m"]
+possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]", "400m --> 800m [Estimate]"]
+Sprints = ["40yd", "100m", "200m", "300m", "400m"]
+Distance = ["800m", "1000m", "1600m", "3200m"]
 Other = ["Long Jump"]
 Events = Sprints + Distance + Other
 
@@ -152,8 +145,10 @@ class myApplicationManager(object):
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) - 0.98))
 				if (index == 1): #200 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
-				if (index == 2): #330 --> 400
+				if (index == 2): #300 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 1.36) + 1.23))
+				if (index == 3): #400 --> 800
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.33) + 9.3))
 
 	def editGoals_go(self):
 		index = self.cbb_editGoals_events.get()
@@ -366,7 +361,7 @@ class myApplicationManager(object):
 		self.back()
 
 	def menu_help(self):
-		self.goToScreen(self.menu_help)
+		self.goToScreen(self.frm_menuHelp)
 
 	def menuHelp_back(self):
 		self.back()

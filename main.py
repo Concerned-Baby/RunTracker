@@ -10,7 +10,7 @@ global GlobalrunnersDict
 GlobalrunnersDict = {}
 
 def main():
-	loading = loadingScreen() #not used for now
+	loading = None #not used for now
 
 	if (not path.exists("Runners")):
 		start()
