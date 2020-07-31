@@ -142,7 +142,8 @@ class Runner (object):
 		points = 0
 		events = self.getEvents()
 		for event in events:
-			self.getPointsEvent(event)
+			points += self.getPointsEvent(event)
+		return points
 
 	def calculatePoints(self, a, b, c, time):
 		score =  (a * pow((b - time), c))
@@ -150,7 +151,9 @@ class Runner (object):
 
 	def getPointsEvent(self, event):
 		if (event == "100m"):
-			return self.calculatePoints(25.4347, 18, 1.81, self.getPREvent("100m"))
+			return self.calculatePoints(25.43471, 18, 1.81, self.getPREvent("100m"))
+		elif (event == "200m"):
+			return self.calculatePoints(4.43583, 40, 1.81, self.getPREvent("200m"))
 		elif (event == "400m"):
 			return self.calculatePoints(1.53775, 82, 1.81, self.getPREvent("400m"))
 		return 0

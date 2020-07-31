@@ -82,6 +82,7 @@ class myApplicationManager(object):
 		self.stack = frameStack()
 		self.stack.push(self.frm_menu)
 		#print (self.stack.toString())
+		print(runnersDict["Spencer"].getPointsEvent("200m"))
 
 		
 
@@ -331,6 +332,8 @@ class myApplicationManager(object):
 
 	def updateAdvanced(self):
 		self.lbl_runnerAdvanced_name["text"] = self.runner
+		runnerObj = self.runnersDict[self.runner]
+		self.lbl_runnerAdvanced_points["text"] = "Total Points: %d \n\n Point Efficiency: %.3f" % (runnerObj.getTotalPoints(), runnerObj.getAveragePoints())
 
 
 
@@ -785,8 +788,8 @@ class myApplicationManager(object):
 	def setAdvancedPage(self):
 		self.frm_runnerAdvanced = Frame(self.window, "Advanced")
 
-		self.lbl_runnerAdvanced_logo = tk.Label(master=self.frm_runnerAdvanced, text="Advanced Stats")
-		self.lbl_runnerAdvanced_logo.place(x=355, y=0)
+		lbl_runnerAdvanced_logo = tk.Label(master=self.frm_runnerAdvanced, text="Advanced Stats")
+		lbl_runnerAdvanced_logo.place(x=355, y=0)
 
 		self.lbl_runnerAdvanced_name = tk.Label(master=self.frm_runnerAdvanced, text="TDB")
 		self.lbl_runnerAdvanced_name.place(x=365, y=20)
@@ -797,6 +800,8 @@ class myApplicationManager(object):
 		btn_runnerAdvanced_back = tk.Button(master=self.frm_runnerAdvanced, text="B", fg="green", command=self.runnerAdvanced_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runnerAdvanced_back.place(x=5, y=415)
 
+		self.lbl_runnerAdvanced_points = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=5, borderwidth=2, relief="solid")
+		self.lbl_runnerAdvanced_points.place(x=20, y=20)
 
 
 
