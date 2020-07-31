@@ -109,6 +109,7 @@ class myApplicationManager(object):
 		self.setEditGoalsHelp()
 		self.setEditEventsHelp()
 		self.setEditTimesHelp()
+		self.setAdvancedPage()
 		
 
 
@@ -311,6 +312,11 @@ class myApplicationManager(object):
 		self.setRunnerPage(self.runnersList[runner])
 		self.goToScreen(self.frm_runner)
 
+
+	def runner_advanced(self):
+		self.updateAdvanced()
+		self.goToScreen(self.frm_runnerAdvanced)
+
 	def runner_addEvent(self):
 		events = self.runnersDict[self.runner].getEvents()
 		for checkBox in self.checkList:
@@ -322,7 +328,9 @@ class myApplicationManager(object):
 				checkBox.state(['!selected'])
 
 		self.goToScreen(self.frm_editEvents)
-		
+
+	def updateAdvanced(self):
+		self.lbl_runnerAdvanced_name["text"] = self.runner
 
 
 
@@ -409,6 +417,9 @@ class myApplicationManager(object):
 		self.back()
 
 	def editGoalsHelp_back(self):
+		self.back()
+
+	def runnerAdvanced_back(self):
 		self.back()
 
 
@@ -730,6 +741,10 @@ class myApplicationManager(object):
 		self.lbl_runner_goalsPassed = tk.Label(master=self.frm_runner, text="Total Candy Owed: %d" % self.runnersDict[runner].getAllGoalsPassed())
 		self.lbl_runner_goalsPassed.place(x=450, y=40)
 
+		
+		btn_runner_advanced = tk.Button(master=self.frm_runner, text="Advanced Stats", command=self.runner_advanced, width=15, height=1, borderwidth=3, relief="raised")
+		btn_runner_advanced.place(x=600, y=5)
+
 		btn_runner_help = tk.Button(master=self.frm_runner, text="Help", command=self.runner_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_runner_help.place(x=745, y=5)
 
@@ -766,6 +781,21 @@ class myApplicationManager(object):
 
 		self.lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="Select A Event", width=58, height=20, borderwidth=3, relief="ridge")
 		self.lbl_runner_eventInfo.place(x=200, y=80)
+
+	def setAdvancedPage(self):
+		self.frm_runnerAdvanced = Frame(self.window, "Advanced")
+
+		self.lbl_runnerAdvanced_logo = tk.Label(master=self.frm_runnerAdvanced, text="Advanced Stats")
+		self.lbl_runnerAdvanced_logo.place(x=355, y=0)
+
+		self.lbl_runnerAdvanced_name = tk.Label(master=self.frm_runnerAdvanced, text="TDB")
+		self.lbl_runnerAdvanced_name.place(x=365, y=20)
+
+		btn_runnerAdvanced_help = tk.Button(master=self.frm_runnerAdvanced, text="Help", command=self.toDo, width=5, height=1, borderwidth=3, relief="raised")
+		btn_runnerAdvanced_help.place(x=745, y=5)
+
+		btn_runnerAdvanced_back = tk.Button(master=self.frm_runnerAdvanced, text="B", fg="green", command=self.runnerAdvanced_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_runnerAdvanced_back.place(x=5, y=415)
 
 
 
