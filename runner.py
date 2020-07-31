@@ -153,10 +153,24 @@ class Runner (object):
 		if (event == "100m"):
 			return self.calculatePoints(25.43471, 18, 1.81, self.getPREvent("100m"))
 		elif (event == "200m"):
-			return self.calculatePoints(4.43583, 40, 1.81, self.getPREvent("200m"))
+			return self.calculatePoints(3.32725, 42.5, 1.81, self.getPREvent("200m"))
+		elif (event == "300m"):
+			return self.calculatePoints(2.34152, 61, 1.81, self.getPREvent("300m"))
 		elif (event == "400m"):
 			return self.calculatePoints(1.53775, 82, 1.81, self.getPREvent("400m"))
+		elif (event == "800m"):
+			return self.calculatePoints(0.07462, 254, 1.88, self.getPREvent("800m"))
+		elif (event == "1600m"):
+			return self.calculatePoints(0.029828, 512, 1.85, self.getPREvent("1600m"))
 		return 0
+
+	def getAllPoints(self):
+		events = self.getEvents()
+		text = ""
+		for event in events:
+			text += "%s: %d\n" % (event, self.getPointsEvent(event))
+		return text
+
 
 
 

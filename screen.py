@@ -82,7 +82,7 @@ class myApplicationManager(object):
 		self.stack = frameStack()
 		self.stack.push(self.frm_menu)
 		#print (self.stack.toString())
-		print(runnersDict["Spencer"].getPointsEvent("200m"))
+		print(runnersDict["Spencer"].getPointsEvent("1600m"))
 
 		
 
@@ -334,6 +334,7 @@ class myApplicationManager(object):
 		self.lbl_runnerAdvanced_name["text"] = self.runner
 		runnerObj = self.runnersDict[self.runner]
 		self.lbl_runnerAdvanced_points["text"] = "Total Points: %d \n\n Point Efficiency: %.3f" % (runnerObj.getTotalPoints(), runnerObj.getAveragePoints())
+		self.lbl_runnerAdvanced_pointSEvent["text"] = runnerObj.getAllPoints()
 
 
 
@@ -354,6 +355,7 @@ class myApplicationManager(object):
 		#print(self.stack.toString())
 
 	def menu_getBest(self):
+		self.setBest()
 		self.goToScreen(self.frm_best)
 
 	def best_back(self):
@@ -800,8 +802,11 @@ class myApplicationManager(object):
 		btn_runnerAdvanced_back = tk.Button(master=self.frm_runnerAdvanced, text="B", fg="green", command=self.runnerAdvanced_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runnerAdvanced_back.place(x=5, y=415)
 
-		self.lbl_runnerAdvanced_points = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=5, borderwidth=2, relief="solid")
+		self.lbl_runnerAdvanced_points = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=5, borderwidth=1, relief="solid")
 		self.lbl_runnerAdvanced_points.place(x=20, y=20)
+
+		self.lbl_runnerAdvanced_pointSEvent = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=20, borderwidth=1, relief="solid")
+		self.lbl_runnerAdvanced_pointSEvent.place(x=20, y=98)
 
 
 
