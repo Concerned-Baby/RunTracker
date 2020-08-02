@@ -34,14 +34,16 @@ slelct screen, make sure something is selected
 
 clean up
 
+build heaps/piority queues to keep track of time, so that it doesn't go to far, cause right now its linear time for searching, we want n log n for everything
+
 
 """
 
 #constants
 global possiblePredictions, possibleEvents, Sprints, Distance, Other
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]", "400m --> 800m [Estimate]"]
-Sprints = ["40yd", "100m", "200m", "300m", "400m"]
-Distance = ["800m", "1000m", "1600m", "3200m"]
+Sprints = ["100m", "200m", "300m", "400m"]
+Distance = ["800m", "1600m", "3200m"]
 Other = ["Long Jump"]
 Events = Sprints + Distance + Other
 
@@ -111,6 +113,7 @@ class myApplicationManager(object):
 		self.setEditEventsHelp()
 		self.setEditTimesHelp()
 		self.setAdvancedPage()
+		self.setAdvancedHelp()
 		
 
 
@@ -425,6 +428,12 @@ class myApplicationManager(object):
 		self.back()
 
 	def runnerAdvanced_back(self):
+		self.back()
+
+	def runnerAdvanced_help(self):
+		self.goToScreen(self.frm_advancedHelp)
+
+	def advancedHelp_back(self):
 		self.back()
 
 
@@ -796,7 +805,7 @@ class myApplicationManager(object):
 		self.lbl_runnerAdvanced_name = tk.Label(master=self.frm_runnerAdvanced, text="TDB")
 		self.lbl_runnerAdvanced_name.place(x=365, y=20)
 
-		btn_runnerAdvanced_help = tk.Button(master=self.frm_runnerAdvanced, text="Help", command=self.toDo, width=5, height=1, borderwidth=3, relief="raised")
+		btn_runnerAdvanced_help = tk.Button(master=self.frm_runnerAdvanced, text="Help", command=self.runnerAdvanced_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_runnerAdvanced_help.place(x=745, y=5)
 
 		btn_runnerAdvanced_back = tk.Button(master=self.frm_runnerAdvanced, text="B", fg="green", command=self.runnerAdvanced_back, width=2,height=1, borderwidth=3, relief="raised")
@@ -807,6 +816,18 @@ class myApplicationManager(object):
 
 		self.lbl_runnerAdvanced_pointSEvent = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=20, borderwidth=1, relief="solid")
 		self.lbl_runnerAdvanced_pointSEvent.place(x=20, y=98)
+
+	def setAdvancedHelp(self):
+		self.frm_advancedHelp = Frame(self.window, "Advanced Window")
+
+		lbl_advancedHelp_logo = tk.Label(master=self.frm_advancedHelp, text="Advanced Help")
+		lbl_advancedHelp_logo.place(x=365, y=0)
+
+		lbl_advancedHelp_text = tk.Label(master=self.frm_advancedHelp, text=longtext.advancedHelp(), height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_advancedHelp_text.place(x=100, y=32)
+
+		btn_advancedHelp_back = tk.Button(master=self.frm_advancedHelp, text="B", fg="green", command=self.advancedHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_advancedHelp_back.place(x=5, y=415)
 
 
 
