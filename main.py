@@ -16,6 +16,7 @@ def main():
 		start()
 	setUpDictionary()
 	window(loading)
+	print("exited")
 	
 
 def start():
