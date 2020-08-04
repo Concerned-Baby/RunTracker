@@ -36,6 +36,9 @@ clean up
 
 build heaps/piority queues to keep track of time, so that it doesn't go to far, cause right now its linear time for searching, we want n log n for everything
 
+selectNew screen
+
+make all setting into one whole method, separate out update
 
 """
 
@@ -113,6 +116,7 @@ class myApplicationManager(object):
 		self.setEditEventsHelp()
 		self.setEditTimesHelp()
 		self.setAdvancedPage()
+		self.setSelectNew()
 		self.setAdvancedHelp()
 		
 
@@ -339,6 +343,7 @@ class myApplicationManager(object):
 		self.lbl_runnerAdvanced_points["text"] = "Total Points: %d \n\n Point Efficiency: %.3f" % (runnerObj.getTotalPoints(), runnerObj.getAveragePoints())
 		self.lbl_runnerAdvanced_pointSEvent["text"] = runnerObj.getAllPoints()
 
+	
 
 
 
@@ -436,6 +441,12 @@ class myApplicationManager(object):
 	def advancedHelp_back(self):
 		self.back()
 
+	def selectNew_back(self):
+		self.back()
+
+	def select_new(self):
+		self.goToScreen(self.frm_selectNew)
+
 
 	"""
 	Setting Screens
@@ -531,9 +542,20 @@ class myApplicationManager(object):
 		btn_select_go = tk.Button(master=self.frm_select, text="GO!", command=self.select_go, borderwidth=3, relief="raised", width=20, height=2)
 		btn_select_go.place(x=330, y=200)
 
+		btn_select_new = tk.Button(master=self.frm_select, text="New Runner", command=self.select_new, borderwidth=3, relief="raised", width=20, height=2)
+		btn_select_new.place(x=330, y=380)
 
 		btn_select_back = tk.Button(master=self.frm_select, text="B", fg="green", command=self.select_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_select_back.place(x=5, y=415)
+
+	def setSelectNew(self):
+		self.frm_selectNew = Frame(self.window, "Select New")
+
+		lbl_selectNew_logo = tk.Label(master=self.frm_selectNew, text="New Runner")
+		lbl_selectNew_logo.place(x=360, y=0)
+
+		btn_selectNew_back = tk.Button(master=self.frm_selectNew, text="B", fg="green", command=self.selectNew_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_selectNew_back.place(x=5, y=415)
 
 	def setHelpMenu(self):
 		self.frm_menuHelp = Frame(self.window, "Menu Help")
