@@ -46,3 +46,6 @@ def editGoalsHelp():
 
 def advancedHelp():
 	return """Here You Can Look At Some More Advanced Measures of Skill and Ability"""
+
+def selectNewHelp():
+	return """Here You Can Create A New Runner"""

@@ -155,7 +155,7 @@ class Runner (object):
 		elif (event == "200m"):
 			return self.calculatePoints(3.32725, 42.5, 1.81, self.getPREvent("200m"))
 		elif (event == "300m"):
-			return self.calculatePoints(2.34152, 61, 1.81, self.getPREvent("300m"))
+			return self.calculatePoints(2.31152, 61, 1.81, self.getPREvent("300m"))
 		elif (event == "400m"):
 			return self.calculatePoints(1.53775, 82, 1.81, self.getPREvent("400m"))
 		elif (event == "800m"):

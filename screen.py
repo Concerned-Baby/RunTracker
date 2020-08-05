@@ -118,6 +118,7 @@ class myApplicationManager(object):
 		self.setAdvancedPage()
 		self.setSelectNew()
 		self.setAdvancedHelp()
+		self.setSelectNewHelp()
 		
 
 
@@ -211,6 +212,18 @@ class myApplicationManager(object):
 		except ValueError:
 			return False
 
+	def isChar(self, toBe):
+		#print(toBe)
+		if toBe == "":
+			self.newRunnerName = ""
+			return True
+		if(toBe.isalpha()):
+			self.newRunnerName = toBe
+			return True
+		return False
+
+			
+		
 	def isFloat(self, toBe):
 		#print (toBe)
 		if toBe == "":
@@ -447,6 +460,12 @@ class myApplicationManager(object):
 	def select_new(self):
 		self.goToScreen(self.frm_selectNew)
 
+	def selectNewHelp_back(self):
+		self.back()
+
+	def selectNew_help(self):
+		self.goToScreen(self.frm_selectNewHelp)
+
 
 	"""
 	Setting Screens
@@ -554,8 +573,32 @@ class myApplicationManager(object):
 		lbl_selectNew_logo = tk.Label(master=self.frm_selectNew, text="New Runner")
 		lbl_selectNew_logo.place(x=360, y=0)
 
+		self.runnerName = tk.StringVar()
+		vcmd = (self.window.register(self.isChar), "%P") #research register command
+		
+		self.ent_selectNew_entry = tk.Entry(master=self.frm_selectNew, width=15, textvariable=self.runnerName, validate="all", validatecommand=vcmd)
+		self.ent_selectNew_entry.place(x=340, y=190)
+
 		btn_selectNew_back = tk.Button(master=self.frm_selectNew, text="B", fg="green", command=self.selectNew_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_selectNew_back.place(x=5, y=415)
+
+		btn_selectNew_go = tk.Button(master=self.frm_selectNew, text="GO!", command=self.toDo, borderwidth=3, relief="raised", width=10, height=1)
+		btn_selectNew_go.place(x=345, y=240)
+
+		btn_selectNew_help = tk.Button(master=self.frm_selectNew, text="Help", command=self.selectNew_help, width=5, height=1, borderwidth=3, relief="raised")
+		btn_selectNew_help.place(x=745, y=5)
+
+	def setSelectNewHelp(self):
+		self.frm_selectNewHelp = Frame(self.window, "Select New Help")
+
+		lbl_selectNewHelp_logo = tk.Label(master=self.frm_selectNewHelp, text="Select New Help")
+		lbl_selectNewHelp_logo.place(x=360, y=0)
+
+		lbl_selectNewHelp_text = tk.Label(master=self.frm_selectNewHelp, text=longtext.selectNewHelp(), height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_selectNewHelp_text.place(x=100, y=32)
+
+		btn_selectNewHelp_back = tk.Button(master=self.frm_selectNewHelp, text="B", fg="green", command=self.selectHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_selectNewHelp_back.place(x=5, y=415)
 
 	def setHelpMenu(self):
 		self.frm_menuHelp = Frame(self.window, "Menu Help")
