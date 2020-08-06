@@ -129,7 +129,7 @@ class Runner (object):
 	def getAllGoalsPassed(self):
 		goalsPassed = 0
 		events = self.getEvents()
-		print (events)
+		#print (events)
 		for event in events:
 			goalsPassed += self.getGoalsPassedEvent(event)
 		return goalsPassed
@@ -171,7 +171,39 @@ class Runner (object):
 			text += "%s: %d\n" % (event, self.getPointsEvent(event))
 		return text
 
+	def getAllHSPoints(self):
+		events = self.getEvents()
+		text = ""
+		for event in events:
+			points = self.getPointsHSEvent(event)
+			if points != -1:
+				text += "%s: %.1f\n" % (event, points)
+		return text
 
+	def getTotalHSPoints(self):
+		events = self.getEvents()
+		points = 0
+		for event in events:
+			point = getPointsHSEvent(event)
+			if point != -1:
+				points += point
+		return points
+
+	def getPointsHSEvent(self, event):
+		OVERCONSTANT = 10
+		UNDERCONSTANT = 500
+		EQUALCONSTANT = 200
+		if event == "100m":
+			THRES = 11.59
+			pr = self.getPREvent(event)
+			if pr < THRES:
+				return pow((THRES - pr + 2)/ 1, 3) * UNDERCONSTANT
+			elif (pr > THRES):
+				return (20 - pr + THRES) * OVERCONSTANT
+			return EQUALCONSTANT
+
+
+		return -1
 
 
 	def getAllInfoEvent(self, eventName):

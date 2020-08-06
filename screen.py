@@ -87,7 +87,7 @@ class myApplicationManager(object):
 		self.stack = frameStack()
 		self.stack.push(self.frm_menu)
 		#print (self.stack.toString())
-		print(runnersDict["Spencer"].getPointsEvent("1600m"))
+		print(runnersDict["Spencer"].getPointsHSEvent("100m"))
 
 		
 
@@ -355,6 +355,17 @@ class myApplicationManager(object):
 		runnerObj = self.runnersDict[self.runner]
 		self.lbl_runnerAdvanced_points["text"] = "Total Points: %d \n\n Point Efficiency: %.3f" % (runnerObj.getTotalPoints(), runnerObj.getAveragePoints())
 		self.lbl_runnerAdvanced_pointSEvent["text"] = runnerObj.getAllPoints()
+		self.lbl_runnerAdvanced_HSpoints["text"] = "Score: %.1f" % runnerObj.getTotalHSPoints()
+		self.lbl_runnerAdvanced_HSpointSEvent["text"] = runnerObj.getAllHSPoints()
+
+	def selectNew_go(self):
+		name = self.newRunnerName
+		#print(self.newRunnerName)
+		runnerObj = Runner(self.newRunnerName)
+		if name not in self.runnersList:
+			self.runnersList.append(name)
+			self.runnersDict[name] = runnerObj
+			self.cbb_select_selector["values"] = self.runnersList
 
 	
 
@@ -582,7 +593,7 @@ class myApplicationManager(object):
 		btn_selectNew_back = tk.Button(master=self.frm_selectNew, text="B", fg="green", command=self.selectNew_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_selectNew_back.place(x=5, y=415)
 
-		btn_selectNew_go = tk.Button(master=self.frm_selectNew, text="GO!", command=self.toDo, borderwidth=3, relief="raised", width=10, height=1)
+		btn_selectNew_go = tk.Button(master=self.frm_selectNew, text="GO!", command=self.selectNew_go, borderwidth=3, relief="raised", width=10, height=1)
 		btn_selectNew_go.place(x=345, y=240)
 
 		btn_selectNew_help = tk.Button(master=self.frm_selectNew, text="Help", command=self.selectNew_help, width=5, height=1, borderwidth=3, relief="raised")
@@ -881,6 +892,12 @@ class myApplicationManager(object):
 
 		self.lbl_runnerAdvanced_pointSEvent = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=20, borderwidth=1, relief="solid")
 		self.lbl_runnerAdvanced_pointSEvent.place(x=20, y=98)
+
+		self.lbl_runnerAdvanced_HSpoints = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=20, height=3, borderwidth=1, relief="solid")
+		self.lbl_runnerAdvanced_HSpoints.place(x=480, y=55)
+
+		self.lbl_runnerAdvanced_HSpointSEvent = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=20, height=15, borderwidth=1, relief="solid")
+		self.lbl_runnerAdvanced_HSpointSEvent.place(x=480, y=98)
 
 	def setAdvancedHelp(self):
 		self.frm_advancedHelp = Frame(self.window, "Advanced Window")
