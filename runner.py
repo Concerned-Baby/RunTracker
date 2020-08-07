@@ -184,7 +184,7 @@ class Runner (object):
 		events = self.getEvents()
 		points = 0
 		for event in events:
-			point = getPointsHSEvent(event)
+			point = self.getPointsHSEvent(event)
 			if point != -1:
 				points += point
 		return points
