@@ -1,5 +1,5 @@
 import math
-
+"""
 def getPointsHSEvent(event, time):
 
 	EQUALCONSTANT = 150
@@ -51,3 +51,4 @@ values200 = [23, 23.5, 23.7, 23.79, 23.8, 23.81, 23.9, 25, 27, 30, 32]
 values400 = [50, 52, 53, 53.5, 53.74, 53.75, 53.76, 53.8, 55, 60, 70, 80]
 for value in values400:
 	print(getPointsHSEvent("400m", value))
+"""
