@@ -155,7 +155,7 @@ class Runner (object):
 		elif (event == "200m"):
 			return self.calculatePoints(3.32725, 42.5, 1.81, self.getPREvent("200m"))
 		elif (event == "300m"):
-			return self.calculatePoints(2.31152, 61, 1.81, self.getPREvent("300m"))
+			return self.calculatePoints(2.21152, 61, 1.81, self.getPREvent("300m"))
 		elif (event == "400m"):
 			return self.calculatePoints(1.53775, 82, 1.81, self.getPREvent("400m"))
 		elif (event == "800m"):
@@ -171,39 +171,6 @@ class Runner (object):
 			text += "%s: %d\n" % (event, self.getPointsEvent(event))
 		return text
 
-	def getAllHSPoints(self):
-		events = self.getEvents()
-		text = ""
-		for event in events:
-			points = self.getPointsHSEvent(event)
-			if points != -1:
-				text += "%s: %.1f\n" % (event, points)
-		return text
-
-	def getTotalHSPoints(self):
-		events = self.getEvents()
-		points = 0
-		for event in events:
-			point = self.getPointsHSEvent(event)
-			if point != -1:
-				points += point
-		return points
-
-	def getPointsHSEvent(self, event):
-		OVERCONSTANT = 10
-		UNDERCONSTANT = 500
-		EQUALCONSTANT = 200
-		if event == "100m":
-			THRES = 11.59
-			pr = self.getPREvent(event)
-			if pr < THRES:
-				return pow((THRES - pr + 2)/ 1, 3) * UNDERCONSTANT
-			elif (pr > THRES):
-				return (20 - pr + THRES) * OVERCONSTANT
-			return EQUALCONSTANT
-
-
-		return -1
 
 
 	def getAllInfoEvent(self, eventName):
