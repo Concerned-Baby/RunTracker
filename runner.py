@@ -6,19 +6,19 @@ from platform import system
 global changeD
 changeD = (system() == "macOS" or system() == "iOS")
 
-def writeToFile(name, text):
+def writeToFile(name, event, eType, text):
 	if changeD:
-		myFile = open("Runners/%s.txt" % name, "a")
+		myFile = open("Runners/%s/%s/%s.txt" % (name,event, eType), "a")
 	else:
-		myFile = open("Runners\\%s.txt" % name, "a")
+		myFile = open("Runners\\%s\\%s\\%s.txt" % (name,event, eType), "a")
 	myFile.write(text)
 	myFile.close()
 
-def readFileLBL(name):
+def readFileLBL(name, event, type):
 	if changeD:
-		myFile = open("Runners/%s.txt" % name, "r")
+		myFile = open("Runners/%s/%s/%s.txt" % (name,event, eType), "r")
 	else:
-		myFile = open("Runners\\%s.txt" % name, "r")
+		myFile = open("Runners\\%s\\%s\\%s.txt" % (name,event, eType), "r")
 	lines = myFile.readlines()
 	myFile.close()
 	return lines

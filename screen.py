@@ -12,9 +12,6 @@ Next Steps:
 
 (use a line in the middle, to properly center thigns)
 
-advanced statistics screen (with custom measurements)
-	-Overall runner score (based off decathon points)
-
 if space, a full predictor for each event in the runner page (probs going to be pretty hard)
 also if space picture
 
@@ -26,11 +23,8 @@ Organization Should Be
 			-<Information Type [goal, time]> (.txt file)
 going to require a lot of reworking of the runner class
 
-throw in the .sort method in runner
 
 work with null to decrease memory usage
-
-slelct screen, make sure something is selected
 
 clean up
 
@@ -39,6 +33,12 @@ build heaps/piority queues to keep track of time, so that it doesn't go to far, 
 selectNew screen
 
 make all setting into one whole method, separate out update
+
+delete time screen *can just be on the create screen
+delete time screen *can just be on the create screen
+delete goal screen *can just be on the create screen
+
+properly compare field events (those are supposed to be the longer the better)
 
 """
 
