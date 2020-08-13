@@ -23,21 +23,44 @@ def readFileLBL(name, event, type):
 	myFile.close()
 	return lines
 
+def fileExists(directs):
+	fileName = getFileName(directs)
+	return path.exists(fileName)
+
+def getFileName(directs):
+	fileName = "Runners"
+	fileSep = ""
+	if changeD:
+		fileSep = "/"
+	else:
+		fileSep = "\\"
+
+	for direct in directs:
+		fileName += fileSep + direct
+	fileName += fileSep
+	print(fileName)
+	return fileName
+
+
+
+
+
 class Runner (object):
 	def __init__(self, name):
 		self.name = name 
-		if changeD:
-			if not path.exists("Runners/%s.txt" % self.name):
-				open("Runners/%s.txt" % self.name, "x").close()
-		else:
-			if not path.exists("Runners\\%s.txt" % self.name):
-				open("Runners\\%s.txt" % self.name, "x").close()
+		if not fileExists([self.name]):
+			open(getFileName([self.name]), "x").close()
+
 
 
 	def newEvent(self, eventName):
 		if (self.hasEvent(eventName)):
 			return("Event Already Added")
-		writeToFile(self.name, "\n|E %s\n" % eventName)
+		elif fileExists(["!" + self.name, eventName]):
+			fileName = getFileName()
+			os.rename("!" + fileName, fileName)
+		else:
+			open(fileName, "x").close()
 		return("Event Added")
 
 	def removeEvent(self, eventName):
