@@ -39,7 +39,7 @@ delete time screen *can just be on the create screen
 delete goal screen *can just be on the create screen
 
 properly compare field events (those are supposed to be the longer the better)
-
+#USE MKDIR to make directories
 """
 
 #constants

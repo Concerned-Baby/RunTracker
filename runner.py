@@ -1,4 +1,6 @@
 from os import path
+from os import rename
+from os import mkdir
 from re import match
 from platform import system
 
@@ -49,37 +51,26 @@ class Runner (object):
 	def __init__(self, name):
 		self.name = name 
 		if not fileExists([self.name]):
-			open(getFileName([self.name]), "x").close()
-
+			mkdir(getFileName([self.name]))
 
 
 	def newEvent(self, eventName):
+		fileName = getFileName([self.name, eventName])
 		if (self.hasEvent(eventName)):
 			return("Event Already Added")
-		elif fileExists(["!" + self.name, eventName]):
-			fileName = getFileName()
-			os.rename("!" + fileName, fileName)
+		elif path.exists("!" + fileName):
+			rename("!" + fileName, fileName)
 		else:
-			open(fileName, "x").close()
+			mkdir(fileName)
 		return("Event Added")
 
 	def removeEvent(self, eventName):
-		lines = readFileLBL(self.name)
-		#print(eventName)
-		toRemove = "|E %s" % eventName
-		#print (toRemove)
-		if (changeD):
-			f = open("Runners/%s.txt" % self.name, "w")
+		fileName = getFileName([self.name, eventName])
+		if (not self.hasEvent(eventName)):
+			return "Event Already Not Exists"
 		else:
-			f = open("Runners\\%s.txt" % self.name, "w")
-		f.write("z")
-		for line in lines:
-			if (line.strip("\n") != toRemove):
-				f.write(line)
-				#print (line + "z")
-			else:
-				#print("skipped")
-				pass
+			rename(fileName, "!" + fileName)
+		return ("Event Removed")
 
 	def newTime(self, eventName, time):
 		if (self.hasEvent(eventName)):
