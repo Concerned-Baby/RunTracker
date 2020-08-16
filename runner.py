@@ -17,7 +17,7 @@ def writeToFile(name, event, eType, text):
 	myFile.write(text)
 	myFile.close()
 
-def readFileLBL(name, event, type):
+def readFileLBL(name, event, eType):
 	if changeD:
 		myFile = open("Runners/%s/%s/%s.txt" % (name,event, eType), "r")
 	else:
@@ -41,7 +41,7 @@ def getFileName(directs):
 	for direct in directs:
 		fileName += fileSep + direct
 	#fileName += fileSep
-	print(fileName)
+	#print(fileName)
 	return fileName
 
 def getNotVersion(fileName):
@@ -73,6 +73,8 @@ class Runner (object):
 			rename(notV, fileName)
 		else:
 			mkdir(fileName)
+			open(getFileName([self.name, eventName, "goal.txt"]), "x").close()
+			open(getFileName([self.name, eventName, "time.txt"]), "x").close()
 		return("Event Added")
 
 	def removeEvent(self, eventName):
@@ -96,7 +98,7 @@ class Runner (object):
 	def newTime(self, eventName, time):
 		if (self.hasEvent(eventName)):
 			if ("%.2f" % time) not in self.getTimesEvent(eventName):
-				writeToFile(self.name, "|R %s: %.2f\n" % (eventName, time))
+				writeToFile(self.name, eventName, "time", "%.2f\n" % time)
 				return("Time Added")
 			else:
 				return "Time Already Exists"
@@ -105,29 +107,20 @@ class Runner (object):
 	def newGoal(self, eventName, goal):
 		if (self.hasEvent(eventName)):
 			if (("%.2f" % goal) not in self.getGoalsEvent(eventName)):
-				writeToFile(self.name, "|G %s: %.2f\n" % (eventName, goal))
+				writeToFile(self.name, eventName, "goal", "%.2f\n" % goal)
 				return("Goal Added")
 			return("Goal Already Exists")
 		return("No Such Event")
 
 
 	def getGoalsEvent(self, eventName):
-		lines = readFileLBL(self.name)
-		goals = []
-		for line in lines:
-			matchObj = match("^\|G (.*): (.*)", line)
-			if (matchObj and matchObj.group(1) == eventName):
-				goals.append(matchObj.group(2))
-		return goals
-
+		lines = readFileLBL(self.name, eventName, "goal")
+		return lines
+		
 	def getTimesEvent(self, eventName):
-		lines = readFileLBL(self.name)
-		times = []
-		for line in lines:
-			matchObj = match("^\|R (.*): (.*)", line)
-			if (matchObj and eventName == matchObj.group(1)):
-				times.append(matchObj.group(2))
-		return times
+		lines = readFileLBL(self.name, eventName, "time")
+		return lines
+		
 
 	def getPREvent(self, eventName):
 		times = self.getTimesEvent(eventName)
@@ -167,7 +160,11 @@ class Runner (object):
 		return points
 
 	def calculatePoints(self, a, b, c, time):
-		score =  (a * pow((b - time), c))
+		print(time)
+		if (time == 1000):
+			score = 0
+		else:
+			score =  (a * pow((b - time), c))
 		return max(score, 0)
 
 	def getPointsEvent(self, event):
