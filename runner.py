@@ -1,6 +1,7 @@
 from os import path
 from os import rename
 from os import mkdir
+from os import listdir
 from re import match
 from platform import system
 
@@ -39,8 +40,17 @@ def getFileName(directs):
 
 	for direct in directs:
 		fileName += fileSep + direct
-	fileName += fileSep
+	#fileName += fileSep
 	print(fileName)
+	return fileName
+
+def getNotVersion(fileName):
+	ind = 0
+	if (changeD):
+		ind = fileName.rindex("/")
+	else:
+		ind = fileName.rindex("\\")
+	fileName = fileName[:ind + 1] + "!" + fileName[ind + 1:]
 	return fileName
 
 
@@ -56,10 +66,11 @@ class Runner (object):
 
 	def newEvent(self, eventName):
 		fileName = getFileName([self.name, eventName])
+		notV = getNotVersion(fileName)
 		if (self.hasEvent(eventName)):
 			return("Event Already Added")
-		elif path.exists("!" + fileName):
-			rename("!" + fileName, fileName)
+		elif path.exists(notV):
+			rename(notV, fileName)
 		else:
 			mkdir(fileName)
 		return("Event Added")
@@ -69,9 +80,19 @@ class Runner (object):
 		if (not self.hasEvent(eventName)):
 			return "Event Already Not Exists"
 		else:
-			rename(fileName, "!" + fileName)
+			rename(fileName,  getNotVersion(fileName))
+
 		return ("Event Removed")
 
+	def getEvents(self):
+		events = listdir(getFileName([self.name]))
+		return events
+
+	def hasEvent(self, eventName):
+		if (eventName not in self.getEvents()):
+			return False
+		return True
+		
 	def newTime(self, eventName, time):
 		if (self.hasEvent(eventName)):
 			if ("%.2f" % time) not in self.getTimesEvent(eventName):
@@ -89,20 +110,6 @@ class Runner (object):
 			return("Goal Already Exists")
 		return("No Such Event")
 
-	def hasEvent(self, eventName):
-		if (eventName not in self.getEvents()):
-			return False
-		return True
-
-	def getEvents(self):
-		lines = readFileLBL(self.name)
-		events = []
-		for line in lines:
-			matchObj = match("^\|E (.*)", line)
-			if (matchObj):
-				events.append(matchObj.group(1))
-		events.sort()
-		return events
 
 	def getGoalsEvent(self, eventName):
 		lines = readFileLBL(self.name)
