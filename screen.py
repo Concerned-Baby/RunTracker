@@ -695,7 +695,10 @@ class myApplicationManager(object):
 		self.ent_editGoals_entry.place(x=350, y=220)
 
 		btn_editGoals_go = tk.Button(master=self.frm_editGoals, text="GO!", command=self.editGoals_go, width=8, height=1, borderwidth=3, relief="raised")
-		btn_editGoals_go.place(x=360, y=270)
+		btn_editGoals_go.place(x=320, y=270)
+
+		btn_editGoals_remove = tk.Button(master=self.frm_editGoals, text="Remove", command=self.toDo, width=8, height=1, borderwidth=3, relief="raised")
+		btn_editGoals_remove.place(x=400, y=270)
 
 		self.lbl_editGoals_output = tk.Label(master=self.frm_editGoals, text="Click GO!", width=15, height=1, borderwidth=1, relief="solid")
 		self.lbl_editGoals_output.place(x=340, y=320)
@@ -778,8 +781,11 @@ class myApplicationManager(object):
 			#print("CMD")
 			#print (self.timeThatWasRan.get())
 			self.editTimes_go()
-		btn_editTimes_go = tk.Button(master=self.frm_editTimes, text="GO!", command=cmd, width=8, height=1, borderwidth=3, relief="raised")
-		btn_editTimes_go.place(x=360, y=270)
+		btn_editTimes_go = tk.Button(master=self.frm_editTimes, text="Add", command=self.editTimes_go, width=8, height=1, borderwidth=3, relief="raised")
+		btn_editTimes_go.place(x=320, y=270)
+
+		btn_editTimes_remove = tk.Button(master=self.frm_editTimes, text="Remove", command=self.toDo, width=8, height=1, borderwidth=3, relief="raised")
+		btn_editTimes_remove.place(x=400, y=270)
 
 		self.lbl_editTimes_output = tk.Label(master=self.frm_editTimes, text="Click GO!", width=15, height=1, borderwidth=1, relief="solid")
 		self.lbl_editTimes_output.place(x=340, y=320)
