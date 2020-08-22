@@ -101,22 +101,6 @@ class myApplicationManager(object):
 
 	def setScreens(self):
 		self.setMenu()
-		self.setBest()
-		self.setSelect()
-		self.setPredictor()
-		self.setHelpSelect()
-		self.setHelpMenu()
-		self.setHelpBest()
-		self.setHelpPredictor()
-		self.setRunnerHelp()
-		self.setEditGoals()
-		self.setEditEvents()
-		self.setEditTimes()
-		self.setEditGoalsHelp()
-		self.setEditEventsHelp()
-		self.setEditTimesHelp()
-		self.setAdvancedPage()
-		self.setSelectNew()
 		self.setAdvancedHelp()
 		self.setSelectNewHelp()
 		
@@ -502,7 +486,6 @@ class myApplicationManager(object):
 		btn_menu_quit = tk.Button(master=self.frm_menu, text="X", fg="red", command=self.out, width=2,height=1, borderwidth=3, relief="raised")
 		btn_menu_quit.place(x=5, y=415)
 
-	def setBest(self):
 		self.frm_best = Frame(self.window, "Best")
 
 		lbl_best_logo = tk.Label(master=self.frm_best, text="Local Bests")
@@ -523,7 +506,6 @@ class myApplicationManager(object):
 		btn_best_back = tk.Button(master=self.frm_best, text="B", fg="green", command=self.best_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_best_back.place(x=5, y=415)
 
-	def setPredictor(self):
 		self.frm_predictor = Frame(self.window, "Predictor")
 
 		lbl_predictor_logo = tk.Label(master=self.frm_predictor, text="Predictors")
@@ -556,7 +538,6 @@ class myApplicationManager(object):
 		btn_predictor_back = tk.Button(master=self.frm_predictor, text="B", fg="green", command=self.predictor_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_predictor_back.place(x=5, y=415)
 
-	def setSelect(self):
 		self.frm_select = Frame(self.window, "Select")
 
 		lbl_select_logo = tk.Label(master=self.frm_select, text="Select Runner")
@@ -577,7 +558,6 @@ class myApplicationManager(object):
 		btn_select_back = tk.Button(master=self.frm_select, text="B", fg="green", command=self.select_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_select_back.place(x=5, y=415)
 
-	def setSelectNew(self):
 		self.frm_selectNew = Frame(self.window, "Select New")
 
 		lbl_selectNew_logo = tk.Label(master=self.frm_selectNew, text="New Runner")
@@ -598,7 +578,6 @@ class myApplicationManager(object):
 		btn_selectNew_help = tk.Button(master=self.frm_selectNew, text="Help", command=self.selectNew_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_selectNew_help.place(x=745, y=5)
 
-	def setSelectNewHelp(self):
 		self.frm_selectNewHelp = Frame(self.window, "Select New Help")
 
 		lbl_selectNewHelp_logo = tk.Label(master=self.frm_selectNewHelp, text="Select New Help")
@@ -610,7 +589,6 @@ class myApplicationManager(object):
 		btn_selectNewHelp_back = tk.Button(master=self.frm_selectNewHelp, text="B", fg="green", command=self.selectHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_selectNewHelp_back.place(x=5, y=415)
 
-	def setHelpMenu(self):
 		self.frm_menuHelp = Frame(self.window, "Menu Help")
 
 		lbl_menuHelp_logo = tk.Label(master=self.frm_menuHelp, text="Menu Help")
@@ -622,7 +600,6 @@ class myApplicationManager(object):
 		btn_menuHelp_back = tk.Button(master=self.frm_menuHelp, text="B", fg="green", command=self.menuHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_menuHelp_back.place(x=5, y=415)
 
-	def setHelpSelect(self):
 		self.frm_selectHelp= Frame(self.window, "Select Help")
 
 		lbl_selectHelp_logo = tk.Label(master=self.frm_selectHelp, text="Select Help")
@@ -634,7 +611,7 @@ class myApplicationManager(object):
 		btn_selectHelp_back = tk.Button(master=self.frm_selectHelp, text="B", fg="green", command=self.selectHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_selectHelp_back.place(x=5, y=415)
 
-	def setHelpBest(self):
+
 		self.frm_bestHelp = Frame(self.window, "Best Help")
 
 		lbl_bestHelp_logo = tk.Label(master=self.frm_bestHelp, text="Best Help")
@@ -646,7 +623,6 @@ class myApplicationManager(object):
 		btn_bestHelp_back = tk.Button(master=self.frm_bestHelp, text="B", fg="green", command=self.bestHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_bestHelp_back.place(x=5, y=415)
 
-	def setHelpPredictor(self):
 		self.frm_predictorHelp = Frame(self.window, "Predictor Help")
 
 		lbl_predictorHelp_logo = tk.Label(master=self.frm_predictorHelp, text="Predictor Help")
@@ -658,7 +634,6 @@ class myApplicationManager(object):
 		btn_predictorHelp_back = tk.Button(master=self.frm_predictorHelp, text="B", fg="green", command=self.predictorHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_predictorHelp_back.place(x=5, y=415)
 
-	def setRunnerHelp(self):
 		self.frm_runnerHelp = Frame(self.window, "Runner Help")
 
 		lbl_runnerHelp_logo = tk.Label(master=self.frm_runnerHelp, text="Predictor Help")
@@ -670,7 +645,6 @@ class myApplicationManager(object):
 		btn_runnerHelp_back = tk.Button(master=self.frm_runnerHelp, text="B", fg="green", command=self.runnerHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runnerHelp_back.place(x=5, y=415)
 
-	def setEditGoals(self):
 		self.frm_editGoals = Frame(self.window, "Edit Goals")
 
 		lbl_editGoals_logo = tk.Label(master=self.frm_editGoals, text="Add Goals")
@@ -706,7 +680,6 @@ class myApplicationManager(object):
 		btn_editGoals_help = tk.Button(master=self.frm_editGoals, text="Help", command=self.editGoals_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_editGoals_help.place(x=745, y=5)
 
-	def setEditEvents(self):
 		self.frm_editEvents = Frame(self.window, "Edit Events")
 
 		lbl_editEvents_logo = tk.Label(master=self.frm_editEvents, text="Add Events")
@@ -750,7 +723,6 @@ class myApplicationManager(object):
 		btn_editEvents_save = tk.Button(master=self.frm_editEvents, text="Save", command=self.editEvents_save, width=8, height=1, borderwidth=3, relief="raised")
 		btn_editEvents_save.place(x=360, y=370)
 
-	def setEditTimes(self):
 		self.frm_editTimes = Frame(self.window, "Edit Times")
 
 		lbl_editTimes_logo = tk.Label(master=self.frm_editTimes, text="Add Times")
@@ -790,7 +762,6 @@ class myApplicationManager(object):
 		self.lbl_editTimes_output = tk.Label(master=self.frm_editTimes, text="Click GO!", width=15, height=1, borderwidth=1, relief="solid")
 		self.lbl_editTimes_output.place(x=340, y=320)
 
-	def setEditGoalsHelp(self):
 		self.frm_editGoalsHelp = Frame(self.window, "Edit Goals Help")
 
 		lbl_editGoalsHelp_logo = tk.Label(master=self.frm_editGoalsHelp, text="Edit Goals Help")
@@ -802,7 +773,6 @@ class myApplicationManager(object):
 		btn_editGoalsHelp_back = tk.Button(master=self.frm_editGoalsHelp, text="B", fg="green", command=self.editGoalsHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_editGoalsHelp_back.place(x=5, y=415)
 
-	def setEditEventsHelp(self):
 		self.frm_editEventsHelp = Frame(self.window, "Edit Events Help")
 
 		lbl_editEventsHelp_logo = tk.Label(master=self.frm_editEventsHelp, text="Edit Events Help")
@@ -814,7 +784,6 @@ class myApplicationManager(object):
 		btn_editEventsHelp_back = tk.Button(master=self.frm_editEventsHelp, text="B", fg="green", command=self.editEventsHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_editEventsHelp_back.place(x=5, y=415)
 
-	def setEditTimesHelp(self):
 		self.frm_editTimesHelp = Frame(self.window, "Edit Times Help")
 
 		lbl_editTimesHelp_logo = tk.Label(master=self.frm_editTimesHelp, text="Edit Time Help")
