@@ -12,31 +12,9 @@ Next Steps:
 
 (use a line in the middle, to properly center thigns)
 
-if space, a full predictor for each event in the runner page (probs going to be pretty hard)
-also if space picture
-
-!!! Once Done With Beta Release, Redo Writing Organization, To Be More Efficient!!!
-Organization Should Be
--Runners (Folder)
-	-<Runner Name> (Folder)
-		-<Event Name> (Folder)
-			-<Information Type [goal, time]> (.txt file)
-going to require a lot of reworking of the runner class
-
-
 work with null to decrease memory usage
 
 clean up
-
-build heaps/piority queues to keep track of time, so that it doesn't go to far, cause right now its linear time for searching, we want n log n for everything
-
-selectNew screen
-
-make all setting into one whole method, separate out update
-
-delete time screen *can just be on the create screen
-delete time screen *can just be on the create screen
-delete goal screen *can just be on the create screen
 
 properly compare field events (those are supposed to be the longer the better)
 #USE MKDIR to make directories
@@ -102,7 +80,6 @@ class myApplicationManager(object):
 	def setScreens(self):
 		self.setMenu()
 		self.setAdvancedHelp()
-		self.setSelectNewHelp()
 		
 
 

@@ -1,3 +1,2 @@
-@echo off
+@echo on
 python main.py %*
-echo Loading
