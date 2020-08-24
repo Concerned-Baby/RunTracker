@@ -5,25 +5,25 @@ from os import path
 from platform import system
 from os import getcwd
 from os import listdir
+from os import mkdir
 
 global GlobalrunnersDict
 GlobalrunnersDict = {}
+
+
 
 def main():
 	loading = None #not used for now
 
 	if (not path.exists("Runners")):
-		start()
+		try:
+		mkdir("Runners")
+	except OSError:
+		print ("Error Creating Directory")
 	setUpDictionary()
 	window(loading)
 	print("exited")
 	
-
-def start():
-	try:
-		mkdir("Runners")
-	except OSError:
-		print ("Error Creating Directory")
 
 def window(loading):
 	screen = myApplicationManager(GlobalrunnersDict)

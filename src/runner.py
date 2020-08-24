@@ -63,7 +63,6 @@ class Runner (object):
 		if not fileExists([self.name]):
 			mkdir(getFileName([self.name]))
 
-
 	def newEvent(self, eventName):
 		fileName = getFileName([self.name, eventName])
 		notV = getNotVersion(fileName)
