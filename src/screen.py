@@ -347,7 +347,7 @@ class myApplicationManager(object):
 		#print(self.stack.toString())
 
 	def menu_getBest(self):
-		self.setBest()
+		#self.getBest()
 		self.goToScreen(self.frm_best)
 
 	def best_back(self):

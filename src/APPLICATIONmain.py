@@ -10,6 +10,9 @@ from os import mkdir
 global GlobalrunnersDict
 GlobalrunnersDict = {}
 
+"""
+have a method that checks if an input is reasonable
+"""
 
 
 def main():
@@ -17,9 +20,9 @@ def main():
 
 	if (not path.exists("Runners")):
 		try:
-		mkdir("Runners")
-	except OSError:
-		print ("Error Creating Directory")
+			mkdir("Runners")
+		except OSError:
+			print ("Error Creating Directory")
 	setUpDictionary()
 	window(loading)
 	print("exited")

@@ -11,5 +11,13 @@ def writeToFile(name,  text):
 
 
 def translateOut(runnerObj):
-	writeToFile(runnerObj.name, "<h1> %s </h1>" % runnerObj.name)
+	text = "<h1> %s </h1>\n" % runnerObj.name
+	text += "\n<h5> Total Points:%d \n Average Points: %.3f </h5>\n" %  (runnerObj.getTotalPoints(), runnerObj.getAveragePoints())
+	text += "\n<h2>Events:</h2>\n"
+	toAdd = "\n<h2>More Info:</h2>\n"
+	for event in runnerObj.getEvents():
+		text += "<h4> %s </h4>\n" % event
+		text += "<p> PR: %.2f </p>\n\n" % runnerObj.getPREvent(event)
+		toAdd += "<p> %s </p>\n\n" % runnerObj.toHTMLEvent(event)
+	writeToFile(runnerObj.name, text + toAdd)
 

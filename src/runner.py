@@ -149,7 +149,10 @@ class Runner (object):
 
 	def getAveragePoints(self):
 		points = self.getTotalPoints()
-		return points / len(self.getEvents())
+		try:
+			return points / len(self.getEvents())
+		except ZeroDivisionError:
+			return 0
 
 	def getTotalPoints(self):
 		points = 0
@@ -210,6 +213,9 @@ class Runner (object):
 		for time in times:
 			toPrint += time + "\n"
 		return toPrint
+
+	def toHTMLEvent(self, eventName):
+		return "<h4> %s </h4>\n" % eventName
 
 
 
