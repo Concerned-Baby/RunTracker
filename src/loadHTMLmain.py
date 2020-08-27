@@ -4,6 +4,7 @@ from os import listdir
 from os import path
 from os import mkdir
 from translateOut import translateOut
+from translateOut import makeMenu
 from platform import system
 
 changeD = (system() == "macOS" or system() == "iOS")
@@ -15,6 +16,7 @@ def main():
 			except OSError:
 				print ("Error Creating Directory")
 	runners = getRunnersNoTxt()
+	makeMenu(runners)
 	for runner in runners:
 		print(runner)
 		translateOut(Runner(runner))

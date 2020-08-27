@@ -5,7 +5,11 @@ from os import listdir
 from re import match
 from platform import system
 
-#print
+"""
+
+gotta cast ints to places where getTimes or getEvents is called
+
+"""
 global changeD
 changeD = (system() == "macOS" or system() == "iOS")
 
@@ -215,7 +219,24 @@ class Runner (object):
 		return toPrint
 
 	def toHTMLEvent(self, eventName):
-		return "<h4> %s </h4>\n" % eventName
+		text =  "<h4> %s </h4>\n\n" % eventName
+		pr = self.getPREvent(eventName)
+		if (pr != 1000):
+			text += "<h5> PR: %s </h5>\n\n" % pr
+		else:
+			text += "<h5> PR: N/A </h5>\n\n"
+		goals = self.getGoalsEvent(eventName)
+		goals.sort()
+		text += "<h5> Goals: %d        Passed: %d</h5>\n\n" % (len(goals), self.getGoalsPassedEvent(eventName))
+		for goal in goals:
+			text += "<p> %.2f </p>\n" % float(goal)
+		text += "<h5> Times </h5>\n\n"
+		times = self.getTimesEvent(eventName)
+		times.sort()
+		for time in times:
+			text += "<p> %.2f </p>\n"
+		
+		return text
 
 
 

@@ -21,3 +21,12 @@ def translateOut(runnerObj):
 		toAdd += "<p> %s </p>\n\n" % runnerObj.toHTMLEvent(event)
 	writeToFile(runnerObj.name, text + toAdd)
 
+def makeMenu(runnersList):
+	text = "<h1> Runners </h1>\n\n"
+	for runner in runnersList:
+		text += "<h4> <a href=%s> %s </a></h4>" % (getLink(runner), runner)
+	writeToFile("main menu", text)
+
+def getLink(runner):
+	return "/runtracker/%s.html" % runner
+
