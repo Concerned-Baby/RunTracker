@@ -9,15 +9,16 @@ from tkinter import ttk
 """
 Next Steps:
 
-
-(use a line in the middle, to properly center thigns)
-
 work with null to decrease memory usage
 
 clean up
 
+make goals screen bigger, and also make goals remove all the white space
+
+add units
+
 properly compare field events (those are supposed to be the longer the better)
-#USE MKDIR to make directories
+
 """
 
 #constants
@@ -200,9 +201,11 @@ class myApplicationManager(object):
 	def getAllPrs(self, runner):
 		runnerObj = self.runnersDict[runner]
 		events = runnerObj.getEvents()
+		print(events)
 		text = ""
 		for event in events:
 			PR = runnerObj.getPREvent(event)
+			print(PR)
 			if PR == 1000:
 				text += ("%s:  N/A\n\n" % (event))
 			else:
@@ -222,7 +225,7 @@ class myApplicationManager(object):
 			else:
 				goals.sort()
 				for goal in goals:
-					text += ("-%s\n" % (goal))
+					text += ("-%s" % (goal))
 		return text
 
 	def editTimes_go(self):

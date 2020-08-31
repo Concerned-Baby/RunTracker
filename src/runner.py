@@ -5,11 +5,8 @@ from os import listdir
 from re import match
 from platform import system
 
-"""
+OTHERS = ["Long Jump"] #list of field events
 
-gotta cast ints to places where getTimes or getEvents is called
-
-"""
 global changeD
 changeD = (system() == "macOS" or system() == "iOS")
 
@@ -56,10 +53,6 @@ def getNotVersion(fileName):
 		ind = fileName.rindex("\\")
 	fileName = fileName[:ind + 1] + "!" + fileName[ind + 1:]
 	return fileName
-
-
-
-
 
 class Runner (object):
 	def __init__(self, name):
@@ -118,20 +111,32 @@ class Runner (object):
 
 	def getGoalsEvent(self, eventName):
 		lines = readFileLBL(self.name, eventName, "goal")
+		#print(lines)
 		return lines
 		
 	def getTimesEvent(self, eventName):
 		lines = readFileLBL(self.name, eventName, "time")
 		return lines
 		
-
-	def getPREvent(self, eventName):
+	def getPRFieldEvent(self, eventName):
 		times = self.getTimesEvent(eventName)
 		if (len(times) == 0):
 			return 1000
-		PR =  1000
+		PR = 0
 		for time in times:
-			PR = min(PR, float(time))
+			PR = max(PR, float(time))
+		return PR
+
+	def getPREvent(self, eventName):
+		times = self.getTimesEvent(eventName)
+		if eventName in OTHERS:
+			return self.getPRFieldEvent(eventName)
+		else:
+			if (len(times) == 0):
+				return 1000
+			PR =  1000
+			for time in times:
+				PR = min(PR, float(time))
 		return PR
 
 	def getGoalsPassedEvent(self, eventName):
