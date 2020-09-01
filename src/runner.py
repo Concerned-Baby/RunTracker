@@ -41,8 +41,6 @@ def getFileName(directs):
 
 	for direct in directs:
 		fileName += fileSep + direct
-	#fileName += fileSep
-	#print(fileName)
 	return fileName
 
 def getNotVersion(fileName):
@@ -111,7 +109,6 @@ class Runner (object):
 
 	def getGoalsEvent(self, eventName):
 		lines = readFileLBL(self.name, eventName, "goal")
-		#print(lines)
 		return lines
 		
 	def getTimesEvent(self, eventName):
@@ -151,7 +148,6 @@ class Runner (object):
 	def getAllGoalsPassed(self):
 		goalsPassed = 0
 		events = self.getEvents()
-		#print (events)
 		for event in events:
 			goalsPassed += self.getGoalsPassedEvent(event)
 		return goalsPassed
@@ -171,7 +167,6 @@ class Runner (object):
 		return points
 
 	def calculatePoints(self, a, b, c, time):
-		print(time)
 		if (time == 1000):
 			score = 0
 		else:

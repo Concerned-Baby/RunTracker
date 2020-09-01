@@ -5,22 +5,6 @@ import longtext
 import tkinter as tk
 from tkinter import ttk
 
-
-"""
-Next Steps:
-
-work with null to decrease memory usage
-
-clean up
-
-make goals screen bigger, and also make goals remove all the white space
-
-add units
-
-properly compare field events (those are supposed to be the longer the better)
-
-"""
-
 #constants
 global possiblePredictions, possibleEvents, Sprints, Distance, Other
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]", "400m --> 800m [Estimate]"]
@@ -65,10 +49,6 @@ class myApplicationManager(object):
 
 		self.stack = frameStack()
 		self.stack.push(self.frm_menu)
-		#print (self.stack.toString())
-
-
-		
 
 		self.frm_menu.pack()
 
@@ -85,7 +65,6 @@ class myApplicationManager(object):
 
 
 	def updateRunner(self):
-		#print ("updated")
 		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
 		self.lbl_runner_goals["text"] = self.getAllGoals(self.runner)
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
@@ -124,7 +103,6 @@ class myApplicationManager(object):
 
 	def editGoals_go(self):
 		index = self.cbb_editGoals_events.get()
-		#print(index)
 		if (index == ""):
 			self.lbl_editGoals_output["text"] = "Select A Event"
 		else:
@@ -146,12 +124,9 @@ class myApplicationManager(object):
 
 
 	def cbb_runner_event(self, runner, event):
-		#print (str(runner))
 		self.lbl_runner_eventInfo["text"] = self.runnersDict[runner].getAllInfoEvent(event)
-		#print("event picked")
 
 	def isFloatTime(self, toBe):
-		#print ("Time : " + toBe)
 		if toBe == "":
 			self.ranTime = -1
 			return True
@@ -163,7 +138,6 @@ class myApplicationManager(object):
 			return False
 
 	def isFloatGoal(self, toBe):
-		#print ("Goal: " + toBe)
 		if toBe == "":
 			self.goalTime = -1
 			return True
@@ -175,7 +149,6 @@ class myApplicationManager(object):
 			return False
 
 	def isChar(self, toBe):
-		#print(toBe)
 		if toBe == "":
 			self.newRunnerName = ""
 			return True
@@ -187,7 +160,6 @@ class myApplicationManager(object):
 			
 		
 	def isFloat(self, toBe):
-		#print (toBe)
 		if toBe == "":
 			self.predicotrGivenTime = -1
 			return True
@@ -234,12 +206,9 @@ class myApplicationManager(object):
 			self.lbl_editTimes_output["text"] = "Select A Event"
 		else:
 			time = self.ranTime
-			#print (str(time) + ":")
 			if (time == -1):
-				#print("empty")
 				self.lbl_editTimes_output["text"] = "Enter A Time"
 			else:
-				#print ("went anyways")
 				result = self.runnersDict[self.runner].newTime(index, float(time))
 				if (result == "Time Added"):
 					text = self.lbl_editTimes_output["text"]
@@ -249,23 +218,17 @@ class myApplicationManager(object):
 						self.lbl_editTimes_output["text"] = "Added"
 				else:
 					self.lbl_editTimes_output["text"]  = result
-		#print("GO")
 	
-
 	def editEvents_save(self):
-		#print("save")
 		runnerObj = self.runnersDict[self.runner]
 		events = runnerObj.getEvents()
 		for checkBox in self.checkList:
 			event = checkBox["text"]
 			if (checkBox.instate(["selected"])):
 				if event not in events:
-					#print ("added")
 					runnerObj.newEvent(event)
 			elif (checkBox.instate(["!selected"])):
-				#print ("not selected")
 				if event in events:
-					#print ("removed")
 					runnerObj.removeEvent(event)
 
 	def runner_addTime(self):
@@ -278,17 +241,14 @@ class myApplicationManager(object):
 
 
 	def editGoals_back(self):
-		#self.setRunnerPage(self.runner)
 		self.updateRunner()
 		self.back()
 
 	def editTimes_back(self):
-		#self.setRunnerPage(self.runner)
 		self.updateRunner()
 		self.back()
 
 	def editEvents_back(self):
-		#self.setRunnerPage(self.runner)
 		self.updateRunner()
 		self.back()
 
@@ -323,7 +283,6 @@ class myApplicationManager(object):
 
 	def selectNew_go(self):
 		name = self.newRunnerName
-		#print(self.newRunnerName)
 		runnerObj = Runner(self.newRunnerName)
 		if name not in self.runnersList:
 			self.runnersList.append(name)
@@ -342,15 +301,12 @@ class myApplicationManager(object):
 	def goToScreen(self, frame):
 		self.stack.getTop().pack_forget()
 		self.stack.push(frame).pack()
-		#print(self.stack.toString())
 
 	def back(self):
 		self.stack.pop().pack_forget()
 		self.stack.getTop().pack()
-		#print(self.stack.toString())
 
 	def menu_getBest(self):
-		#self.getBest()
 		self.goToScreen(self.frm_best)
 
 	def best_back(self):
@@ -498,7 +454,7 @@ class myApplicationManager(object):
 		lbl_predictor_entryLabel.place(x=365, y=160)
 
 		self.predictorTime = tk.StringVar()
-		vcmd = (self.window.register(self.isFloat), "%P") #research register command
+		vcmd = (self.window.register(self.isFloat), "%P") 
 		
 		self.ent_predictor_entry = tk.Entry(master=self.frm_predictor, width=15, textvariable=self.predictorTime, validate="all", validatecommand=vcmd)
 		self.ent_predictor_entry.place(x=350, y=190)
@@ -544,7 +500,7 @@ class myApplicationManager(object):
 		lbl_selectNew_logo.place(x=360, y=0)
 
 		self.runnerName = tk.StringVar()
-		vcmd = (self.window.register(self.isChar), "%P") #research register command
+		vcmd = (self.window.register(self.isChar), "%P")
 		
 		self.ent_selectNew_entry = tk.Entry(master=self.frm_selectNew, width=15, textvariable=self.runnerName, validate="all", validatecommand=vcmd)
 		self.ent_selectNew_entry.place(x=340, y=190)
@@ -730,8 +686,6 @@ class myApplicationManager(object):
 		self.ent_editTimes_entry.place(x=350, y=220)
 
 		def cmd():
-			#print("CMD")
-			#print (self.timeThatWasRan.get())
 			self.editTimes_go()
 		btn_editTimes_go = tk.Button(master=self.frm_editTimes, text="Add", command=self.editTimes_go, width=8, height=1, borderwidth=3, relief="raised")
 		btn_editTimes_go.place(x=320, y=270)
@@ -775,7 +729,7 @@ class myApplicationManager(object):
 		btn_editTimesHelp_back = tk.Button(master=self.frm_editTimesHelp, text="B", fg="green", command=self.editTimesHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_editTimesHelp_back.place(x=5, y=415)
 
-	def setRunnerPage(self, runner): #might not need to have self. (if we just refresh on entry)
+	def setRunnerPage(self, runner):
 		self.runner = runner
 		self.frm_runner = Frame(self.window, "Runner")
 
@@ -816,12 +770,12 @@ class myApplicationManager(object):
 		btn_runner_addGoal = tk.Button(master=self.frm_runner, command=self.runner_addGoal, text="add goal", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_addGoal.place(x=510, y=415)
 
-		self.cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())#, postcommand=self.cbb_runner_event)
+		self.cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())
 		self.cbb_runner_events.place(x=290, y=40)
 		
 		def callback(eventObject):
 			self.cbb_runner_event(runner, self.cbb_runner_events.get())
-		self.cbb_runner_events.bind("<<ComboboxSelected>>", callback)#lambda _ : print("Selected!"))
+		self.cbb_runner_events.bind("<<ComboboxSelected>>", callback)
 
 		self.lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="Select A Event", width=58, height=20, borderwidth=3, relief="ridge")
 		self.lbl_runner_eventInfo.place(x=200, y=80)
