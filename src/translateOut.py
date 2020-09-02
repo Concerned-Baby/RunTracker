@@ -11,7 +11,8 @@ def writeToFile(name,  text):
 
 
 def translateOut(runnerObj):
-	text = "<h1> %s </h1>\n" % runnerObj.name
+	text = '<head> <link rel="stylesheet" href="ccs/basic.css"> </head>'
+	text += "<h1> %s </h1>\n" % runnerObj.name
 	text += "\n<h5> Total Points:%d \n Average Points: %.3f </h5>\n" %  (runnerObj.getTotalPoints(), runnerObj.getAveragePoints())
 	text += "\n<h2>Events:</h2>\n"
 	toAdd = "\n<h2>More Info:</h2>\n"
