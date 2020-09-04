@@ -11,7 +11,8 @@ def writeToFile(name,  text):
 
 
 def translateOut(runnerObj):
-	text = "<h1> %s </h1>\n" % runnerObj.name
+	text = '<head> <link rel="stylesheet" href="ccs/runner.css"> </head>'
+	text += "<h1> %s </h1>\n" % runnerObj.name
 	text += "\n<h5> Total Points:%d \n Average Points: %.3f </h5>\n" %  (runnerObj.getTotalPoints(), runnerObj.getAveragePoints())
 	text += "\n<h2>Events:</h2>\n"
 	toAdd = "\n<h2>More Info:</h2>\n"
@@ -22,9 +23,10 @@ def translateOut(runnerObj):
 	writeToFile(runnerObj.name, text + toAdd)
 
 def makeMenu(runnersList):
-	text = "<h1> Runners </h1>\n\n"
+	text = '<head> <link rel="stylesheet" href="/css/runner.css"> </head>'
+	text += "<h1> Runners </h1>\n\n"
 	for runner in runnersList:
-		text += "<h4> <a href=%s> %s </a></h4>" % (getLink(runner), runner)
+		text += "<h3> <a href=%s> %s </a></h3>" % (getLink(runner), runner)
 	writeToFile("main menu", text)
 
 def getLink(runner):

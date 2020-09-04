@@ -41,8 +41,6 @@ def getFileName(directs):
 
 	for direct in directs:
 		fileName += fileSep + direct
-	#fileName += fileSep
-	#print(fileName)
 	return fileName
 
 def getNotVersion(fileName):
@@ -53,10 +51,6 @@ def getNotVersion(fileName):
 		ind = fileName.rindex("\\")
 	fileName = fileName[:ind + 1] + "!" + fileName[ind + 1:]
 	return fileName
-
-
-
-
 
 class Runner (object):
 	def __init__(self, name):
@@ -121,11 +115,19 @@ class Runner (object):
 		lines = readFileLBL(self.name, eventName, "time")
 		return lines
 		
+	def getPRFieldEvent(self, eventName):
+		times = self.getTimesEvent(eventName)
+		if (len(times) == 0):
+			return 1000
+		PR = 0
+		for time in times:
+			PR = max(PR, float(time))
+		return PR
 
 	def getPREvent(self, eventName):
 		times = self.getTimesEvent(eventName)
 		if eventName in OTHERS:
-			PR = 99924
+			return self.getPRFieldEvent(eventName)
 		else:
 			if (len(times) == 0):
 				return 1000
@@ -146,7 +148,6 @@ class Runner (object):
 	def getAllGoalsPassed(self):
 		goalsPassed = 0
 		events = self.getEvents()
-		#print (events)
 		for event in events:
 			goalsPassed += self.getGoalsPassedEvent(event)
 		return goalsPassed
@@ -166,7 +167,6 @@ class Runner (object):
 		return points
 
 	def calculatePoints(self, a, b, c, time):
-		print(time)
 		if (time == 1000):
 			score = 0
 		else:
@@ -219,7 +219,7 @@ class Runner (object):
 		return toPrint
 
 	def toHTMLEvent(self, eventName):
-		text =  "<h3> %s </h4>\n\n" % eventName
+		text =  "<h3> %s </h3>\n\n" % eventName
 		pr = self.getPREvent(eventName)
 		if (pr != 1000):
 			text += "<h5> PR: %s </h5>\n\n" % pr
@@ -227,10 +227,10 @@ class Runner (object):
 			text += "<h5> PR: N/A </h5>\n\n"
 		goals = self.getGoalsEvent(eventName)
 		goals.sort()
-		text += "<h4> Goals: %d        Passed: %d</h5>\n\n" % (len(goals), self.getGoalsPassedEvent(eventName))
+		text += "<h4> Goals: %d        Passed: %d</h4>\n\n" % (len(goals), self.getGoalsPassedEvent(eventName))
 		for goal in goals:
 			text += "<p> %.2f </p>\n" % float(goal)
-		text += "<h4> Times </h5>\n\n"
+		text += "<h4> Times </h4>\n\n"
 		times = self.getTimesEvent(eventName)
 		times.sort()
 		for time in times:

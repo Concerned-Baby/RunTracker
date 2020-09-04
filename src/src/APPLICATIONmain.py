@@ -12,6 +12,17 @@ GlobalrunnersDict = {}
 
 """
 have a method that checks if an input is reasonable
+
+clean up
+
+make goals screen bigger
+
+add units
+
+css in files
+
+fix the fact that the files arent taking in the css
+
 """
 
 
