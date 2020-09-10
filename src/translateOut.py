@@ -24,10 +24,10 @@ def translateOut(runnerObj):
 
 def makeMenu(runnersList):
 	text = '<head> <link rel="stylesheet" href="/css/runner.css" type="text/css"> </head>'
-	text += "<h1> Runners </h1>\n\n"
+	text += '<h1> Runners </h1>\n\n <section id="section">'
 	for runner in runnersList:
 		text += "<h3> <a href=%s> %s </a></h3>" % (getLink(runner), runner)
-	writeToFile("main menu", text)
+	writeToFile("main menu", text + "</section>")
 
 def getLink(runner):
 	return "/runtracker/%s.html" % runner
