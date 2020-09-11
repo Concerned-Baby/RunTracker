@@ -13,7 +13,7 @@ h1{ /* name, title */
 }
 
 #section {
-	margin: 50px 0px 50px 0px;
+	margin: auto;
 	width: 50%;
 	color:black;
 	background-color: white
@@ -26,8 +26,7 @@ h2 { /* section headers */
 }
 
 h3 { /* runner linkes [mm] */
-	width: 40%;
-	margin: 50px 10px 50px 10px;
+	margin: auto;
 	text-align: center;
 	font-size: 45px;
 }
