@@ -19,9 +19,11 @@ make goals screen bigger
 
 add units
 
-css in files
+advanced statistics doens't work
 
 local rankings for event
+
+time event object
 
 """
 
