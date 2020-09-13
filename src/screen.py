@@ -61,6 +61,7 @@ class myApplicationManager(object):
 	def setScreens(self):
 		self.setMenu()
 		self.setAdvancedHelp()
+		self.setAdvancedPage()
 		
 
 

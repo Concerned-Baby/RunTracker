@@ -19,8 +19,6 @@ make goals screen bigger
 
 add units
 
-advanced statistics doens't work
-
 local rankings for event
 
 time event object
