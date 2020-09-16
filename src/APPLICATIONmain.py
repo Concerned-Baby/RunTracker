@@ -19,6 +19,8 @@ make goals screen bigger
 
 add units
 
+about me page
+
 local rankings for event
 
 time event object

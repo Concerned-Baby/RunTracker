@@ -43,7 +43,7 @@ class myApplicationManager(object):
 			self.runnersList.append(runner)
 		self.window = tk.Tk()
 		self.window.resizable(False, False)
-		self.window.title("something else")
+		self.window.title("Run Tracker")
 
 		self.setScreens()
 
