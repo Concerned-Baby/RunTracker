@@ -397,6 +397,14 @@ class myApplicationManager(object):
 	def selectNew_help(self):
 		self.goToScreen(self.frm_selectNewHelp)
 
+	def menu_aboutUs(self):
+		self.goToScreen(self.frm_aboutUs)
+
+	def aboutUs_back(self):
+		self.back()
+
+
+
 
 	"""
 	Setting Screens
@@ -419,6 +427,9 @@ class myApplicationManager(object):
 
 		btn_menu_predictors = tk.Button(master=self.frm_menu, text="Predictor (Beta)", command=self.menu_predictor, width=24, height=4, borderwidth=4, relief="raised")
 		btn_menu_predictors.place(x=300, y=290)
+
+		btn_menu_aboutUs = tk.Button(master=self.frm_menu, text="About Us", command=self.menu_aboutUs, width=8, height=1, borderwidth=4, relief="raised")
+		btn_menu_aboutUs.place(x=5, y=5)
 
 		btn_menu_quit = tk.Button(master=self.frm_menu, text="X", fg="red", command=self.out, width=2,height=1, borderwidth=3, relief="raised")
 		btn_menu_quit.place(x=5, y=415)
@@ -729,6 +740,16 @@ class myApplicationManager(object):
 
 		btn_editTimesHelp_back = tk.Button(master=self.frm_editTimesHelp, text="B", fg="green", command=self.editTimesHelp_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_editTimesHelp_back.place(x=5, y=415)
+
+
+		#TODO
+		self.frm_aboutUs = Frame(self.window, "About Us")
+
+		lbl_aboutUs_logo = tk.Label(master=self.frm_aboutUs, text="About Us")
+		lbl_aboutUs_logo.place(x=370, y=0)
+
+		btn_aboutUs_back = tk.Button(master=self.frm_aboutUs, text="B", fg="green", command=self.aboutUs_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_aboutUs_back.place(x=5,y=415)
 
 	def setRunnerPage(self, runner):
 		self.runner = runner
