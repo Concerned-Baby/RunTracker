@@ -4,6 +4,7 @@ from stack import frameStack
 import longtext
 import tkinter as tk
 from tkinter import ttk
+from PIL import Image, ImageTk
 
 #constants
 global possiblePredictions, possibleEvents, Sprints, Distance, Other
@@ -747,6 +748,11 @@ class myApplicationManager(object):
 
 		lbl_aboutUs_logo = tk.Label(master=self.frm_aboutUs, text="About Us")
 		lbl_aboutUs_logo.place(x=370, y=0)
+
+		render = ImageTk.PhotoImage(Image.open("res\\me.png").resize((100, 100)))
+		img = tk.Label(master=self.frm_aboutUs, image=render, borderwidth=3, relief="solid", width=100)
+		img.image = render
+		img.place(x=350, y=100)
 
 		btn_aboutUs_back = tk.Button(master=self.frm_aboutUs, text="B", fg="green", command=self.aboutUs_back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_aboutUs_back.place(x=5,y=415)
