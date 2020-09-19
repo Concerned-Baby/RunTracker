@@ -19,8 +19,6 @@ make goals screen bigger
 
 add units
 
-about me page
-
 make back buttons one command
 
 local rankings for event
