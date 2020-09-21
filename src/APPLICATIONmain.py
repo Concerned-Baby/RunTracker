@@ -24,6 +24,7 @@ make back buttons one command
 local rankings for event
 
 time event object
+-implement time object
 
 """
 
