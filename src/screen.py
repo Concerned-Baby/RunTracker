@@ -16,7 +16,7 @@ Events = Sprints + Distance + Other
 
 
 def getLocalBest(eventName, runnersDict):
-	best = 1000
+	best = 100000
 	bestMan = "N/A"
 	for runner in runnersDict:
 		if runnersDict[runner].hasEvent(eventName):
@@ -24,10 +24,16 @@ def getLocalBest(eventName, runnersDict):
 			if (pr <= best):
 				best = pr
 				bestMan = runner
-	if best == 1000:
+	if best == 100000:
 		return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
 	else:
-		return ("\nBest %s: %.2f\nBest %s'er: %s" % (eventName, best, eventName, bestMan))
+		return ("\nBest %s: %s\nBest %s'er: %s" % (eventName, format(best), eventName, bestMan))
+
+def format(time):
+		if (time < 60):
+			return "%.2f" % time
+		return "%d:%d.%d" % (time / 60, time % 60, time - int(time))
+
 
 def getLocalBestGroup(events, runnersDict):
 	text = ""
@@ -77,6 +83,8 @@ class myApplicationManager(object):
 	"""
 	Methods That Actually Do Something
 	"""
+
+
 
 	def start(self):
 		self.window.mainloop()
@@ -180,10 +188,10 @@ class myApplicationManager(object):
 		for event in events:
 			PR = runnerObj.getPREvent(event)
 			print(PR)
-			if PR == 1000:
+			if PR == 100000:
 				text += ("%s:  N/A\n\n" % (event))
 			else:
-				text += ("%s:  %.2f\n\n" % (event, PR))
+				text += ("%s:  %s\n\n" % (event, format(PR)))
 		return text
 
 	def getAllGoals(self, runner):
@@ -199,7 +207,7 @@ class myApplicationManager(object):
 			else:
 				goals.sort()
 				for goal in goals:
-					text += ("-%s" % (goal))
+					text += ("-%s" % (format(goal)))
 		return text
 
 	def editTimes_go(self):
