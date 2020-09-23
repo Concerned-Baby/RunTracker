@@ -319,53 +319,26 @@ class myApplicationManager(object):
 	def menu_getBest(self):
 		self.goToScreen(self.frm_best)
 
-	def best_back(self):
-		self.back()
-
 	def menu_selectRunner(self):
 		self.goToScreen(self.frm_select)
-
-	def select_back(self):
-		self.back()
 
 	def menu_predictor(self):
 		self.goToScreen(self.frm_predictor)
 
-	def predictor_back(self):
-		self.back()
-
 	def menu_help(self):
 		self.goToScreen(self.frm_menuHelp)
-
-	def menuHelp_back(self):
-		self.back()
 
 	def select_help(self):
 		self.goToScreen(self.frm_selectHelp)
 
-	def selectHelp_back(self):
-		self.back()
-
 	def best_help(self):
 		self.goToScreen(self.frm_bestHelp)
-
-	def bestHelp_back(self):
-		self.back()
 
 	def predictor_help(self):
 		self.goToScreen(self.frm_predictorHelp)
 
-	def predictorHelp_back(self):
-		self.back()
-
-	def runner_back(self):
-		self.back()
-
 	def runner_help(self):
 		self.goToScreen(self.frm_runnerHelp)
-
-	def runnerHelp_back(self):
-		self.back()
 
 	def editGoals_help(self):
 		self.goToScreen(self.frm_editGoalsHelp)
@@ -376,43 +349,18 @@ class myApplicationManager(object):
 	def editEvents_help(self):
 		self.goToScreen(self.frm_editEventsHelp)
 
-	def editEventsHelp_back(self):
-		self.back()
-
-	def editTimesHelp_back(self):
-		self.back()
-
-	def editGoalsHelp_back(self):
-		self.back()
-
-	def runnerAdvanced_back(self):
-		self.back()
-
 	def runnerAdvanced_help(self):
 		self.goToScreen(self.frm_advancedHelp)
 
-	def advancedHelp_back(self):
-		self.back()
-
-	def selectNew_back(self):
-		self.back()
 
 	def select_new(self):
 		self.goToScreen(self.frm_selectNew)
-
-	def selectNewHelp_back(self):
-		self.back()
 
 	def selectNew_help(self):
 		self.goToScreen(self.frm_selectNewHelp)
 
 	def menu_aboutUs(self):
 		self.goToScreen(self.frm_aboutUs)
-
-	def aboutUs_back(self):
-		self.back()
-
-
 
 
 	"""
@@ -460,7 +408,7 @@ class myApplicationManager(object):
 		lbl_best_bestField = tk.Label(master=self.frm_best, text=getLocalBestGroup(Other, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
 		lbl_best_bestField.place(x=524, y=20)
 
-		btn_best_back = tk.Button(master=self.frm_best, text="B", fg="green", command=self.best_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_best_back = tk.Button(master=self.frm_best, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_best_back.place(x=5, y=415)
 
 		self.frm_predictor = Frame(self.window, "Predictor")
@@ -492,7 +440,7 @@ class myApplicationManager(object):
 		btn_best_help = tk.Button(master=self.frm_predictor, text="Help", command=self.predictor_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_best_help.place(x=745, y=5)
 
-		btn_predictor_back = tk.Button(master=self.frm_predictor, text="B", fg="green", command=self.predictor_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_predictor_back = tk.Button(master=self.frm_predictor, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_predictor_back.place(x=5, y=415)
 
 		self.frm_select = Frame(self.window, "Select")
@@ -512,7 +460,7 @@ class myApplicationManager(object):
 		btn_select_new = tk.Button(master=self.frm_select, text="New Runner", command=self.select_new, borderwidth=3, relief="raised", width=20, height=2)
 		btn_select_new.place(x=330, y=380)
 
-		btn_select_back = tk.Button(master=self.frm_select, text="B", fg="green", command=self.select_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_select_back = tk.Button(master=self.frm_select, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_select_back.place(x=5, y=415)
 
 		self.frm_selectNew = Frame(self.window, "Select New")
@@ -526,7 +474,7 @@ class myApplicationManager(object):
 		self.ent_selectNew_entry = tk.Entry(master=self.frm_selectNew, width=15, textvariable=self.runnerName, validate="all", validatecommand=vcmd)
 		self.ent_selectNew_entry.place(x=340, y=190)
 
-		btn_selectNew_back = tk.Button(master=self.frm_selectNew, text="B", fg="green", command=self.selectNew_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_selectNew_back = tk.Button(master=self.frm_selectNew, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_selectNew_back.place(x=5, y=415)
 
 		btn_selectNew_go = tk.Button(master=self.frm_selectNew, text="GO!", command=self.selectNew_go, borderwidth=3, relief="raised", width=10, height=1)
@@ -543,7 +491,7 @@ class myApplicationManager(object):
 		lbl_selectNewHelp_text = tk.Label(master=self.frm_selectNewHelp, text=longtext.selectNewHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_selectNewHelp_text.place(x=100, y=32)
 
-		btn_selectNewHelp_back = tk.Button(master=self.frm_selectNewHelp, text="B", fg="green", command=self.selectHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_selectNewHelp_back = tk.Button(master=self.frm_selectNewHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_selectNewHelp_back.place(x=5, y=415)
 
 		self.frm_menuHelp = Frame(self.window, "Menu Help")
@@ -554,7 +502,7 @@ class myApplicationManager(object):
 		lbl_menuHelp_text = tk.Label(master=self.frm_menuHelp, text=longtext.menuHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_menuHelp_text.place(x=100, y=32)
 
-		btn_menuHelp_back = tk.Button(master=self.frm_menuHelp, text="B", fg="green", command=self.menuHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_menuHelp_back = tk.Button(master=self.frm_menuHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_menuHelp_back.place(x=5, y=415)
 
 		self.frm_selectHelp= Frame(self.window, "Select Help")
@@ -565,7 +513,7 @@ class myApplicationManager(object):
 		lbl_selectHelp_text = tk.Label(master=self.frm_selectHelp, text=longtext.selectHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_selectHelp_text.place(x=100, y=32)
 
-		btn_selectHelp_back = tk.Button(master=self.frm_selectHelp, text="B", fg="green", command=self.selectHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_selectHelp_back = tk.Button(master=self.frm_selectHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_selectHelp_back.place(x=5, y=415)
 
 
@@ -577,7 +525,7 @@ class myApplicationManager(object):
 		lbl_bestHelp_text = tk.Label(master=self.frm_bestHelp, text=longtext.bestHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_bestHelp_text.place(x=100, y=32)
 
-		btn_bestHelp_back = tk.Button(master=self.frm_bestHelp, text="B", fg="green", command=self.bestHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_bestHelp_back = tk.Button(master=self.frm_bestHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_bestHelp_back.place(x=5, y=415)
 
 		self.frm_predictorHelp = Frame(self.window, "Predictor Help")
@@ -588,7 +536,7 @@ class myApplicationManager(object):
 		lbl_predictorHelp_text = tk.Label(master=self.frm_predictorHelp, text=longtext.predictorHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_predictorHelp_text.place(x=100, y=32)
 
-		btn_predictorHelp_back = tk.Button(master=self.frm_predictorHelp, text="B", fg="green", command=self.predictorHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_predictorHelp_back = tk.Button(master=self.frm_predictorHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_predictorHelp_back.place(x=5, y=415)
 
 		self.frm_runnerHelp = Frame(self.window, "Runner Help")
@@ -599,7 +547,7 @@ class myApplicationManager(object):
 		lbl_runnerHelp_text = tk.Label(master=self.frm_runnerHelp, text=longtext.runnerHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_runnerHelp_text.place(x=100, y=32)
 
-		btn_runnerHelp_back = tk.Button(master=self.frm_runnerHelp, text="B", fg="green", command=self.runnerHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_runnerHelp_back = tk.Button(master=self.frm_runnerHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runnerHelp_back.place(x=5, y=415)
 
 		self.frm_editGoals = Frame(self.window, "Edit Goals")
@@ -725,7 +673,7 @@ class myApplicationManager(object):
 		lbl_editGoalsHelp_text = tk.Label(master=self.frm_editGoalsHelp, text=longtext.editGoalsHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_editGoalsHelp_text.place(x=100, y=32)
 
-		btn_editGoalsHelp_back = tk.Button(master=self.frm_editGoalsHelp, text="B", fg="green", command=self.editGoalsHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_editGoalsHelp_back = tk.Button(master=self.frm_editGoalsHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_editGoalsHelp_back.place(x=5, y=415)
 
 		self.frm_editEventsHelp = Frame(self.window, "Edit Events Help")
@@ -736,7 +684,7 @@ class myApplicationManager(object):
 		lbl_editEventsHelp_text = tk.Label(master=self.frm_editEventsHelp, text=longtext.editEventsHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_editEventsHelp_text.place(x=100, y=32)
 
-		btn_editEventsHelp_back = tk.Button(master=self.frm_editEventsHelp, text="B", fg="green", command=self.editEventsHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_editEventsHelp_back = tk.Button(master=self.frm_editEventsHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_editEventsHelp_back.place(x=5, y=415)
 
 		self.frm_editTimesHelp = Frame(self.window, "Edit Times Help")
@@ -747,7 +695,7 @@ class myApplicationManager(object):
 		lbl_editTimesHelp_text = tk.Label(master=self.frm_editTimesHelp, text=longtext.editTimesHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_editTimesHelp_text.place(x=100, y=32)
 
-		btn_editTimesHelp_back = tk.Button(master=self.frm_editTimesHelp, text="B", fg="green", command=self.editTimesHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_editTimesHelp_back = tk.Button(master=self.frm_editTimesHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_editTimesHelp_back.place(x=5, y=415)
 
 		self.frm_aboutUs = Frame(self.window, "About Us")
@@ -766,7 +714,7 @@ class myApplicationManager(object):
 		
 
 
-		btn_aboutUs_back = tk.Button(master=self.frm_aboutUs, text="B", fg="green", command=self.aboutUs_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_aboutUs_back = tk.Button(master=self.frm_aboutUs, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_aboutUs_back.place(x=5,y=415)
 
 	def setRunnerPage(self, runner):
@@ -786,7 +734,7 @@ class myApplicationManager(object):
 		btn_runner_help = tk.Button(master=self.frm_runner, text="Help", command=self.runner_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_runner_help.place(x=745, y=5)
 
-		btn_runner_back = tk.Button(master=self.frm_runner, text="B", fg="green", command=self.runner_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_runner_back = tk.Button(master=self.frm_runner, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runner_back.place(x=5, y=415)
 
 		lbl_runner_prLabel = tk.Label(master=self.frm_runner, text="PRs", width=20, height=1, borderwidth=2, relief="ridge")
@@ -832,7 +780,7 @@ class myApplicationManager(object):
 		btn_runnerAdvanced_help = tk.Button(master=self.frm_runnerAdvanced, text="Help", command=self.runnerAdvanced_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_runnerAdvanced_help.place(x=745, y=5)
 
-		btn_runnerAdvanced_back = tk.Button(master=self.frm_runnerAdvanced, text="B", fg="green", command=self.runnerAdvanced_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_runnerAdvanced_back = tk.Button(master=self.frm_runnerAdvanced, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_runnerAdvanced_back.place(x=5, y=415)
 
 		self.lbl_runnerAdvanced_points = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=5, borderwidth=1, relief="solid")
@@ -850,7 +798,7 @@ class myApplicationManager(object):
 		lbl_advancedHelp_text = tk.Label(master=self.frm_advancedHelp, text=longtext.advancedHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_advancedHelp_text.place(x=100, y=32)
 
-		btn_advancedHelp_back = tk.Button(master=self.frm_advancedHelp, text="B", fg="green", command=self.advancedHelp_back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_advancedHelp_back = tk.Button(master=self.frm_advancedHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_advancedHelp_back.place(x=5, y=415)
 
 
