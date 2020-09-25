@@ -51,5 +51,5 @@ def selectNewHelp():
 	return """Here You Can Create A New Runner"""
 
 def aboutus():
-	return """RunTracker [v2.0.0] is developed by a passionate runner and coder from the bay area.
+	return """RunTracker [v2.0.1] is developed by a runner and coder from the bay area.
 	Look at other similar projects at https://concerned-baby.github.io/"""
