@@ -19,6 +19,8 @@ add units
 
 local rankings for event
 
+update help menus
+
 """
 
 

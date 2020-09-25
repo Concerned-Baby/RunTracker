@@ -362,6 +362,9 @@ class myApplicationManager(object):
 	def menu_aboutUs(self):
 		self.goToScreen(self.frm_aboutUs)
 
+	def menu_localRank(self):
+		self.goToScreen(self.frm_localRank)
+
 
 	"""
 	Setting Screens
@@ -377,16 +380,19 @@ class myApplicationManager(object):
 		btn_menu_help.place(x=745, y=5)
 
 		btn_menu_getBest = tk.Button(master=self.frm_menu, text="View Local Bests", command=self.menu_getBest, width=24, height=4, borderwidth=4, relief="raised")
-		btn_menu_getBest.place(x=300, y=210)
+		btn_menu_getBest.place(x=300, y=160)
 
 		btn_menu_selectRunner = tk.Button(master=self.frm_menu, text="Select Runner", command=self.menu_selectRunner, width=24, height=4, borderwidth=4, relief="raised")
-		btn_menu_selectRunner.place(x=300,y=130)
+		btn_menu_selectRunner.place(x=300,y=80)
 
 		btn_menu_predictors = tk.Button(master=self.frm_menu, text="Predictor (Beta)", command=self.menu_predictor, width=24, height=4, borderwidth=4, relief="raised")
-		btn_menu_predictors.place(x=300, y=290)
+		btn_menu_predictors.place(x=300, y=240)
 
 		btn_menu_aboutUs = tk.Button(master=self.frm_menu, text="About Us", command=self.menu_aboutUs, width=8, height=1, borderwidth=4, relief="raised")
 		btn_menu_aboutUs.place(x=5, y=5)
+
+		btn_menu_localRank = tk.Button(master=self.frm_menu, text="Local Ranks", command=self.menu_localRank, width=24, height=4, borderwidth=4, relief="raised")
+		btn_menu_localRank.place(x=300, y=320)
 
 		btn_menu_quit = tk.Button(master=self.frm_menu, text="X", fg="red", command=self.out, width=2,height=1, borderwidth=3, relief="raised")
 		btn_menu_quit.place(x=5, y=415)
@@ -711,11 +717,16 @@ class myApplicationManager(object):
 		img.image = render
 		img.place(x=350, y=100)
 
-		
-
-
 		btn_aboutUs_back = tk.Button(master=self.frm_aboutUs, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_aboutUs_back.place(x=5,y=415)
+
+		self.frm_localRank = Frame(self.window, "Local Rank")
+
+		lbl_localRank_logo = tk.Label(master=self.frm_localRank, text="Local Ranks")
+		lbl_localRank_logo.place(x=370, y=0)
+
+		btn_localRank_back = tk.Button(master=self.frm_localRank, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_localRank_back.place(x=5,y=415)
 
 	def setRunnerPage(self, runner):
 		self.runner = runner
