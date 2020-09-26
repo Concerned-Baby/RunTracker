@@ -21,6 +21,8 @@ local rankings for event
 
 update help menus
 
+clean up remove option (trashed)
+
 """
 
 
