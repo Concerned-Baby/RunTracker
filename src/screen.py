@@ -738,8 +738,8 @@ class myApplicationManager(object):
 			#self.cbb_runner_event(runner, self.cbb_runner_events.get())
 		self.cbb_localRank_events.bind("<<ComboboxSelected>>", callback)
 
-		self.lbl_localRank_info = tk.Label(master=self.frm_localRank, text="hi", height=20, width=81, borderwidth=3, relief="ridge")
-		self.lbl_localRank_info.place(x=100, y=100)
+		self.lbl_localRank_info = tk.Label(master=self.frm_localRank, text="hi", height=20, width=40, borderwidth=3, relief="ridge")
+		self.lbl_localRank_info.place(x=260, y=100)
 
 		btn_localRank_back = tk.Button(master=self.frm_localRank, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_localRank_back.place(x=5,y=415)
