@@ -45,9 +45,7 @@ def getLocalBestGroup(events, runnersDict):
 def getRankingsEvent(eventName, runnersDict):
 	temp = {}
 	for runner in runnersDict:
-		print(runner)
 		if runnersDict[runner].hasEvent(eventName):
-			print("has")
 			temp[(runnersDict[runner].getPREvent(eventName))] = runner
 
 	count = 1
