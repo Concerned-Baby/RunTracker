@@ -42,6 +42,25 @@ def getLocalBestGroup(events, runnersDict):
 		text += "\n\n"
 	return text
 
+def getRankingsEvent(eventName, runnersDict):
+	temp = {}
+	for runner in runnersDict:
+		print(runner)
+		if runnersDict[runner].hasEvent(eventName):
+			print("has")
+			temp[(runnersDict[runner].getPREvent(eventName))] = runner
+
+	count = 1
+	text = ""
+	for time in sorted(temp.keys()):
+		text += "%d. %s\t%s\n" % (count, temp[time].ljust(35)[:35], format(time))
+		count += 1
+	return text
+
+
+
+
+
 class myApplicationManager(object):
 	def __init__(self, runnersDict):
 		self.runnersDict = runnersDict
@@ -300,7 +319,7 @@ class myApplicationManager(object):
 			self.cbb_select_selector["values"] = self.runnersList
 
 	def localRank_update(self, event):
-		self.lbl_localRank_info["text"] = "set"
+		self.lbl_localRank_info["text"] = getRankingsEvent(Events[event], self.runnersDict)
 
 	
 
