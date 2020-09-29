@@ -51,7 +51,7 @@ def getRankingsEvent(eventName, runnersDict):
 	count = 1
 	text = ""
 	for time in sorted(temp.keys()):
-		print(time)
+		#print(time)
 		if time == 1000000:
 			text += "%d.  %s\tN/A\n" % (count, temp[time].ljust(35)[:35])
 		else:
@@ -201,11 +201,11 @@ class myApplicationManager(object):
 	def getAllPrs(self, runner):
 		runnerObj = self.runnersDict[runner]
 		events = runnerObj.getEvents()
-		print(events)
+		#print(events)
 		text = ""
 		for event in events:
 			PR = runnerObj.getPREvent(event)
-			print(PR)
+			#print(PR)
 			if PR == 1000000:
 				text += ("%s:  N/A\n\n" % (event))
 			else:
@@ -751,12 +751,12 @@ class myApplicationManager(object):
 		
 		def callback(eventObject):
 			self.localRank_update(self.cbb_localRank_events.current())
-			print("selected")
+			#print("selected")
 			#TODO
 			#self.cbb_runner_event(runner, self.cbb_runner_events.get())
 		self.cbb_localRank_events.bind("<<ComboboxSelected>>", callback)
 
-		self.lbl_localRank_info = tk.Label(master=self.frm_localRank, text="hi", height=20, width=40, borderwidth=3, relief="ridge")
+		self.lbl_localRank_info = tk.Label(master=self.frm_localRank, text="Select An Event", height=20, width=40, borderwidth=3, relief="ridge")
 		self.lbl_localRank_info.place(x=260, y=100)
 
 		btn_localRank_back = tk.Button(master=self.frm_localRank, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
