@@ -17,13 +17,13 @@ make goals screen bigger
 
 add units
 
-local rankings for event
+add uninstall
 
 update help menus
 
 clean up remove option (trashed)
 
-make sure pr works right with new formatting, (currently displays 16:40 as that was the old default value, need to change it)
+
 
 """
 
