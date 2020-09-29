@@ -171,7 +171,10 @@ class Runner (object):
 			score = 0
 		else:
 			score =  (a * pow((b - time), c))
-		return max(score, 0)
+		try:
+			return max(score, 0)
+		except TypeError:
+			return 0
 
 	def getPointsEvent(self, event):
 		if (event == "100m"):
@@ -200,7 +203,7 @@ class Runner (object):
 	def getAllInfoEvent(self, eventName):
 		toPrint = ""
 		pr = self.getPREvent(eventName)
-		if (pr != 1000):
+		if (pr != 1000000):
 			toPrint += "PR: %.2f\n\n" % pr
 		else:
 			toPrint += "PR: N/A\n\n"
