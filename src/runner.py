@@ -118,7 +118,7 @@ class Runner (object):
 	def getPRFieldEvent(self, eventName):
 		times = self.getTimesEvent(eventName)
 		if (len(times) == 0):
-			return 1000
+			return 1000000
 		PR = 0
 		for time in times:
 			PR = max(PR, float(time))
@@ -130,8 +130,8 @@ class Runner (object):
 			return self.getPRFieldEvent(eventName)
 		else:
 			if (len(times) == 0):
-				return 1000
-			PR =  1000
+				return 1000000
+			PR =  1000000
 			for time in times:
 				PR = min(PR, float(time))
 		return PR
