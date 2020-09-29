@@ -16,7 +16,7 @@ Events = Sprints + Distance + Other
 
 
 def getLocalBest(eventName, runnersDict):
-	best = 100000
+	best = 1000000
 	bestMan = "N/A"
 	for runner in runnersDict:
 		if runnersDict[runner].hasEvent(eventName):
@@ -24,7 +24,7 @@ def getLocalBest(eventName, runnersDict):
 			if (pr <= best):
 				best = pr
 				bestMan = runner
-	if best == 100000:
+	if best == 1000000:
 		return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
 	else:
 		return ("\nBest %s: %s\nBest %s'er: %s" % (eventName, format(best), eventName, bestMan))
@@ -51,7 +51,11 @@ def getRankingsEvent(eventName, runnersDict):
 	count = 1
 	text = ""
 	for time in sorted(temp.keys()):
-		text += "%d. %s\t%s\n" % (count, temp[time].ljust(35)[:35], format(time))
+		print(time)
+		if time == 1000000:
+			text += "%d.  %s\tN/A\n" % (count, temp[time].ljust(35)[:35])
+		else:
+			text += "%d.  %s\t%s\n" % (count, temp[time].ljust(35)[:35], format(time))
 		count += 1
 	return text
 
@@ -75,9 +79,6 @@ class myApplicationManager(object):
 		self.stack.push(self.frm_menu)
 
 		self.frm_menu.pack()
-
-	def test(self):
-		pass
 
 	def toDo(self):
 		print("TODO")
@@ -205,7 +206,7 @@ class myApplicationManager(object):
 		for event in events:
 			PR = runnerObj.getPREvent(event)
 			print(PR)
-			if PR == 100000:
+			if PR == 1000000:
 				text += ("%s:  N/A\n\n" % (event))
 			else:
 				text += ("%s:  %s\n\n" % (event, format(PR)))
