@@ -386,6 +386,9 @@ class myApplicationManager(object):
 	def menu_localRank(self):
 		self.goToScreen(self.frm_localRank)
 
+	def localRank_help(self):
+		self.goToScreen(self.frm_localRankHelp)
+
 
 	"""
 	Setting Screens
@@ -746,14 +749,14 @@ class myApplicationManager(object):
 		lbl_localRank_logo = tk.Label(master=self.frm_localRank, text="Local Ranks")
 		lbl_localRank_logo.place(x=370, y=0)
 
+		btn_localrank_help = tk.Button(master=self.frm_localRank, text="Help", command=self.localRank_help, width=5, height=1, borderwidth=3, relief="raised")
+		btn_localrank_help.place(x=745, y=5)
+
 		self.cbb_localRank_events = ttk.Combobox(master=self.frm_localRank, state="readonly", values=Events)
 		self.cbb_localRank_events.place(x=330, y=60)
 		
 		def callback(eventObject):
 			self.localRank_update(self.cbb_localRank_events.current())
-			#print("selected")
-			#TODO
-			#self.cbb_runner_event(runner, self.cbb_runner_events.get())
 		self.cbb_localRank_events.bind("<<ComboboxSelected>>", callback)
 
 		self.lbl_localRank_info = tk.Label(master=self.frm_localRank, text="Select An Event", height=20, width=40, borderwidth=3, relief="ridge")
@@ -761,6 +764,14 @@ class myApplicationManager(object):
 
 		btn_localRank_back = tk.Button(master=self.frm_localRank, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_localRank_back.place(x=5,y=415)
+
+		self.frm_localRankHelp = Frame(self.window, "Local Rank Help")
+
+		lbl_localRankHelp_logo = tk.Label(master=self.frm_localRankHelp, text="Local Ranks Help")
+		lbl_localRankHelp_logo.place(x=350, y=0)
+
+		btn_localRankHelp_back = tk.Button(master=self.frm_localRankHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_localRankHelp_back.place(x=5,y=415)
 
 	def setRunnerPage(self, runner):
 		self.runner = runner
