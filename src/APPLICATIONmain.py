@@ -23,8 +23,6 @@ update help menus
 
 clean up remove option (trashed)
 
-
-
 """
 
 
