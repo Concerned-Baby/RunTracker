@@ -20,8 +20,8 @@ def start():
 		if (entry.get() == "confirm"):
 			print ("happened")
 			window.destroy()
-			#TODO something that prevents the destruction of everything
-			subprocess.call([r'pathfile'])
+			#TODO something that causes the destruction of everything
+			subprocess.call(['unin.bat'])
 	go = tk.Button(master=frm_main, text="Go", command=check, borderwidth=3, relief="raised", width=10, height=1)
 	go.place(x=200, y=150)
 	frm_main.pack()
