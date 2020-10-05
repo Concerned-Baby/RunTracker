@@ -22,7 +22,7 @@ def start():
 			print ("happened")
 			window.destroy()
 			#print(pathlib.Path(__file__).parent.parent.absolute())
-			os.rmdir(pathlib.Path(__file__).parent.parent.absolute())
+			os.rmdir(pathlib.Path(__file__).parent.parent.absolute()) #works, but has to be somewhere else
 			#TODO something that causes the destruction of everything
 			#subprocess.call(['unin.bat'])
 	go = tk.Button(master=frm_main, text="Go", command=check, borderwidth=3, relief="raised", width=10, height=1)
