@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 import threading
-import subprocess
+import os
+import pathlib
 
 
 def start():
@@ -20,8 +21,10 @@ def start():
 		if (entry.get() == "confirm"):
 			print ("happened")
 			window.destroy()
+			#print(pathlib.Path(__file__).parent.parent.absolute())
+			os.rmdir(pathlib.Path(__file__).parent.parent.absolute())
 			#TODO something that causes the destruction of everything
-			subprocess.call(['unin.bat'])
+			#subprocess.call(['unin.bat'])
 	go = tk.Button(master=frm_main, text="Go", command=check, borderwidth=3, relief="raised", width=10, height=1)
 	go.place(x=200, y=150)
 	frm_main.pack()
