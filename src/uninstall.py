@@ -3,6 +3,7 @@ from tkinter import ttk
 import threading
 import os
 import pathlib
+import subprocess
 
 
 def start():
@@ -19,12 +20,8 @@ def start():
 	entry.place(x=200, y=120)
 	def check():
 		if (entry.get() == "confirm"):
-			print ("happened")
 			window.destroy()
-			#print(pathlib.Path(__file__).parent.parent.absolute())
-			os.rmdir(pathlib.Path(__file__).parent.parent.absolute()) #works, but has to be somewhere else
-			#TODO something that causes the destruction of everything
-			#subprocess.call(['unin.bat'])
+			subprocess.call(str(pathlib.Path(__file__).parent.parent.absolute()) + "\\__del__.bat")
 	go = tk.Button(master=frm_main, text="Go", command=check, borderwidth=3, relief="raised", width=10, height=1)
 	go.place(x=200, y=150)
 	frm_main.pack()
