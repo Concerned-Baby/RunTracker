@@ -52,4 +52,4 @@ def selectNewHelp():
 
 def aboutus():
 	return """RunTracker [v2.0.1] is developed by a runner and coder from the bay area.
-	Look at other similar projects at https://concerned-baby.github.io/"""
+	Look at other similar projects at https://concerned-baby.github.io/\n\nClick 'Sign-Up' below for track program"""

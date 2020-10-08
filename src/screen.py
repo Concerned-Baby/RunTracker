@@ -5,6 +5,7 @@ import longtext
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
+import webbrowser
 
 #constants
 global possiblePredictions, possibleEvents, Sprints, Distance, Other
@@ -87,8 +88,6 @@ class myApplicationManager(object):
 		self.setMenu()
 		self.setAdvancedHelp()
 		self.setAdvancedPage()
-		
-
 
 	def updateRunner(self):
 		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
@@ -148,7 +147,8 @@ class myApplicationManager(object):
 					self.lbl_editGoals_output["text"] = result
 
 	
-
+	def openLink(self, url):
+		webbrowser.open_new(url)
 
 
 	def cbb_runner_event(self, runner, event):
@@ -740,6 +740,9 @@ class myApplicationManager(object):
 		img = tk.Label(master=self.frm_aboutUs, image=render, borderwidth=3, relief="solid", width=100)
 		img.image = render
 		img.place(x=350, y=100)
+
+		btn_aboutUs_link = tk.Button(master=self.frm_aboutUs, text="Sign-Up", fg="black", command=lambda e : self.openLink("https://docs.google.com/forms/d/e/1FAIpQLSeZnhioTnGge0TcwuVt7OQaIImhxUmXUbFjjZ-wp_ZDOf7ONA/viewform?usp=sf_link"), width=10,height=1, borderwidth=3, relief="raised")
+		btn_aboutUs_link.place(x=370, y=415)
 
 		btn_aboutUs_back = tk.Button(master=self.frm_aboutUs, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_aboutUs_back.place(x=5,y=415)
