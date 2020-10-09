@@ -684,8 +684,6 @@ class myApplicationManager(object):
 		self.ent_editTimes_entry = tk.Entry(master=self.frm_editTimes, width=15, textvariable=self.timeThatWasRan, validate="all", validatecommand=vcmd)
 		self.ent_editTimes_entry.place(x=350, y=220)
 
-		def cmd():
-			self.editTimes_go()
 		btn_editTimes_go = tk.Button(master=self.frm_editTimes, text="Add", command=self.editTimes_go, width=8, height=1, borderwidth=3, relief="raised")
 		btn_editTimes_go.place(x=320, y=270)
 
