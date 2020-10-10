@@ -389,6 +389,9 @@ class myApplicationManager(object):
 	def localRank_help(self):
 		self.goToScreen(self.frm_localRankHelp)
 
+	def select_import(self):
+		self.goToScreen(self.frm_import)
+
 
 	"""
 	Setting Screens
@@ -483,6 +486,9 @@ class myApplicationManager(object):
 
 		btn_select_help = tk.Button(master=self.frm_select, text="Help", command=self.select_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_select_help.place(x=745, y=5)
+
+		btn_select_import = tk.Button(master=self.frm_select, text="Import", command=self.select_import, width=5, height=1, borderwidth=3, relief="raised")
+		btn_select_import.place(x=5, y=5)
 
 		btn_select_go = tk.Button(master=self.frm_select, text="GO!", command=self.select_go, borderwidth=3, relief="raised", width=20, height=2)
 		btn_select_go.place(x=330, y=200)
@@ -773,6 +779,16 @@ class myApplicationManager(object):
 
 		btn_localRankHelp_back = tk.Button(master=self.frm_localRankHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_localRankHelp_back.place(x=5,y=415)
+
+		self.frm_import = Frame(self.window, "Import")
+
+		btn_import_back = tk.Button(master=self.frm_import, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_import_back.place(x=5,y=415)
+
+		lbl_import_logo = tk.Label(master=self.frm_import, text="Import")
+		lbl_import_logo.place(x=375, y=0)
+
+
 
 	def setRunnerPage(self, runner):
 		self.runner = runner
