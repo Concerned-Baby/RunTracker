@@ -17,7 +17,7 @@ make goals screen bigger
 
 add units
 
-add uninstall
+import
 
 update help menus
 
