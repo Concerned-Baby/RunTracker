@@ -14,6 +14,7 @@ Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
 Other = ["Long Jump"]
 Events = Sprints + Distance + Other
+supportedSyntaxs = ["none"]
 
 
 def getLocalBest(eventName, runnersDict):
@@ -784,6 +785,9 @@ class myApplicationManager(object):
 
 		btn_import_back = tk.Button(master=self.frm_import, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_import_back.place(x=5,y=415)
+
+		self.cbb_import_syntaxs = ttk.Combobox(master=self.frm_import, values=supportedSyntaxs, state="readonly", width=40)
+		self.cbb_import_syntaxs.place(x=275, y=120)
 
 		lbl_import_logo = tk.Label(master=self.frm_import, text="Import")
 		lbl_import_logo.place(x=375, y=0)
