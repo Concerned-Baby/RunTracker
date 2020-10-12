@@ -321,6 +321,9 @@ class myApplicationManager(object):
 	def localRank_update(self, event):
 		self.lbl_localRank_info["text"] = getRankingsEvent(Events[event], self.runnersDict)
 
+	def import_update(self, index):
+		print(index)
+
 	
 
 
@@ -788,6 +791,10 @@ class myApplicationManager(object):
 
 		self.cbb_import_syntaxs = ttk.Combobox(master=self.frm_import, values=supportedSyntaxs, state="readonly", width=40)
 		self.cbb_import_syntaxs.place(x=275, y=120)
+
+		def callback(eventObject):
+			self.import_update(self.cbb_import_syntaxs.current())
+		self.cbb_import_syntaxs.bind("<<ComboboxSelected>>", callback)
 
 		lbl_import_logo = tk.Label(master=self.frm_import, text="Import")
 		lbl_import_logo.place(x=375, y=0)
