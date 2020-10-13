@@ -14,7 +14,7 @@ Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
 Other = ["Long Jump"]
 Events = Sprints + Distance + Other
-supportedSyntaxs = ["none"]
+supportedSyntaxs = ["Name - Event - Time"]
 
 
 def getLocalBest(eventName, runnersDict):
@@ -322,6 +322,9 @@ class myApplicationManager(object):
 		self.lbl_localRank_info["text"] = getRankingsEvent(Events[event], self.runnersDict)
 
 	def import_update(self, index):
+		if index == 0:
+			text = self.txt_import_file.get("1.0",'end-1c')
+			print(text)
 		print(index)
 
 	
@@ -795,6 +798,9 @@ class myApplicationManager(object):
 		def callback(eventObject):
 			self.import_update(self.cbb_import_syntaxs.current())
 		self.cbb_import_syntaxs.bind("<<ComboboxSelected>>", callback)
+
+		self.txt_import_file = tk.Text(self.frm_import, height=2, width=30)
+		self.txt_import_file.place(x=300, y=300)
 
 		lbl_import_logo = tk.Label(master=self.frm_import, text="Import")
 		lbl_import_logo.place(x=375, y=0)
