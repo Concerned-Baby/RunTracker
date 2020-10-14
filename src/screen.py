@@ -324,6 +324,7 @@ class myApplicationManager(object):
 	def import_update(self, index):
 		if index == 0:
 			text = self.txt_import_file.get("1.0",'end-1c')
+			lines = text.split("\n")
 			print(text)
 		print(index)
 
