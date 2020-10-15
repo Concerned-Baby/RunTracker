@@ -27,19 +27,18 @@ clean up remove option (trashed)
 
 
 def main():
-	loading = None #not used for now
 
-	if (not path.exists("Runners")):
+	if not path.exists("Runners"):
 		try:
 			mkdir("Runners")
 		except OSError:
 			print ("Error Creating Directory")
 	setUpDictionary()
-	window(loading)
+	window()
 	print("exited")
 	
 
-def window(loading):
+def window():
 	screen = myApplicationManager(GlobalrunnersDict)
 	screen.start()
 
