@@ -322,10 +322,18 @@ class myApplicationManager(object):
 		self.lbl_localRank_info["text"] = getRankingsEvent(Events[event], self.runnersDict)
 
 	def import_update(self, index):
-		if index == 0:
-			text = self.txt_import_file.get("1.0",'end-1c')
-			lines = text.split("\n")
-			print(text)
+		text = self.txt_import_file.get("1.0",'end-1c')
+		lines = text.split("\n")
+		if index == 0: #Name - Event - Time
+			for line in lines:
+				arr = line.split('-')
+				name = arr[0]
+				runnerObj = Runner(self.newRunnerName)
+				if name not in self.runnersList:
+					self.runnersList.append(name)
+					self.runnersDict[name] = runnerObj
+			self.cbb_select_selector["values"] = self.runnersList
+
 		print(index)
 
 	
