@@ -327,13 +327,22 @@ class myApplicationManager(object):
 		if index == 0: #Name - Event - Time
 			for line in lines:
 				arr = line.split('-')
-				name = arr[0]
-				runnerObj = Runner(self.newRunnerName)
+				name = arr[0].strip()
+				event = arr[1].strip()
+				time = arr[2].strip()
+				runnerObj = Runner(name)
 				if name not in self.runnersList:
 					self.runnersList.append(name)
 					self.runnersDict[name] = runnerObj
+					runnerObj.newEvent(event)
+					runnerObj.newTime(event, float(time))
+				else:
+					if event in runnerObj.getEvents():
+						runnerObj.newTime(event, float(time))
+					else:
+						runnerObj.newEvent(event)
+						runnerObj.newTime(event, float(time))
 			self.cbb_select_selector["values"] = self.runnersList
-
 		print(index)
 
 	
