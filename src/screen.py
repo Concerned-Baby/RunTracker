@@ -14,7 +14,7 @@ Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
 Other = ["Long Jump"]
 Events = Sprints + Distance + Other
-supportedSyntaxs = ["Name - Event - Time"]
+supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time"]
 
 
 def getLocalBest(eventName, runnersDict):
@@ -330,20 +330,30 @@ class myApplicationManager(object):
 				name = arr[0].strip()
 				event = arr[1].strip()
 				time = arr[2].strip()
-				runnerObj = Runner(name)
-				if name not in self.runnersList:
-					self.runnersList.append(name)
-					self.runnersDict[name] = runnerObj
-					runnerObj.newEvent(event)
-					runnerObj.newTime(event, float(time))
+				self.parseRunner(name, event, time)
+		elif index == 1: #Event - Name - Time
+			for line in lines:
+				arr = line.split('-')
+				event = arr[0].strip()
+				name = arr[1].strip()
+				time = arr[2].strip()
+				self.parseRunner(name, event, time)
+		self.cbb_select_selector["values"] = self.runnersList
+		print(index)
+
+	def parseRunner(self, name, event, time):
+		runnerObj = Runner(name)
+			if name not in self.runnersList:
+				self.runnersList.append(name)
+				self.runnersDict[name] = runnerObj
+				runnerObj.newEvent(event)
+				runnerObj.newTime(event, float(time))
 				else:
 					if event in runnerObj.getEvents():
 						runnerObj.newTime(event, float(time))
 					else:
 						runnerObj.newEvent(event)
 						runnerObj.newTime(event, float(time))
-			self.cbb_select_selector["values"] = self.runnersList
-		print(index)
 
 	
 
