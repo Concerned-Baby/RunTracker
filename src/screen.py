@@ -321,9 +321,10 @@ class myApplicationManager(object):
 	def localRank_update(self, event):
 		self.lbl_localRank_info["text"] = getRankingsEvent(Events[event], self.runnersDict)
 
-	def import_update(self, index):
+	def import_update(self):
 		text = self.txt_import_file.get("1.0",'end-1c')
 		lines = text.split("\n")
+		index = self.cbb_import_syntaxs.current()
 		if index == 0: #Name - Event - Time
 			for line in lines:
 				arr = line.split('-')
@@ -343,18 +344,17 @@ class myApplicationManager(object):
 
 	def parseRunner(self, name, event, time):
 		runnerObj = Runner(name)
-			if name not in self.runnersList:
-				self.runnersList.append(name)
-				self.runnersDict[name] = runnerObj
+		if name not in self.runnersList:
+			self.runnersList.append(name)
+			self.runnersDict[name] = runnerObj
+			runnerObj.newEvent(event)
+			runnerObj.newTime(event, float(time))
+		else:
+			if event in runnerObj.getEvents():
+				runnerObj.newTime(event, float(time))
+			else:
 				runnerObj.newEvent(event)
 				runnerObj.newTime(event, float(time))
-				else:
-					if event in runnerObj.getEvents():
-						runnerObj.newTime(event, float(time))
-					else:
-						runnerObj.newEvent(event)
-						runnerObj.newTime(event, float(time))
-
 	
 
 
@@ -823,9 +823,8 @@ class myApplicationManager(object):
 		self.cbb_import_syntaxs = ttk.Combobox(master=self.frm_import, values=supportedSyntaxs, state="readonly", width=40)
 		self.cbb_import_syntaxs.place(x=275, y=120)
 
-		def callback(eventObject):
-			self.import_update(self.cbb_import_syntaxs.current())
-		self.cbb_import_syntaxs.bind("<<ComboboxSelected>>", callback)
+		btn_import_go = tk.Button(master=self.frm_import, text="IMPORT", command=self.import_update, width=10, height=1, borderwidth=3, relief="raised")
+		btn_import_go.place(x=385, y=200)
 
 		self.txt_import_file = tk.Text(self.frm_import, height=2, width=30)
 		self.txt_import_file.place(x=300, y=300)
