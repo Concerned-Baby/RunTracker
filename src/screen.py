@@ -844,6 +844,16 @@ class myApplicationManager(object):
 		self.lbl_runner_goalsPassed = tk.Label(master=self.frm_runner, text="Total Candy Owed: %d" % self.runnersDict[runner].getAllGoalsPassed())
 		self.lbl_runner_goalsPassed.place(x=450, y=40)
 
+		scr_runner_goals = tk.Scrollbar(master=self.frm_runner, background="green", width=100)
+		#scr_runner_goals.place(x=400, y=0)
+
+		mylist = tk.Listbox(master=self.frm_runner, yscrollcommand=scr_runner_goals.set, width=24, height=23) 
+
+		for line in self.getAllGoals(runner).split("\n"): 
+			mylist.insert(tk.END, "\t %s" % line) 
+		mylist.place(x=630, y=60)
+
+		scr_runner_goals.config(command = mylist.yview )
 		
 		btn_runner_advanced = tk.Button(master=self.frm_runner, text="Advanced Stats", command=self.runner_advanced, width=15, height=1, borderwidth=3, relief="raised")
 		btn_runner_advanced.place(x=600, y=5)
@@ -864,7 +874,7 @@ class myApplicationManager(object):
 		lbl_runner_goalLabel.place(x=630, y=40)
 
 		self.lbl_runner_goals = tk.Label(master=self.frm_runner, text=self.getAllGoals(runner), width=20, height=24, borderwidth=2, relief="ridge")
-		self.lbl_runner_goals.place(x=630, y=60)
+		#self.lbl_runner_goals.place(x=630, y=60)
 
 		btn_runner_editEvents = tk.Button(master=self.frm_runner,command=self.runner_addEvent, text="edit events", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_editEvents.place(x=210, y=415)
