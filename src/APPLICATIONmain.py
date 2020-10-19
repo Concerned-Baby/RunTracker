@@ -13,11 +13,7 @@ GlobalrunnersDict = {}
 """
 have a method that checks if an input is reasonable
 
-make goals screen bigger
-
 add units
-
-import
 
 update help menus
 
