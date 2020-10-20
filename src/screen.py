@@ -238,15 +238,29 @@ class myApplicationManager(object):
 			if (time == -1):
 				self.lbl_editTimes_output["text"] = "Enter A Time"
 			else:
-				result = self.runnersDict[self.runner].newTime(index, float(time))
-				if (result == "Time Added"):
-					text = self.lbl_editTimes_output["text"]
-					if (text[0:5] == "Added"):
-						self.lbl_editTimes_output["text"] = text + "!"
+				if reasonableTime(index, float(time)):
+					result = self.runnersDict[self.runner].newTime(index, float(time))
+					if (result == "Time Added"):
+						text = self.lbl_editTimes_output["text"]
+						if (text[0:5] == "Added"):
+							self.lbl_editTimes_output["text"] = text + "!"
+						else:
+							self.lbl_editTimes_output["text"] = "Added"
 					else:
-						self.lbl_editTimes_output["text"] = "Added"
+						self.lbl_editTimes_output["text"]  = result
 				else:
-					self.lbl_editTimes_output["text"]  = result
+					pass #TODO check or confirm
+
+	def reasonableTime(event, time):
+		if event == "100m":
+			wrld = 9.58
+		elif event == "200m":
+			wrld = 19.19
+		elif event == "400m":
+			wrld = 43.03
+		return time < wrld or time > pow(wrld, 13/11) * 1.3
+
+
 	
 	def editEvents_save(self):
 		runnerObj = self.runnersDict[self.runner]
