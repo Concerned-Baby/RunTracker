@@ -238,7 +238,7 @@ class myApplicationManager(object):
 			if (time == -1):
 				self.lbl_editTimes_output["text"] = "Enter A Time"
 			else:
-				if reasonableTime(index, float(time)):
+				if self.reasonableTime(index, float(time)):
 					result = self.runnersDict[self.runner].newTime(index, float(time))
 					if (result == "Time Added"):
 						text = self.lbl_editTimes_output["text"]
@@ -247,18 +247,31 @@ class myApplicationManager(object):
 						else:
 							self.lbl_editTimes_output["text"] = "Added"
 					else:
-						self.lbl_editTimes_output["text"]  = result
+						self.lbl_editTimes_output["text"] = result
 				else:
-					pass #TODO check or confirm
+					if self.lbl_editTimes_output["text"] == "Time is extreme, click 'GO!' again to confrim":
+						result = self.runnersDict[self.runner].newTime(index, float(time))
+						if (result == "Time Added"):
+							text = self.lbl_editTimes_output["text"]
+							if (text[0:5] == "Added"):
+								self.lbl_editTimes_output["text"] = text + "!"
+							else:
+								self.lbl_editTimes_output["text"] = "Added"
+						else:
+							self.lbl_editTimes_output["text"] = result
+					else:
+						self.lbl_editTimes_output["text"] = "Time is extreme, click 'add' again to confirm"
 
-	def reasonableTime(event, time):
+	def reasonableTime(self, event, time):
 		if event == "100m":
 			wrld = 9.58
 		elif event == "200m":
 			wrld = 19.19
 		elif event == "400m":
 			wrld = 43.03
-		return time < wrld or time > pow(wrld, 13/11) * 1.3
+		elif event == "800m":
+			wrld = 101.91
+		return not (time < wrld or time > pow(wrld, 13/11) * 1.3)
 
 
 	
@@ -745,8 +758,8 @@ class myApplicationManager(object):
 		btn_editTimes_remove = tk.Button(master=self.frm_editTimes, text="Remove", command=self.toDo, width=8, height=1, borderwidth=3, relief="raised")
 		btn_editTimes_remove.place(x=400, y=270)
 
-		self.lbl_editTimes_output = tk.Label(master=self.frm_editTimes, text="Click GO!", width=15, height=1, borderwidth=1, relief="solid")
-		self.lbl_editTimes_output.place(x=340, y=320)
+		self.lbl_editTimes_output = tk.Label(master=self.frm_editTimes, text="Click GO!", width=40, height=1, borderwidth=1, relief="solid")
+		self.lbl_editTimes_output.place(x=300, y=320)
 
 		self.frm_editGoalsHelp = Frame(self.window, "Edit Goals Help")
 
