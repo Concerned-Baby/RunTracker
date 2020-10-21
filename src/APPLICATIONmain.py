@@ -11,7 +11,7 @@ global GlobalrunnersDict
 GlobalrunnersDict = {}
 
 """
-have a method that checks if an input is reasonable
+finish reasonabletime
 
 add units
 
