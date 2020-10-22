@@ -267,10 +267,16 @@ class myApplicationManager(object):
 			wrld = 9.58
 		elif event == "200m":
 			wrld = 19.19
+		elif event == "300m":
+			wrld = 30.91
 		elif event == "400m":
 			wrld = 43.03
 		elif event == "800m":
 			wrld = 101.91
+		elif event == "1600m":
+			wrld = 223.13
+		elif event == "3200m":
+			wrld = 478.61
 		return not (time < wrld or time > pow(wrld, 13/11) * 1.3)
 
 
