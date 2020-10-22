@@ -9,7 +9,7 @@ import webbrowser
 
 #constants
 global possiblePredictions, possibleEvents, Sprints, Distance, Other
-possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]", "400m --> 800m [Estimate]"]
+possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]", "400m --> 800m [Best]"]
 Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
 Other = ["Long Jump"]
@@ -127,7 +127,7 @@ class myApplicationManager(object):
 				if (index == 2): #300 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 1.36) + 1.23))
 				if (index == 3): #400 --> 800
-					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.33) + 9.3))
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.33) + 6.3))
 
 	def editGoals_go(self):
 		index = self.cbb_editGoals_events.get()
