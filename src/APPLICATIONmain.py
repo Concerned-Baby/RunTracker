@@ -13,6 +13,16 @@ GlobalrunnersDict = {}
 """
 add reasonable for field events
 
+fix everything for field events
+	-get local best
+
+add formating for enterting times
+
+fix formating
+	-local rank
+
+local best doesn't work anymore
+
 add units
 
 update help menus
