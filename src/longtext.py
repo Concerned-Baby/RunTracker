@@ -18,13 +18,14 @@ def predictorHelp():
 	"""
 
 def menuHelp():
-	return """This Is A Program to Help You Keep "Track" Of Everything\n
+	return """This Is A Program to Help You Keep "Track"(pun intended) Of Everything\n
 	Click Any Button To Get Started, Read The Help On Each page If Needed
 	"""
 
 def selectHelp():
 	return """ This Page Allows You To Go To Any [listed] Runners Page
-	Select A Runner And Click "GO!"
+	Select A Runner And Click "GO!".
+	If that's not for you, consider adding new runners
 	"""
 
 def runnerHelp():
