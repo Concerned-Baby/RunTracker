@@ -18,12 +18,18 @@ supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time"]
 
 
 def getLocalBest(eventName, runnersDict):
-	best = 1000000
+	if eventName in Events:
+		best = 0
+	else:
+		best = 1000000
 	bestMan = "N/A"
 	for runner in runnersDict:
 		if runnersDict[runner].hasEvent(eventName):
 			pr = runnersDict[runner].getPREvent(eventName)
-			if (pr <= best):
+			if (pr <= best and eventName not in Other):
+				best = pr
+				bestMan = runner
+			elif(pr >= best and eventName in Other):
 				best = pr
 				bestMan = runner
 	if best == 1000000:
