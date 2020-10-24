@@ -17,25 +17,34 @@ Events = Sprints + Distance + Other
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time"]
 
 
-def getLocalBest(eventName, runnersDict):
-	if eventName in Events:
-		best = 0
-	else:
-		best = 1000000
+def getLocalBest(eventName, runnersDict): #probs a issues with the new 0
 	bestMan = "N/A"
-	for runner in runnersDict:
-		if runnersDict[runner].hasEvent(eventName):
-			pr = runnersDict[runner].getPREvent(eventName)
-			if (pr <= best and eventName not in Other):
-				best = pr
-				bestMan = runner
-			elif(pr >= best and eventName in Other):
-				best = pr
-				bestMan = runner
-	if best == 1000000:
-		return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
+	if eventName not in Other:
+		best = 1000000
+		for runner in runnersDict:
+			if runnersDict[runner].hasEvent(eventName):
+				pr = runnersDict[runner].getPREvent(eventName)
+				if pr < best:
+					best = pr
+					bestMan = runner
+		if best == 1000000:
+			return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
+		else:
+			return("\nBest %s: %.2f \nBest %s'er: %s" % (eventName, best, eventName, bestMan))
+
 	else:
-		return ("\nBest %s: %s\nBest %s'er: %s" % (eventName, format(best), eventName, bestMan))
+		best = 0
+		for runner in runnersDict:
+			if runnersDict[runner].hasEvent(eventName):
+				pr = runnersDict[runner].getPREvent(eventName)
+				if pr > best:
+					best = pr
+					bestMan = runner
+		if  best == 0:
+			return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
+		else:
+			return("\nBest %s: %.2f \nBest %s'er: %s" % (eventName, best, eventName, bestMan))
+	return "ERROR"
 
 def format(time):
 		if (time < 60):
@@ -48,6 +57,7 @@ def getLocalBestGroup(events, runnersDict):
 	for event in events:
 		text += getLocalBest(event, runnersDict)
 		text += "\n\n"
+		#print(text)
 	return text
 
 def getRankingsEvent(eventName, runnersDict):
