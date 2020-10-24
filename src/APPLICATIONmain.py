@@ -21,7 +21,6 @@ add formating for enterting times
 fix formating
 	-local rank
 
-local best doesn't work anymore
 
 add units
 
