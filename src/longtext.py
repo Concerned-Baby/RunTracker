@@ -49,7 +49,7 @@ def advancedHelp():
 	return """Here You Can Look At Some More Advanced Measures of Skill and Ability"""
 
 def selectNewHelp():
-	return """Here You Can Create A New Runner"""
+	return """Here You Can Create A New Runner To Add Information To"""
 
 def aboutus():
 	return """RunTracker [v2.0.1] is developed by a runner and coder from the bay area.
