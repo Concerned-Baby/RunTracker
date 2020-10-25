@@ -30,7 +30,7 @@ def getLocalBest(eventName, runnersDict): #probs a issues with the new 0
 		if best == 1000000:
 			return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
 		else:
-			return("\nBest %s: %.2f \nBest %s'er: %s" % (eventName, best, eventName, bestMan))
+			return("\nBest %s: %s \nBest %s'er: %s" % (eventName, format(best), eventName, bestMan))
 
 	else:
 		best = 0
@@ -49,7 +49,9 @@ def getLocalBest(eventName, runnersDict): #probs a issues with the new 0
 def format(time):
 		if (time < 60):
 			return "%.2f" % time
-		return "%d:%d.%d" % (time / 60, time % 60, time - int(time))
+		print(time % 60)
+		print("%2d" % (time % 60))
+		return ("%d:%2d.%2d" % (time / 60, time % 60, (time % 1) * 100)).replace(' ', "0")
 
 
 def getLocalBestGroup(events, runnersDict):
@@ -71,9 +73,9 @@ def getRankingsEvent(eventName, runnersDict):
 	for time in sorted(temp.keys()):
 		#print(time)
 		if time == 1000000:
-			text += "%d.  %s\tN/A\n" % (count, temp[time].ljust(35)[:35])
+			text += "%d.  %s\tN/A\n" % (count, temp[time].ljust(32)[:32])
 		else:
-			text += "%d.  %s\t%s\n" % (count, temp[time].ljust(35)[:35], format(time))
+			text += "%d.  %s\t%s\n" % (count, temp[time].ljust(32)[:32], format(time))
 		count += 1
 	return text
 

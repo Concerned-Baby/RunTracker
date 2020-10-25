@@ -20,6 +20,7 @@ add formating for enterting times
 
 fix formating
 	-local rank
+	-local best
 
 
 add units
