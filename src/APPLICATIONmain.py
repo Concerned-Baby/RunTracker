@@ -11,10 +11,7 @@ global GlobalrunnersDict
 GlobalrunnersDict = {}
 
 """
-add reasonable for field events
-
 fix everything for field events
-	-get local best
 
 add formating for enterting times
 
