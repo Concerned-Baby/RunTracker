@@ -49,8 +49,6 @@ def getLocalBest(eventName, runnersDict): #probs a issues with the new 0
 def format(time):
 		if (time < 60):
 			return "%.2f" % time
-		print(time % 60)
-		print("%2d" % (time % 60))
 		return ("%d:%2d.%2d" % (time / 60, time % 60, (time % 1) * 100)).replace(' ', "0")
 
 
@@ -59,7 +57,6 @@ def getLocalBestGroup(events, runnersDict):
 	for event in events:
 		text += getLocalBest(event, runnersDict)
 		text += "\n\n"
-		#print(text)
 	return text
 
 def getRankingsEvent(eventName, runnersDict):
@@ -71,7 +68,6 @@ def getRankingsEvent(eventName, runnersDict):
 	count = 1
 	text = ""
 	for time in sorted(temp.keys()):
-		#print(time)
 		if time == 1000000:
 			text += "%d.  %s\tN/A\n" % (count, temp[time].ljust(32)[:32])
 		else:
@@ -220,11 +216,9 @@ class myApplicationManager(object):
 	def getAllPrs(self, runner):
 		runnerObj = self.runnersDict[runner]
 		events = runnerObj.getEvents()
-		#print(events)
 		text = ""
 		for event in events:
 			PR = runnerObj.getPREvent(event)
-			#print(PR)
 			if PR == 1000000:
 				text += ("%s:  N/A\n\n" % (event))
 			else:
@@ -391,7 +385,6 @@ class myApplicationManager(object):
 				time = arr[2].strip()
 				self.parseRunner(name, event, time)
 		self.cbb_select_selector["values"] = self.runnersList
-		print(index)
 
 	def parseRunner(self, name, event, time):
 		runnerObj = Runner(name)
