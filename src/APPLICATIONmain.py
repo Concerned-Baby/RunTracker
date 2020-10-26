@@ -15,14 +15,11 @@ fix everything for field events
 
 add formating for enterting times
 
-fix formating
-	-local rank
-	-local best
-
-
 add units
 
 update help menus
+
+create delete times option using scrollbar and 
 
 clean up remove option (trashed)
 
