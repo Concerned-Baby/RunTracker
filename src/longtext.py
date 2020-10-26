@@ -35,7 +35,7 @@ def runnerHelp():
 
 def editEventsHelp():
 	return """Here You Can Add and Remove Events From A Runner
-	Simply Check and Uncheck the boxes"""
+	Simply Check and Uncheck the boxes to add and remove events"""
 
 def editTimesHelp():
 	return """Here You Can Add Times To A Runner
