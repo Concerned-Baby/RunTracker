@@ -471,6 +471,9 @@ class myApplicationManager(object):
 	def select_import(self):
 		self.goToScreen(self.frm_import)
 
+	def runner_deleteTime(self):
+		self.goToScreen(self.frm_deleteTimes)
+
 
 	"""
 	Setting Screens
@@ -876,6 +879,14 @@ class myApplicationManager(object):
 		lbl_import_logo = tk.Label(master=self.frm_import, text="Import")
 		lbl_import_logo.place(x=375, y=0)
 
+		self.frm_deleteTimes = Frame(self.window, "Delete Times")
+
+		lbl_deleteTimes_logo = tk.Label(master=self.frm_deleteTimes, text="Delete Times")
+		lbl_deleteTimes_logo.place(x=370, y=0)
+
+		btn_deleteTimes_back = tk.Button(master=self.frm_deleteTimes, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_deleteTimes_back.place(x=5,y=415)
+
 
 
 	def setRunnerPage(self, runner):
@@ -924,10 +935,14 @@ class myApplicationManager(object):
 		btn_runner_editEvents.place(x=210, y=415)
 
 		btn_runner_addTime = tk.Button(master=self.frm_runner, command=self.runner_addTime, text="add time", width=12, height=1, borderwidth=3, relief="raised")
-		btn_runner_addTime.place(x=360, y=415)
+		btn_runner_addTime.place(x=310, y=415)
  
 		btn_runner_addGoal = tk.Button(master=self.frm_runner, command=self.runner_addGoal, text="add goal", width=12, height=1, borderwidth=3, relief="raised")
-		btn_runner_addGoal.place(x=510, y=415)
+		btn_runner_addGoal.place(x=410, y=415)
+
+		btn_runner_deleteTime = tk.Button(master=self.frm_runner, command=self.runner_deleteTime, text="delete time", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_deleteTime.place(x=510, y=415)
+ 
 
 		self.cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())
 		self.cbb_runner_events.place(x=290, y=40)
