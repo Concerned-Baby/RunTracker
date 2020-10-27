@@ -11,11 +11,11 @@ global GlobalrunnersDict
 GlobalrunnersDict = {}
 
 """
-fix everything for field events
-
 add formating for enterting times
 
 add units
+
+add needed help menues
 
 update help menus
 
