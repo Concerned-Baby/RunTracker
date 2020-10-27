@@ -39,7 +39,7 @@ def editEventsHelp():
 
 def editTimesHelp():
 	return """Here You Can Add Times To A Runner
-	Just Select A Event and Enter A Time """
+	Just Select A Event and Enter A Time And Hit Add"""
 
 def editGoalsHelp():
 	return """Here You Can Add Goals For A Runner
