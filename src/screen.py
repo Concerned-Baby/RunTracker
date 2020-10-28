@@ -105,10 +105,12 @@ class myApplicationManager(object):
 		self.setAdvancedPage()
 
 	def updateRunner(self):
+		#print("update")
 		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
 		self.lbl_runner_goals["text"] = self.getAllGoals(self.runner)
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
 		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.cbb_deleteTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 
 
 
@@ -329,6 +331,7 @@ class myApplicationManager(object):
 	def select_go(self):
 		runner = self.cbb_select_selector.current()
 		self.setRunnerPage(self.runnersList[runner])
+		self.updateRunner()
 		self.goToScreen(self.frm_runner)
 
 
@@ -887,6 +890,8 @@ class myApplicationManager(object):
 		btn_deleteTimes_back = tk.Button(master=self.frm_deleteTimes, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_deleteTimes_back.place(x=5,y=415)
 
+		self.cbb_deleteTimes_events = ttk.Combobox(master=self.frm_deleteTimes, state="readonly", values=["Loading Error"])
+		self.cbb_deleteTimes_events.place(x=370, y=100)
 
 
 	def setRunnerPage(self, runner):
