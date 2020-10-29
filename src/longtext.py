@@ -43,7 +43,7 @@ def editTimesHelp():
 
 def editGoalsHelp():
 	return """Here You Can Add Goals For A Runner
-	Just Select A Event and Enter A Goal"""
+	Just Select A Event and Enter A Goal And Hit Go"""
 
 def advancedHelp():
 	return """Here You Can Look At Some More Advanced Measures of Skill and Ability"""
