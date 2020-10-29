@@ -402,6 +402,10 @@ class myApplicationManager(object):
 			else:
 				runnerObj.newEvent(event)
 				runnerObj.newTime(event, float(time))
+
+	def cbb_deleteTimes_go(self, event):
+		print(self.runner)
+		print(event)
 	
 
 
@@ -892,6 +896,10 @@ class myApplicationManager(object):
 
 		self.cbb_deleteTimes_events = ttk.Combobox(master=self.frm_deleteTimes, state="readonly", values=["Loading Error"])
 		self.cbb_deleteTimes_events.place(x=370, y=100)
+
+		def callback(eventObject):
+			self.cbb_deleteTimes_go(self.cbb_deleteTimes_events.get())
+		self.cbb_deleteTimes_events.bind("<<ComboboxSelected>>", callback)
 
 
 	def setRunnerPage(self, runner):
