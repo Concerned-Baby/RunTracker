@@ -901,6 +901,13 @@ class myApplicationManager(object):
 			self.cbb_deleteTimes_go(self.cbb_deleteTimes_events.get())
 		self.cbb_deleteTimes_events.bind("<<ComboboxSelected>>", callback)
 
+		"""
+
+		check boxes
+		scroll wheel
+		
+		"""
+
 
 	def setRunnerPage(self, runner):
 		self.runner = runner
