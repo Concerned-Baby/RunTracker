@@ -46,7 +46,8 @@ def editGoalsHelp():
 	Just Select A Event and Enter A Goal And Hit Go"""
 
 def advancedHelp():
-	return """Here You Can Look At Some More Advanced Measures of Skill and Ability"""
+	return """Here You Can Look At Some More Advanced Measures of Skill and Ability 
+	Currently Limited to a single statistic due to lack of ideas"""
 
 def selectNewHelp():
 	return """Here You Can Create A New Runner To Add Information To"""
