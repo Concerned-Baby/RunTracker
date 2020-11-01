@@ -834,8 +834,10 @@ class myApplicationManager(object):
 		img.image = render
 		img.place(x=350, y=100)
 
+		"""
 		btn_aboutUs_link = tk.Button(master=self.frm_aboutUs, text="Sign-Up", fg="black", command=lambda e : self.openLink("https://docs.google.com/forms/d/e/1FAIpQLSeZnhioTnGge0TcwuVt7OQaIImhxUmXUbFjjZ-wp_ZDOf7ONA/viewform?usp=sf_link"), width=10,height=1, borderwidth=3, relief="raised")
 		btn_aboutUs_link.place(x=370, y=415)
+		"""
 
 		btn_aboutUs_back = tk.Button(master=self.frm_aboutUs, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_aboutUs_back.place(x=5,y=415)
@@ -900,6 +902,28 @@ class myApplicationManager(object):
 		def callback(eventObject):
 			self.cbb_deleteTimes_go(self.cbb_deleteTimes_events.get())
 		self.cbb_deleteTimes_events.bind("<<ComboboxSelected>>", callback)
+
+		"""
+		self.runnerTimes = []
+		SprintCount = 120
+		DistanceCount = 120
+		OtherCount = 120
+		for event in Events:
+			bVar = tk.BooleanVar()
+			chk = ttk.Checkbutton(master=self.frm_editEvents, text=event)
+			chk.state(["!alternate"])
+			self.checkList.append(chk)
+			
+			if event in Sprints:
+				chk.place(x=150, y=SCount)
+				SprintCount += 30
+			elif event in Distance:
+				chk.place(x=350, y=DCount)
+				DistanceCount += 30
+			elif event in Other:
+				chk.place(x=550, y=OCount)
+				OtherCount += 30
+		"""
 
 		"""
 
