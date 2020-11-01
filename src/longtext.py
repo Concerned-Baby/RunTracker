@@ -50,7 +50,7 @@ def advancedHelp():
 	Currently Limited to a single statistic due to lack of ideas"""
 
 def selectNewHelp():
-	return """Here You Can Create A New Runner To Add Information To"""
+	return """Here You Can Create A New Runner To Add Information To The given runner"""
 
 def aboutus():
 	return """RunTracker [v2.0.1] is developed by a runner and coder from the bay area.
