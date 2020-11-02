@@ -406,6 +406,26 @@ class myApplicationManager(object):
 	def cbb_deleteTimes_go(self, event):
 		print(self.runner)
 		print(event)
+		self.runnerTimes = self.runnersDict[self.runner].getTimesEvent(event)
+		print(self.runnerTimes)
+		x = 120
+		y = 120
+		Ystep = 15
+		Xstep = 50
+		yMax = y + Ystep * 20
+		xMax = x + Xstep * 10
+		for toRemove in self.deleteTimes_currentOn:
+			toRemove.place_forget()
+		for time in self.runnerTimes:
+			lbl_deleteTimes_time = tk.Label(master=self.frm_deleteTimes, text=time)
+			lbl_deleteTimes_time.place(x=x, y=y)
+			y += step
+			if y >= yMax:
+				y = 120
+				x += Xstep
+				if x >= xMax:
+					pass #TODO stop, load next screen somehow
+			self.deleteTimes_currentOn.append(lbl_deleteTimes_time)
 	
 
 
@@ -903,6 +923,9 @@ class myApplicationManager(object):
 			self.cbb_deleteTimes_go(self.cbb_deleteTimes_events.get())
 		self.cbb_deleteTimes_events.bind("<<ComboboxSelected>>", callback)
 
+		self.runnerTimes = []
+		self.deleteTimes_currentOn = []
+
 		"""
 		self.runnerTimes = []
 		SprintCount = 120
@@ -952,7 +975,7 @@ class myApplicationManager(object):
 			mylist.insert(tk.END, "\t %s" % line) 
 		mylist.place(x=630, y=60)
 
-		scr_runner_goals.config(command = mylist.yview )
+		scr_runner_goals.config(command = mylist.yview)
 		
 		btn_runner_advanced = tk.Button(master=self.frm_runner, text="Advanced Stats", command=self.runner_advanced, width=15, height=1, borderwidth=3, relief="raised")
 		btn_runner_advanced.place(x=600, y=5)
