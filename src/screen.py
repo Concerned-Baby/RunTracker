@@ -424,16 +424,20 @@ class myApplicationManager(object):
 		for toRemove in self.deleteTimes_currentOn:
 			toRemove.place_forget()
 		for time in self.runnerTimes:
-			lbl_deleteTimes_time = tk.Label(master=self.frm_deleteTimes, text=time)
-			lbl_deleteTimes_time.place(x=x, y=y)
-			y += step
+			chk = ttk.Checkbutton(master=self.frm_deleteTimes, text=time.strip())
+			chk.state(["!alternate"])
+			chk.place(x=x, y=y)
+			y += Ystep
 			if y >= yMax:
 				y = 120
 				x += Xstep
 				if x >= xMax:
 					pass #TODO stop, load next screen somehow
-			self.deleteTimes_currentOn.append(lbl_deleteTimes_time)
-	
+			self.deleteTimes_currentOn.append(chk)
+
+	def deleteTimes_go(self):
+		print("go")
+		#go through currenton, see which are checked, remove those that are
 
 
 
@@ -933,27 +937,8 @@ class myApplicationManager(object):
 		self.runnerTimes = []
 		self.deleteTimes_currentOn = []
 
-		"""
-		self.runnerTimes = []
-		SprintCount = 120
-		DistanceCount = 120
-		OtherCount = 120
-		for event in Events:
-			bVar = tk.BooleanVar()
-			chk = ttk.Checkbutton(master=self.frm_editEvents, text=event)
-			chk.state(["!alternate"])
-			self.checkList.append(chk)
-			
-			if event in Sprints:
-				chk.place(x=150, y=SCount)
-				SprintCount += 30
-			elif event in Distance:
-				chk.place(x=350, y=DCount)
-				DistanceCount += 30
-			elif event in Other:
-				chk.place(x=550, y=OCount)
-				OtherCount += 30
-		"""
+		btn_deleteTimes_save = tk.Button(master=self.frm_deleteTimes, text="remove", command=self.deleteTimes_go, width=10, height=1, borderwidth=3, relief="raised")
+		btn_deleteTimes_save.place(x=385, y=200)
 
 		"""
 
