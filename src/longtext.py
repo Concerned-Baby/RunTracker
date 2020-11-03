@@ -1,8 +1,13 @@
 def bestHelp():
-	return "This Page Displays The Best Talent At Each Event\n\nYou Can't Do Anything About It\n\n(Give Time To Update Dipshit)"
+	return """This Page Displays The Best Talent At Each Event
+
+	You Can't Do Anything About It
+
+	(Give Time To Update Dipshit)"""
 
 def predictorHelp():
-	return """This Page Is Used For Creating Predictors Of Your Current And Future Possible Times\n
+	return """This Page Is Used For Creating Predictors Of Your Current And Future Possible Times
+
 
 	Steps: 
 	1) Select A Transformation From The Drop-Down Menu
@@ -12,13 +17,13 @@ def predictorHelp():
 
 	Note:
 	[Best] 		means the best time achieveable within a season
-	[Estimate] 	means the time you can probably run right now
 
 	The Predicted Time For The Second Event Will Appear In The Lowest Text Box
 	"""
 
 def menuHelp():
-	return """This Is A Program to Help You Keep "Track"(pun intended) Of Everything\n
+	return """This Is A Program to Help You Keep "Track"(pun intended) Of Everything
+	
 	Click Any Button To Get Started, Read The Help On Each page If Needed
 	"""
 
