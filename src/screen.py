@@ -14,7 +14,7 @@ Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
 Other = ["Long Jump"]
 Events = Sprints + Distance + Other
-supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time"]
+supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time"]
 
 
 def getLocalBest(eventName, runnersDict): #probs a issues with the new 0
@@ -385,6 +385,13 @@ class myApplicationManager(object):
 				arr = line.split('-')
 				event = arr[0].strip()
 				name = arr[1].strip()
+				time = arr[2].strip()
+				self.parseRunner(name, event, time)
+		elif index == 2: #Name Event Time
+			for line in lines:
+				arr = line.split(" ")
+				name = arr[0].strip()
+				event = arr[1].strip()
 				time = arr[2].strip()
 				self.parseRunner(name, event, time)
 		self.cbb_select_selector["values"] = self.runnersList
