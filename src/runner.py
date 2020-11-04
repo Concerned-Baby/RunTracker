@@ -99,7 +99,7 @@ class Runner (object):
 		return("No Such Event")
 
 	def newGoal(self, eventName, goal):
-		if (self.hasEvent(eventName)):
+		if self.hasEvent(eventName):
 			if (("%.2f" % goal) not in self.getGoalsEvent(eventName)):
 				writeToFile(self.name, eventName, "goal", "%.2f\n" % goal)
 				return("Goal Added")
@@ -177,17 +177,17 @@ class Runner (object):
 			return 0
 
 	def getPointsEvent(self, event):
-		if (event == "100m"):
+		if event == "100m":
 			return self.calculatePoints(25.43471, 18, 1.81, self.getPREvent("100m"))
-		elif (event == "200m"):
+		elif event == "200m":
 			return self.calculatePoints(3.32725, 42.5, 1.81, self.getPREvent("200m"))
-		elif (event == "300m"):
+		elif event == "300m":
 			return self.calculatePoints(2.21152, 61, 1.81, self.getPREvent("300m"))
-		elif (event == "400m"):
+		elif event == "400m":
 			return self.calculatePoints(1.53775, 82, 1.81, self.getPREvent("400m"))
-		elif (event == "800m"):
+		elif event == "800m":
 			return self.calculatePoints(0.07462, 254, 1.88, self.getPREvent("800m"))
-		elif (event == "1600m"):
+		elif event == "1600m":
 			return self.calculatePoints(0.029828, 512, 1.85, self.getPREvent("1600m"))
 		return 0
 
