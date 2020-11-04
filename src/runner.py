@@ -117,7 +117,7 @@ class Runner (object):
 		
 	def getPRFieldEvent(self, eventName):
 		times = self.getTimesEvent(eventName)
-		if (len(times) == 0):
+		if len(times) == 0:
 			return 1000000
 		PR = 0
 		for time in times:
