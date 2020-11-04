@@ -16,7 +16,7 @@ def predictorHelp():
 	3) Click GO!
 
 	Note:
-	[Best] 		means the best time achieveable within a season
+	[Best] 		| the best time achieveable within a season
 
 	The Predicted Time For The Second Event Will Appear In The Lowest Text Box
 	"""
