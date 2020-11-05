@@ -437,6 +437,14 @@ class myApplicationManager(object):
 
 	def deleteTimes_go(self):
 		print("go")
+		toDelete = []
+		for chk in self.deleteTimes_currentOn:
+			print(chk.state())
+			try:
+				str(chk.state).index("selected")#adding for no reason
+			except ValueError:
+				toDelete.append(chk)
+		print(toDelete)
 		#go through currenton, see which are checked, remove those that are
 
 
