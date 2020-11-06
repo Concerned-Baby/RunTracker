@@ -18,7 +18,7 @@ def predictorHelp():
 	Note:
 	[Best] 		| the best time achieveable within a season
 
-	The Predicted Time For The Second Event Will Appear In The Lowest Text Box
+	The Predicted Time For The Second Event Will Appear In The Lower Text Box
 	"""
 
 def menuHelp():
