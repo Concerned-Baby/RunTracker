@@ -34,7 +34,7 @@ def selectHelp():
 	"""
 
 def runnerHelp():
-	return """This Page Displays All The Given Information About A Runner
+	return """This Page Displays All The Inputed Information About A Runner
 	It Also Allows You To Update Any Information
 	"""
 
