@@ -438,14 +438,17 @@ class myApplicationManager(object):
 	def deleteTimes_go(self):
 		print("go")
 		toDelete = []
+		print("start " + str(toDelete))
 		for chk in self.deleteTimes_currentOn:
-			print(chk.state())
 			try:
-				if (str(chk.state).index("selected") != -1):
+				print("state: " + str(chk.state()))
+				if (str(chk.state()).index("selected") > -1):
 					print("added")#adding for no reason
+					toDelete.append(chk)
 			except ValueError:
-				toDelete.append(chk)
-		print(toDelete)
+				#toDelete.append(chk)
+				print("pass")
+		print("end " + str(toDelete))
 		#go through currenton, see which are checked, remove those that are
 
 
