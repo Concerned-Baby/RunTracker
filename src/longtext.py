@@ -48,7 +48,8 @@ def editTimesHelp():
 
 def editGoalsHelp():
 	return """Here You Can Add Goals For A Runner
-	Just Select A Event and Enter A Goal And Hit Go"""
+	Just Select A Event and Enter A Goal And Hit Go
+	Feedback will appear in the lower box"""
 
 def advancedHelp():
 	return """Here You Can Look At Some More Advanced Measures of Skill and Ability 
@@ -58,5 +59,5 @@ def selectNewHelp():
 	return """Here You Can Create A New Runner To Add Information To The given runner"""
 
 def aboutus():
-	return """RunTracker [v2.2.0] is developed by a runner and coder.
+	return """RunTracker [v2.2.0] is developed by a runner in joint with a coder.
 	Look at other similar projects at https://concerned-baby.github.io/"""
