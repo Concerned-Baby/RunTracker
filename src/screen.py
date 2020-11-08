@@ -446,10 +446,11 @@ class myApplicationManager(object):
 					print("added")#adding for no reason
 					toDelete.append(chk)
 			except ValueError:
-				#toDelete.append(chk)
 				print("pass")
 		print("end " + str(toDelete))
 		#go through currenton, see which are checked, remove those that are
+		for chk in toDelete:
+			print(chk["text"])
 
 
 
