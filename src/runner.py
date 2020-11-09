@@ -98,6 +98,9 @@ class Runner (object):
 				return "Time Already Exists"
 		return("No Such Event")
 
+	def removeTime(self, eventName, time):
+		pass
+
 	def newGoal(self, eventName, goal):
 		if self.hasEvent(eventName):
 			if (("%.2f" % goal) not in self.getGoalsEvent(eventName)):
@@ -105,6 +108,9 @@ class Runner (object):
 				return("Goal Added")
 			return("Goal Already Exists")
 		return("No Such Event")
+
+	def removeGoal(self, eventName, goal):
+		pass
 
 
 	def getGoalsEvent(self, eventName):
