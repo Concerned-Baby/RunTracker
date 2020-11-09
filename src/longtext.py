@@ -35,7 +35,7 @@ def selectHelp():
 
 def runnerHelp():
 	return """This Page Displays All The Inputed Information About A Runner
-	It Also Allows You To Update Any Information
+	It Also Allows You To Update Any Information through the edit buttons
 	"""
 
 def editEventsHelp():
