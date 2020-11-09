@@ -451,6 +451,7 @@ class myApplicationManager(object):
 		#go through currenton, see which are checked, remove those that are
 		for chk in toDelete:
 			print(chk["text"])
+			self.runnersDict[self.runner].removeTime(self.cbb_deleteTimes_events.get(), chk["text"])
 
 
 
