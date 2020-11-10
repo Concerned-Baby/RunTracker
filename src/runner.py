@@ -99,7 +99,20 @@ class Runner (object):
 		return("No Such Event")
 
 	def removeTime(self, eventName, time):
-		pass
+		times = self.getTimesEvent(eventName)
+		self.clearEvent(eventName, "time")
+		for oldTime in times:
+			if not oldTime == time:
+				newTime(eventName. oldTime)
+			else:
+				print("removed: " + str(time))
+
+	def clearEvent(eventName, portion):
+		if portion == "time":
+			print("clearing times")
+		elif portion == "goal":
+			print("clearing goals")
+
 
 	def newGoal(self, eventName, goal):
 		if self.hasEvent(eventName):
