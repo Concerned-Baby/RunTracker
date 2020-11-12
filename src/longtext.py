@@ -3,7 +3,7 @@ def bestHelp():
 
 	You Can't Do Anything About It
 
-	(Give Time To Update Dipshit)"""
+	(Give Time To Update)"""
 
 def predictorHelp():
 	return """This Page Is Used For Creating Predictors Of Your Current And Future Possible Times
