@@ -56,7 +56,7 @@ def advancedHelp():
 	Currently Limited to a single statistic due to lack of ideas"""
 
 def selectNewHelp():
-	return """Here You Can Create A New Runner To Add Information To The given runner"""
+	return """Here You Can Create A New Runner To Add Information To The Given Runner"""
 
 def aboutus():
 	return """RunTracker [v2.2.0] is developed by a runner in joint with a coder.
