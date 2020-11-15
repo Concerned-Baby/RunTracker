@@ -77,7 +77,6 @@ class Runner (object):
 			return "Event Already Not Exists"
 		else:
 			rename(fileName,  getNotVersion(fileName))
-
 		return ("Event Removed")
 
 	def getEvents(self):
@@ -105,7 +104,7 @@ class Runner (object):
 			if not oldTime == time:
 				newTime(eventName, oldTime)
 			else:
-				print("removed: " + str(time))
+				print("removed: " + str(oldTime))
 
 	def clearEvent(eventName, portion):
 		if portion == "time":
@@ -130,7 +129,13 @@ class Runner (object):
 		return("No Such Event")
 
 	def removeGoal(self, eventName, goal):
-		pass
+		goals = self.getGoalsEvent(eventName)
+		self.clearEvent(eventName, "goal")
+		for oldGoal in goals:
+			if not oldGoal == time:
+				newTime(eventName, oldGoal)
+			else:
+				print("removed: " + str(oldGoal))
 
 
 	def getGoalsEvent(self, eventName):
