@@ -103,7 +103,7 @@ class Runner (object):
 		self.clearEvent(eventName, "time")
 		for oldTime in times:
 			if not oldTime == time:
-				newTime(eventName. oldTime)
+				newTime(eventName, oldTime)
 			else:
 				print("removed: " + str(time))
 
