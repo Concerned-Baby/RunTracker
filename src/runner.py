@@ -110,8 +110,15 @@ class Runner (object):
 	def clearEvent(eventName, portion):
 		if portion == "time":
 			print("clearing times")
+			eType = "time"
 		elif portion == "goal":
 			print("clearing goals")
+			eType = "goal"
+		if changeD:
+			myFile = open("Runners/%s/%s/%s.txt" % (self.name, eventName, eType), "w")
+		else:
+			myFile = open("Runners\\%s\\%s\\%s.txt" % (self.name, eventName, eType), "w")
+		myFile.close()
 
 
 	def newGoal(self, eventName, goal):
