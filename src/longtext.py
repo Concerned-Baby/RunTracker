@@ -53,7 +53,7 @@ def editGoalsHelp():
 
 def advancedHelp():
 	return """Here You Can Look At Some More Advanced Measures of Skill and Ability 
-	Currently Limited to a single statistic due to lack of ideas"""
+	Currently Limited To a Single Statistic Due To a Lack of Ideas"""
 
 def selectNewHelp():
 	return """Here You Can Create A New Runner To Add Information To The Given Runner"""
