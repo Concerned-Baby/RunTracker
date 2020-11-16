@@ -441,9 +441,9 @@ class myApplicationManager(object):
 		print("start " + str(toDelete))
 		for chk in self.deleteTimes_currentOn:
 			try:
-				print("state: " + str(chk.state()))
+				#print("state: " + str(chk.state()))
 				if (str(chk.state()).index("selected") > -1):
-					print("added")#adding for no reason
+					#print("added")
 					toDelete.append(chk)
 			except ValueError:
 				print("pass")
