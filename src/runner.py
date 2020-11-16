@@ -102,11 +102,11 @@ class Runner (object):
 		self.clearEvent(eventName, "time")
 		for oldTime in times:
 			if not oldTime == time:
-				newTime(eventName, oldTime)
+				self.newTime(eventName, oldTime)
 			else:
 				print("removed: " + str(oldTime))
 
-	def clearEvent(eventName, portion):
+	def clearEvent(self, eventName, portion):
 		if portion == "time":
 			print("clearing times")
 			eType = "time"
@@ -133,7 +133,7 @@ class Runner (object):
 		self.clearEvent(eventName, "goal")
 		for oldGoal in goals:
 			if not oldGoal == time:
-				newTime(eventName, oldGoal)
+				self.newGoal(eventName, oldGoal)
 			else:
 				print("removed: " + str(oldGoal))
 
