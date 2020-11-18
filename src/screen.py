@@ -824,10 +824,10 @@ class myApplicationManager(object):
 		self.ent_editTimes_entry.place(x=350, y=220)
 
 		btn_editTimes_go = tk.Button(master=self.frm_editTimes, text="Add", command=self.editTimes_go, width=8, height=1, borderwidth=3, relief="raised")
-		btn_editTimes_go.place(x=320, y=270)
+		btn_editTimes_go.place(x=360, y=270)
 
-		btn_editTimes_remove = tk.Button(master=self.frm_editTimes, text="Remove", command=self.toDo, width=8, height=1, borderwidth=3, relief="raised")
-		btn_editTimes_remove.place(x=400, y=270)
+		#btn_editTimes_remove = tk.Button(master=self.frm_editTimes, text="Remove", command=self.toDo, width=8, height=1, borderwidth=3, relief="raised")
+		#btn_editTimes_remove.place(x=400, y=270)
 
 		self.lbl_editTimes_output = tk.Label(master=self.frm_editTimes, text="Click GO!", width=40, height=1, borderwidth=1, relief="solid")
 		self.lbl_editTimes_output.place(x=300, y=320)
@@ -953,13 +953,6 @@ class myApplicationManager(object):
 		btn_deleteTimes_save = tk.Button(master=self.frm_deleteTimes, text="remove", command=self.deleteTimes_go, width=10, height=1, borderwidth=3, relief="raised")
 		btn_deleteTimes_save.place(x=385, y=200)
 
-		"""
-
-		check boxes
-		scroll wheel
-		
-		"""
-
 
 	def setRunnerPage(self, runner):
 		self.runner = runner
@@ -980,7 +973,7 @@ class myApplicationManager(object):
 			mylist.insert(tk.END, "\t %s" % line) 
 		mylist.place(x=630, y=60)
 
-		scr_runner_goals.config(command = mylist.yview)
+		scr_runner_goals.config(command=mylist.yview)
 		
 		btn_runner_advanced = tk.Button(master=self.frm_runner, text="Advanced Stats", command=self.runner_advanced, width=15, height=1, borderwidth=3, relief="raised")
 		btn_runner_advanced.place(x=600, y=5)
