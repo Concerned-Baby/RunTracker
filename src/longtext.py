@@ -24,13 +24,13 @@ def predictorHelp():
 def menuHelp():
 	return """This Is A Program to Help You Keep "Track"(pun intended) Of Everything
 	
-	Click Any Button To Get Started, Read The Help On Each page If Needed
+	Click Any Button To Get Started, Read The Help On Each Page If Needed
 	"""
 
 def selectHelp():
 	return """ This Page Allows You To Go To Any [listed] Runners Page
 	Select A Runner And Click "GO!".
-	If that's not for you, consider adding new runners
+	If That's Not For You, Consider Adding New Runners
 	"""
 
 def runnerHelp():
@@ -49,15 +49,15 @@ def editTimesHelp():
 def editGoalsHelp():
 	return """Here You Can Add Goals For A Runner
 	Just Select A Event and Enter A Goal And Hit Go
-	Feedback will appear in the lower box"""
+	Feedback Will Appear In the Lower Box"""
 
 def advancedHelp():
 	return """Here You Can Look At Some More Advanced Measures of Skill and Ability 
 	Currently Limited To a Single Statistic Due To a Lack of Ideas"""
 
 def selectNewHelp():
-	return """Here You Can Create A New Runner To Add Information To The Given Runner"""
+	return """Here You Can Create a New Runner To Add Times and Goals To The Given Runner"""
 
 def aboutus():
-	return """RunTracker [v2.2.0] is developed by a runner in joint with a coder.
+	return """RunTracker [v2.2.0] Is Developed By a Runner In Joint With a Coder.
 	Look At Other Similar Projects At 'https://concerned-baby.github.io/'"""
