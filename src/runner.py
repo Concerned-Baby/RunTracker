@@ -132,7 +132,7 @@ class Runner (object):
 		goals = self.getGoalsEvent(eventName)
 		self.clearEvent(eventName, "goal")
 		for oldGoal in goals:
-			if not oldGoal == time:
+			if oldGoal != time:
 				self.newGoal(eventName, oldGoal)
 			else:
 				print("removed: " + str(oldGoal))
