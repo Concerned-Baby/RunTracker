@@ -29,7 +29,7 @@ def menuHelp():
 
 def selectHelp():
 	return """ This Page Allows You To Go To Any [listed] Runners Page
-	Select A Runner And Click "GO!".
+	Select A Runner And Click "GO!" To Edit and View Their Statistics.
 	If That's Not For You, Consider Adding New Runners
 	"""
 
