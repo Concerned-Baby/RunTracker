@@ -402,13 +402,10 @@ class myApplicationManager(object):
 			self.runnersList.append(name)
 			self.runnersDict[name] = runnerObj
 			runnerObj.newEvent(event)
-			runnerObj.newTime(event, float(time))
 		else:
-			if event in runnerObj.getEvents():
-				runnerObj.newTime(event, float(time))
-			else:
+			if event not in runnerObj.getEvents():
 				runnerObj.newEvent(event)
-				runnerObj.newTime(event, float(time))
+		runnerObj.newTime(event, float(time))
 
 	def cbb_deleteTimes_go(self, event):
 		print(self.runner)
@@ -441,9 +438,7 @@ class myApplicationManager(object):
 		print("start " + str(toDelete))
 		for chk in self.deleteTimes_currentOn:
 			try:
-				#print("state: " + str(chk.state()))
 				if (str(chk.state()).index("selected") > -1):
-					#print("added")
 					toDelete.append(chk)
 			except ValueError:
 				print("pass")
@@ -825,9 +820,6 @@ class myApplicationManager(object):
 
 		btn_editTimes_go = tk.Button(master=self.frm_editTimes, text="Add", command=self.editTimes_go, width=8, height=1, borderwidth=3, relief="raised")
 		btn_editTimes_go.place(x=360, y=270)
-
-		#btn_editTimes_remove = tk.Button(master=self.frm_editTimes, text="Remove", command=self.toDo, width=8, height=1, borderwidth=3, relief="raised")
-		#btn_editTimes_remove.place(x=400, y=270)
 
 		self.lbl_editTimes_output = tk.Label(master=self.frm_editTimes, text="Click GO!", width=40, height=1, borderwidth=1, relief="solid")
 		self.lbl_editTimes_output.place(x=300, y=320)
