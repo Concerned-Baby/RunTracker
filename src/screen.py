@@ -520,6 +520,9 @@ class myApplicationManager(object):
 	def runner_deleteTime(self):
 		self.goToScreen(self.frm_deleteTimes)
 
+	def import_help(self):
+		self.goToScreen(self.frm_importHelp)
+
 
 	"""
 	Setting Screens
@@ -888,6 +891,17 @@ class myApplicationManager(object):
 
 		self.cbb_localRank_events = ttk.Combobox(master=self.frm_localRank, state="readonly", values=Events)
 		self.cbb_localRank_events.place(x=330, y=60)
+
+		self.frm_importHelp = Frame(self.window, "Import Help")
+
+		lbl_importHelp_logo = tk.Label(master=self.frm_importHelp, text="Import Help")
+		lbl_importHelp_logo.place(x=370, y=0)
+
+		lbl_importHelp_text = tk.Label(master=self.frm_importHelp, text=longtext.importHelp(), height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_importHelp_text.place(x=100, y=32)
+
+		btn_importHelp_back = tk.Button(master=self.frm_importHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_importHelp_back.place(x=5, y=415)
 		
 		def callback(eventObject):
 			self.localRank_update(self.cbb_localRank_events.current())
@@ -923,6 +937,9 @@ class myApplicationManager(object):
 
 		lbl_import_logo = tk.Label(master=self.frm_import, text="Import")
 		lbl_import_logo.place(x=375, y=0)
+
+		btn_import_help = tk.Button(master=self.frm_import, text="Help", command=self.import_help, width=5, height=1, borderwidth=3, relief="raised")
+		btn_import_help.place(x=745, y=5)
 
 		self.frm_deleteTimes = Frame(self.window, "Delete Times")
 
