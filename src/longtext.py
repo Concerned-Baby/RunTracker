@@ -28,7 +28,7 @@ def menuHelp():
 	"""
 
 def selectHelp():
-	return """ This Page Allows You To Go To Any [listed] Runners Page
+	return """ This Page Allows You To Go To Any Runners Page
 	Select A Runner And Click "GO!" To Edit and View Their Statistics.
 	If That's Not For You, Consider Adding New Runners
 	"""
@@ -61,3 +61,6 @@ def selectNewHelp():
 def aboutus():
 	return """RunTracker [v2.2.0] Is Developed By a Runner In Joint With a Coder.
 	Look At Other Similar Projects At 'https://concerned-baby.github.io/'"""
+
+def importHelp():
+	return """Here You Can Import Runners Based On a Given Format"""
