@@ -63,4 +63,5 @@ def aboutus():
 	Look At Other Similar Projects At 'https://concerned-baby.github.io/'"""
 
 def importHelp():
-	return """Here You Can Import Runners Based On a Given Format"""
+	return """Here You Can Import Runners Based On a Given Format
+	Select a Format and Paste Text Into The Text Box"""
