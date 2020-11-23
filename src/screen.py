@@ -132,7 +132,7 @@ class myApplicationManager(object):
 		if (index == -1):
 			self.lbl_predictor_output["text"] = "Select"
 		else:
-			time = self.predicotrGivenTime
+			time = self.predictorGivenTime
 			if (time == ""):
 				self.lbl_predictor_output["text"] = "Enter"
 			else:
@@ -206,11 +206,11 @@ class myApplicationManager(object):
 		
 	def isFloat(self, toBe):
 		if toBe == "":
-			self.predicotrGivenTime = -1
+			self.predictorGivenTime = -1
 			return True
 		try:
 			num = float(toBe)
-			self.predicotrGivenTime = num
+			self.predictorGivenTime = num
 			return True
 		except ValueError:
 			return False
@@ -274,7 +274,7 @@ class myApplicationManager(object):
 						else:
 							self.lbl_editTimes_output["text"] = result
 					else:
-						self.lbl_editTimes_output["text"] = "Time is extreme, click 'add' again to confirm"
+						self.lbl_editTimes_output["text"] = "Time is bad, click 'add' again to confirm"
 
 	def reasonableTime(self, event, time):
 		if event == "100m":
