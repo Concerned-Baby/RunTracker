@@ -21,9 +21,9 @@ update help menus
 
 create delete times option using scrollbar and 
 
-clean up remove option (trashed)
-
 remove goals
+
+select local file for import
 
 """
 
