@@ -64,4 +64,4 @@ def aboutus():
 
 def importHelp():
 	return """Here You Can Import Runners Based On a Given Format
-	Select a Format and Paste Text Into The Text Box"""
+	Select a Format and Paste Parsable Text Into The Text Box"""
