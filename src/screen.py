@@ -291,7 +291,7 @@ class myApplicationManager(object):
 			wrld = 223.13
 		elif event == "3200m":
 			wrld = 478.61
-		return not (time < wrld or time > pow(wrld, 13/11) * 1.3)
+		return not (time < wrld or time > (pow(wrld, 13/11) * 1.3))
 
 
 	
@@ -498,7 +498,6 @@ class myApplicationManager(object):
 	def runnerAdvanced_help(self):
 		self.goToScreen(self.frm_advancedHelp)
 
-
 	def select_new(self):
 		self.goToScreen(self.frm_selectNew)
 
@@ -529,6 +528,9 @@ class myApplicationManager(object):
 	"""
 
 	def setMenu(self):
+
+		"""MENU SCREEN"""
+
 		self.frm_menu = Frame(self.window, "Menu")
 
 		lbl_menu_logo = tk.Label(master=self.frm_menu, text="Menu")
@@ -555,6 +557,8 @@ class myApplicationManager(object):
 		btn_menu_quit = tk.Button(master=self.frm_menu, text="X", fg="red", command=self.out, width=2,height=1, borderwidth=3, relief="raised")
 		btn_menu_quit.place(x=5, y=415)
 
+		"""BEST SCREEN"""
+
 		self.frm_best = Frame(self.window, "Best")
 
 		lbl_best_logo = tk.Label(master=self.frm_best, text="Local Bests")
@@ -574,6 +578,8 @@ class myApplicationManager(object):
 
 		btn_best_back = tk.Button(master=self.frm_best, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_best_back.place(x=5, y=415)
+
+		"""PREDICTOR SCREEN"""
 
 		self.frm_predictor = Frame(self.window, "Predictor")
 
@@ -607,6 +613,8 @@ class myApplicationManager(object):
 		btn_predictor_back = tk.Button(master=self.frm_predictor, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_predictor_back.place(x=5, y=415)
 
+		"""RUNNER SELECT SCREEN"""
+
 		self.frm_select = Frame(self.window, "Select")
 
 		lbl_select_logo = tk.Label(master=self.frm_select, text="Select Runner")
@@ -630,6 +638,8 @@ class myApplicationManager(object):
 		btn_select_back = tk.Button(master=self.frm_select, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_select_back.place(x=5, y=415)
 
+		"""CREATE RUNNER SCREEN"""
+
 		self.frm_selectNew = Frame(self.window, "Select New")
 
 		lbl_selectNew_logo = tk.Label(master=self.frm_selectNew, text="New Runner")
@@ -650,6 +660,8 @@ class myApplicationManager(object):
 		btn_selectNew_help = tk.Button(master=self.frm_selectNew, text="Help", command=self.selectNew_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_selectNew_help.place(x=745, y=5)
 
+		"""SELECT NEW RUNNER HELP SCREEN"""
+
 		self.frm_selectNewHelp = Frame(self.window, "Select New Help")
 
 		lbl_selectNewHelp_logo = tk.Label(master=self.frm_selectNewHelp, text="Select New Help")
@@ -660,6 +672,8 @@ class myApplicationManager(object):
 
 		btn_selectNewHelp_back = tk.Button(master=self.frm_selectNewHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_selectNewHelp_back.place(x=5, y=415)
+
+		"""MENU HELP SCREEN"""
 
 		self.frm_menuHelp = Frame(self.window, "Menu Help")
 
@@ -672,6 +686,8 @@ class myApplicationManager(object):
 		btn_menuHelp_back = tk.Button(master=self.frm_menuHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_menuHelp_back.place(x=5, y=415)
 
+		"""SELECT RUNNER HELP SCREEN"""
+
 		self.frm_selectHelp= Frame(self.window, "Select Help")
 
 		lbl_selectHelp_logo = tk.Label(master=self.frm_selectHelp, text="Select Help")
@@ -683,6 +699,7 @@ class myApplicationManager(object):
 		btn_selectHelp_back = tk.Button(master=self.frm_selectHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_selectHelp_back.place(x=5, y=415)
 
+		"""BEST HELP SCREEN"""
 
 		self.frm_bestHelp = Frame(self.window, "Best Help")
 
