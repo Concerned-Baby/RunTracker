@@ -40,28 +40,35 @@ def runnerHelp():
 
 def editEventsHelp():
 	return """Here You Can Add and Remove Events From A Runner
-	Simply Check and Uncheck the Boxes to Add and Remove Events"""
+	Simply Check and Uncheck the Boxes to Add and Remove Events
+	"""
 
 def editTimesHelp():
 	return """Here You Can Add Times To A Runner
-	Just Select A Event and Enter A Time And Hit Add To Add A Time"""
+	Just Select A Event and Enter A Time And Hit Add To Add A Time
+	"""
 
 def editGoalsHelp():
 	return """Here You Can Add Goals For A Runner
 	Just Select A Event and Enter A Goal And Hit Go
-	Feedback Will Appear In the Lower Box"""
+	Feedback Will Appear In the Lower Box
+	"""
 
 def advancedHelp():
 	return """Here You Can Look At Some More Advanced Measures of Skill and Ability 
-	Currently Limited To a Single Statistic Due To a Lack of Ideas"""
+	Currently Limited To a Single Statistic Due To a Lack of Ideas
+	"""
 
 def selectNewHelp():
-	return """Here You Can Create a New Runner To Add Times and Goals To The Given Runner"""
+	return """Here You Can Create a New Runner To Add Times and Goals To The Given Runner
+	"""
 
 def aboutus():
 	return """RunTracker [v2.2.0] Is Developed By a Runner In Joint With a Coder.
-	Look At Other Similar Projects At 'https://concerned-baby.github.io/'"""
+	Look At Other Similar Projects At 'https://concerned-baby.github.io/'
+	"""
 
 def importHelp():
 	return """Here You Can Import Runners Based On a Given Format
-	Select a Format and Paste Parsable Text Into The Text Box"""
+	Select a Format and Paste Parsable Text Into The Text Box
+	"""
