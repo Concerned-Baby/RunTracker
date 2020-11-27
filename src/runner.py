@@ -80,8 +80,7 @@ class Runner (object):
 		return ("Event Removed")
 
 	def getEvents(self):
-		events = listdir(getFileName([self.name]))
-		return events
+		return listdir(getFileName([self.name]))
 
 	def hasEvent(self, eventName):
 		if (eventName not in self.getEvents()):
