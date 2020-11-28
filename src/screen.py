@@ -101,7 +101,6 @@ class myApplicationManager(object):
 
 	def setScreens(self):
 		self.setMenu()
-		self.setAdvancedHelp()
 		self.setAdvancedPage()
 
 	def updateRunner(self):
@@ -916,6 +915,8 @@ class myApplicationManager(object):
 		btn_aboutUs_back = tk.Button(master=self.frm_aboutUs, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_aboutUs_back.place(x=5,y=415)
 
+		"""LOCAL RANK SCREEN"""
+
 		self.frm_localRank = Frame(self.window, "Local Rank")
 
 		lbl_localRank_logo = tk.Label(master=self.frm_localRank, text="Local Ranks")
@@ -926,6 +927,8 @@ class myApplicationManager(object):
 
 		self.cbb_localRank_events = ttk.Combobox(master=self.frm_localRank, state="readonly", values=Events)
 		self.cbb_localRank_events.place(x=330, y=60)
+
+		"""IMPORT HELP SCREEN"""
 
 		self.frm_importHelp = Frame(self.window, "Import Help")
 
@@ -948,6 +951,8 @@ class myApplicationManager(object):
 		btn_localRank_back = tk.Button(master=self.frm_localRank, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_localRank_back.place(x=5,y=415)
 
+		"""LOCAL RANK HELP SCREEN"""
+
 		self.frm_localRankHelp = Frame(self.window, "Local Rank Help")
 
 		lbl_localRankHelp_logo = tk.Label(master=self.frm_localRankHelp, text="Local Ranks Help")
@@ -955,6 +960,8 @@ class myApplicationManager(object):
 
 		btn_localRankHelp_back = tk.Button(master=self.frm_localRankHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_localRankHelp_back.place(x=5,y=415)
+
+		"""IMPORT SCREEN"""
 
 		self.frm_import = Frame(self.window, "Import")
 
@@ -975,6 +982,8 @@ class myApplicationManager(object):
 
 		btn_import_help = tk.Button(master=self.frm_import, text="Help", command=self.import_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_import_help.place(x=745, y=5)
+
+		"""DELETE TIMES SCREEN"""
 
 		self.frm_deleteTimes = Frame(self.window, "Delete Times")
 
@@ -997,9 +1006,25 @@ class myApplicationManager(object):
 		btn_deleteTimes_save = tk.Button(master=self.frm_deleteTimes, text="remove", command=self.deleteTimes_go, width=10, height=1, borderwidth=3, relief="raised")
 		btn_deleteTimes_save.place(x=385, y=200)
 
+		"""ADVANCED RUNNER HELP SCREEN"""
+
+		self.frm_advancedHelp = Frame(self.window, "Advanced Window")
+
+		lbl_advancedHelp_logo = tk.Label(master=self.frm_advancedHelp, text="Advanced Help")
+		lbl_advancedHelp_logo.place(x=365, y=0)
+
+		lbl_advancedHelp_text = tk.Label(master=self.frm_advancedHelp, text=longtext.advancedHelp(), height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_advancedHelp_text.place(x=100, y=32)
+
+		btn_advancedHelp_back = tk.Button(master=self.frm_advancedHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_advancedHelp_back.place(x=5, y=415)
+
 
 	def setRunnerPage(self, runner):
 		self.runner = runner
+
+		"""RUNNER SCREEN"""
+
 		self.frm_runner = Frame(self.window, "Runner")
 
 		self.lbl_runner_name = tk.Label(master=self.frm_runner, text=runner)
@@ -1064,6 +1089,9 @@ class myApplicationManager(object):
 		self.lbl_runner_eventInfo.place(x=200, y=80)
 
 	def setAdvancedPage(self):
+
+		"""ADVANCED RUNNER SCREEN"""
+
 		self.frm_runnerAdvanced = Frame(self.window, "Advanced")
 
 		lbl_runnerAdvanced_logo = tk.Label(master=self.frm_runnerAdvanced, text="Advanced Stats")
@@ -1083,19 +1111,6 @@ class myApplicationManager(object):
 
 		self.lbl_runnerAdvanced_pointSEvent = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=20, borderwidth=1, relief="solid")
 		self.lbl_runnerAdvanced_pointSEvent.place(x=20, y=98)
-
-	def setAdvancedHelp(self):
-		self.frm_advancedHelp = Frame(self.window, "Advanced Window")
-
-		lbl_advancedHelp_logo = tk.Label(master=self.frm_advancedHelp, text="Advanced Help")
-		lbl_advancedHelp_logo.place(x=365, y=0)
-
-		lbl_advancedHelp_text = tk.Label(master=self.frm_advancedHelp, text=longtext.advancedHelp(), height=25, width=81, borderwidth=3, relief="ridge")
-		lbl_advancedHelp_text.place(x=100, y=32)
-
-		btn_advancedHelp_back = tk.Button(master=self.frm_advancedHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
-		btn_advancedHelp_back.place(x=5, y=415)
-
 
 
 
