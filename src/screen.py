@@ -14,7 +14,7 @@ Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
 Other = ["Long Jump"]
 Events = Sprints + Distance + Other
-supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time"]
+supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
 
 
 def getLocalBest(eventName, runnersDict): #probs a issues with the new 0
@@ -104,7 +104,6 @@ class myApplicationManager(object):
 		self.setAdvancedPage()
 
 	def updateRunner(self):
-		#print("update")
 		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
 		self.lbl_runner_goals["text"] = self.getAllGoals(self.runner)
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
@@ -122,7 +121,6 @@ class myApplicationManager(object):
 	def start(self):
 		self.window.mainloop()
 
-		
 	def out(self):
 		self.window.destroy()
 
@@ -393,6 +391,14 @@ class myApplicationManager(object):
 				event = arr[1].strip()
 				time = arr[2].strip()
 				self.parseRunner(name, event, time)
+		elif index == 3: #Event Name Time
+			for line in lines:
+				arr = line.split(" ")
+				event = arr[0].strip()
+				name = arr[1].strip()
+				time = arr[2].strip()
+				self.parseRunner(name, event, time)
+
 		self.cbb_select_selector["values"] = self.runnersList
 
 	def parseRunner(self, name, event, time):
