@@ -83,9 +83,7 @@ class Runner (object):
 		return listdir(getFileName([self.name]))
 
 	def hasEvent(self, eventName):
-		if (eventName not in self.getEvents()):
-			return False
-		return True
+		return eventName in self.getEvents():
 		
 	def newTime(self, eventName, time):
 		if (self.hasEvent(eventName)):
