@@ -62,22 +62,22 @@ class Runner (object):
 		fileName = getFileName([self.name, eventName])
 		notV = getNotVersion(fileName)
 		if (self.hasEvent(eventName)):
-			return("Event Already Added")
+			return "Event Already Added"
 		elif path.exists(notV):
 			rename(notV, fileName)
 		else:
 			mkdir(fileName)
 			open(getFileName([self.name, eventName, "goal.txt"]), "x").close()
 			open(getFileName([self.name, eventName, "time.txt"]), "x").close()
-		return("Event Added")
+		return "Event Added"
 
 	def removeEvent(self, eventName):
 		fileName = getFileName([self.name, eventName])
-		if (not self.hasEvent(eventName)):
+		if not self.hasEvent(eventName):
 			return "Event Already Not Exists"
 		else:
 			rename(fileName,  getNotVersion(fileName))
-		return ("Event Removed")
+		return "Event Removed"
 
 	def getEvents(self):
 		return listdir(getFileName([self.name]))
@@ -86,13 +86,13 @@ class Runner (object):
 		return eventName in self.getEvents():
 		
 	def newTime(self, eventName, time):
-		if (self.hasEvent(eventName)):
+		if self.hasEvent(eventName):
 			if ("%.2f" % time) not in self.getTimesEvent(eventName):
 				writeToFile(self.name, eventName, "time", "%.2f\n" % time)
-				return("Time Added")
+				return "Time Added"
 			else:
 				return "Time Already Exists"
-		return("No Such Event")
+		return "No Such Event"
 
 	def removeTime(self, eventName, time):
 		times = self.getTimesEvent(eventName)
@@ -119,11 +119,11 @@ class Runner (object):
 
 	def newGoal(self, eventName, goal):
 		if self.hasEvent(eventName):
-			if (("%.2f" % goal) not in self.getGoalsEvent(eventName)):
+			if ("%.2f" % goal) not in self.getGoalsEvent(eventName):
 				writeToFile(self.name, eventName, "goal", "%.2f\n" % goal)
-				return("Goal Added")
-			return("Goal Already Exists")
-		return("No Such Event")
+				return "Goal Added"
+			return "Goal Already Exists"
+		return "No Such Event"
 
 	def removeGoal(self, eventName, goal):
 		goals = self.getGoalsEvent(eventName)
@@ -157,7 +157,7 @@ class Runner (object):
 		if eventName in OTHERS:
 			return self.getPRFieldEvent(eventName)
 		else:
-			if (len(times) == 0):
+			if len(times) == 0:
 				return 1000000
 			PR =  1000000
 			for time in times:
@@ -195,7 +195,7 @@ class Runner (object):
 		return points
 
 	def calculatePoints(self, a, b, c, time):
-		if (time == 1000):
+		if time == 1000:
 			score = 0
 		else:
 			score =  (a * pow((b - time), c))
@@ -231,7 +231,7 @@ class Runner (object):
 	def getAllInfoEvent(self, eventName):
 		toPrint = ""
 		pr = self.getPREvent(eventName)
-		if (pr != 1000000):
+		if pr != 1000000:
 			toPrint += "PR: %.2f\n\n" % pr
 		else:
 			toPrint += "PR: N/A\n\n"
@@ -252,7 +252,7 @@ class Runner (object):
 	def toHTMLEvent(self, eventName):
 		text =  "<h3> %s </h3>\n\n" % eventName
 		pr = self.getPREvent(eventName)
-		if (pr != 1000):
+		if pr != 1000:
 			text += "<h5> PR: %s </h5>\n\n" % pr
 		else:
 			text += "<h5> PR: N/A </h5>\n\n"
