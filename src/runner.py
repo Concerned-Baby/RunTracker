@@ -83,7 +83,7 @@ class Runner (object):
 		return listdir(getFileName([self.name]))
 
 	def hasEvent(self, eventName):
-		return eventName in self.getEvents():
+		return eventName in self.getEvents()
 		
 	def newTime(self, eventName, time):
 		if self.hasEvent(eventName):
@@ -195,7 +195,7 @@ class Runner (object):
 		return points
 
 	def calculatePoints(self, a, b, c, time):
-		if time == 1000:
+		if time == 1000000:
 			score = 0
 		else:
 			score =  (a * pow((b - time), c))
@@ -252,7 +252,7 @@ class Runner (object):
 	def toHTMLEvent(self, eventName):
 		text =  "<h3> %s </h3>\n\n" % eventName
 		pr = self.getPREvent(eventName)
-		if pr != 1000:
+		if pr != 1000000:
 			text += "<h5> PR: %s </h5>\n\n" % pr
 		else:
 			text += "<h5> PR: N/A </h5>\n\n"
