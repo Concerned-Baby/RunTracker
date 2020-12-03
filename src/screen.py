@@ -288,7 +288,7 @@ class myApplicationManager(object):
 			wrld = 223.13
 		elif event == "3200m":
 			wrld = 478.61
-		return not (time < wrld or time > (pow(wrld, 13/11) * 1.3))
+		return time > wrld and time < (pow(wrld, 13/11) * 1.3)
 
 
 	
