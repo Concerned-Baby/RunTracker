@@ -65,7 +65,7 @@ def selectNewHelp():
 	"""
 
 def aboutus():
-	return """RunTracker [v2.2.0] Is Developed By a Runner In Joint With a Coder.
+	return """RunTracker [v2.3.0] Is Developed By a Runner In Joint With a Coder.
 	Look At Other Similar Projects and Results At https://concerned-baby.github.io/
 	"""
 
