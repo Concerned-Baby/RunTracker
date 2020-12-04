@@ -527,6 +527,9 @@ class myApplicationManager(object):
 	def import_help(self):
 		self.goToScreen(self.frm_importHelp)
 
+	def deleteTimes_help(self):
+		self.goToScreen(self.frm_deleteTimesHelp)
+
 
 	"""
 	Setting Screens
@@ -1012,9 +1015,12 @@ class myApplicationManager(object):
 		btn_deleteTimes_save = tk.Button(master=self.frm_deleteTimes, text="remove", command=self.deleteTimes_go, width=10, height=1, borderwidth=3, relief="raised")
 		btn_deleteTimes_save.place(x=385, y=200)
 
+		btn_deleteTimes_help = tk.Button(master=self.frm_deleteTimes, text="Help", command=self.deleteTimes_help, width=5, height=1, borderwidth=3, relief="raised")
+		btn_deleteTimes_help.place(x=745, y=5)
+
 		"""ADVANCED RUNNER HELP SCREEN"""
 
-		self.frm_advancedHelp = Frame(self.window, "Advanced Window")
+		self.frm_advancedHelp = Frame(self.window, "Advanced Help")
 
 		lbl_advancedHelp_logo = tk.Label(master=self.frm_advancedHelp, text="Advanced Help")
 		lbl_advancedHelp_logo.place(x=365, y=0)
@@ -1024,6 +1030,19 @@ class myApplicationManager(object):
 
 		btn_advancedHelp_back = tk.Button(master=self.frm_advancedHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_advancedHelp_back.place(x=5, y=415)
+
+		"""DELETE TIME HELP"""
+
+		self.frm_deleteTimesHelp = Frame(self.window, "Delete Times Help")
+
+		lbl_deleteTimesHelp_logo = tk.Label(master=self.frm_deleteTimesHelp, text="Delete Times Help")
+		lbl_deleteTimesHelp_logo.place(x=365, y=0)
+
+		lbl_deleteTimesHelp_text = tk.Label(master=self.frm_deleteTimesHelp, text=longtext.deleteTimesHelp(), height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_deleteTimesHelp_text.place(x=100, y=32)
+
+		btn_deleteTimesHelp_back = tk.Button(master=self.frm_deleteTimesHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_deleteTimesHelp_back.place(x=5, y=415)
 
 
 	def setRunnerPage(self, runner):
@@ -1093,6 +1112,9 @@ class myApplicationManager(object):
 
 		self.lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="Select A Event", width=58, height=20, borderwidth=3, relief="ridge")
 		self.lbl_runner_eventInfo.place(x=200, y=80)
+
+
+
 
 	def setAdvancedPage(self):
 
