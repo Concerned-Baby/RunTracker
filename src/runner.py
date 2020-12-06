@@ -197,7 +197,7 @@ class Runner (object):
 		if time == 1000000:
 			score = 0
 		else:
-			score =  (a * pow((b - time), c))
+			score = a * pow((b - time), c)
 		try:
 			return max(score, 0)
 		except TypeError:
