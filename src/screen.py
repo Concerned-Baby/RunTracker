@@ -4,6 +4,7 @@ from stack import frameStack
 import longtext
 import tkinter as tk
 from tkinter import ttk
+from tkinter import filedialog
 from PIL import Image, ImageTk
 import webbrowser
 
@@ -451,6 +452,11 @@ class myApplicationManager(object):
 		for chk in toDelete:
 			print(chk["text"])
 			self.runnersDict[self.runner].removeTime(self.cbb_deleteTimes_events.get(), chk["text"])
+
+	def import_fileSelect(self):
+		self.toDo
+		file = filedialog.askopenfilename()
+		print(file)
 
 
 
@@ -985,6 +991,9 @@ class myApplicationManager(object):
 
 		self.txt_import_file = tk.Text(self.frm_import, height=2, width=30)
 		self.txt_import_file.place(x=300, y=300)
+
+		btn_fileSelect_go = tk.Button(master=self.frm_import, text="Select File", command=self.import_fileSelect, width=10, height=1, borderwidth=3, relief="raised")
+		btn_fileSelect_go.place(x=385, y=240)
 
 		lbl_import_logo = tk.Label(master=self.frm_import, text="Import")
 		lbl_import_logo.place(x=375, y=0)
