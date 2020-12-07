@@ -313,7 +313,6 @@ class myApplicationManager(object):
 		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.goToScreen(self.frm_editGoals)
 
-
 	def editGoals_back(self):
 		self.updateRunner()
 		self.back()
@@ -457,6 +456,10 @@ class myApplicationManager(object):
 		self.toDo
 		file = filedialog.askopenfilename()
 		print(file)
+		fileObject = open(file, "r")
+		self.txt_import_file.delete("1.0","end-1c")
+		self.txt_import_file.insert("end-1c", str(fileObject.readlines())) #not decoding properly
+		fileObject.close()
 
 
 
