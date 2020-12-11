@@ -72,7 +72,8 @@ def aboutus():
 def importHelp():
 	return """Here You Can Import Runners Based On a Given Format
 	Select a Format (From The Dropdown Menu) and Paste Parsable Text Into The Text Box
+	Otherwise You Can Select a File and Parse From There
 	"""
 
 def deleteTimesHelp():
-	return """Here You Can Delete Mistakly Inputed Times."""
+	return """Here You Can Delete Mistakly Inputed Times"""
