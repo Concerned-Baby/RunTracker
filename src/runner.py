@@ -5,7 +5,7 @@ from os import listdir
 from re import match
 from platform import system
 
-OTHERS = ["Long Jump"] #list of field events
+OTHERS = ["Long Jump", "Pole Vault"] #list of field events
 
 global changeD
 changeD = (system() == "macOS" or system() == "iOS")
