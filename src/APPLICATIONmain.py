@@ -23,8 +23,6 @@ create delete times option using scrollbar and
 
 remove goals
 
-select local file for import
-
 """
 
 
