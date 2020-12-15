@@ -74,7 +74,7 @@ class Runner (object):
 	def removeEvent(self, eventName):
 		fileName = getFileName([self.name, eventName])
 		if not self.hasEvent(eventName):
-			return "Event Already Not Exists"
+			return "Event Already Gone"
 		rename(fileName,  getNotVersion(fileName))
 		return "Event Removed"
 
