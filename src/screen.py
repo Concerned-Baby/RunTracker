@@ -18,7 +18,7 @@ Events = Sprints + Distance + Other
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
 
 
-def getLocalBest(eventName, runnersDict): #probs a issues with the new 0
+def getLocalBest(eventName, runnersDict):
 	bestMan = "N/A"
 	if eventName not in Other:
 		best = 1000000
