@@ -13,7 +13,7 @@ global possiblePredictions, possibleEvents, Sprints, Distance, Other
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]", "400m --> 800m [Best]"]
 Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
-Other = ["Long Jump"]
+Other = ["Long Jump", "Pole Vault"]
 Events = Sprints + Distance + Other
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
 
@@ -51,6 +51,14 @@ def format(time):
 		if (time < 60):
 			return "%.2f" % time
 		return ("%d:%2d.%2d" % (time / 60, time % 60, (time % 1) * 100)).replace(' ', "0")
+
+def unformat(inp):
+	try:
+		num = float(inp)
+		return num
+	except ValueError:
+		arr = inp.split(":")
+		return float(arr[0]) * 60 + float(arr[1])
 
 
 def getLocalBestGroup(events, runnersDict):
