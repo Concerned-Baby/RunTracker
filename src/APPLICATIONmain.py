@@ -35,7 +35,7 @@ def main():
 			print ("Error Creating Directory")
 	setUpDictionary()
 	window()
-	print("exited")
+	#print("exited")
 	
 
 def window():
