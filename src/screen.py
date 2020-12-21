@@ -147,7 +147,7 @@ class myApplicationManager(object):
 				if (index == 1): #200 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
 				if (index == 2): #300 --> 400
-					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 1.36) + 1.23))
+					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 1.37) + 1.23))
 				if (index == 3): #400 --> 800
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.33) + 6.3))
 
