@@ -21,7 +21,7 @@ update help menus
 
 create delete times option using scrollbar and 
 
-remove goals
+remove goals option
 
 """
 
