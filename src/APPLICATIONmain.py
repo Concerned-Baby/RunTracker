@@ -13,13 +13,9 @@ GlobalrunnersDict = {}
 """
 add formating for enterting times
 
-add units
-
 add needed help menues
 
 update help menus
-
-create delete times option using scrollbar and 
 
 remove goals option
 
