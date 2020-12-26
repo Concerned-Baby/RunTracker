@@ -269,7 +269,7 @@ class myApplicationManager(object):
 					else:
 						self.lbl_editTimes_output["text"] = result
 				else:
-					if self.lbl_editTimes_output["text"] == "Time is extreme, click 'GO!' again to confrim":
+					if self.lbl_editTimes_output["text"] == "Time is extreme, click 'GO!' again to confirm":
 						result = self.runnersDict[self.runner].newTime(index, float(time))
 						if (result == "Time Added"):
 							text = self.lbl_editTimes_output["text"]
@@ -280,7 +280,7 @@ class myApplicationManager(object):
 						else:
 							self.lbl_editTimes_output["text"] = result
 					else:
-						self.lbl_editTimes_output["text"] = "Time is bad, click 'add' again to confirm"
+						self.lbl_editTimes_output["text"] = "Time is extreme, click 'GO!' again to confirm"
 
 	def reasonableTime(self, event, time):
 		if event == "100m":
@@ -461,13 +461,15 @@ class myApplicationManager(object):
 			self.runnersDict[self.runner].removeTime(self.cbb_deleteTimes_events.get(), chk["text"])
 
 	def import_fileSelect(self):
-		self.toDo
 		file = filedialog.askopenfilename()
 		print(file)
-		fileObject = open(file, "r")
-		self.txt_import_file.delete("1.0","end-1c")
-		self.txt_import_file.insert("end-1c", str(fileObject.readlines())) #not decoding properly
-		fileObject.close()
+		try:
+			fileObject = open(file, "r")
+			self.txt_import_file.delete("1.0","end-1c")
+			self.txt_import_file.insert("end-1c", str(fileObject.readlines())) #not decoding properly
+			fileObject.close()
+		except FileNotFoundError:
+			pass
 
 
 
