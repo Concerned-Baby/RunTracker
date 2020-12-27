@@ -258,7 +258,7 @@ class myApplicationManager(object):
 			if (time == -1):
 				self.lbl_editTimes_output["text"] = "Enter A Time"
 			else:
-				if self.reasonableTime(index, float(time)):
+				if (self.reasonableTimeTrack(index, float(time)) and index not in Other) or (self.reasonableTimeEvent(index, float(time)) and index in Other):
 					result = self.runnersDict[self.runner].newTime(index, float(time))
 					if (result == "Time Added"):
 						text = self.lbl_editTimes_output["text"]
@@ -282,7 +282,7 @@ class myApplicationManager(object):
 					else:
 						self.lbl_editTimes_output["text"] = "Time is extreme, click 'GO!' again to confirm"
 
-	def reasonableTime(self, event, time):
+	def reasonableTimeTrack(self, event, time):
 		if event == "100m":
 			wrld = 9.58
 		elif event == "200m":
@@ -298,6 +298,13 @@ class myApplicationManager(object):
 		elif event == "3200m":
 			wrld = 478.61
 		return time > wrld and time < (pow(wrld, 13/11) * 1.3)
+
+	def reasonableTimeEvent(self, event, dist):
+		if event == "Pole Vault":
+			wrld = 20.18
+		if event == "Long Jump":
+			wrld = 29.35
+		return dist < wrld
 
 
 	
