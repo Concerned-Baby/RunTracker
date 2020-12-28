@@ -31,16 +31,12 @@ def main():
 			print ("Error Creating Directory")
 	setUpDictionary()
 	window()
-	#print("exited")
-	
 
 def window():
-	screen = myApplicationManager(GlobalrunnersDict)
-	screen.start()
+	myApplicationManager(GlobalrunnersDict).start()
 
 def setUpDictionary():
-	for runner in getRunnersNoTxt():
-			GlobalrunnersDict[runner] = Runner(runner)
+	GlobalrunnersDict = [Runner(runner) for runner in getRunnersNoTxt()]
 
 def getRunnersNoTxt():
 	system_ = system()
@@ -51,11 +47,7 @@ def getRunnersNoTxt():
 	else:
 		print ("Error: Platform Not Supported")
 		exit()
-	runners = listdir(location)
-	copy = []
-	for runner in runners:
-		copy.append(runner.replace(".txt", ""))
-	return copy
+	return [runner.replace(".txt", "") for runner in listdir(location)]
 
 if __name__ == "__main__":
 	main()

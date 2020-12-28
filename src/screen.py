@@ -302,7 +302,7 @@ class myApplicationManager(object):
 	def reasonableTimeEvent(self, event, dist):
 		if event == "Pole Vault":
 			wrld = 20.18
-		if event == "Long Jump":
+		elif event == "Long Jump":
 			wrld = 29.35
 		return dist < wrld
 
