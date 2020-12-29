@@ -247,7 +247,7 @@ class myApplicationManager(object):
 			else:
 				goals.sort()
 				for goal in goals:
-					text += ("-%s" % (format(goal)))
+					text += ("-%s\n" % (format(goal)))
 		return text
 
 	def editTimes_go(self):
