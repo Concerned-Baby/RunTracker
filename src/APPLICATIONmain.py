@@ -35,8 +35,9 @@ def main():
 def window():
 	myApplicationManager(GlobalrunnersDict).start()
 
-def setUpDictionary():
-	GlobalrunnersDict = [Runner(runner) for runner in getRunnersNoTxt()]
+def setUpDictionary():	
+	for runner in getRunnersNoTxt():		
+		GlobalrunnersDict[runner] = Runner(runner)
 
 def getRunnersNoTxt():
 	system_ = system()
@@ -47,7 +48,8 @@ def getRunnersNoTxt():
 	else:
 		print ("Error: Platform Not Supported")
 		exit()
-	return [runner.replace(".txt", "") for runner in listdir(location)]
+	print(listdir(location))
+	return [runner for runner in listdir(location)]
 
 if __name__ == "__main__":
 	main()
