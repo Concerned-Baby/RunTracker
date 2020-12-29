@@ -48,9 +48,10 @@ def getLocalBest(eventName, runnersDict):
 	return "ERROR"
 
 def format(time):
-		if (time < 60):
-			return "%.2f" % time
-		return ("%d:%2d.%2d" % (time / 60, time % 60, (time % 1) * 100)).replace(' ', "0")
+	time = float(time)
+	if (time < 60):
+		return "%.2f" % time
+	return ("%d:%2d.%2d" % (time / 60, time % 60, (time % 1) * 100)).replace(' ', "0")
 
 def unformat(inp):
 	try:
@@ -99,7 +100,7 @@ class myApplicationManager(object):
 		self.window.title("Run Tracker")
 
 		self.setScreens()
-
+		print(runnersDict)
 		self.stack = frameStack()
 		self.stack.push(self.frm_menu)
 
