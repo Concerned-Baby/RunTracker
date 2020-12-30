@@ -19,6 +19,8 @@ update help menus
 
 remove goals option
 
+can't repeat add goals
+
 """
 
 
