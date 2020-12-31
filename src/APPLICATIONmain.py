@@ -30,7 +30,7 @@ def main():
 		try:
 			mkdir("Runners")
 		except OSError:
-			print ("Error Creating Directory")
+			print ("Error Creating Runner Directory")
 	setUpDictionary()
 	window()
 
