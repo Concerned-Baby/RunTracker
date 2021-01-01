@@ -50,8 +50,7 @@ def getRunnersNoTxt():
 	else:
 		print ("Error: Platform Not Supported")
 		exit()
-	print(listdir(location))
-	return [runner for runner in listdir(location)]
+	return listdir(location)
 
 if __name__ == "__main__":
 	main()
