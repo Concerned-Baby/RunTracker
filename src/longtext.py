@@ -55,7 +55,7 @@ def editGoalsHelp():
 	"""
 
 def advancedHelp():
-	return """Here You Can Look At Some More Advanced Measures of Skill and Ability 
+	return """Here You Can Look At Some More Advanced Measures of Skill/Ability/Prowess or the Lack Thereof
 	Currently Limited To a Single Statistic Due To a Lack of Ideas
 	"""
 
