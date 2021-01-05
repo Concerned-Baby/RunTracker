@@ -792,7 +792,7 @@ class myApplicationManager(object):
 		lbl_editGoals_entryLabel = tk.Label(master=self.frm_editGoals, text="Enter Goal")
 		lbl_editGoals_entryLabel.place(x=362, y=200)
 
-		vcmd = (self.window.register(self.isFloatGoal), "%P") #research register command
+		vcmd = (self.window.register(self.isFloatGoal), "%P")
 
 		self.goalSetTime = tk.StringVar()
 		self.ent_editGoals_entry = tk.Entry(master=self.frm_editGoals, width=15, textvariable=self.goalSetTime, validate="all", validatecommand=vcmd)
