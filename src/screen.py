@@ -941,11 +941,6 @@ class myApplicationManager(object):
 		img.image = render
 		img.place(x=350, y=100)
 
-		"""
-		btn_aboutUs_link = tk.Button(master=self.frm_aboutUs, text="Sign-Up", fg="black", command=lambda e : self.openLink("https://docs.google.com/forms/d/e/1FAIpQLSeZnhioTnGge0TcwuVt7OQaIImhxUmXUbFjjZ-wp_ZDOf7ONA/viewform?usp=sf_link"), width=10,height=1, borderwidth=3, relief="raised")
-		btn_aboutUs_link.place(x=370, y=415)
-		"""
-
 		btn_aboutUs_back = tk.Button(master=self.frm_aboutUs, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_aboutUs_back.place(x=5,y=415)
 
@@ -1087,7 +1082,6 @@ class myApplicationManager(object):
 		self.lbl_runner_goalsPassed.place(x=450, y=40)
 
 		scr_runner_goals = tk.Scrollbar(master=self.frm_runner, background="green", width=100)
-		#scr_runner_goals.place(x=400, y=0)
 
 		mylist = tk.Listbox(master=self.frm_runner, yscrollcommand=scr_runner_goals.set, width=24, height=23) 
 
@@ -1167,7 +1161,3 @@ class myApplicationManager(object):
 
 		self.lbl_runnerAdvanced_pointSEvent = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=20, borderwidth=1, relief="solid")
 		self.lbl_runnerAdvanced_pointSEvent.place(x=20, y=98)
-
-
-
-
