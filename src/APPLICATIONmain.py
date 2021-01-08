@@ -23,7 +23,6 @@ can't repeat add goals
 
 """
 
-
 def main():
 	if not path.exists("Runners"):
 		try:

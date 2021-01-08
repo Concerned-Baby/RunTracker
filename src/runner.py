@@ -118,8 +118,10 @@ class Runner (object):
 
 	def newGoal(self, eventName, goal):
 		if self.hasEvent(eventName):
-			if ("%.2f" % goal) not in self.getGoalsEvent(eventName):
+			if ("%.2f\n" % goal) not in self.getGoalsEvent(eventName):
 				writeToFile(self.name, eventName, "goal", "%.2f\n" % goal)
+				print("%.2f\n" % goal)
+				print(self.getGoalsEvent(eventName))
 				return "Goal Added"
 			return "Goal Already Exists"
 		return "No Such Event"
