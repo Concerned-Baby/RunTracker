@@ -60,7 +60,7 @@ def editGoalsHelp():
 	return """
 	Here You Can Add Goals For A Runner
 	Just Select A Event and Enter A Goal And Hit Go
-	Feedback Will Appear In the Lower Box
+	Feedback On Operations Will Appear In the Lower Box
 	"""
 
 def advancedHelp():
@@ -71,7 +71,7 @@ def advancedHelp():
 
 def selectNewHelp():
 	return """
-	Here You Can Create New Runners and Add Times and Goals To The Given Runner
+	Here You Can Create New Runners and Add Times and Goals To The Given Runne
 	"""
 
 def aboutus():
