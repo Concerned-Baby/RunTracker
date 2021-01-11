@@ -71,7 +71,7 @@ def advancedHelp():
 
 def selectNewHelp():
 	return """
-	Here You Can Create New Runners and Add Times and Goals To The Given Runne
+	Here You Can Create New Runners and Add Times and Goals To The Given Runner
 	"""
 
 def aboutus():

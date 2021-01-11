@@ -11,15 +11,13 @@ global GlobalrunnersDict
 GlobalrunnersDict = {}
 
 """
-add formating for enterting times
+add formating for entering times
 
 add needed help menues
 
 update help menus
 
 remove goals option
-
-can't repeat add goals
 
 """
 
