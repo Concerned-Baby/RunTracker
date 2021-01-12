@@ -11,7 +11,6 @@ global GlobalrunnersDict
 GlobalrunnersDict = {}
 
 """
-add formating for entering times
 
 add needed help menues
 

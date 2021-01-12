@@ -32,7 +32,6 @@ def getLocalBest(eventName, runnersDict):
 			return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
 		else:
 			return("\nBest %s: %s \nBest %s'er: %s" % (eventName, format(best), eventName, bestMan))
-
 	else:
 		best = 0
 		for runner in runnersDict:
@@ -43,8 +42,7 @@ def getLocalBest(eventName, runnersDict):
 					bestMan = runner
 		if  best == 0:
 			return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
-		else:
-			return("\nBest %s: %.2f \nBest %s'er: %s" % (eventName, best, eventName, bestMan))
+		return("\nBest %s: %.2f \nBest %s'er: %s" % (eventName, best, eventName, bestMan))
 	return "ERROR"
 
 def format(time):
@@ -61,7 +59,6 @@ def unformat(inp):
 		arr = inp.split(":")
 		return float(arr[0]) * 60 + float(arr[1])
 
-
 def getLocalBestGroup(events, runnersDict):
 	text = ""
 	for event in events:
@@ -74,7 +71,6 @@ def getRankingsEvent(eventName, runnersDict):
 	for runner in runnersDict:
 		if runnersDict[runner].hasEvent(eventName):
 			temp[(runnersDict[runner].getPREvent(eventName))] = runner
-
 	count = 1
 	text = ""
 	for time in sorted(temp.keys()):
@@ -88,22 +84,18 @@ def getRankingsEvent(eventName, runnersDict):
 
 
 
-
 class myApplicationManager(object):
 	def __init__(self, runnersDict):
 		self.runnersDict = runnersDict
-		self.runnersList = []
-		for runner in self.runnersDict:
-			self.runnersList.append(runner)
+		self.runnersList = [runner for runner in self.runnersDict]
 		self.window = tk.Tk()
 		self.window.resizable(False, False)
 		self.window.title("Run Tracker")
 
 		self.setScreens()
-		print(runnersDict)
 		self.stack = frameStack()
-		self.stack.push(self.frm_menu)
 
+		self.stack.push(self.frm_menu)
 		self.frm_menu.pack()
 
 	def toDo(self):
@@ -127,7 +119,6 @@ class myApplicationManager(object):
 	"""
 
 
-
 	def start(self):
 		self.window.mainloop()
 
@@ -145,11 +136,11 @@ class myApplicationManager(object):
 			else:
 				if (index == 0): #100 --> 200
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) - 0.98))
-				if (index == 1): #200 --> 400
+				elif (index == 1): #200 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
-				if (index == 2): #300 --> 400
+				elif (index == 2): #300 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 1.37) + 1.23))
-				if (index == 3): #400 --> 800
+				elif (index == 3): #400 --> 800
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.33) + 6.3))
 
 	def editGoals_go(self):
@@ -173,7 +164,6 @@ class myApplicationManager(object):
 	
 	def openLink(self, url):
 		webbrowser.open_new(url)
-
 
 	def cbb_runner_event(self, runner, event):
 		self.lbl_runner_eventInfo["text"] = self.runnersDict[runner].getAllInfoEvent(event)
@@ -204,7 +194,7 @@ class myApplicationManager(object):
 		if toBe == "":
 			self.newRunnerName = ""
 			return True
-		if(toBe.isalpha()):
+		if toBe.isalpha():
 			self.newRunnerName = toBe
 			return True
 		return False
@@ -229,9 +219,9 @@ class myApplicationManager(object):
 		for event in events:
 			PR = runnerObj.getPREvent(event)
 			if PR == 1000000:
-				text += ("%s:  N/A\n\n" % (event))
+				text += "%s:  N/A\n\n" % (event)
 			else:
-				text += ("%s:  %s\n\n" % (event, format(PR)))
+				text += "%s:  %s\n\n" % (event, format(PR))
 		return text
 
 	def getAllGoals(self, runner):
