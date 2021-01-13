@@ -1031,6 +1031,16 @@ class myApplicationManager(object):
 		btn_deleteTimes_help = tk.Button(master=self.frm_deleteTimes, text="Help", command=self.deleteTimes_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_deleteTimes_help.place(x=745, y=5)
 
+		"""DELETE GOALS SCREEN"""
+
+		self.frm_deleteGoals = Frame(self.window, "Delete Goals")
+
+		lbl_deleteGoals_logo = tk.Label(master=self.frm_deleteGoals, text="Delete Goals")
+		lbl_deleteGoals_logo.place(x=370, y=0)
+
+		btn_deleteGoals_back = tk.Button(master=self.frm_deleteGoals, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_deleteGoals_back.place(x=5,y=415)
+
 		"""ADVANCED RUNNER HELP SCREEN"""
 
 		self.frm_advancedHelp = Frame(self.window, "Advanced Help")
