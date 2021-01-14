@@ -547,6 +547,9 @@ class myApplicationManager(object):
 	def deleteTimes_help(self):
 		self.goToScreen(self.frm_deleteTimesHelp)
 
+	def runner_deleteGoal(self):
+		self.goToScreen(self.frm_deleteGoals)
+
 
 	"""
 	Setting Screens
@@ -1067,11 +1070,10 @@ class myApplicationManager(object):
 		btn_deleteTimesHelp_back = tk.Button(master=self.frm_deleteTimesHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_deleteTimesHelp_back.place(x=5, y=415)
 
+	"""RUNNER SCREEN"""
 
 	def setRunnerPage(self, runner):
 		self.runner = runner
-
-		"""RUNNER SCREEN"""
 
 		self.frm_runner = Frame(self.window, "Runner")
 
@@ -1123,6 +1125,9 @@ class myApplicationManager(object):
 
 		btn_runner_deleteTime = tk.Button(master=self.frm_runner, command=self.runner_deleteTime, text="delete time", width=12, height=1, borderwidth=3, relief="raised")
 		btn_runner_deleteTime.place(x=510, y=415)
+
+		btn_runner_deleteTime = tk.Button(master=self.frm_runner, command=self.runner_deleteGoal, text="delete goal", width=12, height=1, borderwidth=3, relief="raised")
+		btn_runner_deleteTime.place(x=610, y=415)
  
 
 		self.cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())
