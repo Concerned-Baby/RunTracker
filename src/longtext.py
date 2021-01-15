@@ -89,3 +89,8 @@ def deleteTimesHelp():
 	return """
 	Here You Can Delete Mistakly Inputed Times
 	"""
+
+def deleteGoalsHelp():
+	return """
+	Here You Can Delete Mistakly Inputed Goals
+	"""

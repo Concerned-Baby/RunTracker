@@ -1051,13 +1051,13 @@ class myApplicationManager(object):
 
 		self.frm_deleteGoalsHelp = Frame(self.window, "Delete Goals Help")
 
-		lbl_deleteGoalsHelp_logo = tk.Label(master=self.frm_advancedHelp, text="Advanced Help")
+		lbl_deleteGoalsHelp_logo = tk.Label(master=self.frm_deleteGoalsHelp, text="Delete Goals Help")
 		lbl_deleteGoalsHelp_logo.place(x=365, y=0)
 
-		lbl_deleteGoalsHelp_text = tk.Label(master=self.frm_advancedHelp, text=longtext.advancedHelp(), height=25, width=81, borderwidth=3, relief="ridge")
+		lbl_deleteGoalsHelp_text = tk.Label(master=self.frm_deleteGoalsHelp, text=longtext.deleteGoalsHelp(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_deleteGoalsHelp_text.place(x=100, y=32)
 
-		btn_deleteGoalsHelp_back = tk.Button(master=self.frm_advancedHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_deleteGoalsHelp_back = tk.Button(master=self.frm_deleteGoalsHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_deleteGoalsHelp_back.place(x=5, y=415)
 
 		"""ADVANCED RUNNER HELP SCREEN"""
@@ -1073,7 +1073,7 @@ class myApplicationManager(object):
 		btn_advancedHelp_back = tk.Button(master=self.frm_advancedHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_advancedHelp_back.place(x=5, y=415)
 
-		"""DELETE TIME HELP"""
+		"""DELETE TIME HELP SCREEN"""
 
 		self.frm_deleteTimesHelp = Frame(self.window, "Delete Times Help")
 
