@@ -443,6 +443,9 @@ class myApplicationManager(object):
 					pass #TODO stop, load next screen somehow
 			self.deleteTimes_currentOn.append(chk)
 
+	def cbb_deleteGoals_go(self, event):
+		self.toDo()
+
 	def deleteTimes_go(self):
 		print("go")
 		toDelete = []
@@ -457,6 +460,10 @@ class myApplicationManager(object):
 		for chk in toDelete:
 			print(chk["text"])
 			self.runnersDict[self.runner].removeTime(self.cbb_deleteTimes_events.get(), chk["text"])
+
+	def deleteGoal_go(self):
+		print("deleting goals")
+		self.toDo()
 
 	def import_fileSelect(self):
 		file = filedialog.askopenfilename()
@@ -549,6 +556,8 @@ class myApplicationManager(object):
 
 	def runner_deleteGoal(self):
 		self.goToScreen(self.frm_deleteGoals)
+
+
 
 
 	"""
@@ -1043,6 +1052,19 @@ class myApplicationManager(object):
 
 		btn_deleteGoals_back = tk.Button(master=self.frm_deleteGoals, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_deleteGoals_back.place(x=5,y=415)
+
+		self.cbb_deleteGoals_events = ttk.Combobox(master=self.frm_deleteGoals, state="readonly", values=["Loading Error"])
+		self.cbb_deleteGoals_events.place(x=370, y=100)
+
+		def callback(eventObject):
+			self.cbb_deleteGoals_go(self.cbb_deleteGoals_events.get())
+		self.cbb_deleteGoals_events.bind("<<ComboboxSelected>>", callback)
+
+		self.runnerGoals = []
+		self.deleteGoals_currentOn = []
+
+		btn_deleteGoals_save = tk.Button(master=self.frm_deleteGoals, text="remove", command=self.deleteGoal_go, width=10, height=1, borderwidth=3, relief="raised")
+		btn_deleteGoals_save.place(x=385, y=200)
 
 		btn_deleteGoals_help = tk.Button(master=self.frm_deleteGoals, text="Help", command=self.deleteGoals_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_deleteGoals_help.place(x=745, y=5)
