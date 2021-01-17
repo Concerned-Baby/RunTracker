@@ -444,7 +444,29 @@ class myApplicationManager(object):
 			self.deleteTimes_currentOn.append(chk)
 
 	def cbb_deleteGoals_go(self, event):
-		self.toDo()
+		print(self.runner)
+		print(event)
+		self.runnerGoals = self.runnersDict[self.runner].getGoalsEvent(event)
+		print(self.runnerTimes)
+		x = 120
+		y = 120
+		Ystep = 15
+		Xstep = 50
+		yMax = y + Ystep * 20
+		xMax = x + Xstep * 10
+		for toRemove in self.deleteGoals_currentOn:
+			toRemove.place_forget()
+		for goal in self.runnerGoals:
+			chk = ttk.Checkbutton(master=self.frm_deleteGoals, text=goal.strip())
+			chk.state(["!alternate"])
+			chk.place(x=x, y=y)
+			y += Ystep
+			if y >= yMax:
+				y = 120
+				x += Xstep
+				if x >= xMax:
+					pass #TODO stop, load next screen somehow
+			self.deleteGoals_currentOn.append(chk)
 
 	def deleteTimes_go(self):
 		print("go")
@@ -475,8 +497,6 @@ class myApplicationManager(object):
 			fileObject.close()
 		except FileNotFoundError:
 			pass
-
-
 
 
 	"""
@@ -556,8 +576,6 @@ class myApplicationManager(object):
 
 	def runner_deleteGoal(self):
 		self.goToScreen(self.frm_deleteGoals)
-
-
 
 
 	"""
