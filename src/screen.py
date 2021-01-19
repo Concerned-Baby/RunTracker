@@ -485,7 +485,18 @@ class myApplicationManager(object):
 
 	def deleteGoal_go(self):
 		print("deleting goals")
-		self.toDo()
+		toDelete = []
+		print("start " + str(toDelete))
+		for chk in self.deleteGoals_currentOn:
+			try:
+				if (str(chk.state()).index("selected") > -1):
+					toDelete.append(chk)
+			except ValueError:
+				print("pass")
+		print("end " + str(toDelete))
+		for chk in toDelete:
+			print(chk["text"])
+			self.runnersDict[self.runner].removeGoal(self.cbb_deleteTimes_events.get(), chk["text"])
 
 	def import_fileSelect(self):
 		file = filedialog.askopenfilename()
