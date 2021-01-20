@@ -20,6 +20,12 @@ remove goals option
 
 """
 
+"""
+ERRORS:
+FileNotFoundError: [Errno 2] No such file or directory: 'Runners\\Nathaniel\\\\goal.txt'
+
+"""
+
 def main():
 	if not path.exists("Runners"):
 		try:
