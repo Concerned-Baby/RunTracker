@@ -22,7 +22,7 @@ def readFileLBL(name, event, eType):
 	if changeD:
 		myFile = open("Runners/%s/%s/%s.txt" % (name,event, eType), "r")
 	else:
-		myFile = open("Runners\\%s\\%s\\%s.txt" % (name,event, eType), "r")
+		myFile = open("Runners\\%s\\%s\\%s.txt" % (name, event, eType), "r")
 	lines = myFile.readlines()
 	myFile.close()
 	return lines
@@ -127,8 +127,10 @@ class Runner (object):
 		return "No Such Event"
 
 	def removeGoal(self, eventName, goal):
+		print(eventName)
 		goals = self.getGoalsEvent(eventName)
 		self.clearEvent(eventName, "goal")
+		print(eventName)
 		for oldGoal in goals:
 			if oldGoal != time:
 				self.newGoal(eventName, oldGoal)
@@ -137,6 +139,7 @@ class Runner (object):
 
 
 	def getGoalsEvent(self, eventName):
+		print(eventName + "name")
 		lines = readFileLBL(self.name, eventName, "goal")
 		return lines
 		

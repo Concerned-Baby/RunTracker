@@ -18,6 +18,7 @@ Events = Sprints + Distance + Other
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
 
 
+
 def getLocalBest(eventName, runnersDict):
 	bestMan = "N/A"
 	if eventName not in Other:
@@ -111,6 +112,7 @@ class myApplicationManager(object):
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
 		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_deleteTimes_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.cbb_deleteGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 
 
 
@@ -587,6 +589,9 @@ class myApplicationManager(object):
 
 	def runner_deleteGoal(self):
 		self.goToScreen(self.frm_deleteGoals)
+
+	def deleteGoals_help(self):
+		self.goToScreen(self.frm_deleteGoalsHelp)
 
 
 	"""
