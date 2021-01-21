@@ -120,7 +120,6 @@ class myApplicationManager(object):
 	Methods That Actually Do Something
 	"""
 
-
 	def start(self):
 		self.window.mainloop()
 
@@ -229,7 +228,6 @@ class myApplicationManager(object):
 	def getAllGoals(self, runner):
 		runnerObj = self.runnersDict[runner]
 		events = runnerObj.getEvents()
-
 		text = ""
 		for event in events:
 			text += ("\n%s: \n" % (event))
@@ -297,7 +295,7 @@ class myApplicationManager(object):
 			wrld = 20.18
 		elif event == "Long Jump":
 			wrld = 29.35
-		return dist < wrld
+		return dist < wrld and time > wrld * 0.05
 
 
 	
