@@ -87,10 +87,10 @@ def importHelp():
 
 def deleteTimesHelp():
 	return """
-	Here You Can Delete Mistakly Inputed Times, just select the checkbox and hit 'save'
+	Here You Can Delete Mistakly Inputed Times, Just Select the Checkbox and Hit 'save'
 	"""
 
 def deleteGoalsHelp():
 	return """
-	Here You Can Delete Mistakly Inputed Goals, just select the checkbox and hit 'save'
+	Here You Can Delete Mistakly Inputed Goals, Just Select the Checkbox and Hit 'save'
 	"""
