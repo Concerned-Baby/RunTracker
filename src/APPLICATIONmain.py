@@ -11,6 +11,7 @@ global GlobalrunnersDict
 GlobalrunnersDict = {}
 
 """
+TODO:
 
 add needed help menues
 
@@ -23,6 +24,7 @@ remove goals option
 """
 ERRORS:
 FileNotFoundError: [Errno 2] No such file or directory: 'Runners\\Nathaniel\\\\goal.txt'
+- lacking an event
 
 """
 
