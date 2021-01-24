@@ -86,6 +86,7 @@ class Runner (object):
 		
 	def newTime(self, eventName, time):
 		if self.hasEvent(eventName):
+			time = float(time)
 			if ("%.2f" % time) not in self.getTimesEvent(eventName):
 				writeToFile(self.name, eventName, "time", "%.2f\n" % time)
 				return "Time Added"

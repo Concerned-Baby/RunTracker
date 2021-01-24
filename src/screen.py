@@ -200,9 +200,7 @@ class myApplicationManager(object):
 		if toBe.isalpha():
 			self.newRunnerName = toBe
 			return True
-		return False
-
-			
+		return False		
 		
 	def isFloat(self, toBe):
 		if toBe == "":
@@ -244,7 +242,7 @@ class myApplicationManager(object):
 
 	def editTimes_go(self):
 		index = self.cbb_editTimes_events.get()
-		if (index == ""):
+		if index == "":
 			self.lbl_editTimes_output["text"] = "Select A Event"
 		else:
 			time = self.ranTime
@@ -298,8 +296,6 @@ class myApplicationManager(object):
 		elif event == "Long Jump":
 			wrld = 29.35
 		return dist < wrld and time > wrld * 0.05
-
-
 	
 	def editEvents_save(self):
 		runnerObj = self.runnersDict[self.runner]
@@ -353,7 +349,6 @@ class myApplicationManager(object):
 					checkBox.state(["selected"])
 			else:
 				checkBox.state(['!selected'])
-
 		self.goToScreen(self.frm_editEvents)
 
 	def updateAdvanced(self):

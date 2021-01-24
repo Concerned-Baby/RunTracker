@@ -26,6 +26,8 @@ ERRORS:
 FileNotFoundError: [Errno 2] No such file or directory: 'Runners\\Nathaniel\\\\goal.txt'
 - lacking an event
 
+not deleteing times
+
 """
 
 def main():
