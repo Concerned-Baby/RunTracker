@@ -19,6 +19,8 @@ update help menus
 
 remove goals option
 
+need to update runner after deletions + additions
+
 """
 
 """
@@ -26,7 +28,6 @@ ERRORS:
 FileNotFoundError: [Errno 2] No such file or directory: 'Runners\\Nathaniel\\\\goal.txt'
 - lacking an event
 
-not deleteing times
 
 """
 

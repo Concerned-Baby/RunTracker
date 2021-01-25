@@ -97,8 +97,10 @@ class Runner (object):
 	def removeTime(self, eventName, time):
 		times = self.getTimesEvent(eventName)
 		self.clearEvent(eventName, "time")
+		print(str(times) + " <-- times")
 		for oldTime in times:
-			if not oldTime == time:
+			print(oldTime + " : " + time)
+			if not oldTime == time+"\n":
 				self.newTime(eventName, oldTime)
 			else:
 				print("removed: " + str(oldTime))
