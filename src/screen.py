@@ -493,7 +493,8 @@ class myApplicationManager(object):
 		print("end " + str(toDelete))
 		for chk in toDelete:
 			print(chk["text"])
-			self.runnersDict[self.runner].removeGoal(self.cbb_deleteTimes_events.get(), chk["text"])
+			print("screen event" + self.cbb_deleteGoals_events.get()) #returning "\n"
+			self.runnersDict[self.runner].removeGoal(self.cbb_deleteGoals_events.get(), chk["text"])
 
 	def import_fileSelect(self):
 		file = filedialog.askopenfilename()

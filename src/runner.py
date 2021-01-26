@@ -121,8 +121,8 @@ class Runner (object):
 
 	def newGoal(self, eventName, goal):
 		if self.hasEvent(eventName):
-			if ("%.2f\n" % goal) not in self.getGoalsEvent(eventName):
-				writeToFile(self.name, eventName, "goal", "%.2f\n" % goal)
+			if (goal) not in self.getGoalsEvent(eventName):
+				writeToFile(self.name, eventName, "goal",  goal)
 				print("%.2f\n" % goal)
 				print(self.getGoalsEvent(eventName))
 				return "Goal Added"
@@ -130,12 +130,12 @@ class Runner (object):
 		return "No Such Event"
 
 	def removeGoal(self, eventName, goal):
-		print(eventName)
+		print("remove event" + eventName) #empty
 		goals = self.getGoalsEvent(eventName)
 		self.clearEvent(eventName, "goal")
 		print(eventName)
 		for oldGoal in goals:
-			if oldGoal != time:
+			if oldGoal != goal:
 				self.newGoal(eventName, oldGoal)
 			else:
 				print("removed: " + str(oldGoal))
