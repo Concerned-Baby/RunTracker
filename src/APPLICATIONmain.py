@@ -21,12 +21,12 @@ remove goals option
 
 need to update runner after deletions + additions
 
+need to account for both string + int inputs for time/goal managing
+
 """
 
 """
 ERRORS:
-FileNotFoundError: [Errno 2] No such file or directory: 'Runners\\Nathaniel\\\\goal.txt'
-- lacking an event
 
 
 """
