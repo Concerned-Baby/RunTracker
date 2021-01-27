@@ -22,12 +22,12 @@ remove goals option
 need to update runner after deletions + additions
 
 need to account for both string + int inputs for time/goal managing
+	-use things like time = int(time)
 
 """
 
 """
 ERRORS:
-
 
 """
 
@@ -49,9 +49,9 @@ def setUpDictionary():
 
 def getRunnersNoTxt():
 	system_ = system()
-	if (system_ == "Windows" or system_ == "Android" or system_ == "Linux"):
+	if system_ == "Windows" or system_ == "Android" or system_ == "Linux":
 		location = "%s\\Runners" % getcwd()
-	elif (system_ == "macOS" or system_ == "iOS"):
+	elif system_ == "macOS" or system_ == "iOS":
 		location = "%s/Runners" % getcwd()
 	else:
 		print("Error: Platform Not Supported")

@@ -43,7 +43,7 @@ def getLocalBest(eventName, runnersDict):
 				if pr > best:
 					best = pr
 					bestMan = runner
-		if  best == 0:
+		if best == 0:
 			return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
 		return("\nBest %s: %.2f \nBest %s'er: %s" % (eventName, best, eventName, bestMan))
 	return "ERROR"
@@ -509,7 +509,7 @@ class myApplicationManager(object):
 
 
 	"""
-	Method That Change Screens (Also Updates A Few)
+	Method That Change Screens
 	"""
 
 	def goToScreen(self, frame):
