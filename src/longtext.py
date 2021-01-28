@@ -4,7 +4,7 @@ def bestHelp():
 
 	You Can't Do Anything About It
 
-	(Give Time To Update)
+	(This Doesn't Refresh Immediately)
 	"""
 
 def predictorHelp():
@@ -26,7 +26,7 @@ def predictorHelp():
 
 def menuHelp():
 	return """
-	This Is A Program to Help You Keep "Track"(pun intended) Of Everything
+	This Is A Program to Help You Keep "Track" Of Everything
 	
 	Click Any Button To Get Started, Read The Help On Each Page If Needed
 	"""
