@@ -24,6 +24,8 @@ need to update runner after deletions + additions
 need to account for both string + int inputs for time/goal managing
 	-use things like time = int(time)
 
+upadte getters to allow proper typign
+
 """
 
 """
