@@ -143,16 +143,15 @@ class Runner (object):
 			else:
 				print("removed: " + str(oldGoal))
 
-
+	#return List<double>
 	def getGoalsEvent(self, eventName):
-		print(eventName + "name")
-		lines = readFileLBL(self.name, eventName, "goal")
-		return lines
-		
+		return [float(goal.strip()) for goal in readFileLBL(self.name, eventName, "goal")]
+	
+	#return List<double>
 	def getTimesEvent(self, eventName):
-		lines = readFileLBL(self.name, eventName, "time")
-		return lines
-		
+		return [float(time.strip()) for time in readFileLBL(self.name, eventName, "time")]
+	
+	#return double	
 	def getPRFieldEvent(self, eventName):
 		times = self.getTimesEvent(eventName)
 		if len(times) == 0:
@@ -162,6 +161,7 @@ class Runner (object):
 			PR = max(PR, float(time))
 		return PR
 
+	#return double
 	def getPREvent(self, eventName):
 		times = self.getTimesEvent(eventName)
 		if eventName in OTHERS:
@@ -174,6 +174,7 @@ class Runner (object):
 				PR = min(PR, float(time))
 		return PR
 
+	#return int
 	def getGoalsPassedEvent(self, eventName):
 		PR = self.getPREvent(eventName)
 		goals  = self.getGoalsEvent(eventName)
@@ -183,6 +184,7 @@ class Runner (object):
 				passed += 1
 		return passed
 
+	#return int
 	def getAllGoalsPassed(self):
 		goalsPassed = 0
 		events = self.getEvents()
@@ -190,6 +192,7 @@ class Runner (object):
 			goalsPassed += self.getGoalsPassedEvent(event)
 		return goalsPassed
 
+	#return double
 	def getAveragePoints(self):
 		points = self.getTotalPoints()
 		try:
