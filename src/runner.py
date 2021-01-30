@@ -197,6 +197,7 @@ class Runner (object):
 		except ZeroDivisionError:
 			return 0
 
+	#return int
 	def getTotalPoints(self):
 		points = 0
 		events = self.getEvents()
@@ -204,6 +205,7 @@ class Runner (object):
 			points += self.getPointsEvent(event)
 		return points
 
+	#return double
 	def calculatePoints(self, a, b, c, time):
 		if time == 1000000:
 			score = 0
@@ -214,6 +216,7 @@ class Runner (object):
 		except TypeError:
 			return 0
 
+	#return double
 	def getPointsEvent(self, event):
 		if event == "100m":
 			return self.calculatePoints(25.43471, 18, 1.81, self.getPREvent("100m"))
@@ -229,6 +232,7 @@ class Runner (object):
 			return self.calculatePoints(0.029828, 512, 1.85, self.getPREvent("1600m"))
 		return 0
 
+	#return String
 	def getAllPoints(self):
 		events = self.getEvents()
 		text = ""
@@ -237,7 +241,7 @@ class Runner (object):
 		return text
 
 
-
+	#return String
 	def getAllInfoEvent(self, eventName):
 		toPrint = ""
 		pr = self.getPREvent(eventName)
@@ -259,6 +263,7 @@ class Runner (object):
 			toPrint += time + "\n"
 		return toPrint
 
+	#return String
 	def toHTMLEvent(self, eventName):
 		text =  "<h3> %s </h3>\n\n" % eventName
 		pr = self.getPREvent(eventName)
