@@ -18,9 +18,6 @@ def predictorHelp():
 	(From The First Event Given In The Selected Transformation)
 	3) Click GO!
 
-	Note:
-	[Best] 		| Best Time Achieveable Within a Season
-
 	The Predicted Time For The Second Event Will Appear In The Lower Text Box
 	"""
 
