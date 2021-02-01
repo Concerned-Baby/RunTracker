@@ -10,6 +10,7 @@ OTHERS = ["Long Jump", "Pole Vault"] #list of field events
 global changeD
 changeD = (system() == "macOS" or system() == "iOS")
 
+#return None
 def writeToFile(name, event, eType, text):
 	if changeD:
 		myFile = open("Runners/%s/%s/%s.txt" % (name,event, eType), "a")
@@ -18,6 +19,7 @@ def writeToFile(name, event, eType, text):
 	myFile.write(text)
 	myFile.close()
 
+#return List<String>
 def readFileLBL(name, event, eType):
 	if changeD:
 		myFile = open("Runners/%s/%s/%s.txt" % (name,event, eType), "r")
@@ -27,10 +29,12 @@ def readFileLBL(name, event, eType):
 	myFile.close()
 	return lines
 
+#return boolean
 def fileExists(directs):
 	fileName = getFileName(directs)
 	return path.exists(fileName)
 
+#return String
 def getFileName(directs):
 	fileName = "Runners"
 	fileSep = ""
@@ -43,6 +47,7 @@ def getFileName(directs):
 		fileName += fileSep + direct
 	return fileName
 
+#return String
 def getNotVersion(fileName):
 	ind = 0
 	if (changeD):
@@ -58,6 +63,7 @@ class Runner (object):
 		if not fileExists([self.name]):
 			mkdir(getFileName([self.name]))
 
+	return String
 	def newEvent(self, eventName):
 		fileName = getFileName([self.name, eventName])
 		notV = getNotVersion(fileName)
@@ -71,6 +77,7 @@ class Runner (object):
 			open(getFileName([self.name, eventName, "time.txt"]), "x").close()
 		return "Event Added"
 
+	#return String
 	def removeEvent(self, eventName):
 		fileName = getFileName([self.name, eventName])
 		if not self.hasEvent(eventName):
@@ -78,12 +85,15 @@ class Runner (object):
 		rename(fileName,  getNotVersion(fileName))
 		return "Event Removed"
 
+	#return List<String>
 	def getEvents(self):
 		return listdir(getFileName([self.name]))
 
+	#return boolean
 	def hasEvent(self, eventName):
 		return eventName in self.getEvents()
-		
+	
+	#return String
 	def newTime(self, eventName, time):
 		if self.hasEvent(eventName):
 			time = float(time.strip())
@@ -94,6 +104,7 @@ class Runner (object):
 				return "Time Already Exists"
 		return "No Such Event"
 
+	#return None
 	def removeTime(self, eventName, time):
 		time = float(time.strip())
 		times = self.getTimesEvent(eventName)
@@ -105,7 +116,7 @@ class Runner (object):
 				self.newTime(eventName, oldTime)
 			else:
 				print("removed: " + str(oldTime))
-
+	#return None
 	def clearEvent(self, eventName, portion):
 		if portion == "time":
 			print("clearing times")
@@ -119,7 +130,7 @@ class Runner (object):
 			myFile = open("Runners\\%s\\%s\\%s.txt" % (self.name, eventName, eType), "w")
 		myFile.close()
 
-
+	#return String
 	def newGoal(self, eventName, goal):
 		if self.hasEvent(eventName):
 			goal = float(goal.strip())
@@ -131,6 +142,7 @@ class Runner (object):
 			return "Goal Already Exists"
 		return "No Such Event"
 
+	#return None
 	def removeGoal(self, eventName, goal):
 		print("remove event" + eventName) #empty
 		goals = self.getGoalsEvent(eventName)
