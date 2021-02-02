@@ -11,6 +11,7 @@ global changeD
 changeD = (system() == "macOS" or system() == "iOS")
 
 #return None
+#param String, String, String, String
 def writeToFile(name, event, eType, text):
 	if changeD:
 		myFile = open("Runners/%s/%s/%s.txt" % (name,event, eType), "a")
@@ -20,6 +21,7 @@ def writeToFile(name, event, eType, text):
 	myFile.close()
 
 #return List<String>
+#param String, String, String
 def readFileLBL(name, event, eType):
 	if changeD:
 		myFile = open("Runners/%s/%s/%s.txt" % (name,event, eType), "r")
@@ -30,11 +32,13 @@ def readFileLBL(name, event, eType):
 	return lines
 
 #return boolean
+#param String
 def fileExists(directs):
 	fileName = getFileName(directs)
 	return path.exists(fileName)
 
 #return String
+#param String
 def getFileName(directs):
 	fileName = "Runners"
 	fileSep = ""
@@ -48,6 +52,7 @@ def getFileName(directs):
 	return fileName
 
 #return String
+#param String
 def getNotVersion(fileName):
 	ind = 0
 	if (changeD):

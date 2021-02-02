@@ -20,7 +20,7 @@ Events = Sprints + Distance + Other
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
 
 
-
+#return String
 def getLocalBest(eventName, runnersDict):
 	bestMan = "N/A"
 	if eventName not in Other:
