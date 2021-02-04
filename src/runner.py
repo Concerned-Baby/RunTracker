@@ -63,12 +63,15 @@ def getNotVersion(fileName):
 	return fileName
 
 class Runner (object):
+	#return None
+	#param String
 	def __init__(self, name):
 		self.name = name 
 		if not fileExists([self.name]):
 			mkdir(getFileName([self.name]))
 
-	return String
+	#return String
+	#param String
 	def newEvent(self, eventName):
 		fileName = getFileName([self.name, eventName])
 		notV = getNotVersion(fileName)
@@ -83,6 +86,7 @@ class Runner (object):
 		return "Event Added"
 
 	#return String
+	#param String
 	def removeEvent(self, eventName):
 		fileName = getFileName([self.name, eventName])
 		if not self.hasEvent(eventName):
@@ -91,14 +95,17 @@ class Runner (object):
 		return "Event Removed"
 
 	#return List<String>
+	#param None
 	def getEvents(self):
 		return listdir(getFileName([self.name]))
 
 	#return boolean
+	#param String
 	def hasEvent(self, eventName):
 		return eventName in self.getEvents()
 	
 	#return String
+	#param String, String
 	def newTime(self, eventName, time):
 		if self.hasEvent(eventName):
 			time = float(time.strip())
@@ -110,6 +117,7 @@ class Runner (object):
 		return "No Such Event"
 
 	#return None
+	#param String String
 	def removeTime(self, eventName, time):
 		time = float(time.strip())
 		times = self.getTimesEvent(eventName)
