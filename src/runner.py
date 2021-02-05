@@ -130,6 +130,7 @@ class Runner (object):
 			else:
 				print("removed: " + str(oldTime))
 	#return None
+	#param String, String 
 	def clearEvent(self, eventName, portion):
 		if portion == "time":
 			print("clearing times")
@@ -144,6 +145,7 @@ class Runner (object):
 		myFile.close()
 
 	#return String
+	#param String, String
 	def newGoal(self, eventName, goal):
 		if self.hasEvent(eventName):
 			goal = float(goal.strip())
@@ -156,12 +158,13 @@ class Runner (object):
 		return "No Such Event"
 
 	#return None
+	#param String, String
 	def removeGoal(self, eventName, goal):
 		print("remove event" + eventName) #empty
 		goals = self.getGoalsEvent(eventName)
 		self.clearEvent(eventName, "goal")
 		print(eventName)
-		goal = goal = float(goal.strip())
+		goal = float(goal.strip())
 		for oldGoal in goals:
 			if oldGoal != goal:
 				self.newGoal(eventName, oldGoal)
@@ -169,14 +172,17 @@ class Runner (object):
 				print("removed: " + str(oldGoal))
 
 	#return List<double>
+	#param String
 	def getGoalsEvent(self, eventName):
 		return [float(goal.strip()) for goal in readFileLBL(self.name, eventName, "goal")]
 	
 	#return List<double>
+	#param String
 	def getTimesEvent(self, eventName):
 		return [float(time.strip()) for time in readFileLBL(self.name, eventName, "time")]
 	
 	#return double	
+	#param String
 	def getPRFieldEvent(self, eventName):
 		times = self.getTimesEvent(eventName)
 		if len(times) == 0:
@@ -187,6 +193,7 @@ class Runner (object):
 		return PR
 
 	#return double
+	#param String
 	def getPREvent(self, eventName):
 		times = self.getTimesEvent(eventName)
 		if eventName in OTHERS:
@@ -200,6 +207,7 @@ class Runner (object):
 		return PR
 
 	#return int
+	#param String
 	def getGoalsPassedEvent(self, eventName):
 		PR = self.getPREvent(eventName)
 		goals  = self.getGoalsEvent(eventName)
@@ -210,6 +218,7 @@ class Runner (object):
 		return passed
 
 	#return int
+	#param None
 	def getAllGoalsPassed(self):
 		goalsPassed = 0
 		events = self.getEvents()
@@ -218,6 +227,7 @@ class Runner (object):
 		return goalsPassed
 
 	#return double
+	#param None
 	def getAveragePoints(self):
 		points = self.getTotalPoints()
 		try:
@@ -226,6 +236,7 @@ class Runner (object):
 			return 0
 
 	#return int
+	#param None
 	def getTotalPoints(self):
 		points = 0
 		events = self.getEvents()
@@ -234,6 +245,7 @@ class Runner (object):
 		return points
 
 	#return double
+	#param double, double, double, double
 	def calculatePoints(self, a, b, c, time):
 		if time == 1000000:
 			score = 0
@@ -245,6 +257,7 @@ class Runner (object):
 			return 0
 
 	#return double
+	#param String
 	def getPointsEvent(self, event):
 		if event == "100m":
 			return self.calculatePoints(25.43471, 18, 1.81, self.getPREvent("100m"))
@@ -261,6 +274,7 @@ class Runner (object):
 		return 0
 
 	#return String
+	#param None
 	def getAllPoints(self):
 		events = self.getEvents()
 		text = ""
@@ -270,6 +284,7 @@ class Runner (object):
 
 
 	#return String
+	#param String
 	def getAllInfoEvent(self, eventName):
 		toPrint = ""
 		pr = self.getPREvent(eventName)
@@ -292,6 +307,7 @@ class Runner (object):
 		return toPrint
 
 	#return String
+	#param String
 	def toHTMLEvent(self, eventName):
 		text =  "<h3> %s </h3>\n\n" % eventName
 		pr = self.getPREvent(eventName)
