@@ -21,6 +21,7 @@ supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Ti
 
 
 #return String
+#param String, Dictionary<String, Runner>
 def getLocalBest(eventName, runnersDict):
 	bestMan = "N/A"
 	if eventName not in Other:
@@ -48,12 +49,16 @@ def getLocalBest(eventName, runnersDict):
 		return("\nBest %s: %.2f \nBest %s'er: %s" % (eventName, best, eventName, bestMan))
 	return "ERROR"
 
+#return String
+#param double
 def format(time):
 	time = float(time)
 	if (time < 60):
 		return "%.2f" % time
 	return ("%d:%2d.%2d" % (time / 60, time % 60, (time % 1) * 100)).replace(' ', "0")
 
+#return flaot
+#param String
 def unformat(inp):
 	try:
 		num = float(inp)
@@ -62,6 +67,8 @@ def unformat(inp):
 		arr = inp.split(":")
 		return float(arr[0]) * 60 + float(arr[1])
 
+#return String
+#param List<String>, Dictionary<String, Runner>
 def getLocalBestGroup(events, runnersDict):
 	text = ""
 	for event in events:
@@ -69,6 +76,8 @@ def getLocalBestGroup(events, runnersDict):
 		text += "\n\n"
 	return text
 
+#return String
+#param String, Dictionary<String, Runner>
 def getRankingsEvent(eventName, runnersDict):
 	temp = {}
 	for runner in runnersDict:
@@ -85,9 +94,9 @@ def getRankingsEvent(eventName, runnersDict):
 	return text
 
 
-
-
 class myApplicationManager(object):
+	#return None
+	#param Dictionary<String, Runner>
 	def __init__(self, runnersDict):
 		self.runnersDict = runnersDict
 		self.runnersList = [runner for runner in self.runnersDict]
@@ -101,13 +110,19 @@ class myApplicationManager(object):
 		self.stack.push(self.frm_menu)
 		self.frm_menu.pack()
 
+	#return None
+	#param None
 	def toDo(self):
 		print("TODO")
 
+	#return None
+	#param None
 	def setScreens(self):
 		self.setMenu()
 		self.setAdvancedPage()
 
+	#return None
+	#param None
 	def updateRunner(self):
 		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
 		self.lbl_runner_goals["text"] = self.getAllGoals(self.runner)
@@ -122,12 +137,18 @@ class myApplicationManager(object):
 	Methods That Actually Do Something
 	"""
 
+	#return None
+	#param None
 	def start(self):
 		self.window.mainloop()
 
+	#return None
+	#param None
 	def out(self):
 		self.window.destroy()
 
+	#return None
+	#param None
 	def predictor_go(self):
 		index = self.cbb_predictor_selector.current()
 		if (index == -1):
@@ -146,6 +167,8 @@ class myApplicationManager(object):
 				elif (index == 3): #400 --> 800
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.33) + 6.3))
 
+	#return None
+	#param None
 	def editGoals_go(self):
 		index = self.cbb_editGoals_events.get()
 		if (index == ""):
@@ -164,13 +187,18 @@ class myApplicationManager(object):
 				else:
 					self.lbl_editGoals_output["text"] = result
 
-	
+	#return None
+	#param String
 	def openLink(self, url):
 		webbrowser.open_new(url)
 
+	#return None
+	#param Runner, String
 	def cbb_runner_event(self, runner, event):
 		self.lbl_runner_eventInfo["text"] = self.runnersDict[runner].getAllInfoEvent(event)
 
+	#return boolean
+	#param String
 	def isFloatTime(self, toBe):
 		if toBe == "":
 			self.ranTime = -1
@@ -182,6 +210,8 @@ class myApplicationManager(object):
 		except ValueError:
 			return False
 
+	#return boolean
+	#param String
 	def isFloatGoal(self, toBe):
 		if toBe == "":
 			self.goalTime = -1
