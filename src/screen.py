@@ -223,6 +223,8 @@ class myApplicationManager(object):
 		except ValueError:
 			return False
 
+	#return boolean
+	#param String
 	def isChar(self, toBe):
 		if toBe == "":
 			self.newRunnerName = ""
@@ -243,6 +245,8 @@ class myApplicationManager(object):
 		except ValueError:
 			return False
 
+	#return String
+	#param String
 	def getAllPrs(self, runner):
 		runnerObj = self.runnersDict[runner]
 		events = runnerObj.getEvents()
@@ -255,6 +259,8 @@ class myApplicationManager(object):
 				text += "%s:  %s\n\n" % (event, format(PR))
 		return text
 
+	#return String
+	#param String
 	def getAllGoals(self, runner):
 		runnerObj = self.runnersDict[runner]
 		events = runnerObj.getEvents()
@@ -270,6 +276,8 @@ class myApplicationManager(object):
 					text += ("-%s\n" % (format(goal)))
 		return text
 
+	#return None
+	#param None
 	def editTimes_go(self):
 		index = self.cbb_editTimes_events.get()
 		if index == "":
@@ -303,6 +311,8 @@ class myApplicationManager(object):
 					else:
 						self.lbl_editTimes_output["text"] = "Time is extreme, click 'GO!' again to confirm"
 
+	#return boolean
+	#param String, double
 	def reasonableTimeTrack(self, event, time):
 		if event == "100m":
 			wrld = 9.58
@@ -320,6 +330,8 @@ class myApplicationManager(object):
 			wrld = 478.61
 		return time > wrld and time < (pow(wrld, 13/11) * 1.3)
 
+	#return boolean
+	#param String, double
 	def reasonableTimeEvent(self, event, dist):
 		if event == "Pole Vault":
 			wrld = 20.18
@@ -327,6 +339,8 @@ class myApplicationManager(object):
 			wrld = 29.35
 		return dist < wrld and time > wrld * 0.05
 	
+	#return None
+	#param None
 	def editEvents_save(self):
 		runnerObj = self.runnersDict[self.runner]
 		events = runnerObj.getEvents()
@@ -339,37 +353,52 @@ class myApplicationManager(object):
 				if event in events:
 					runnerObj.removeEvent(event)
 
+	#return None
+	#param None
 	def runner_addTime(self):
 		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.goToScreen(self.frm_editTimes)
 
+	#return None
+	#param None
 	def runner_addGoal(self):
 		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.goToScreen(self.frm_editGoals)
 
+	#return None
+	#param None
 	def editGoals_back(self):
 		self.updateRunner()
 		self.back()
 
+	#return None
+	#param None
 	def editTimes_back(self):
 		self.updateRunner()
 		self.back()
 
+	#return None
+	#param None
 	def editEvents_back(self):
 		self.updateRunner()
 		self.back()
 
+	#return None
+	#param None
 	def select_go(self):
 		runner = self.cbb_select_selector.current()
 		self.setRunnerPage(self.runnersList[runner])
 		self.updateRunner()
 		self.goToScreen(self.frm_runner)
 
-
+	#return None
+	#param None
 	def runner_advanced(self):
 		self.updateAdvanced()
 		self.goToScreen(self.frm_runnerAdvanced)
 
+	#return None
+	#param None
 	def runner_addEvent(self):
 		events = self.runnersDict[self.runner].getEvents()
 		for checkBox in self.checkList:
@@ -381,6 +410,8 @@ class myApplicationManager(object):
 				checkBox.state(['!selected'])
 		self.goToScreen(self.frm_editEvents)
 
+	#return None
+	#param None
 	def updateAdvanced(self):
 		self.lbl_runnerAdvanced_name["text"] = self.runner
 		runnerObj = self.runnersDict[self.runner]
@@ -388,6 +419,8 @@ class myApplicationManager(object):
 		self.lbl_runnerAdvanced_pointSEvent["text"] = runnerObj.getAllPoints()
 
 
+	#return None
+	#param None
 	def selectNew_go(self):
 		name = self.newRunnerName
 		runnerObj = Runner(self.newRunnerName)
@@ -396,9 +429,13 @@ class myApplicationManager(object):
 			self.runnersDict[name] = runnerObj
 			self.cbb_select_selector["values"] = self.runnersList
 
+	#return None
+	#param String
 	def localRank_update(self, event):
 		self.lbl_localRank_info["text"] = getRankingsEvent(Events[event], self.runnersDict)
 
+	#return None
+	#param None
 	def import_update(self):
 		text = self.txt_import_file.get("1.0",'end-1c')
 		lines = text.split("\n")
@@ -434,6 +471,8 @@ class myApplicationManager(object):
 
 		self.cbb_select_selector["values"] = self.runnersList
 
+	#return None
+	#param String, String, double
 	def parseRunner(self, name, event, time):
 		runnerObj = Runner(name)
 		if name not in self.runnersList:
@@ -445,6 +484,8 @@ class myApplicationManager(object):
 				runnerObj.newEvent(event)
 		runnerObj.newTime(event, float(time))
 
+	#return None
+	#param String
 	def cbb_deleteTimes_go(self, event):
 		print(self.runner)
 		print(event)
@@ -470,6 +511,8 @@ class myApplicationManager(object):
 					pass #TODO stop, load next screen somehow
 			self.deleteTimes_currentOn.append(chk)
 
+	#return None
+	#param String
 	def cbb_deleteGoals_go(self, event):
 		print(self.runner)
 		print(event)
@@ -495,6 +538,8 @@ class myApplicationManager(object):
 					pass #TODO stop, load next screen somehow
 			self.deleteGoals_currentOn.append(chk)
 
+	#return None
+	#param None
 	def deleteTimes_go(self):
 		print("go")
 		toDelete = []
@@ -510,6 +555,8 @@ class myApplicationManager(object):
 			print(chk["text"])
 			self.runnersDict[self.runner].removeTime(self.cbb_deleteTimes_events.get(), chk["text"])
 
+	#return None
+	#param None
 	def deleteGoal_go(self):
 		print("deleting goals")
 		toDelete = []
@@ -526,6 +573,8 @@ class myApplicationManager(object):
 			print("screen event" + self.cbb_deleteGoals_events.get()) #returning "\n"
 			self.runnersDict[self.runner].removeGoal(self.cbb_deleteGoals_events.get(), chk["text"])
 
+	#return None
+	#param None
 	def import_fileSelect(self):
 		file = filedialog.askopenfilename()
 		print(file)
