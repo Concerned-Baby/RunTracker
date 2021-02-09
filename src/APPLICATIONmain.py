@@ -29,6 +29,14 @@ upadte getters to allow proper typign
 """
 
 """
+IDEAS:
+
+make it connected to a website
+allow for pushing and requesting from a client
+better format everything
+"""
+
+"""
 ERRORS:
 
 """
