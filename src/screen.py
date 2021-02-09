@@ -591,80 +591,130 @@ class myApplicationManager(object):
 	Method That Change Screens
 	"""
 
+	#return None
+	#param Frame
 	def goToScreen(self, frame):
 		self.stack.getTop().pack_forget()
 		self.stack.push(frame).pack()
 
+	#return None
+	#param None
 	def back(self):
 		self.stack.pop().pack_forget()
 		self.stack.getTop().pack()
 
+	#return None
+	#param None
 	def menu_getBest(self):
 		self.goToScreen(self.frm_best)
 
+	#return None
+	#param None
 	def menu_selectRunner(self):
 		self.goToScreen(self.frm_select)
 
+	#return None
+	#param None
 	def menu_predictor(self):
 		self.goToScreen(self.frm_predictor)
 
+	#return None
+	#param None
 	def menu_help(self):
 		self.goToScreen(self.frm_menuHelp)
 
+	#return None
+	#param None
 	def select_help(self):
 		self.goToScreen(self.frm_selectHelp)
 
+	#return None
+	#param None
 	def best_help(self):
 		self.goToScreen(self.frm_bestHelp)
 
+	#return None
+	#param None
 	def predictor_help(self):
 		self.goToScreen(self.frm_predictorHelp)
 
+	#return None
+	#param None
 	def runner_help(self):
 		self.goToScreen(self.frm_runnerHelp)
 
+	#return None
+	#param None
 	def editGoals_help(self):
 		self.goToScreen(self.frm_editGoalsHelp)
 
+	#return None
+	#param None
 	def editTimes_help(self):
 		self.goToScreen(self.frm_editTimesHelp)
 
+	#return None
+	#param None
 	def editEvents_help(self):
 		self.goToScreen(self.frm_editEventsHelp)
 
+	#return None
+	#param None
 	def runnerAdvanced_help(self):
 		self.goToScreen(self.frm_advancedHelp)
 
+	#return None
+	#param None
 	def select_new(self):
 		self.goToScreen(self.frm_selectNew)
 
+	#return None
+	#param None
 	def selectNew_help(self):
 		self.goToScreen(self.frm_selectNewHelp)
 
+	#return None
+	#param None
 	def menu_aboutUs(self):
 		self.goToScreen(self.frm_aboutUs)
 
+	#return None
+	#param None
 	def menu_localRank(self):
 		self.goToScreen(self.frm_localRank)
 
+	#return None
+	#param None
 	def localRank_help(self):
 		self.goToScreen(self.frm_localRankHelp)
 
+	#return None
+	#param None
 	def select_import(self):
 		self.goToScreen(self.frm_import)
 
+	#return None
+	#param None
 	def runner_deleteTime(self):
 		self.goToScreen(self.frm_deleteTimes)
 
+	#return None
+	#param None
 	def import_help(self):
 		self.goToScreen(self.frm_importHelp)
 
+	#return None
+	#param None
 	def deleteTimes_help(self):
 		self.goToScreen(self.frm_deleteTimesHelp)
 
+	#return None
+	#param None
 	def runner_deleteGoal(self):
 		self.goToScreen(self.frm_deleteGoals)
 
+	#return None
+	#param None
 	def deleteGoals_help(self):
 		self.goToScreen(self.frm_deleteGoalsHelp)
 
@@ -672,7 +722,8 @@ class myApplicationManager(object):
 	"""
 	Setting Screens
 	"""
-
+	#return None
+	#param None
 	def setMenu(self):
 
 		"""MENU SCREEN"""
@@ -1219,6 +1270,8 @@ class myApplicationManager(object):
 
 	"""RUNNER SCREEN"""
 
+	#return None
+	#param Runner
 	def setRunnerPage(self, runner):
 		self.runner = runner
 
@@ -1287,9 +1340,8 @@ class myApplicationManager(object):
 		self.lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="Select A Event", width=58, height=20, borderwidth=3, relief="ridge")
 		self.lbl_runner_eventInfo.place(x=200, y=80)
 
-
-
-
+	#return None
+	#param None
 	def setAdvancedPage(self):
 
 		"""ADVANCED RUNNER SCREEN"""
