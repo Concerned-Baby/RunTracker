@@ -26,6 +26,8 @@ need to account for both string + int inputs for time/goal managing
 
 upadte getters to allow proper typign
 
+need to update goal page on edit events
+
 """
 
 """

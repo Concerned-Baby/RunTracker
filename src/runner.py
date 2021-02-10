@@ -292,7 +292,6 @@ class Runner (object):
 			toPrint += "PR: %.2f\n\n" % pr
 		else:
 			toPrint += "PR: N/A\n\n"
-
 		toPrint += "Points: %d\n\n" % self.getPointsEvent(eventName)
 		goals = self.getGoalsEvent(eventName)
 		goals.sort()
@@ -303,7 +302,7 @@ class Runner (object):
 		times.sort()
 		toPrint += "\nTimes: %d\n" % len(times)
 		for time in times:
-			toPrint += time + "\n"
+			toPrint += "%.2f\n" % time
 		return toPrint
 
 	#return String
