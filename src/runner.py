@@ -91,7 +91,7 @@ class Runner (object):
 		fileName = getFileName([self.name, eventName])
 		if not self.hasEvent(eventName):
 			return "Event Already Gone"
-		rename(fileName,  getNotVersion(fileName))
+		rename(fileName, getNotVersion(fileName))
 		return "Event Removed"
 
 	#return List<String>
@@ -105,10 +105,9 @@ class Runner (object):
 		return eventName in self.getEvents()
 	
 	#return String
-	#param String, String
+	#param String, double
 	def newTime(self, eventName, time):
 		if self.hasEvent(eventName):
-			time = float(time.strip())
 			if ("%.2f" % time) not in self.getTimesEvent(eventName):
 				writeToFile(self.name, eventName, "time", "%.2f\n" % time)
 				return "Time Added"
@@ -117,15 +116,14 @@ class Runner (object):
 		return "No Such Event"
 
 	#return None
-	#param String String
+	#param String, double
 	def removeTime(self, eventName, time):
-		time = float(time.strip())
 		times = self.getTimesEvent(eventName)
 		self.clearEvent(eventName, "time")
 		print(str(times) + " <-- times")
 		for oldTime in times:
 			print(oldTime + " : " + time)
-			if not oldTime == "%.2f\n" % time:
+			if not oldTime == time:
 				self.newTime(eventName, oldTime)
 			else:
 				print("removed: " + str(oldTime))
