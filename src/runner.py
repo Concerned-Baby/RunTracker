@@ -143,12 +143,11 @@ class Runner (object):
 		myFile.close()
 
 	#return String
-	#param String, String
+	#param String, double
 	def newGoal(self, eventName, goal):
 		if self.hasEvent(eventName):
-			goal = float(goal.strip())
-			if ("%.2f\n" % goal) not in self.getGoalsEvent(eventName):
-				writeToFile(self.name, eventName, "goal",  goal)
+			if goal not in self.getGoalsEvent(eventName):
+				writeToFile(self.name, eventName, "goal",  "%.2f\n" % goal)
 				print("%.2f\n" % goal)
 				print(self.getGoalsEvent(eventName))
 				return "Goal Added"
@@ -156,13 +155,12 @@ class Runner (object):
 		return "No Such Event"
 
 	#return None
-	#param String, String
+	#param String, double
 	def removeGoal(self, eventName, goal):
 		print("remove event" + eventName) #empty
 		goals = self.getGoalsEvent(eventName)
 		self.clearEvent(eventName, "goal")
 		print(eventName)
-		goal = float(goal.strip())
 		for oldGoal in goals:
 			if oldGoal != goal:
 				self.newGoal(eventName, oldGoal)
@@ -324,10 +322,3 @@ class Runner (object):
 			text += "<p> %.2f </p>\n" % float(time)
 		
 		return text
-
-
-
-
-
-
-
