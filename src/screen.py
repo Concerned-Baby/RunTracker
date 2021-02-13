@@ -314,6 +314,7 @@ class myApplicationManager(object):
 	#return boolean
 	#param String, double
 	def reasonableTimeTrack(self, event, time):
+		wrld = 0
 		if event == "100m":
 			wrld = 9.58
 		elif event == "200m":
@@ -328,16 +329,17 @@ class myApplicationManager(object):
 			wrld = 223.13
 		elif event == "3200m":
 			wrld = 478.61
-		return time > wrld and time < (pow(wrld, 13/11) * 1.3)
+		return (not wrld == 0) and (time > wrld and time < (pow(wrld, 13/11) * 1.3))
 
 	#return boolean
 	#param String, double
 	def reasonableTimeEvent(self, event, dist):
+		wrld = 0
 		if event == "Pole Vault":
 			wrld = 20.18
 		elif event == "Long Jump":
 			wrld = 29.35
-		return dist < wrld and time > wrld * 0.05
+		return (not wrld == 0) and (dist < wrld and time > wrld * 0.05)
 	
 	#return None
 	#param None
