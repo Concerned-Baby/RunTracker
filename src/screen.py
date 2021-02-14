@@ -502,7 +502,7 @@ class myApplicationManager(object):
 		for toRemove in self.deleteTimes_currentOn:
 			toRemove.place_forget()
 		for time in self.runnerTimes:
-			chk = ttk.Checkbutton(master=self.frm_deleteTimes, text=time.strip())
+			chk = ttk.Checkbutton(master=self.frm_deleteTimes, text=str(time))
 			chk.state(["!alternate"])
 			chk.place(x=x, y=y)
 			y += Ystep
