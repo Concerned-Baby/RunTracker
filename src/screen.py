@@ -720,7 +720,6 @@ class myApplicationManager(object):
 	def deleteGoals_help(self):
 		self.goToScreen(self.frm_deleteGoalsHelp)
 
-
 	"""
 	Setting Screens
 	"""
