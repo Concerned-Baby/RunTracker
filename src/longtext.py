@@ -31,26 +31,28 @@ def menuHelp():
 def selectHelp():
 	return """
 	This Page Allows You To Go To Any Runners Page
-	Select A Runner And Click "GO!" To Edit and View Their Statistics.
-	If That's Not For You, Consider Adding New Runners
+	Select A Runner (from the drop-down menu) And Click "GO!" To Edit and View Their Statistics.
+	If you want to add new runners, click "new"
 	"""
 
 def runnerHelp():
 	return """
-	This Page Displays All The Inputed Information About A Runner
-	It Also Allows You To Update Any Information Through the Edit Buttons
+	This Page Displays All The Known Information About A Runner (selected from the previous screen)
+	To edit information, use the 5 buttons on the bottem
 	"""
 
 def editEventsHelp():
 	return """
 	Here You Can Add and Remove Events From A Runner
 	Simply Check and Uncheck the Boxes to Add and Remove Events
+	Add checked boxes are events, the rest aren't
 	"""
 
 def editTimesHelp():
 	return """
 	Here You Can Add Times To A Runner
 	Just Select A Event and Enter A Time And Hit Add To Add A Time
+	Feedback on the event is presented on the bottem box
 	"""
 
 def editGoalsHelp():
