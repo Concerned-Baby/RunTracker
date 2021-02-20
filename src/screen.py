@@ -510,7 +510,7 @@ class myApplicationManager(object):
 				y = 120
 				x += Xstep
 				if x >= xMax:
-					pass #TODO stop, load next screen somehow
+					print("OVERFLOW ERROR [TOO MANY TIMES]")
 			self.deleteTimes_currentOn.append(chk)
 
 	#return None
@@ -537,7 +537,7 @@ class myApplicationManager(object):
 				y = 120
 				x += Xstep
 				if x >= xMax:
-					pass #TODO stop, load next screen somehow
+					print("OVERFLOW ERROR [TOO MANY TIMES]")
 			self.deleteGoals_currentOn.append(chk)
 
 	#return None
