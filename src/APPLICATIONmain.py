@@ -17,6 +17,12 @@ add needed help menues
 
 update help menus
 
+add basic instructions on pages 
+
+clear input boxes after use
+
+change screens after saving events
+
 """
 
 """
@@ -32,6 +38,7 @@ ERRORS:
 update goal page on edit events
 update goal page after adding goals
 update events dropdown on runner page after editing events
+update prs after deletion
 
 """
 

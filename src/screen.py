@@ -572,7 +572,7 @@ class myApplicationManager(object):
 		print("end " + str(toDelete))
 		for chk in toDelete:
 			print(chk["text"])
-			print("screen event" + self.cbb_deleteGoals_events.get()) #returning "\n"
+			print("screen event" + self.cbb_deleteGoals_events.get())
 			self.runnersDict[self.runner].removeGoal(self.cbb_deleteGoals_events.get(), chk["text"])
 
 	#return None
