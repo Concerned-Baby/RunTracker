@@ -529,7 +529,7 @@ class myApplicationManager(object):
 		for toRemove in self.deleteGoals_currentOn:
 			toRemove.place_forget()
 		for goal in self.runnerGoals:
-			chk = ttk.Checkbutton(master=self.frm_deleteGoals, text=goal.strip())
+			chk = ttk.Checkbutton(master=self.frm_deleteGoals, text=str(goal))
 			chk.state(["!alternate"])
 			chk.place(x=x, y=y)
 			y += Ystep

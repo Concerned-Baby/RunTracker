@@ -23,6 +23,10 @@ clear input boxes after use
 
 change screens after saving events
 
+update goals after add/delete
+
+update checkboxes after goal deletion
+
 """
 
 """
