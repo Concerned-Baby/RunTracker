@@ -131,8 +131,6 @@ class myApplicationManager(object):
 		self.cbb_deleteTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_deleteGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 
-
-
 	"""
 	Methods That Actually Do Something
 	"""
@@ -420,7 +418,6 @@ class myApplicationManager(object):
 		self.lbl_runnerAdvanced_points["text"] = "Total Points: %d \n\n Point Efficiency: %.3f" % (runnerObj.getTotalPoints(), runnerObj.getAveragePoints())
 		self.lbl_runnerAdvanced_pointSEvent["text"] = runnerObj.getAllPoints()
 
-
 	#return None
 	#param None
 	def selectNew_go(self):
@@ -587,7 +584,6 @@ class myApplicationManager(object):
 			fileObject.close()
 		except FileNotFoundError:
 			pass
-
 
 	"""
 	Method That Change Screens

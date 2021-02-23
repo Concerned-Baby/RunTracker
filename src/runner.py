@@ -278,7 +278,6 @@ class Runner (object):
 			text += "%s: %d\n" % (event, self.getPointsEvent(event))
 		return text
 
-
 	#return String
 	#param String
 	def getAllInfoEvent(self, eventName):
