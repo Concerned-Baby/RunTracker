@@ -130,6 +130,7 @@ class myApplicationManager(object):
 		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_deleteTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_deleteGoals_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 
 	"""
 	Methods That Actually Do Something
@@ -184,6 +185,7 @@ class myApplicationManager(object):
 						self.lbl_editGoals_output["text"] = "Added"
 				else:
 					self.lbl_editGoals_output["text"] = result
+		updateRunner()
 
 	#return None
 	#param String
@@ -308,6 +310,7 @@ class myApplicationManager(object):
 							self.lbl_editTimes_output["text"] = result
 					else:
 						self.lbl_editTimes_output["text"] = "Time is extreme, click 'GO!' again to confirm"
+		updateRunner()
 
 	#return boolean
 	#param String, double
@@ -352,11 +355,12 @@ class myApplicationManager(object):
 			elif (checkBox.instate(["!selected"])):
 				if event in events:
 					runnerObj.removeEvent(event)
+		updateRunner()
 
 	#return None
 	#param None
 	def runner_addTime(self):
-		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
+		updateRunner()
 		self.goToScreen(self.frm_editTimes)
 
 	#return None
