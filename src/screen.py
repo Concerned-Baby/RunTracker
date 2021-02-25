@@ -131,6 +131,7 @@ class myApplicationManager(object):
 		self.cbb_deleteTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_deleteGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 
 	"""
 	Methods That Actually Do Something

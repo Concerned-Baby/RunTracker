@@ -157,7 +157,7 @@ class Runner (object):
 	#return None
 	#param String, double
 	def removeGoal(self, eventName, goal):
-		print("remove event" + eventName) #empty
+		print("remove event" + eventName)
 		goals = self.getGoalsEvent(eventName)
 		self.clearEvent(eventName, "goal")
 		print(eventName)
