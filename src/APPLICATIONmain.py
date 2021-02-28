@@ -27,6 +27,12 @@ update goals after add/delete
 
 update checkboxes after goal deletion
 
+update goal page on edit events
+
+update events dropdown on runner page after editing events
+
+update prs after deletion
+
 """
 
 """
@@ -39,10 +45,7 @@ better format everything
 
 """
 ERRORS:
-update goal page on edit events
-update goal page after adding goals
-update events dropdown on runner page after editing events
-update prs after deletion
+NONE
 
 """
 
