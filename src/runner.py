@@ -5,7 +5,7 @@ from os import listdir
 from re import match
 from platform import system
 
-OTHERS = ["Long Jump", "Pole Vault"] #list of field events
+FIELDEVENTS = ["Long Jump", "Pole Vault"] #list of field events
 
 global changeD
 changeD = (system() == "macOS" or system() == "iOS")
@@ -192,7 +192,7 @@ class Runner (object):
 	#param String
 	def getPREvent(self, eventName):
 		times = self.getTimesEvent(eventName)
-		if eventName in OTHERS:
+		if eventName in FIELDEVENTS:
 			return self.getPRFieldEvent(eventName)
 		else:
 			if len(times) == 0:
