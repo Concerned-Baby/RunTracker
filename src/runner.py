@@ -227,7 +227,7 @@ class Runner (object):
 	def getAveragePoints(self):
 		points = self.getTotalPoints()
 		try:
-			return points / len([event if self.getPREvent(event) != 1000000 for event in self.getEvents()])
+			return points / len([event for event in self.getEvents() if self.getPREvent(event) != 1000000])
 		except ZeroDivisionError:
 			return 0
 
