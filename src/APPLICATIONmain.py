@@ -33,6 +33,8 @@ update events dropdown on runner page after editing events
 
 update prs after deletion
 
+remove loading screen
+
 """
 
 """
