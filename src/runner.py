@@ -10,6 +10,9 @@ FIELDEVENTS = ["Long Jump", "Pole Vault"] #list of field events
 global changeD
 changeD = (system() == "macOS" or system() == "iOS")
 
+global NoTime
+NoTime = 12394129
+
 #return None
 #param String, String, String, String
 def writeToFile(name, event, eType, text):
@@ -182,7 +185,7 @@ class Runner (object):
 	def getPRFieldEvent(self, eventName):
 		times = self.getTimesEvent(eventName)
 		if len(times) == 0:
-			return 1000000
+			return NoTime
 		PR = 0
 		for time in times:
 			PR = max(PR, float(time))
@@ -196,8 +199,8 @@ class Runner (object):
 			return self.getPRFieldEvent(eventName)
 		else:
 			if len(times) == 0:
-				return 1000000
-			PR =  1000000
+				return NoTime
+			PR =  NoTime
 			for time in times:
 				PR = min(PR, float(time))
 		return PR
@@ -227,7 +230,7 @@ class Runner (object):
 	def getAveragePoints(self):
 		points = self.getTotalPoints()
 		try:
-			return points / len([event for event in self.getEvents() if self.getPREvent(event) != 1000000])
+			return points / len([event for event in self.getEvents() if self.getPREvent(event) != NoTime])
 		except ZeroDivisionError:
 			return 0
 
@@ -243,7 +246,7 @@ class Runner (object):
 	#return double
 	#param double, double, double, double
 	def calculatePoints(self, a, b, c, time):
-		if time == 1000000:
+		if time == NoTime:
 			score = 0
 		else:
 			score = a * pow((b - time), c)
@@ -283,7 +286,7 @@ class Runner (object):
 	def getAllInfoEvent(self, eventName):
 		toPrint = ""
 		pr = self.getPREvent(eventName)
-		if pr != 1000000:
+		if pr != NoTime:
 			toPrint += "PR: %.2f\n\n" % pr
 		else:
 			toPrint += "PR: N/A\n\n"
@@ -305,7 +308,7 @@ class Runner (object):
 	def toHTMLEvent(self, eventName):
 		text =  "<h3> %s </h3>\n\n" % eventName
 		pr = self.getPREvent(eventName)
-		if pr != 1000000:
+		if pr != NoTime:
 			text += "<h5> PR: %s </h5>\n\n" % pr
 		else:
 			text += "<h5> PR: N/A </h5>\n\n"

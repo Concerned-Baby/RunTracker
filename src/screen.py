@@ -12,6 +12,9 @@ import webbrowser
 global possiblePredictions, possibleEvents, Sprints, Distance, Other
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]", "400m --> 800m [Best]"]
 
+global NoTime
+NoTime = 12394129
+
 Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
 Other = ["Long Jump", "Pole Vault"]
@@ -25,14 +28,14 @@ supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Ti
 def getLocalBest(eventName, runnersDict):
 	bestMan = "N/A"
 	if eventName not in Other:
-		best = 1000000
+		best = NoTime
 		for runner in runnersDict:
 			if runnersDict[runner].hasEvent(eventName):
 				pr = runnersDict[runner].getPREvent(eventName)
 				if pr < best:
 					best = pr
 					bestMan = runner
-		if best == 1000000:
+		if best == NoTime:
 			return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
 		else:
 			return("\nBest %s: %s \nBest %s'er: %s" % (eventName, format(best), eventName, bestMan))
@@ -86,7 +89,7 @@ def getRankingsEvent(eventName, runnersDict):
 	count = 1
 	text = ""
 	for time in sorted(temp.keys()):
-		if time == 1000000:
+		if time == NoTime:
 			text += "%d.  %s\tN/A\n" % (count, temp[time].ljust(32)[:32])
 		else:
 			text += "%d.  %s\t%s\n" % (count, temp[time].ljust(32)[:32], format(time))
@@ -254,7 +257,7 @@ class myApplicationManager(object):
 		text = ""
 		for event in events:
 			PR = runnerObj.getPREvent(event)
-			if PR == 1000000:
+			if PR == NoTime:
 				text += "%s:  N/A\n\n" % (event)
 			else:
 				text += "%s:  %s\n\n" % (event, format(PR))
