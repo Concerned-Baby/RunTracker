@@ -13,7 +13,7 @@ global possiblePredictions, possibleEvents, Sprints, Distance, Other
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]", "400m --> 800m [Best]"]
 
 global NoTime
-NoTime = 12394129
+NoTime = 14420133764129
 
 Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]

@@ -11,7 +11,7 @@ global changeD
 changeD = (system() == "macOS" or system() == "iOS")
 
 global NoTime
-NoTime = 12394129
+NoTime = 14420133764129
 
 #return None
 #param String, String, String, String
