@@ -96,6 +96,9 @@ def getRankingsEvent(eventName, runnersDict):
 		count += 1
 	return text
 
+def clearEntry(entry):
+	entry.delete(0, 'end')
+
 
 class myApplicationManager(object):
 	#return None
