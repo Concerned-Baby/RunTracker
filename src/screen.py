@@ -172,6 +172,7 @@ class myApplicationManager(object):
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 1.37) + 1.23))
 				elif (index == 3): #400 --> 800
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.33) + 6.3))
+		#clear entry
 
 	#return None
 	#param None
@@ -193,6 +194,7 @@ class myApplicationManager(object):
 				else:
 					self.lbl_editGoals_output["text"] = result
 		updateRunner()
+		#clear entry
 
 	#return None
 	#param String
@@ -216,6 +218,7 @@ class myApplicationManager(object):
 			return True
 		except ValueError:
 			return False
+		#clear entry
 
 	#return boolean
 	#param String
@@ -229,6 +232,7 @@ class myApplicationManager(object):
 			return True
 		except ValueError:
 			return False
+		#clear entry
 
 	#return boolean
 	#param String
@@ -239,7 +243,8 @@ class myApplicationManager(object):
 		if toBe.isalpha():
 			self.newRunnerName = toBe
 			return True
-		return False		
+		return False	
+		#clear entry	
 		
 	def isFloat(self, toBe):
 		if toBe == "":
@@ -251,6 +256,7 @@ class myApplicationManager(object):
 			return True
 		except ValueError:
 			return False
+			#clear entry
 
 	#return String
 	#param String
@@ -318,6 +324,7 @@ class myApplicationManager(object):
 					else:
 						self.lbl_editTimes_output["text"] = "Time is extreme, click 'GO!' again to confirm"
 		updateRunner()
+		#clear entry
 
 	#return boolean
 	#param String, double
@@ -438,6 +445,7 @@ class myApplicationManager(object):
 			self.runnersList.append(name)
 			self.runnersDict[name] = runnerObj
 			self.cbb_select_selector["values"] = self.runnersList
+		#clear entry
 
 	#return None
 	#param String
