@@ -7,10 +7,8 @@ from platform import system
 
 FIELDEVENTS = ["Long Jump", "Pole Vault"] #list of field events
 
-global changeD
+global changeD, NoTime
 changeD = (system() == "macOS" or system() == "iOS")
-
-global NoTime
 NoTime = 14420133764129
 
 #return None

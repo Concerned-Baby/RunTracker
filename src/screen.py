@@ -172,6 +172,7 @@ class myApplicationManager(object):
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 1.37) + 1.23))
 				elif (index == 3): #400 --> 800
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.33) + 6.3))
+		self.clearEntry(self.ent_predictor_entry)
 		#clear entry
 
 	#return None
