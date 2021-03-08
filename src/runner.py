@@ -123,7 +123,7 @@ class Runner (object):
 		self.clearEvent(eventName, "time")
 		print(str(times) + " <-- times")
 		for oldTime in times:
-			print(oldTime + " : " + str(time))
+			print(str(oldTime) + " : " + str(time))
 			if not oldTime == time:
 				self.newTime(eventName, oldTime)
 			else:

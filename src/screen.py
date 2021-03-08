@@ -172,8 +172,6 @@ class myApplicationManager(object):
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 1.37) + 1.23))
 				elif (index == 3): #400 --> 800
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.33) + 6.3))
-		self.clearEntry(self.ent_predictor_entry)
-		#clear entry
 
 	#return None
 	#param None
@@ -194,7 +192,7 @@ class myApplicationManager(object):
 						self.lbl_editGoals_output["text"] = "Added"
 				else:
 					self.lbl_editGoals_output["text"] = result
-		updateRunner()
+		self.updateRunner()
 		#clear entry
 
 	#return None
@@ -324,7 +322,7 @@ class myApplicationManager(object):
 							self.lbl_editTimes_output["text"] = result
 					else:
 						self.lbl_editTimes_output["text"] = "Time is extreme, click 'GO!' again to confirm"
-		updateRunner()
+		self.updateRunner()
 		#clear entry
 
 	#return boolean
@@ -370,12 +368,12 @@ class myApplicationManager(object):
 			elif (checkBox.instate(["!selected"])):
 				if event in events:
 					runnerObj.removeEvent(event)
-		updateRunner()
+		self.updateRunner()
 
 	#return None
 	#param None
 	def runner_addTime(self):
-		updateRunner()
+		self.updateRunner()
 		self.goToScreen(self.frm_editTimes)
 
 	#return None

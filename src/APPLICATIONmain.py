@@ -35,6 +35,10 @@ update prs after deletion
 
 remove loading screen
 
+add labels to local bests
+
+make local ranks show n/a when no runners
+
 """
 
 """
@@ -47,7 +51,7 @@ better format everything
 
 """
 ERRORS:
-NONE
+not removing goals on delete
 
 """
 
