@@ -1329,20 +1329,20 @@ class myApplicationManager(object):
 		self.lbl_runner_goals = tk.Label(master=self.frm_runner, text=self.getAllGoals(runner), width=20, height=24, borderwidth=2, relief="ridge")
 		#self.lbl_runner_goals.place(x=630, y=60)
 
-		btn_runner_editEvents = tk.Button(master=self.frm_runner,command=self.runner_addEvent, text="edit events", width=12, height=1, borderwidth=3, relief="raised")
-		btn_runner_editEvents.place(x=210, y=415)
+		btn_runner_editEvents = tk.Button(master=self.frm_runner,command=self.runner_addEvent, text="edit events", width=10, height=1, borderwidth=3, relief="raised")
+		btn_runner_editEvents.place(x=200, y=415)
 
-		btn_runner_addTime = tk.Button(master=self.frm_runner, command=self.runner_addTime, text="add time", width=12, height=1, borderwidth=3, relief="raised")
-		btn_runner_addTime.place(x=310, y=415)
+		btn_runner_addTime = tk.Button(master=self.frm_runner, command=self.runner_addTime, text="add time", width=10, height=1, borderwidth=3, relief="raised")
+		btn_runner_addTime.place(x=285, y=415)
  
-		btn_runner_addGoal = tk.Button(master=self.frm_runner, command=self.runner_addGoal, text="add goal", width=12, height=1, borderwidth=3, relief="raised")
-		btn_runner_addGoal.place(x=410, y=415)
+		btn_runner_addGoal = tk.Button(master=self.frm_runner, command=self.runner_addGoal, text="add goal", width=10, height=1, borderwidth=3, relief="raised")
+		btn_runner_addGoal.place(x=370, y=415)
 
-		btn_runner_deleteTime = tk.Button(master=self.frm_runner, command=self.runner_deleteTime, text="delete time", width=12, height=1, borderwidth=3, relief="raised")
-		btn_runner_deleteTime.place(x=510, y=415)
+		btn_runner_deleteTime = tk.Button(master=self.frm_runner, command=self.runner_deleteTime, text="delete time", width=10, height=1, borderwidth=3, relief="raised")
+		btn_runner_deleteTime.place(x=455, y=415)
 
-		btn_runner_deleteTime = tk.Button(master=self.frm_runner, command=self.runner_deleteGoal, text="delete goal", width=12, height=1, borderwidth=3, relief="raised")
-		btn_runner_deleteTime.place(x=610, y=415)
+		btn_runner_deleteTime = tk.Button(master=self.frm_runner, command=self.runner_deleteGoal, text="delete goal", width=10, height=1, borderwidth=3, relief="raised")
+		btn_runner_deleteTime.place(x=540, y=415)
  
 
 		self.cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values=self.runnersDict[runner].getEvents())
