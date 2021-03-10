@@ -125,7 +125,6 @@ class myApplicationManager(object):
 	#param None
 	def setScreens(self):
 		self.setMenu()
-		self.setAdvancedPage()
 
 	#return None
 	#param None
@@ -1283,6 +1282,28 @@ class myApplicationManager(object):
 		btn_deleteTimesHelp_back = tk.Button(master=self.frm_deleteTimesHelp, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_deleteTimesHelp_back.place(x=5, y=415)
 
+		"""ADVANCED RUNNER SCREEN"""
+
+		self.frm_runnerAdvanced = Frame(self.window, "Advanced")
+
+		lbl_runnerAdvanced_logo = tk.Label(master=self.frm_runnerAdvanced, text="Advanced Stats")
+		lbl_runnerAdvanced_logo.place(x=355, y=0)
+
+		self.lbl_runnerAdvanced_name = tk.Label(master=self.frm_runnerAdvanced, text="TDB")
+		self.lbl_runnerAdvanced_name.place(x=365, y=20)
+
+		btn_runnerAdvanced_help = tk.Button(master=self.frm_runnerAdvanced, text="Help", command=self.runnerAdvanced_help, width=5, height=1, borderwidth=3, relief="raised")
+		btn_runnerAdvanced_help.place(x=745, y=5)
+
+		btn_runnerAdvanced_back = tk.Button(master=self.frm_runnerAdvanced, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		btn_runnerAdvanced_back.place(x=5, y=415)
+
+		self.lbl_runnerAdvanced_points = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=5, borderwidth=1, relief="solid")
+		self.lbl_runnerAdvanced_points.place(x=20, y=20)
+
+		self.lbl_runnerAdvanced_pointSEvent = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=20, borderwidth=1, relief="solid")
+		self.lbl_runnerAdvanced_pointSEvent.place(x=20, y=98)
+
 	"""RUNNER SCREEN"""
 
 	#return None
@@ -1327,7 +1348,6 @@ class myApplicationManager(object):
 		lbl_runner_goalLabel.place(x=630, y=40)
 
 		self.lbl_runner_goals = tk.Label(master=self.frm_runner, text=self.getAllGoals(runner), width=20, height=24, borderwidth=2, relief="ridge")
-		#self.lbl_runner_goals.place(x=630, y=60)
 
 		btn_runner_editEvents = tk.Button(master=self.frm_runner,command=self.runner_addEvent, text="edit events", width=10, height=1, borderwidth=3, relief="raised")
 		btn_runner_editEvents.place(x=200, y=415)
@@ -1354,29 +1374,3 @@ class myApplicationManager(object):
 
 		self.lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="Select A Event", width=58, height=20, borderwidth=3, relief="ridge")
 		self.lbl_runner_eventInfo.place(x=200, y=80)
-
-	#return None
-	#param None
-	def setAdvancedPage(self):
-
-		"""ADVANCED RUNNER SCREEN"""
-
-		self.frm_runnerAdvanced = Frame(self.window, "Advanced")
-
-		lbl_runnerAdvanced_logo = tk.Label(master=self.frm_runnerAdvanced, text="Advanced Stats")
-		lbl_runnerAdvanced_logo.place(x=355, y=0)
-
-		self.lbl_runnerAdvanced_name = tk.Label(master=self.frm_runnerAdvanced, text="TDB")
-		self.lbl_runnerAdvanced_name.place(x=365, y=20)
-
-		btn_runnerAdvanced_help = tk.Button(master=self.frm_runnerAdvanced, text="Help", command=self.runnerAdvanced_help, width=5, height=1, borderwidth=3, relief="raised")
-		btn_runnerAdvanced_help.place(x=745, y=5)
-
-		btn_runnerAdvanced_back = tk.Button(master=self.frm_runnerAdvanced, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
-		btn_runnerAdvanced_back.place(x=5, y=415)
-
-		self.lbl_runnerAdvanced_points = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=5, borderwidth=1, relief="solid")
-		self.lbl_runnerAdvanced_points.place(x=20, y=20)
-
-		self.lbl_runnerAdvanced_pointSEvent = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=20, borderwidth=1, relief="solid")
-		self.lbl_runnerAdvanced_pointSEvent.place(x=20, y=98)
