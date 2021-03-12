@@ -137,6 +137,8 @@ class myApplicationManager(object):
 		self.cbb_deleteGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.lbl_runner_name["text"] = self.runner
+		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
 
 	"""
 	Methods That Actually Do Something
@@ -403,7 +405,7 @@ class myApplicationManager(object):
 	#param None
 	def select_go(self):
 		runner = self.cbb_select_selector.current()
-		self.setRunnerPage(self.runnersList[runner])
+		self.newRunnerPage(self.runnersList[runner])
 		self.updateRunner()
 		self.goToScreen(self.frm_runner)
 
@@ -1304,24 +1306,25 @@ class myApplicationManager(object):
 		self.lbl_runnerAdvanced_pointSEvent = tk.Label(master=self.frm_runnerAdvanced, text="Points", width=30, height=20, borderwidth=1, relief="solid")
 		self.lbl_runnerAdvanced_pointSEvent.place(x=20, y=98)
 
-	"""RUNNER SCREEN"""
-
-	#return None
-	#param Runner
-	def setRunnerPage(self, runner):
-		self.runner = runner
+		"""RUNNER SCREEN"""
 
 		self.frm_runner = Frame(self.window, "Runner")
 
-		self.lbl_runner_name = tk.Label(master=self.frm_runner, text=runner)
+
+		self.lbl_runner_name = tk.Label(master=self.frm_runner, text="ERROR LOADING")
 		self.lbl_runner_name.place(x=365, y=0)
 
 		self.lbl_runner_goalsPassed = tk.Label(master=self.frm_runner, text="Total Candy Owed: %d" % self.runnersDict[runner].getAllGoalsPassed())
 		self.lbl_runner_goalsPassed.place(x=450, y=40)
 
-		scr_runner_goals = tk.Scrollbar(master=self.frm_runner, background="green", width=100)
+		self.scr_runner_goals = tk.Scrollbar(master=self.frm_runner, background="green", width=100)
 
-		mylist = tk.Listbox(master=self.frm_runner, yscrollcommand=scr_runner_goals.set, width=24, height=23) 
+		self.mylist = tk.Listbox(master=self.frm_runner, yscrollcommand=scr_runner_goals.set, width=24, height=23) 
+
+	#return None
+	#param Runner
+	def setRunnerPage(self, runner):
+
 
 		for line in self.getAllGoals(runner).split("\n"): 
 			mylist.insert(tk.END, "\t %s" % line) 
