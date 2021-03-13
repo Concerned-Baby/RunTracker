@@ -139,6 +139,9 @@ class myApplicationManager(object):
 		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.lbl_runner_name["text"] = self.runner
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
+		self.myList.clear()
+		for line in self.getAllGoals(self.runner).split("\n"): 
+			self.mylist.insert(tk.END, "\t %s" % line) 
 
 	"""
 	Methods That Actually Do Something
@@ -1320,35 +1323,31 @@ class myApplicationManager(object):
 		self.scr_runner_goals = tk.Scrollbar(master=self.frm_runner, background="green", width=100)
 
 		self.mylist = tk.Listbox(master=self.frm_runner, yscrollcommand=scr_runner_goals.set, width=24, height=23) 
+		self.mylist.place(x=630, y=60)
+
+		self.scr_runner_goals.config(command=mylist.yview)
+
+		self.btn_runner_advanced = tk.Button(master=self.frm_runner, text="Advanced Stats", command=self.runner_advanced, width=15, height=1, borderwidth=3, relief="raised")
+		self.btn_runner_advanced.place(x=600, y=5)
+		self.btn_runner_help = tk.Button(master=self.frm_runner, text="Help", command=self.runner_help, width=5, height=1, borderwidth=3, relief="raised")
+		self.btn_runner_help.place(x=745, y=5)
+
+		self.btn_runner_back = tk.Button(master=self.frm_runner, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
+		self.btn_runner_back.place(x=5, y=415)
+
+		self.lbl_runner_prLabel = tk.Label(master=self.frm_runner, text="PRs", width=20, height=1, borderwidth=2, relief="ridge")
+		self.lbl_runner_prLabel.place(x=40, y=40)
+
+		self.lbl_runner_prs = tk.Label(master=self.frm_runner, text="ERROR LOADING", width=20, height=24, borderwidth=2, relief="ridge")
+		self.lbl_runner_prs.place(x=40, y=60)
+
+		self.lbl_runner_goalLabel = tk.Label(master=self.frm_runner, text="Goals", width=20, height=1, borderwidth=2, relief="ridge")
+		self.lbl_runner_goalLabel.place(x=630, y=40)
 
 	#return None
 	#param Runner
 	def setRunnerPage(self, runner):
-
-
-		for line in self.getAllGoals(runner).split("\n"): 
-			mylist.insert(tk.END, "\t %s" % line) 
-		mylist.place(x=630, y=60)
-
-		scr_runner_goals.config(command=mylist.yview)
 		
-		btn_runner_advanced = tk.Button(master=self.frm_runner, text="Advanced Stats", command=self.runner_advanced, width=15, height=1, borderwidth=3, relief="raised")
-		btn_runner_advanced.place(x=600, y=5)
-
-		btn_runner_help = tk.Button(master=self.frm_runner, text="Help", command=self.runner_help, width=5, height=1, borderwidth=3, relief="raised")
-		btn_runner_help.place(x=745, y=5)
-
-		btn_runner_back = tk.Button(master=self.frm_runner, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
-		btn_runner_back.place(x=5, y=415)
-
-		lbl_runner_prLabel = tk.Label(master=self.frm_runner, text="PRs", width=20, height=1, borderwidth=2, relief="ridge")
-		lbl_runner_prLabel.place(x=40, y=40)
-
-		self.lbl_runner_prs = tk.Label(master=self.frm_runner, text=self.getAllPrs(runner), width=20, height=24, borderwidth=2, relief="ridge")
-		self.lbl_runner_prs.place(x=40, y=60)
-
-		lbl_runner_goalLabel = tk.Label(master=self.frm_runner, text="Goals", width=20, height=1, borderwidth=2, relief="ridge")
-		lbl_runner_goalLabel.place(x=630, y=40)
 
 		self.lbl_runner_goals = tk.Label(master=self.frm_runner, text=self.getAllGoals(runner), width=20, height=24, borderwidth=2, relief="ridge")
 
