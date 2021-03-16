@@ -9,10 +9,8 @@ from PIL import Image, ImageTk
 import webbrowser
 
 #constants
-global possiblePredictions, possibleEvents, Sprints, Distance, Other
+global possiblePredictions, possibleEvents, Sprints, Distance, Other, NoTime
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m[Best]", "400m --> 800m [Best]"]
-
-global NoTime
 NoTime = 14420133764129
 
 Sprints = ["100m", "200m", "300m", "400m"]
