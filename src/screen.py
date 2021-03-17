@@ -73,8 +73,7 @@ def unformat(inp):
 def getLocalBestGroup(events, runnersDict):
 	text = ""
 	for event in events:
-		text += getLocalBest(event, runnersDict)
-		text += "\n\n"
+		text += getLocalBest(event, runnersDict) + "\n\n"
 	return text
 
 #return String
@@ -118,11 +117,6 @@ class myApplicationManager(object):
 	#param None
 	def toDo(self):
 		print("TODO")
-
-	#return None
-	#param None
-	def setScreens(self):
-		self.setMenu()
 
 	#return None
 	#param None
@@ -737,12 +731,9 @@ class myApplicationManager(object):
 	def deleteGoals_help(self):
 		self.goToScreen(self.frm_deleteGoalsHelp)
 
-	"""
-	Setting Screens
-	"""
 	#return None
 	#param None
-	def setMenu(self):
+	def setScreens(self):
 
 		"""MENU SCREEN"""
 
