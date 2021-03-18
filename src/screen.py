@@ -522,7 +522,7 @@ class myApplicationManager(object):
 				y = 120
 				x += Xstep
 				if x >= xMax:
-					print("OVERFLOW ERROR [TOO MANY TIMES]")
+					print("OVERFLOW ERROR [idk you use this too much tahts ur problem]")
 			self.deleteTimes_currentOn.append(chk)
 
 	#return None
