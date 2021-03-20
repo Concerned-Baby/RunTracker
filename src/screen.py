@@ -509,8 +509,8 @@ class myApplicationManager(object):
 		y = 120
 		Ystep = 15
 		Xstep = 45
-		yMax = y + Ystep * 20
-		xMax = x + Xstep * 10
+		yMax = y + Ystep * 25
+		xMax = x + Xstep * 15
 		for toRemove in self.deleteTimes_currentOn:
 			toRemove.place_forget()
 		for time in self.runnerTimes:
