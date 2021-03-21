@@ -135,6 +135,7 @@ class myApplicationManager(object):
 		for line in self.getAllGoals(self.runner).split("\n"): 
 			self.mylist.insert(tk.END, "\t %s" % line) 
 		self.cbb_runner_events["values"] = self.runnersDict[runner].getEvents()
+		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[runner].getAllGoalsPassed()
 
 	"""
 	Methods That Actually Do Something
@@ -1307,7 +1308,7 @@ class myApplicationManager(object):
 		self.lbl_runner_name = tk.Label(master=self.frm_runner, text="ERROR LOADING")
 		self.lbl_runner_name.place(x=365, y=0)
 
-		self.lbl_runner_goalsPassed = tk.Label(master=self.frm_runner, text="Total Candy Owed: %d" % self.runnersDict[runner].getAllGoalsPassed())
+		self.lbl_runner_goalsPassed = tk.Label(master=self.frm_runner, text="ERROR LOADING"
 		self.lbl_runner_goalsPassed.place(x=450, y=40)
 
 		self.scr_runner_goals = tk.Scrollbar(master=self.frm_runner, background="green", width=100)
@@ -1354,7 +1355,7 @@ class myApplicationManager(object):
 		self.cbb_runner_events = ttk.Combobox(master=self.frm_runner, state="readonly", values="ERROR LOADING")
 		self.cbb_runner_events.place(x=290, y=40)
 
-			def callback(eventObject):
+		def callback(eventObject):
 			self.cbb_runner_event(runner, self.cbb_runner_events.get())
 		self.cbb_runner_events.bind("<<ComboboxSelected>>", callback)
 
