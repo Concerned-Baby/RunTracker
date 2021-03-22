@@ -402,7 +402,8 @@ class myApplicationManager(object):
 	#param None
 	def select_go(self):
 		runner = self.cbb_select_selector.current()
-		self.newRunnerPage(self.runnersList[runner])
+		self.runner = runner
+		self.updateRunner()
 		self.updateRunner()
 		self.goToScreen(self.frm_runner)
 
@@ -1308,15 +1309,15 @@ class myApplicationManager(object):
 		self.lbl_runner_name = tk.Label(master=self.frm_runner, text="ERROR LOADING")
 		self.lbl_runner_name.place(x=365, y=0)
 
-		self.lbl_runner_goalsPassed = tk.Label(master=self.frm_runner, text="ERROR LOADING"
+		self.lbl_runner_goalsPassed = tk.Label(master=self.frm_runner, text="ERROR LOADING")
 		self.lbl_runner_goalsPassed.place(x=450, y=40)
 
 		self.scr_runner_goals = tk.Scrollbar(master=self.frm_runner, background="green", width=100)
 
-		self.mylist = tk.Listbox(master=self.frm_runner, yscrollcommand=scr_runner_goals.set, width=24, height=23) 
+		self.mylist = tk.Listbox(master=self.frm_runner, yscrollcommand=self.scr_runner_goals.set, width=24, height=23) 
 		self.mylist.place(x=630, y=60)
 
-		self.scr_runner_goals.config(command=mylist.yview)
+		self.scr_runner_goals.config(command=self.mylist.yview)
 
 		self.btn_runner_advanced = tk.Button(master=self.frm_runner, text="Advanced Stats", command=self.runner_advanced, width=15, height=1, borderwidth=3, relief="raised")
 		self.btn_runner_advanced.place(x=600, y=5)
