@@ -1335,8 +1335,6 @@ class myApplicationManager(object):
 		self.lbl_runner_goalLabel = tk.Label(master=self.frm_runner, text="Goals", width=20, height=1, borderwidth=2, relief="ridge")
 		self.lbl_runner_goalLabel.place(x=630, y=40)
 
-		#self.lbl_runner_goals = tk.Label(master=self.frm_runner, text=self.getAllGoals(runner), width=20, height=24, borderwidth=2, relief="ridge")
-
 		self.btn_runner_editEvents = tk.Button(master=self.frm_runner,command=self.runner_addEvent, text="edit events", width=10, height=1, borderwidth=3, relief="raised")
 		self.btn_runner_editEvents.place(x=200, y=415)
 
