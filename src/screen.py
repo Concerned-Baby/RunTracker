@@ -404,7 +404,6 @@ class myApplicationManager(object):
 		runner = self.cbb_select_selector.current()
 		self.runner = runner
 		self.updateRunner()
-		self.updateRunner()
 		self.goToScreen(self.frm_runner)
 
 	#return None
