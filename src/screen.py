@@ -401,8 +401,7 @@ class myApplicationManager(object):
 	#return None
 	#param None
 	def select_go(self):
-		runner = self.cbb_select_selector.current()
-		self.runner = runner
+		self.runner = self.cbb_select_selector.current()
 		self.updateRunner()
 		self.goToScreen(self.frm_runner)
 
