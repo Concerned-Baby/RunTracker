@@ -429,7 +429,7 @@ class myApplicationManager(object):
 	def updateAdvanced(self):
 		self.lbl_runnerAdvanced_name["text"] = self.runner
 		runnerObj = self.runnersDict[self.runner]
-		self.lbl_runnerAdvanced_points["text"] = "Total Points: %d \n\n Point Efficiency: %.3f" % (runnerObj.getTotalPoints(), runnerObj.getAveragePoints())
+		self.lbl_runnerAdvanced_points["text"] = "Total Points: %d \n\n Point Efficiency: %.3f points per event" % (runnerObj.getTotalPoints(), runnerObj.getAveragePoints())
 		self.lbl_runnerAdvanced_pointSEvent["text"] = runnerObj.getAllPoints()
 
 	#return None
