@@ -501,10 +501,7 @@ class myApplicationManager(object):
 	#return None
 	#param String
 	def cbb_deleteTimes_go(self, event):
-		print(self.runner)
-		print(event)
 		self.runnerTimes = self.runnersDict[self.runner].getTimesEvent(event)
-		print(self.runnerTimes)
 		x = 120
 		y = 120
 		Ystep = 15
