@@ -595,7 +595,7 @@ class myApplicationManager(object):
 			self.txt_import_file.insert("end-1c", str(fileObject.readlines())) #not decoding properly
 			fileObject.close()
 		except FileNotFoundError:
-			pass
+			print("FileNotFound")
 
 	"""
 	Method That Change Screens
