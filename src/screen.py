@@ -98,6 +98,10 @@ def clearEntry(entry):
 
 
 class myApplicationManager(object):
+	"""
+	Section: Basic Class Composition
+	"""
+
 	#return None
 	#param Dictionary<String, Runner>
 	def __init__(self, runnersDict):
@@ -118,6 +122,10 @@ class myApplicationManager(object):
 	def toDo(self):
 		print("TODO")
 
+	"""
+	Section: Methods That Actually Do Something
+	"""
+
 	#return None
 	#param None
 	def updateRunner(self):
@@ -136,10 +144,6 @@ class myApplicationManager(object):
 			self.mylist.insert(tk.END, "\t %s" % line) 
 		self.cbb_runner_events["values"] = self.runnersDict[runner].getEvents()
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[runner].getAllGoalsPassed()
-
-	"""
-	Methods That Actually Do Something
-	"""
 
 	#return None
 	#param None
@@ -598,7 +602,7 @@ class myApplicationManager(object):
 			print("FileNotFound")
 
 	"""
-	Method That Change Screens
+	Section: Methods That Change Screens
 	"""
 
 	#return None
@@ -727,6 +731,10 @@ class myApplicationManager(object):
 	#param None
 	def deleteGoals_help(self):
 		self.goToScreen(self.frm_deleteGoalsHelp)
+
+	"""
+	Section: Setting Graphics
+	"""
 
 	#return None
 	#param None
