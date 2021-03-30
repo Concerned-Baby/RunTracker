@@ -130,7 +130,7 @@ class myApplicationManager(object):
 	#param None
 	def updateRunner(self):
 		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
-		self.lbl_runner_goals["text"] = self.getAllGoals(self.runner)
+		#self.lbl_runner_goals["text"] = self.getAllGoals(self.runner)
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
 		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_deleteTimes_events["values"] = self.runnersDict[self.runner].getEvents()
@@ -139,11 +139,11 @@ class myApplicationManager(object):
 		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.lbl_runner_name["text"] = self.runner
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
-		self.myList.clear()
+		self.myList =  tk.Listbox(master=self.frm_runner, yscrollcommand=self.scr_runner_goals.set, width=24, height=23) 
 		for line in self.getAllGoals(self.runner).split("\n"): 
-			self.mylist.insert(tk.END, "\t %s" % line) 
-		self.cbb_runner_events["values"] = self.runnersDict[runner].getEvents()
-		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[runner].getAllGoalsPassed()
+			self.myList.insert(tk.END, "\t %s" % line) 
+		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
 
 	#return None
 	#param None
@@ -204,8 +204,8 @@ class myApplicationManager(object):
 
 	#return None
 	#param Runner, String
-	def cbb_runner_event(self, runner, event):
-		self.lbl_runner_eventInfo["text"] = self.runnersDict[runner].getAllInfoEvent(event)
+	def cbb_runner_event(self, event):
+		self.lbl_runner_eventInfo["text"] = self.runnersDict[self.runner].getAllInfoEvent(event)
 
 	#return boolean
 	#param String
@@ -262,6 +262,8 @@ class myApplicationManager(object):
 	#return String
 	#param String
 	def getAllPrs(self, runner):
+		print(runner)
+		print(self.runnersDict)
 		runnerObj = self.runnersDict[runner]
 		events = runnerObj.getEvents()
 		text = ""
@@ -405,7 +407,8 @@ class myApplicationManager(object):
 	#return None
 	#param None
 	def select_go(self):
-		self.runner = self.cbb_select_selector.current()
+		self.runner = self.runnersList[self.cbb_select_selector.current()] #may not be fixed
+		print(self.runner)
 		self.updateRunner()
 		self.goToScreen(self.frm_runner)
 
@@ -1317,10 +1320,10 @@ class myApplicationManager(object):
 
 		self.scr_runner_goals = tk.Scrollbar(master=self.frm_runner, background="green", width=100)
 
-		self.mylist = tk.Listbox(master=self.frm_runner, yscrollcommand=self.scr_runner_goals.set, width=24, height=23) 
-		self.mylist.place(x=630, y=60)
+		self.myList = tk.Listbox(master=self.frm_runner, yscrollcommand=self.scr_runner_goals.set, width=24, height=23) 
+		self.myList.place(x=630, y=60)
 
-		self.scr_runner_goals.config(command=self.mylist.yview)
+		self.scr_runner_goals.config(command=self.myList.yview)
 
 		self.btn_runner_advanced = tk.Button(master=self.frm_runner, text="Advanced Stats", command=self.runner_advanced, width=15, height=1, borderwidth=3, relief="raised")
 		self.btn_runner_advanced.place(x=600, y=5)
@@ -1358,7 +1361,7 @@ class myApplicationManager(object):
 		self.cbb_runner_events.place(x=290, y=40)
 
 		def callback(eventObject):
-			self.cbb_runner_event(runner, self.cbb_runner_events.get())
+			self.cbb_runner_event(self.cbb_runner_events.get())
 		self.cbb_runner_events.bind("<<ComboboxSelected>>", callback)
 
 		self.lbl_runner_eventInfo = tk.Label(master=self.frm_runner, text="Select A Event", width=58, height=20, borderwidth=3, relief="ridge")
