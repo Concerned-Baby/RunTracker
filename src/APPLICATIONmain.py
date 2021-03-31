@@ -78,7 +78,7 @@ def getRunnersNoTxt():
 	elif system_ == "macOS" or system_ == "iOS":
 		location = "%s/Runners" % getcwd()
 	else:
-		print("Error: Platform Not Supported")
+		print("Error: Your Computer Is Not Supported")
 		exit()
 	return listdir(location)
 
