@@ -52,6 +52,7 @@ better format everything
 """
 ERRORS:
 not removing goals on delete
+goals not showing up
 
 """
 
