@@ -7,27 +7,20 @@ from platform import system
 
 FIELDEVENTS = ["Long Jump", "Pole Vault"] #list of field events
 
-global changeD, NoTime
-changeD = (system() == "macOS" or system() == "iOS")
+global NoTime
 NoTime = 14420133764129
 
 #return None
 #param String, String, String, String
 def writeToFile(name, event, eType, text):
-	if changeD:
-		myFile = open("Runners/%s/%s/%s.txt" % (name,event, eType), "a")
-	else:
-		myFile = open("Runners\\%s\\%s\\%s.txt" % (name,event, eType), "a")
+	myFile = open("Runners\\%s\\%s\\%s.txt" % (name,event, eType), "a")
 	myFile.write(text)
 	myFile.close()
 
 #return List<String>
 #param String, String, String
 def readFileLBL(name, event, eType):
-	if changeD:
-		myFile = open("Runners/%s/%s/%s.txt" % (name,event, eType), "r")
-	else:
-		myFile = open("Runners\\%s\\%s\\%s.txt" % (name, event, eType), "r")
+	myFile = open("Runners\\%s\\%s\\%s.txt" % (name, event, eType), "r")
 	lines = myFile.readlines()
 	myFile.close()
 	return lines
@@ -42,11 +35,7 @@ def fileExists(directs):
 #param String
 def getFileName(directs):
 	fileName = "Runners"
-	fileSep = ""
-	if changeD:
-		fileSep = "/"
-	else:
-		fileSep = "\\"
+	fileSep = "\\"
 
 	for direct in directs:
 		fileName += fileSep + direct
@@ -55,11 +44,7 @@ def getFileName(directs):
 #return String
 #param String
 def getNotVersion(fileName):
-	ind = 0
-	if (changeD):
-		ind = fileName.rindex("/")
-	else:
-		ind = fileName.rindex("\\")
+	ind = fileName.rindex("\\")
 	fileName = fileName[:ind + 1] + "!" + fileName[ind + 1:]
 	return fileName
 
@@ -137,10 +122,7 @@ class Runner (object):
 		elif portion == "goal":
 			print("clearing goals")
 			eType = "goal"
-		if changeD:
-			myFile = open("Runners/%s/%s/%s.txt" % (self.name, eventName, eType), "w")
-		else:
-			myFile = open("Runners\\%s\\%s\\%s.txt" % (self.name, eventName, eType), "w")
+		myFile = open("Runners\\%s\\%s\\%s.txt" % (self.name, eventName, eType), "w")
 		myFile.close()
 
 	#return String
