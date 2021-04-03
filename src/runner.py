@@ -35,10 +35,8 @@ def fileExists(directs):
 #param String
 def getFileName(directs):
 	fileName = "Runners"
-	fileSep = "\\"
-
 	for direct in directs:
-		fileName += fileSep + direct
+		fileName += "\\" + direct
 	return fileName
 
 #return String
