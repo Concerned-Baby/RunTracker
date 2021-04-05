@@ -42,8 +42,8 @@ def getFileName(directs):
 #return String
 #param String
 def getNotVersion(fileName):
-	ind = fileName.rindex("\\")
-	return fileName[:ind + 1] + "!" + fileName[ind + 1:]
+	ind = fileName.rindex("\\") + 1
+	return fileName[:ind] + "!" + fileName[ind:]
 
 class Runner (object):
 	#return None
