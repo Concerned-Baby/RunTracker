@@ -28,8 +28,7 @@ def readFileLBL(name, event, eType):
 #return boolean
 #param String
 def fileExists(directs):
-	fileName = getFileName(directs)
-	return path.exists(fileName)
+	return path.exists(getFileName(directs))
 
 #return String
 #param String
@@ -94,8 +93,7 @@ class Runner (object):
 			if ("%.2f" % time) not in self.getTimesEvent(eventName):
 				writeToFile(self.name, eventName, "time", "%.2f\n" % time)
 				return "Time Added"
-			else:
-				return "Time Already Exists"
+			return "Time Already Exists"
 		return "No Such Event"
 
 	#return None
