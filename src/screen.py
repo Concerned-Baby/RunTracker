@@ -1311,7 +1311,6 @@ class myApplicationManager(object):
 
 		self.frm_runner = Frame(self.window, "Runner")
 
-
 		self.lbl_runner_name = tk.Label(master=self.frm_runner, text="ERROR LOADING")
 		self.lbl_runner_name.place(x=365, y=0)
 
