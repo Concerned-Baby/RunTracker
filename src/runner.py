@@ -101,23 +101,21 @@ class Runner (object):
 	def removeTime(self, eventName, time):
 		times = self.getTimesEvent(eventName)
 		self.clearEvent(eventName, "time")
-		print(str(times) + " <-- times")
+		#print(str(times) + " <-- times")
 		for oldTime in times:
-			print(str(oldTime) + " : " + str(time))
+			#print(str(oldTime) + " : " + str(time))
 			if not oldTime == time:
 				self.newTime(eventName, oldTime)
-			else:
-				print("removed: " + str(oldTime))
+			#else:
+			#	print("removed: " + str(oldTime))
 	#return None
 	#param String, String 
 	def clearEvent(self, eventName, portion):
-		if portion == "time":
-			print("clearing times")
-			eType = "time"
-		elif portion == "goal":
-			print("clearing goals")
-			eType = "goal"
-		myFile = open("Runners\\%s\\%s\\%s.txt" % (self.name, eventName, eType), "w")
+		#if portion == "time":
+		#	print("clearing times")
+		#elif portion == "goal":
+		#	print("clearing goals")
+		myFile = open("Runners\\%s\\%s\\%s.txt" % (self.name, eventName, portion), "w")
 		myFile.close()
 
 	#return String
@@ -126,8 +124,8 @@ class Runner (object):
 		if self.hasEvent(eventName):
 			if goal not in self.getGoalsEvent(eventName):
 				writeToFile(self.name, eventName, "goal",  "%.2f\n" % goal)
-				print("%.2f\n" % goal)
-				print(self.getGoalsEvent(eventName))
+				#print("%.2f\n" % goal)
+				#print(self.getGoalsEvent(eventName))
 				return "Goal Added"
 			return "Goal Already Exists"
 		return "No Such Event"
@@ -135,15 +133,15 @@ class Runner (object):
 	#return None
 	#param String, double
 	def removeGoal(self, eventName, goal):
-		print("remove event" + eventName)
+		#print("remove event" + eventName)
 		goals = self.getGoalsEvent(eventName)
 		self.clearEvent(eventName, "goal")
-		print(eventName)
+		#print(eventName)
 		for oldGoal in goals:
 			if oldGoal != goal:
 				self.newGoal(eventName, oldGoal)
-			else:
-				print("removed: " + str(oldGoal))
+			#else:
+			#	print("removed: " + str(oldGoal))
 
 	#return List<double>
 	#param String
