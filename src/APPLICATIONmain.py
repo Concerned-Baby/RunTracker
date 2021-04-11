@@ -10,6 +10,14 @@ from os import mkdir
 global GlobalrunnersDict
 GlobalrunnersDict = {}
 
+
+"""
+ERRORS:
+not removing goals on delete
+goals not showing up
+
+"""
+
 """
 TODO:
 
@@ -47,13 +55,6 @@ IDEAS:
 make it connected to a website
 allow for pushing and requesting from a client
 better format everything
-"""
-
-"""
-ERRORS:
-not removing goals on delete
-goals not showing up
-
 """
 
 def main():
