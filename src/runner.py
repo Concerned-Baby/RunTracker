@@ -275,10 +275,10 @@ class Runner (object):
 		goals.sort()
 		text += "<h4> Goals: %d        Passed: %d</h4>\n\n" % (len(goals), self.getGoalsPassedEvent(eventName))
 		for goal in goals:
-			text += "<p> %.2f </p>\n" % float(goal)
+			text += "<p> %.2f </p>\n" % goal
 		text += "<h4> Times </h4>\n\n"
 		times = self.getTimesEvent(eventName)
 		times.sort()
 		for time in times:
-			text += "<p> %.2f </p>\n" % float(time)
+			text += "<p> %.2f </p>\n" % time
 		return text
