@@ -159,48 +159,30 @@ class Runner (object):
 		else:
 			if len(times) == 0:
 				return NoTime
-			PR =  NoTime
-			for time in times:
-				PR = min(PR, float(time))
-		return PR
+		return min(times)
 
 	#return int
 	#param String
 	def getGoalsPassedEvent(self, eventName):
-		PR = self.getPREvent(eventName)
-		goals  = self.getGoalsEvent(eventName)
-		passed = 0
-		for goal in goals:
-			if PR <= float(goal):
-				passed += 1
-		return passed
+		return len([goal for goal in self.getGoalsEvent(eventName) if self.getPREvent(eventName) <= goal])
 
 	#return int
 	#param None
 	def getAllGoalsPassed(self):
-		goalsPassed = 0
-		events = self.getEvents()
-		for event in events:
-			goalsPassed += self.getGoalsPassedEvent(event)
-		return goalsPassed
+		return sum(self.getGoalsPassedEvent(event) for event in self.getEvents())
 
 	#return double
 	#param None
 	def getAveragePoints(self):
-		points = self.getTotalPoints()
 		try:
-			return points / len([event for event in self.getEvents() if self.getPREvent(event) != NoTime])
+			return self.getTotalPoints() / len([event for event in self.getEvents() if self.getPREvent(event) != NoTime])
 		except ZeroDivisionError:
 			return 0
 
 	#return int
 	#param None
 	def getTotalPoints(self):
-		points = 0
-		events = self.getEvents()
-		for event in events:
-			points += self.getPointsEvent(event)
-		return points
+		return sum([self.getPointsEvent(event) for event in events])
 
 	#return double
 	#param double, double, double, double
