@@ -156,9 +156,8 @@ class Runner (object):
 		times = self.getTimesEvent(eventName)
 		if eventName in FIELDEVENTS:
 			return self.getPRFieldEvent(eventName)
-		else:
-			if len(times) == 0:
-				return NoTime
+		if len(times) == 0:
+			return NoTime
 		return min(times)
 
 	#return int
