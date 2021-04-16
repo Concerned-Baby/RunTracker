@@ -215,9 +215,8 @@ class Runner (object):
 	#return String
 	#param None
 	def getAllPoints(self):
-		events = self.getEvents()
 		text = ""
-		for event in events:
+		for event in self.getEvents():
 			text += "%s: %d\n" % (event, self.getPointsEvent(event))
 		return text
 
