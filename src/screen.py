@@ -15,7 +15,7 @@ NoTime = 14420133764129
 
 Sprints = ["100m", "200m", "300m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
-Other = ["Long Jump", "Pole Vault"]
+Other = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput"]
 Events = Sprints + Distance + Other
 
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
