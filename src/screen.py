@@ -5,7 +5,6 @@ import longtext
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
-import webbrowser
 
 #constants
 global possiblePredictions, possibleEvents, Sprints, Distance, Other, NoTime
@@ -195,11 +194,6 @@ class myApplicationManager(object):
 					self.lbl_editGoals_output["text"] = result
 		self.updateRunner()
 		#clear entry
-
-	#return None
-	#param String
-	def openLink(self, url):
-		webbrowser.open_new(url)
 
 	#return None
 	#param Runner, String
