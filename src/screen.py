@@ -5,7 +5,6 @@ import longtext
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
-from PIL import Image, ImageTk
 import webbrowser
 
 #constants
@@ -1114,11 +1113,6 @@ class myApplicationManager(object):
 
 		lbl_aboutUs_text = tk.Label(master=self.frm_aboutUs, text=longtext.aboutus(), height=25, width=81, borderwidth=3, relief="ridge")
 		lbl_aboutUs_text.place(x=100, y=32)
-
-		render = ImageTk.PhotoImage(Image.open("res\\me.png").resize((100, 100)))
-		img = tk.Label(master=self.frm_aboutUs, image=render, borderwidth=3, relief="solid", width=100)
-		img.image = render
-		img.place(x=350, y=100)
 
 		btn_aboutUs_back = tk.Button(master=self.frm_aboutUs, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
 		btn_aboutUs_back.place(x=5,y=415)
