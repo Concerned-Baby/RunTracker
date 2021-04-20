@@ -51,7 +51,6 @@ def getLocalBest(eventName, runnersDict):
 #return String
 #param double
 def format(time):
-	time = float(time)
 	if (time < 60):
 		return "%.2f" % time
 	return ("%d:%2d.%2d" % (time / 60, time % 60, (time % 1) * 100)).replace(' ', "0")
