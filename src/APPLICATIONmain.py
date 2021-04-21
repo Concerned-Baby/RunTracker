@@ -53,8 +53,13 @@ make local ranks show n/a when no runners
 IDEAS:
 
 make it connected to a website
+
 allow for pushing and requesting from a client
+
 better format everything
+
+have the predictions page be based of machine learning
+
 """
 
 def main():
