@@ -114,11 +114,6 @@ class myApplicationManager(object):
 		self.stack.push(self.frm_menu)
 		self.frm_menu.pack()
 
-	#return None
-	#param None
-	def toDo(self):
-		print("TODO")
-
 	"""
 	Section: Methods That Actually Do Something
 	"""
@@ -127,7 +122,6 @@ class myApplicationManager(object):
 	#param None
 	def updateRunner(self):
 		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
-		#self.lbl_runner_goals["text"] = self.getAllGoals(self.runner)
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
 		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_deleteTimes_events["values"] = self.runnersDict[self.runner].getEvents()
