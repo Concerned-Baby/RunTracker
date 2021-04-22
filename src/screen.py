@@ -122,19 +122,18 @@ class myApplicationManager(object):
 	#param None
 	def updateRunner(self):
 		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
-		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
 		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_deleteTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_deleteGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.lbl_runner_name["text"] = self.runner
-		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
 		self.myList =  tk.Listbox(master=self.frm_runner, yscrollcommand=self.scr_runner_goals.set, width=24, height=23) 
 		for line in self.getAllGoals(self.runner).split("\n"): 
 			self.myList.insert(tk.END, "\t %s" % line) 
 		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
+
 
 	#return None
 	#param None
@@ -1301,9 +1300,12 @@ class myApplicationManager(object):
 		self.scr_runner_goals = tk.Scrollbar(master=self.frm_runner, background="green", width=100)
 
 		self.myList = tk.Listbox(master=self.frm_runner, yscrollcommand=self.scr_runner_goals.set, width=24, height=23) 
+		#TODO ADD STUFF TO THE LIST
+		self.myList.insert(tk.END, "asjfa")
 		self.myList.place(x=630, y=60)
 
 		self.scr_runner_goals.config(command=self.myList.yview)
+
 
 		self.btn_runner_advanced = tk.Button(master=self.frm_runner, text="Advanced Stats", command=self.runner_advanced, width=15, height=1, borderwidth=3, relief="raised")
 		self.btn_runner_advanced.place(x=600, y=5)
