@@ -129,10 +129,11 @@ class myApplicationManager(object):
 		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.lbl_runner_name["text"] = self.runner
 		self.myList =  tk.Listbox(master=self.frm_runner, yscrollcommand=self.scr_runner_goals.set, width=24, height=23) 
-		for line in self.getAllGoals(self.runner).split("\n"): 
-			self.myList.insert(tk.END, "\t %s" % line) 
 		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
+		self.myList.delete(1, tk.END) #not acutally updating
+		self.myList.insert(tk.END, self.getAllGoals(self.runner))
+		self.scr_runner_goals.config(command=self.myList.yview)
 
 
 	#return None
@@ -1300,8 +1301,7 @@ class myApplicationManager(object):
 		self.scr_runner_goals = tk.Scrollbar(master=self.frm_runner, background="green", width=100)
 
 		self.myList = tk.Listbox(master=self.frm_runner, yscrollcommand=self.scr_runner_goals.set, width=24, height=23) 
-		#TODO ADD STUFF TO THE LIST
-		self.myList.insert(tk.END, "asjfa")
+		self.myList.insert(tk.END, "ERROR LOADING INFO")
 		self.myList.place(x=630, y=60)
 
 		self.scr_runner_goals.config(command=self.myList.yview)
