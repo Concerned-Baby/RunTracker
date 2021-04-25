@@ -14,7 +14,7 @@ GlobalrunnersDict = {}
 """
 ERRORS:
 not removing goals on delete
-
+deleting times removes all
 
 """
 
