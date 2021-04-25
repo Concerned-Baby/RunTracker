@@ -79,7 +79,7 @@ class Runner (object):
 	#return List<String>
 	#param None
 	def getEvents(self):
-		return listdir(getFileName([self.name]))
+		return [event for event in listdir(getFileName([self.name])) if "!" not in event]
 
 	#return boolean
 	#param String
