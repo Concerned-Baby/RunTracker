@@ -126,7 +126,7 @@ class Runner (object):
 		self.clearEvent(eventName, "goal")
 		for oldGoal in goals:
 			if oldGoal != goal:
-				self.newGoal(eventName, oldGoal)
+				writeToFile(self.name, eventName, "goal",  "%.2f\n" % goal)
 
 	#return List<double>
 	#param String
