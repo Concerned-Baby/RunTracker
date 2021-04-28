@@ -99,8 +99,9 @@ class Runner (object):
 	#return None
 	#param String, double
 	def removeTime(self, eventName, time):
+		oldTimes = self.getEventTimes(eventName)
 		self.clearEvent(eventName, "time")
-		for oldTime in self.getTimesEvent(eventName):
+		for oldTime in oldTimes:
 			if not oldTime == time:
 				self.newTime(eventName, oldTime)
 	#return None
@@ -146,7 +147,7 @@ class Runner (object):
 			return NoTime
 		PR = 0
 		for time in times:
-			PR = max(PR, float(time))
+			PR = max(PR, time)
 		return PR
 
 	#return double
