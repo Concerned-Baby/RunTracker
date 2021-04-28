@@ -575,9 +575,8 @@ class myApplicationManager(object):
 				print("pass")
 		print("end " + str(toDelete))
 		for chk in toDelete:
-			print(chk["text"])
-			print("screen event" + self.cbb_deleteGoals_events.get())
-			self.runnersDict[self.runner].removeGoal(self.cbb_deleteGoals_events.get(), chk["text"])
+			print("removing goal " + chk["text"] + " from " + self.cbb_deleteGoals_events.get())
+			self.runnersDict[self.runner].removeGoal(self.cbb_deleteGoals_events.get(), float(chk["text"]))
 
 	#return None
 	#param None

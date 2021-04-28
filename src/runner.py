@@ -180,7 +180,7 @@ class Runner (object):
 	#return int
 	#param None
 	def getTotalPoints(self):
-		return sum([self.getPointsEvent(event) for event in events])
+		return sum([self.getPointsEvent(event) for event in self.getEvents()])
 
 	#return double
 	#param double, double, double, double
