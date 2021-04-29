@@ -88,6 +88,8 @@ def getRankingsEvent(eventName, runnersDict):
 		else:
 			text += "%d.  %s\t%s\n" % (count, temp[time].ljust(32)[:32], format(time))
 		count += 1
+	if text == "":
+		return "n/a"
 	return text
 
 def clearEntry(entry):
