@@ -46,7 +46,7 @@ def getLocalBest(eventName, runnersDict):
 		if best == 0:
 			return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
 		return("\nBest %s: %.2f \nBest %s'er: %s" % (eventName, best, eventName, bestMan))
-	return "ERROR"
+	return "ERROR LOADING TIMES"
 
 #return String
 #param double
@@ -132,8 +132,7 @@ class myApplicationManager(object):
 		self.lbl_runner_name["text"] = self.runner
 		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
-		#self.myList = tk.Listbox(master=self.frm_runner, yscrollcommand=self.scr_runner_goals.set, width=24, height=23) 
-		self.myList.delete(0, tk.END) #not acutally updating
+		self.myList.delete(0, tk.END)
 		for line in self.getAllGoals(self.runner).split("\n"):
 			self.myList.insert(tk.END, line + "\n")
 		self.myList.place(x=630, y=60)
