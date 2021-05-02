@@ -123,14 +123,15 @@ class myApplicationManager(object):
 	#return None
 	#param None
 	def updateRunner(self):
+		events = self.runnersDict[self.runner].getEvents()
 		self.lbl_runner_prs["text"] = self.getAllPrs(self.runner)
-		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
-		self.cbb_deleteTimes_events["values"] = self.runnersDict[self.runner].getEvents()
-		self.cbb_deleteGoals_events["values"] = self.runnersDict[self.runner].getEvents()
-		self.cbb_editTimes_events["values"] = self.runnersDict[self.runner].getEvents()
-		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.cbb_runner_events["values"] = events
+		self.cbb_deleteTimes_events["values"] = events
+		self.cbb_deleteGoals_events["values"] = events
+		self.cbb_editTimes_events["values"] = events
+		self.cbb_editGoals_events["values"] = events
 		self.lbl_runner_name["text"] = self.runner
-		self.cbb_runner_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.cbb_runner_events["values"] = events
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
 		self.myList.delete(0, tk.END)
 		for line in self.getAllGoals(self.runner).split("\n"):
