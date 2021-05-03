@@ -227,7 +227,7 @@ class myApplicationManager(object):
 
 	#return boolean
 	#param String
-	def isChar(self, toBe):
+	def isValidRunnerName(self, toBe):
 		if toBe == "":
 			self.newRunnerName = ""
 			return True
@@ -237,7 +237,7 @@ class myApplicationManager(object):
 		return False	
 		#clear entry	
 		
-	def isFloat(self, toBe):
+	def isFloatPredictor(self, toBe):
 		if toBe == "":
 			self.predictorGivenTime = -1
 			return True
@@ -796,7 +796,7 @@ class myApplicationManager(object):
 		lbl_predictor_entryLabel.place(x=365, y=160)
 
 		self.predictorTime = tk.StringVar()
-		vcmd = (self.window.register(self.isFloat), "%P") 
+		vcmd = (self.window.register(self.isFloatPredictor), "%P") 
 		
 		self.ent_predictor_entry = tk.Entry(master=self.frm_predictor, width=15, textvariable=self.predictorTime, validate="all", validatecommand=vcmd)
 		self.ent_predictor_entry.place(x=350, y=190)
@@ -849,7 +849,7 @@ class myApplicationManager(object):
 		lbl_selectNew_logo.place(x=360, y=0)
 
 		self.runnerName = tk.StringVar()
-		vcmd = (self.window.register(self.isChar), "%P")
+		vcmd = (self.window.register(self.isValidRunnerName), "%P")
 		
 		self.ent_selectNew_entry = tk.Entry(master=self.frm_selectNew, width=15, textvariable=self.runnerName, validate="all", validatecommand=vcmd)
 		self.ent_selectNew_entry.place(x=340, y=190)
