@@ -13,13 +13,19 @@ GlobalrunnersDict = {}
 
 """
 ERRORS:
-not removing goals on delete
-deleting times removes all
+
+need to update checkboxes for delete times and goals after deletion
+deleting times not working
+goals not updating on the side
+
+
 
 """
 
 """
 TODO:
+
+make to delete and times in order
 
 add needed help menues
 
