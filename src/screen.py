@@ -209,7 +209,6 @@ class myApplicationManager(object):
 			return True
 		except ValueError:
 			return False
-		#clear entry
 
 	#return boolean
 	#param String
@@ -223,7 +222,6 @@ class myApplicationManager(object):
 			return True
 		except ValueError:
 			return False
-		#clear entry
 
 	#return boolean
 	#param String
@@ -234,8 +232,7 @@ class myApplicationManager(object):
 		if toBe.isalpha():
 			self.newRunnerName = toBe
 			return True
-		return False	
-		#clear entry	
+		return False		
 		
 	def isFloatPredictor(self, toBe):
 		if toBe == "":
@@ -499,6 +496,7 @@ class myApplicationManager(object):
 	#param String
 	def cbb_deleteTimes_go(self, event):
 		self.runnerTimes = self.runnersDict[self.runner].getTimesEvent(event)
+		print("Runner times are: " + str(self.runnerTimes))
 		x = 120
 		y = 120
 		Ystep = 15
@@ -522,10 +520,8 @@ class myApplicationManager(object):
 	#return None
 	#param String
 	def cbb_deleteGoals_go(self, event):
-		print(self.runner)
-		print(event)
 		self.runnerGoals = self.runnersDict[self.runner].getGoalsEvent(event)
-		print(self.runnerTimes)
+		print("Runner goals are: " + str(self.runnerGoals))
 		x = 120
 		y = 120
 		Ystep = 15
