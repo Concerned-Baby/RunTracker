@@ -497,7 +497,7 @@ class myApplicationManager(object):
 	def cbb_deleteTimes_go(self, event):
 		self.runnerTimes = self.runnersDict[self.runner].getTimesEvent(event)
 		print("Runner times are: " + str(self.runnerTimes))
-		x = 120
+		x = 100
 		y = 120
 		Ystep = 15
 		Xstep = 45
@@ -505,6 +505,7 @@ class myApplicationManager(object):
 		xMax = x + Xstep * 15
 		for toRemove in self.deleteTimes_currentOn:
 			toRemove.place_forget()
+		self.deleteTimes_currentOn = []
 		for time in self.runnerTimes:
 			chk = ttk.Checkbutton(master=self.frm_deleteTimes, text=str(time))
 			chk.state(["!alternate"])
@@ -522,7 +523,7 @@ class myApplicationManager(object):
 	def cbb_deleteGoals_go(self, event):
 		self.runnerGoals = self.runnersDict[self.runner].getGoalsEvent(event)
 		print("Runner goals are: " + str(self.runnerGoals))
-		x = 120
+		x = 100
 		y = 120
 		Ystep = 15
 		Xstep = 50
@@ -530,6 +531,7 @@ class myApplicationManager(object):
 		xMax = x + Xstep * 10
 		for toRemove in self.deleteGoals_currentOn:
 			toRemove.place_forget()
+		self.deleteGoals_currentOn = []
 		for goal in self.runnerGoals:
 			chk = ttk.Checkbutton(master=self.frm_deleteGoals, text=str(goal))
 			chk.state(["!alternate"])
