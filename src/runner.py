@@ -102,6 +102,7 @@ class Runner (object):
 		oldTimes = self.getTimesEvent(eventName)
 		self.clearEvent(eventName, "time")
 		for oldTime in oldTimes:
+			print(str(oldTime + 1) + " : " + str(time))
 			if not oldTime == time:
 				self.newTime(eventName, oldTime)
 	#return None

@@ -515,7 +515,7 @@ class myApplicationManager(object):
 				y = 120
 				x += Xstep
 				if x >= xMax:
-					print("OVERFLOW ERROR [idk you use this too much tahts ur problem]")
+					print("OVERFLOW ERROR [TOO MANY TIMES]")
 			self.deleteTimes_currentOn.append(chk)
 
 	#return None
@@ -559,7 +559,7 @@ class myApplicationManager(object):
 		print("end " + str(toDelete))
 		for chk in toDelete:
 			print(chk["text"])
-			self.runnersDict[self.runner].removeTime(self.cbb_deleteTimes_events.get(), chk["text"])
+			self.runnersDict[self.runner].removeTime(self.cbb_deleteTimes_events.get(), float(chk["text"]))
 
 	#return None
 	#param None
