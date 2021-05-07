@@ -138,6 +138,7 @@ class myApplicationManager(object):
 			self.myList.insert(tk.END, line + "\n")
 		self.myList.place(x=630, y=60)
 		self.scr_runner_goals.config(command=self.myList.yview)
+		self.lbl_runner_eventInfo["text"] = self.runnersDict[self.runner].getAllInfoEvent(event)
 
 
 	#return None
@@ -314,7 +315,6 @@ class myApplicationManager(object):
 					else:
 						self.lbl_editTimes_output["text"] = "Time is extreme, click 'GO!' again to confirm"
 		self.updateRunner()
-		#clear entry
 
 	#return boolean
 	#param String, double
