@@ -24,21 +24,11 @@ TODO:
 
 make to delete and times in order
 
-add needed help menues
-
 update help menus
-
-add basic instructions on pages 
 
 clear input boxes after use
 
 change screens after saving events
-
-update goals after add/delete
-
-update events dropdown on runner page after editing events
-
-add labels to local bests
 
 """
 
