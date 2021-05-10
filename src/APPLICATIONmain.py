@@ -16,9 +16,6 @@ ERRORS:
 
 need to update checkboxes for delete times and goals after deletion
 deleting times not working
-goals not updating on the side
-
-
 
 """
 
@@ -39,19 +36,9 @@ change screens after saving events
 
 update goals after add/delete
 
-update checkboxes after goal deletion
-
-update goal page on edit events
-
 update events dropdown on runner page after editing events
 
-update prs after deletion
-
-remove loading screen
-
 add labels to local bests
-
-make local ranks show n/a when no runners
 
 """
 
