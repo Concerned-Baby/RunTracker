@@ -144,12 +144,7 @@ class Runner (object):
 	#param String
 	def getPRFieldEvent(self, eventName):
 		times = self.getTimesEvent(eventName)
-		if len(times) == 0:
-			return NoTime
-		PR = 0
-		for time in times:
-			PR = max(PR, time)
-		return PR
+		return NoTime if len(times) == 0 else max(times)
 
 	#return double
 	#param String
@@ -157,9 +152,7 @@ class Runner (object):
 		times = self.getTimesEvent(eventName)
 		if eventName in FIELDEVENTS:
 			return self.getPRFieldEvent(eventName)
-		if len(times) == 0:
-			return NoTime
-		return min(times)
+		return NoTime if len(times) == 0 else min(times)
 
 	#return int
 	#param String
