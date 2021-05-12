@@ -5,7 +5,7 @@ from os import listdir
 from re import match
 from platform import system
 
-FIELDEVENTS = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput"] #list of field events
+FIELDEVENTS = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput", "High Jump"] #list of field events
 
 global NoTime
 NoTime = 14420133764129

@@ -11,9 +11,9 @@ global possiblePredictions, possibleEvents, Sprints, Distance, Other, NoTime
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m [Best]", "400m --> 800m [Best]"]
 NoTime = 14420133764129
 
-Sprints = ["100m", "200m", "300m", "400m"]
+Sprints = ["100m", "200m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
-Other = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput"]
+Other = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput", "High Jump"]
 Events = Sprints + Distance + Other
 
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
