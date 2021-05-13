@@ -7,14 +7,14 @@ from tkinter import ttk
 from tkinter import filedialog
 
 #constants
-global possiblePredictions, possibleEvents, Sprints, Distance, Other, NoTime
+global possiblePredictions, possibleEvents, Sprints, Distance, Field, NoTime
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m [Best]", "400m --> 800m [Best]"]
 NoTime = 14420133764129
 
 Sprints = ["100m", "200m", "400m"]
 Distance = ["800m", "1600m", "3200m"]
-Other = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput", "High Jump"]
-Events = Sprints + Distance + Other
+Field = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput", "High Jump"]
+Events = Sprints + Distance + Field
 
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
 
@@ -23,7 +23,7 @@ supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Ti
 #param String, Dictionary<String, Runner>
 def getLocalBest(eventName, runnersDict):
 	bestMan = "N/A"
-	if eventName not in Other:
+	if eventName not in Field:
 		best = NoTime
 		for runner in runnersDict:
 			if runnersDict[runner].hasEvent(eventName):
@@ -291,7 +291,7 @@ class myApplicationManager(object):
 			if (time == -1):
 				self.lbl_editTimes_output["text"] = "Enter A Time"
 			else:
-				if (self.reasonableTimeTrack(index, float(time)) and index not in Other) or (self.reasonableTimeEvent(index, float(time)) and index in Other):
+				if (self.reasonableTimeTrack(index, float(time)) and index not in Field) or (self.reasonableTimeEvent(index, float(time)) and index in Field):
 					result = self.runnersDict[self.runner].newTime(index, float(time))
 					if (result == "Time Added"):
 						text = self.lbl_editTimes_output["text"]
@@ -774,7 +774,7 @@ class myApplicationManager(object):
 		lbl_best_bestSprints = tk.Label(master=self.frm_best, text=getLocalBestGroup(Sprints, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
 		lbl_best_bestSprints.place(x=280, y=20)
 
-		lbl_best_bestField = tk.Label(master=self.frm_best, text=getLocalBestGroup(Other, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
+		lbl_best_bestField = tk.Label(master=self.frm_best, text=getLocalBestGroup(Field, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
 		lbl_best_bestField.place(x=524, y=20)
 
 		btn_best_back = tk.Button(master=self.frm_best, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
@@ -1012,7 +1012,7 @@ class myApplicationManager(object):
 			elif event in Distance:
 				chk.place(x=350, y=DCount)
 				DCount += 30
-			elif event in Other:
+			elif event in Field:
 				chk.place(x=550, y=OCount)
 				OCount += 30
 
