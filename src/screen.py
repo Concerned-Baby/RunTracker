@@ -794,7 +794,7 @@ class myApplicationManager(object):
 		lbl_predictor_entryLabel.place(x=365, y=160)
 
 		self.predictorTime = tk.StringVar()
-		vcmd = (self.window.register(self.isFloatPredictor), "%P") 
+		vcmd = self.window.register(self.isFloatPredictor), "%P"
 		
 		self.ent_predictor_entry = tk.Entry(master=self.frm_predictor, width=15, textvariable=self.predictorTime, validate="all", validatecommand=vcmd)
 		self.ent_predictor_entry.place(x=350, y=190)
@@ -847,7 +847,7 @@ class myApplicationManager(object):
 		lbl_selectNew_logo.place(x=360, y=0)
 
 		self.runnerName = tk.StringVar()
-		vcmd = (self.window.register(self.isValidRunnerName), "%P")
+		vcmd = self.window.register(self.isValidRunnerName), "%P"
 		
 		self.ent_selectNew_entry = tk.Entry(master=self.frm_selectNew, width=15, textvariable=self.runnerName, validate="all", validatecommand=vcmd)
 		self.ent_selectNew_entry.place(x=340, y=190)
@@ -958,7 +958,7 @@ class myApplicationManager(object):
 		lbl_editGoals_entryLabel = tk.Label(master=self.frm_editGoals, text="Enter Goal")
 		lbl_editGoals_entryLabel.place(x=362, y=200)
 
-		vcmd = (self.window.register(self.isFloatGoal), "%P")
+		vcmd = self.window.register(self.isFloatGoal), "%P"
 
 		self.goalSetTime = tk.StringVar()
 		self.ent_editGoals_entry = tk.Entry(master=self.frm_editGoals, width=15, textvariable=self.goalSetTime, validate="all", validatecommand=vcmd)
@@ -1041,7 +1041,7 @@ class myApplicationManager(object):
 		lbl_editTimes_entryLabel = tk.Label(master=self.frm_editTimes, text="Enter Time")
 		lbl_editTimes_entryLabel.place(x=362, y=200)
 
-		vcmd = (self.window.register(self.isFloatTime), "%P") #research register command
+		vcmd = self.window.register(self.isFloatTime), "%P"
 
 		self.timeThatWasRan = tk.StringVar()
 		self.ent_editTimes_entry = tk.Entry(master=self.frm_editTimes, width=15, textvariable=self.timeThatWasRan, validate="all", validatecommand=vcmd)
