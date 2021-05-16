@@ -395,7 +395,6 @@ class myApplicationManager(object):
 	#param None
 	def select_go(self):
 		self.runner = self.runnersList[self.cbb_select_selector.current()] #may not be fixed
-		print(self.runner)
 		self.updateRunner()
 		self.goToScreen(self.frm_runner)
 
@@ -435,7 +434,7 @@ class myApplicationManager(object):
 			self.runnersList.append(name)
 			self.runnersDict[name] = runnerObj
 			self.cbb_select_selector["values"] = self.runnersList
-		#clear entry
+		
 
 	#return None
 	#param String
