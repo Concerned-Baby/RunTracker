@@ -547,12 +547,11 @@ class myApplicationManager(object):
 	#return None
 	#param None
 	def deleteTimes_go(self):
-		print("go")
 		toDelete = []
 		print("start " + str(toDelete))
 		for chk in self.deleteTimes_currentOn:
 			try:
-				if (str(chk.state()).index("selected") > -1):
+				if str(chk.state()).index("selected") > -1:
 					toDelete.append(chk)
 			except ValueError:
 				print("pass")
