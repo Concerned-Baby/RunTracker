@@ -191,7 +191,6 @@ class myApplicationManager(object):
 				else:
 					self.lbl_editGoals_output["text"] = result
 		self.updateRunner()
-		#clear entry
 
 	#return None
 	#param Runner, String
@@ -370,7 +369,7 @@ class myApplicationManager(object):
 	#return None
 	#param None
 	def runner_addGoal(self):
-		self.cbb_editGoals_events["values"] = self.runnersDict[self.runner].getEvents()
+		self.updateRunner()
 		self.goToScreen(self.frm_editGoals)
 
 	#return None
