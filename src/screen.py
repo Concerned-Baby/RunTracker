@@ -98,7 +98,7 @@ def clearEntry(entry):
 
 class myApplicationManager(object):
 	"""
-	Section: Basic Class Composition
+	Section: Class Initiation
 	"""
 
 	#return None
