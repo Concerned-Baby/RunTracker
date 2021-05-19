@@ -116,6 +116,9 @@ class myApplicationManager(object):
 		self.stack.push(self.frm_menu)
 		self.frm_menu.pack()
 
+	def __str__(self):
+		return "RunTracker" + str(runnersDict)
+
 	"""
 	Section: Methods That Actually Do Something
 	"""
