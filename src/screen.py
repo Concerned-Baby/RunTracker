@@ -117,7 +117,7 @@ class myApplicationManager(object):
 		self.frm_menu.pack()
 
 	def __str__(self):
-		return "RunTracker" + str(runnersDict)
+		return "RunTracker v2.1" + str(runnersDict)
 
 	"""
 	Section: Methods That Actually Do Something
