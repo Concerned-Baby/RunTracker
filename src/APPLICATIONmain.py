@@ -2,7 +2,6 @@ from screen import myApplicationManager
 from runner import Runner
 from loadingscreen import loadingScreen
 from os import path
-from platform import system
 from os import getcwd
 from os import listdir
 from os import mkdir
@@ -58,19 +57,11 @@ def window():
 	myApplicationManager(GlobalrunnersDict).start()
 
 def setUpDictionary():	
-	for runner in getRunnersNoTxt():		
+	for runner in getRunners():		
 		GlobalrunnersDict[runner] = Runner(runner)
 
-def getRunnersNoTxt():
-	system_ = system()
-	if system_ == "Windows" or system_ == "Android" or system_ == "Linux":
-		location = "%s\\Runners" % getcwd()
-	elif system_ == "macOS" or system_ == "iOS":
-		location = "%s/Runners" % getcwd()
-	else:
-		print("Error: Your Computer Is Not Supported")
-		exit()
-	return listdir(location)
+def getRunners():
+	return listdir("%s/Runners" % getcwd())
 
 if __name__ == "__main__":
 	main()
