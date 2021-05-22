@@ -51,6 +51,8 @@ class Runner (object):
 		self.name = name 
 		if not fileExists([self.name]):
 			mkdir(getFileName([self.name]))
+	def __str__(self):
+		return self.name + " with events " + str(self.getEvents())
 
 	#return String
 	#param String
