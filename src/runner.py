@@ -53,6 +53,8 @@ class Runner (object):
 			mkdir(getFileName([self.name]))
 	def __str__(self):
 		return self.name + " does the events " + str(self.getEvents())
+	def __repr__(self):
+		return self.name
 
 	#return String
 	#param String
