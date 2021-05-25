@@ -54,7 +54,7 @@ class Runner (object):
 	def __str__(self):
 		return self.name + " does the events " + str(self.getEvents())
 	def __repr__(self):
-		return self.name
+		return self.__str__()
 
 	#return String
 	#param String
