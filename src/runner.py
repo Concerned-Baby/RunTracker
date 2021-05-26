@@ -35,7 +35,7 @@ def fileExists(directs):
 def getFileName(directs):
 	fileName = "Runners"
 	for direct in directs:
-		fileName += "\\" + direct
+		fileName += "\\%s" % direct
 	return fileName
 
 #return String
