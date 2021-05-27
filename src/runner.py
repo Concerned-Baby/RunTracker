@@ -61,8 +61,8 @@ class Runner (object):
 	def newEvent(self, eventName):
 		fileName = getFileName([self.name, eventName])
 		notV = getNotVersion(fileName)
-		if (self.hasEvent(eventName)):
-			return "Event Already Added"
+		if self.hasEvent(eventName):
+			return "Event Already Exists"
 		elif path.exists(notV):
 			rename(notV, fileName)
 		else:
