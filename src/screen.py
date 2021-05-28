@@ -136,6 +136,7 @@ class myApplicationManager(object):
 		self.lbl_runner_name["text"] = self.runner
 		self.cbb_runner_events["values"] = events
 		self.lbl_runner_goalsPassed["text"] = "Total Candy Owed: %d" % self.runnersDict[self.runner].getAllGoalsPassed()
+		
 		self.myList.delete(0, tk.END)
 		for line in self.getAllGoals(self.runner).split("\n"):
 			self.myList.insert(tk.END, line + "\n")
