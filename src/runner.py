@@ -244,19 +244,23 @@ class Runner (object):
 	#param String
 	def toHTMLEvent(self, eventName):
 		text =  "<h3> %s </h3>\n\n" % eventName
+
 		pr = self.getPREvent(eventName)
 		if pr != NoTime:
 			text += "<h5> PR: %s </h5>\n\n" % pr
 		else:
 			text += "<h5> PR: N/A </h5>\n\n"
+
 		goals = self.getGoalsEvent(eventName)
 		goals.sort()
 		text += "<h4> Goals: %d        Passed: %d</h4>\n\n" % (len(goals), self.getGoalsPassedEvent(eventName))
 		for goal in goals:
 			text += "<p> %.2f </p>\n" % goal
+
 		text += "<h4> Times </h4>\n\n"
 		times = self.getTimesEvent(eventName)
 		times.sort()
 		for time in times:
 			text += "<p> %.2f </p>\n" % time
+			
 		return text
