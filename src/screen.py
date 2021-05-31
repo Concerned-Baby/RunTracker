@@ -92,13 +92,15 @@ def getRankingsEvent(eventName, runnersDict):
 		return "n/a"
 	return text
 
+#return None
+#param tk.Entry
 def clearEntry(entry):
 	entry.delete(0, 'end')
 
 
 class myApplicationManager(object):
 	"""
-	Section: Class Initiation
+	Section: Built In Methods
 	"""
 
 	#return None
@@ -118,6 +120,9 @@ class myApplicationManager(object):
 
 	def __str__(self):
 		return "RunTracker v2.1" + str(runnersDict)
+
+	def __repr__(self):
+		return "RunTracker v2.1"
 
 	"""
 	Section: Methods That Actually Do Something
