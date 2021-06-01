@@ -93,7 +93,7 @@ def getRankingsEvent(eventName, runnersDict):
 	return text
 
 #return None
-#param tk.Entry
+#param Entry
 def clearEntry(entry):
 	entry.delete(0, 'end')
 
@@ -118,9 +118,13 @@ class myApplicationManager(object):
 		self.stack.push(self.frm_menu)
 		self.frm_menu.pack()
 
+	#return String
+	#param None
 	def __str__(self):
 		return "RunTracker v2.1" + str(runnersDict)
 
+	#return String
+	#param None
 	def __repr__(self):
 		return "RunTracker v2.1"
 
