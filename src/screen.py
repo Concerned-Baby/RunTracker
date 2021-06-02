@@ -92,12 +92,6 @@ def getRankingsEvent(eventName, runnersDict):
 		return "n/a"
 	return text
 
-#return None
-#param Entry
-def clearEntry(entry):
-	entry.delete(0, 'end')
-
-
 class myApplicationManager(object):
 	"""
 	Section: Built In Methods
