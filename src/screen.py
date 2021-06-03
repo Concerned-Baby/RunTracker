@@ -7,7 +7,7 @@ from tkinter import ttk
 from tkinter import filedialog
 
 #constants
-global possiblePredictions, possibleEvents, Sprints, Distance, Field, NoTime
+global possiblePredictions, possibleEvents, Sprints, Distance, Field, NoTime, Version
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m [Best]", "400m --> 800m [Best]"]
 NoTime = 14420133764129
 
@@ -18,6 +18,7 @@ Events = Sprints + Distance + Field
 
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
 
+Version = "2.1"
 
 #return String
 #param String, Dictionary<String, Runner>
@@ -115,12 +116,12 @@ class myApplicationManager(object):
 	#return String
 	#param None
 	def __str__(self):
-		return "RunTracker v2.1" + str(runnersDict)
+		return "RunTracker v" + Version + str(runnersDict)
 
 	#return String
 	#param None
 	def __repr__(self):
-		return "RunTracker v2.1"
+		return "RunTracker v" + Version
 
 	"""
 	Section: Methods That Actually Do Something
