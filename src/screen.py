@@ -146,8 +146,6 @@ class myApplicationManager(object):
 			self.myList.insert(tk.END, line + "\n")
 		self.myList.place(x=630, y=60)
 		self.scr_runner_goals.config(command=self.myList.yview)
-		self.lbl_runner_eventInfo["text"] = self.runnersDict[self.runner].getAllInfoEvent(event)
-
 
 	#return None
 	#param None
