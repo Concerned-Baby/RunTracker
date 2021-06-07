@@ -337,7 +337,7 @@ class myApplicationManager(object):
 			wrld = 223.13
 		elif event == "3200m":
 			wrld = 478.61
-		return (not wrld == 0) and (time > wrld and time < (pow(wrld, 13/11) * 1.3))
+		return  wrld != 0 and (time > wrld and time < (pow(wrld, 13/11) * 1.3))
 
 	#return boolean
 	#param String, double
@@ -355,7 +355,7 @@ class myApplicationManager(object):
 			wrld = 75.85
 		elif event == "High Jump":
 			wrld = 8.02
-		return (not wrld == 0) and (dist < wrld and time > wrld * 0.05)
+		return wrld != 0 and (dist < wrld and time > wrld * 0.05)
 	
 	#return None
 	#param None
