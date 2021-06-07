@@ -347,9 +347,15 @@ class myApplicationManager(object):
 			wrld = 20.18
 		elif event == "Long Jump":
 			wrld = 29.35
+		elif event == "Triple Jump":
+			wrld = 60
+		elif event == "Discus":
+			wrld = 251.88
+		elif event == "Shotput":
+			wrld = 75.85
+		elif event == "High Jump":
+			wrld = 8.02
 		return (not wrld == 0) and (dist < wrld and time > wrld * 0.05)
-
-	#"Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput", "High Jump"
 	
 	#return None
 	#param None
