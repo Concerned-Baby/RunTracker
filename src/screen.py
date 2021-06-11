@@ -337,7 +337,7 @@ class myApplicationManager(object):
 			wrld = 223.13
 		elif event == "3200m":
 			wrld = 478.61
-		return  wrld != 0 and (time > wrld and time < (pow(wrld, 13/11 + 0.025) * 1.3))
+		return wrld != 0 and (time > wrld and time < (pow(wrld, 13/11 + 0.025) * 1.3))
 
 	#return boolean
 	#param String, double
