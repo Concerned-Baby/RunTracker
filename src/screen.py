@@ -324,38 +324,38 @@ class myApplicationManager(object):
 	#return boolean
 	#param String, double
 	def reasonableTimeTrack(self, event, time):
-		wrld = 0
+		worldRecord = 0
 		if event == "100m":
-			wrld = 9.58
+			worldRecord = 9.58
 		elif event == "200m":
-			wrld = 19.19
+			worldRecord = 19.19
 		elif event == "400m":
-			wrld = 43.03
+			worldRecord = 43.03
 		elif event == "800m":
-			wrld = 101.91
+			worldRecord = 101.91
 		elif event == "1600m":
-			wrld = 223.13
+			worldRecord = 223.13
 		elif event == "3200m":
-			wrld = 478.61
-		return wrld != 0 and (time > wrld and time < (pow(wrld, 13/11 + 0.025) * 1.3))
+			worldRecord = 478.61
+		return worldRecord != 0 and (time > worldRecord and time < (pow(worldRecord, 13/11 + 0.025) * 1.3))
 
 	#return boolean
 	#param String, double
 	def reasonableTimeEvent(self, event, dist):
-		wrld = 0
+		worldRecord = 0
 		if event == "Pole Vault":
-			wrld = 20.18
+			worldRecord = 20.18
 		elif event == "Long Jump":
-			wrld = 29.35
+			worldRecord = 29.35
 		elif event == "Triple Jump":
-			wrld = 60.00
+			worldRecord = 60.00
 		elif event == "Discus":
-			wrld = 251.88
+			worldRecord = 251.88
 		elif event == "Shotput":
-			wrld = 75.85
+			worldRecord = 75.85
 		elif event == "High Jump":
-			wrld = 8.02
-		return wrld != 0 and (dist < wrld and time > wrld * 0.05)
+			worldRecord = 8.02
+		return worldRecord != 0 and (dist < worldRecord and time > worldRecord * 0.05)
 	
 	#return None
 	#param None
