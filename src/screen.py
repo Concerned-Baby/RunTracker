@@ -422,7 +422,7 @@ class myApplicationManager(object):
 		for checkBox in self.checkList:
 			event = checkBox["text"]
 			if (event in events):
-				if (not checkBox.instate(["selected"])):
+				if not checkBox.instate(["selected"]):
 					checkBox.state(["selected"])
 			else:
 				checkBox.state(['!selected'])
