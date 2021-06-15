@@ -240,6 +240,8 @@ class myApplicationManager(object):
 			return True
 		return False		
 		
+	#return boolean
+	#param String
 	def isFloatPredictor(self, toBe):
 		if toBe == "":
 			self.predictorGivenTime = -1
