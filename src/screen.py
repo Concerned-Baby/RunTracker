@@ -182,7 +182,7 @@ class myApplicationManager(object):
 	def editGoals_go(self):
 		index = self.cbb_editGoals_events.get()
 		if (index == ""):
-			self.lbl_editGoals_output["text"] = "Select A Event"
+			self.lbl_editGoals_output["text"] = "Select A Event From The Dropdown"
 		else:
 			time = self.goalTime
 			if (time == -1):
