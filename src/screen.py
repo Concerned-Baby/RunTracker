@@ -185,7 +185,7 @@ class myApplicationManager(object):
 			self.lbl_editGoals_output["text"] = "Select A Event From The Dropdown"
 		else:
 			time = self.goalTime
-			if (time == -1):
+			if time == -1:
 				self.lbl_editGoals_output["text"] = "Enter A Time"
 			else:
 				result = self.runnersDict[self.runner].newGoal(index, float(time))
@@ -257,8 +257,6 @@ class myApplicationManager(object):
 	#return String
 	#param String
 	def getAllPrs(self, runner):
-		print(runner)
-		print(self.runnersDict)
 		runnerObj = self.runnersDict[runner]
 		events = runnerObj.getEvents()
 		text = ""
