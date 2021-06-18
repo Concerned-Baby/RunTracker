@@ -296,7 +296,7 @@ class myApplicationManager(object):
 			if (time == -1):
 				self.lbl_editTimes_output["text"] = "Enter A Time"
 			else:
-				if (self.reasonableTimeTrack(index, float(time)) and index not in Field) or (self.reasonableTimeEvent(index, float(time)) and index in Field):
+				if (self.reasonableTimeTrack(index, float(time)) and index not in Field) or (self.reasonableTimeField(index, float(time)) and index in Field):
 					result = self.runnersDict[self.runner].newTime(index, float(time))
 					if (result == "Time Added"):
 						text = self.lbl_editTimes_output["text"]
@@ -341,7 +341,7 @@ class myApplicationManager(object):
 
 	#return boolean
 	#param String, double
-	def reasonableTimeEvent(self, event, dist):
+	def reasonableTimeField(self, event, dist):
 		worldRecord = 0
 		if event == "Pole Vault":
 			worldRecord = 20.18
