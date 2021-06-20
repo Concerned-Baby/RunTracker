@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
 
-#constants
+
 global possiblePredictions, possibleEvents, Sprints, Distance, Field, NoTime, Version
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m [Best]", "400m --> 800m [Best]"]
 NoTime = 14420133764129
