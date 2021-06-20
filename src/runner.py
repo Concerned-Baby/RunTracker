@@ -7,8 +7,8 @@ from platform import system
 
 FIELDEVENTS = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput", "High Jump"] #list of field events
 
-global NoTime
-NoTime = 14420133764129
+global NoneType
+NoneType = 14420133764129
 
 #return None
 #param String, String, String, String
@@ -148,7 +148,7 @@ class Runner (object):
 	#param String
 	def getPRFieldEvent(self, eventName):
 		times = self.getTimesEvent(eventName)
-		return NoTime if len(times) == 0 else max(times)
+		return NoneType if len(times) == 0 else max(times)
 
 	#return double
 	#param String
@@ -156,7 +156,7 @@ class Runner (object):
 		times = self.getTimesEvent(eventName)
 		if eventName in FIELDEVENTS:
 			return self.getPRFieldEvent(eventName)
-		return NoTime if len(times) == 0 else min(times)
+		return NoneType if len(times) == 0 else min(times)
 
 	#return int
 	#param String
@@ -172,7 +172,7 @@ class Runner (object):
 	#param None
 	def getAveragePoints(self):
 		try:
-			return self.getTotalPoints() / len([event for event in self.getEvents() if self.getPREvent(event) != NoTime])
+			return self.getTotalPoints() / len([event for event in self.getEvents() if self.getPREvent(event) != NoneType])
 		except ZeroDivisionError:
 			return 0
 
@@ -184,7 +184,7 @@ class Runner (object):
 	#return double
 	#param double, double, double, double
 	def calculatePoints(self, a, b, c, time):
-		if time == NoTime:
+		if time == NoneType:
 			score = 0
 		else:
 			score = a * pow((b - time), c)
@@ -223,7 +223,7 @@ class Runner (object):
 	def getAllInfoEvent(self, eventName):
 		toPrint = ""
 		pr = self.getPREvent(eventName)
-		if pr != NoTime:
+		if pr != NoneType:
 			toPrint += "PR: %.2f\n\n" % pr
 		else:
 			toPrint += "PR: N/A\n\n"
@@ -246,7 +246,7 @@ class Runner (object):
 		text =  "<h3> %s </h3>\n\n" % eventName
 
 		pr = self.getPREvent(eventName)
-		if pr != NoTime:
+		if pr != NoneType:
 			text += "<h5> PR: %s </h5>\n\n" % pr
 		else:
 			text += "<h5> PR: N/A </h5>\n\n"
