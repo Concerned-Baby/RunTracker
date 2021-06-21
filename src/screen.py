@@ -33,9 +33,9 @@ def getLocalBest(eventName, runnersDict):
 					best = pr
 					bestMan = runner
 		if best == NoTime:
-			return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
+			return "\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName)
 		else:
-			return("\nBest %s: %s \nBest %s'er: %s" % (eventName, format(best), eventName, bestMan))
+			return "\nBest %s: %s \nBest %s'er: %s" % (eventName, format(best), eventName, bestMan)
 	else:
 		best = 0
 		for runner in runnersDict:
