@@ -45,14 +45,14 @@ def getLocalBest(eventName, runnersDict):
 					best = pr
 					bestMan = runner
 		if best == 0:
-			return("\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName))
-		return("\nBest %s: %.2f \nBest %s'er: %s" % (eventName, best, eventName, bestMan))
+			return "\nBest %s: N/A \nBest %s'er: N/A" % (eventName, eventName)
+		return "\nBest %s: %.2f \nBest %s'er: %s" % (eventName, best, eventName, bestMan)
 	return "ERROR LOADING TIMES"
 
 #return String
 #param double
 def format(time):
-	if (time < 60):
+	if time < 60:
 		return "%.2f" % time
 	return ("%d:%2d.%2d" % (time / 60, time % 60, (time % 1) * 100)).replace(' ', "0")
 
@@ -80,7 +80,7 @@ def getRankingsEvent(eventName, runnersDict):
 	temp = {}
 	for runner in runnersDict:
 		if runnersDict[runner].hasEvent(eventName):
-			temp[(runnersDict[runner].getPREvent(eventName))] = runner
+			temp[runnersDict[runner].getPREvent(eventName)] = runner
 	count = 1
 	text = ""
 	for time in sorted(temp.keys()):
