@@ -161,27 +161,27 @@ class myApplicationManager(object):
 	#param None
 	def predictor_go(self):
 		index = self.cbb_predictor_selector.current()
-		if (index == -1):
+		if index == -1:
 			self.lbl_predictor_output["text"] = "Select"
 		else:
 			time = self.predictorGivenTime
 			if (time == ""):
 				self.lbl_predictor_output["text"] = "Enter"
 			else:
-				if (index == 0): #100 --> 200
+				if index == 0: #100 --> 200
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.06) - 0.98))
-				elif (index == 1): #200 --> 400
+				elif index == 1: #200 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.12) + 1.35))
-				elif (index == 2): #300 --> 400
+				elif index == 2: #300 --> 400
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 1.37) + 1.23))
-				elif (index == 3): #400 --> 800
+				elif index == 3: #400 --> 800
 					self.lbl_predictor_output["text"] = ("%.2f" % ((float(time) * 2.33) + 6.3))
 
 	#return None
 	#param None
 	def editGoals_go(self):
 		index = self.cbb_editGoals_events.get()
-		if (index == ""):
+		if index == "":
 			self.lbl_editGoals_output["text"] = "Select A Event From The Dropdown"
 		else:
 			time = self.goalTime
@@ -190,7 +190,7 @@ class myApplicationManager(object):
 			else:
 				result = self.runnersDict[self.runner].newGoal(index, float(time))
 				if result == "Goal Added":
-					if (self.lbl_editGoals_output["text"][0:5] == "Added"):
+					if self.lbl_editGoals_output["text"][0:5] == "Added":
 						self.lbl_editGoals_output["text"] = self.lbl_editGoals_output["text"] + "!"
 					else:
 						self.lbl_editGoals_output["text"] = "Added"
