@@ -275,7 +275,7 @@ class myApplicationManager(object):
 		events = runnerObj.getEvents()
 		text = ""
 		for event in events:
-			text += ("\n%s: \n" % (event))
+			text += "\n%s: \n" % (event)
 			goals = runnerObj.getGoalsEvent(event)
 			if goals == []:
 				text += "N/A\n"
@@ -293,7 +293,7 @@ class myApplicationManager(object):
 			self.lbl_editTimes_output["text"] = "Select A Event"
 		else:
 			time = self.ranTime
-			if (time == -1):
+			if time == -1:
 				self.lbl_editTimes_output["text"] = "Enter A Time"
 			else:
 				if (self.reasonableTimeTrack(index, float(time)) and index not in Field) or (self.reasonableTimeField(index, float(time)) and index in Field):
