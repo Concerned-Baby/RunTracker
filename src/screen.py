@@ -364,10 +364,10 @@ class myApplicationManager(object):
 		events = runnerObj.getEvents()
 		for checkBox in self.checkList:
 			event = checkBox["text"]
-			if (checkBox.instate(["selected"])):
+			if checkBox.instate(["selected"]):
 				if event not in events:
 					runnerObj.newEvent(event)
-			elif (checkBox.instate(["!selected"])):
+			elif checkBox.instate(["!selected"]):
 				if event in events:
 					runnerObj.removeEvent(event)
 		self.updateRunner()
@@ -421,7 +421,7 @@ class myApplicationManager(object):
 		events = self.runnersDict[self.runner].getEvents()
 		for checkBox in self.checkList:
 			event = checkBox["text"]
-			if (event in events):
+			if event in events:
 				if not checkBox.instate(["selected"]):
 					checkBox.state(["selected"])
 			else:
@@ -558,7 +558,7 @@ class myApplicationManager(object):
 	#param None
 	def deleteTimes_go(self):
 		toDelete = []
-		print("start " + str(toDelete))
+		##print("start " + str(toDelete))
 		for chk in self.deleteTimes_currentOn:
 			try:
 				if str(chk.state()).index("selected") > -1:
@@ -573,25 +573,25 @@ class myApplicationManager(object):
 	#return None
 	#param None
 	def deleteGoal_go(self):
-		print("deleting goals")
+		##print("deleting goals")
 		toDelete = []
-		print("start " + str(toDelete))
+		##print("start " + str(toDelete))
 		for chk in self.deleteGoals_currentOn:
 			try:
 				if (str(chk.state()).index("selected") > -1):
 					toDelete.append(chk)
 			except ValueError:
 				print("pass")
-		print("end " + str(toDelete))
+		##print("end " + str(toDelete))
 		for chk in toDelete:
-			print("removing goal " + chk["text"] + " from " + self.cbb_deleteGoals_events.get())
+			##print("removing goal " + chk["text"] + " from " + self.cbb_deleteGoals_events.get())
 			self.runnersDict[self.runner].removeGoal(self.cbb_deleteGoals_events.get(), float(chk["text"]))
 
 	#return None
 	#param None
 	def import_fileSelect(self):
 		file = filedialog.askopenfilename()
-		print(file)
+		##print(file)
 		try:
 			fileObject = open(file, "r")
 			self.txt_import_file.delete("1.0","end-1c")
