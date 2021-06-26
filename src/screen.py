@@ -799,7 +799,7 @@ class myApplicationManager(object):
 		self.cbb_predictor_selector = ttk.Combobox(master=self.frm_predictor, values=possiblePredictions, state="readonly", width=40)
 		self.cbb_predictor_selector.place(x=270, y=90)
 
-		lbl_predictor_entryLabel = tk.Label(master=self.frm_predictor, text="      Time      ", borderwidth=1, relief="solid")
+		lbl_predictor_entryLabel = tk.Label(master=self.frm_predictor, text="       Time       ", borderwidth=1, relief="solid")
 		lbl_predictor_entryLabel.place(x=365, y=160)
 
 		self.predictorTime = tk.StringVar()
