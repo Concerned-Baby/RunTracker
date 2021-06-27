@@ -18,7 +18,7 @@ Events = Sprints + Distance + Field
 
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
 
-Version = "2.1"
+Version = "2.1.1"
 
 #return String
 #param String, Dictionary<String, Runner>
