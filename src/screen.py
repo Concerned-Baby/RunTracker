@@ -7,14 +7,14 @@ from tkinter import ttk
 from tkinter import filedialog
 
 
-global possiblePredictions, possibleEvents, Sprints, Distance, Field, NoTime, Version
+global possiblePredictions, possibleEvents, SprintEvents, DistanceEvents, FieldEvents, NoTime, Version
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m [Best]", "400m --> 800m [Best]"]
 NoTime = 14420133764129
 
-Sprints = ["100m", "200m", "400m"]
-Distance = ["800m", "1600m", "3200m"]
-Field = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput", "High Jump"]
-Events = Sprints + Distance + Field
+SprintEvents = ["100m", "200m", "400m"]
+DistanceEvents = ["800m", "1600m", "3200m"]
+FieldEvents = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput", "High Jump"]
+Events = SprintEvents + DistanceEvents + FieldEvents
 
 supportedSyntaxs = ["Name - Event - Time", "Event - Name - Time", "Name Event Time", "Event Name Time"]
 
@@ -24,7 +24,7 @@ Version = "2.1.1"
 #param String, Dictionary<String, Runner>
 def getLocalBest(eventName, runnersDict):
 	bestMan = "N/A"
-	if eventName not in Field:
+	if eventName not in FieldEvents:
 		best = NoTime
 		for runner in runnersDict:
 			if runnersDict[runner].hasEvent(eventName):
@@ -296,7 +296,7 @@ class myApplicationManager(object):
 			if time == -1:
 				self.lbl_editTimes_output["text"] = "Enter A Time"
 			else:
-				if (self.reasonableTimeTrack(index, float(time)) and index not in Field) or (self.reasonableTimeField(index, float(time)) and index in Field):
+				if (self.reasonableTimeTrack(index, float(time)) and index not in FieldEvents) or (self.reasonableTimeField(index, float(time)) and index in FieldEvents):
 					result = self.runnersDict[self.runner].newTime(index, float(time))
 					if (result == "Time Added"):
 						text = self.lbl_editTimes_output["text"]
@@ -777,13 +777,13 @@ class myApplicationManager(object):
 		btn_best_help = tk.Button(master=self.frm_best, text="Help", command=self.best_help, width=5, height=1, borderwidth=3, relief="raised")
 		btn_best_help.place(x=745, y=5)
 
-		lbl_best_bestDistance = tk.Label(master=self.frm_best, text=getLocalBestGroup(Distance, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
+		lbl_best_bestDistance = tk.Label(master=self.frm_best, text=getLocalBestGroup(DistanceEvents, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
 		lbl_best_bestDistance.place(x=36, y=20)
 
-		lbl_best_bestSprints = tk.Label(master=self.frm_best, text=getLocalBestGroup(Sprints, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
+		lbl_best_bestSprints = tk.Label(master=self.frm_best, text=getLocalBestGroup(SprintEvents, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
 		lbl_best_bestSprints.place(x=280, y=20)
 
-		lbl_best_bestField = tk.Label(master=self.frm_best, text=getLocalBestGroup(Field, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
+		lbl_best_bestField = tk.Label(master=self.frm_best, text=getLocalBestGroup(FieldEvents, self.runnersDict), width=30, height=27, borderwidth=4, relief="groove")
 		lbl_best_bestField.place(x=524, y=20)
 
 		btn_best_back = tk.Button(master=self.frm_best, text="B", fg="green", command=self.back, width=2,height=1, borderwidth=3, relief="raised")
@@ -1015,13 +1015,13 @@ class myApplicationManager(object):
 			chk.state(["!alternate"])
 			self.checkList.append(chk)
 			
-			if event in Sprints:
+			if event in SprintEvents:
 				chk.place(x=150, y=SCount)
 				SCount += 30
-			elif event in Distance:
+			elif event in DistanceEvents:
 				chk.place(x=350, y=DCount)
 				DCount += 30
-			elif event in Field:
+			elif event in FieldEvents:
 				chk.place(x=550, y=OCount)
 				OCount += 30
 
