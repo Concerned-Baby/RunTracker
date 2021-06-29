@@ -9,7 +9,7 @@ from tkinter import filedialog
 
 global possiblePredictions, possibleEvents, SprintEvents, DistanceEvents, FieldEvents, NoTime, Version
 possiblePredictions = ["100m --> 200m [Best]", "200m --> 400m [Best]", "300m --> 400m [Best]", "400m --> 800m [Best]"]
-NoTime = 14420133764129
+NoTime = 56725649176543423.456215
 
 SprintEvents = ["100m", "200m", "400m"]
 DistanceEvents = ["800m", "1600m", "3200m"]

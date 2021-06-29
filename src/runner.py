@@ -8,7 +8,7 @@ from platform import system
 FIELDEVENTS = ["Long Jump", "Triple Jump", "Pole Vault", "Discus", "Shotput", "High Jump"]
 
 global NoneType
-NoneType = 14420133764129
+NoneType = 56725649176543423.456215
 
 #return None
 #param String, String, String, String
