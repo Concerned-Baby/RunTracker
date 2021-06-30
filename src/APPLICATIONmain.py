@@ -1,6 +1,5 @@
 from screen import myApplicationManager
 from runner import Runner
-from loadingscreen import loadingScreen
 from os import path
 from os import getcwd
 from os import listdir
