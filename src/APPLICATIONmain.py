@@ -10,7 +10,7 @@ GlobalrunnersDict = {}
 
 
 """
-ERRORS:
+Need To Fix:
 
 need to update checkboxes for delete times and goals after deletion
 deleting times not working
@@ -18,7 +18,7 @@ deleting times not working
 """
 
 """
-TODO:
+Should Do Ideas:
 
 make to delete and times in order
 
@@ -31,7 +31,7 @@ change screens after saving events
 """
 
 """
-IDEAS:
+Stetch Ideas:
 
 make it connected to a website
 
