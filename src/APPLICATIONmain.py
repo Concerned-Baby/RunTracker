@@ -10,7 +10,7 @@ GlobalrunnersDict = {}
 
 
 """
-Need To Fix:
+Must Have:
 
 need to update checkboxes for delete times and goals after deletion
 deleting times not working
@@ -18,7 +18,7 @@ deleting times not working
 """
 
 """
-Should Do Ideas:
+May Do:
 
 make to delete and times in order
 
