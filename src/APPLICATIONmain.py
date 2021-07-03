@@ -18,7 +18,7 @@ deleting times not working
 """
 
 """
-May Do:
+May Have:
 
 make to delete and times in order
 
