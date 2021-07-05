@@ -31,7 +31,7 @@ change screens after saving events
 """
 
 """
-Stetch:
+Stretch:
 
 make it connected to a website
 
