@@ -49,18 +49,16 @@ def main():
 			mkdir("Runners")
 		except OSError:
 			print ("Error Creating Runner Directory")
-	setUpDictionary()
-	window()
-
-def window():
+	start()
+	
+def start():
+	runnersDict = {}
+	for runner in listdir("%s/Runners" % getcwd()):	
+		GlobalrunnersDict[runner] = Runner(runner)
 	myApplicationManager(GlobalrunnersDict).start()
 
-def setUpDictionary():	
-	for runner in getRunners():		
-		GlobalrunnersDict[runner] = Runner(runner)
 
-def getRunners():
-	return listdir("%s/Runners" % getcwd())
+
 
 if __name__ == "__main__":
 	main()
