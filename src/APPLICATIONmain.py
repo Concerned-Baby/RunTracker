@@ -16,7 +16,6 @@ need to update checkboxes for delete times and goals after deletion
 deleting times not working
 
 """
-
 """
 May:
 
@@ -29,7 +28,6 @@ clear input boxes after use
 change screens after saving events
 
 """
-
 """
 Stretch:
 
