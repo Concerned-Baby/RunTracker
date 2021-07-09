@@ -5,10 +5,6 @@ from os import getcwd
 from os import listdir
 from os import mkdir
 
-global GlobalrunnersDict
-GlobalrunnersDict = {}
-
-
 """
 Must:
 
